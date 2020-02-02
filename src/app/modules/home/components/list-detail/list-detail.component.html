@@ -1,0 +1,9 @@
+<h1>id = {{cityid}}</h1>
+<!-- 
+<h4>temp: {{weather.temp}}</h4>
+<H4>humidity: {{weather.humidity}}</H4> 
+-->
+<div *ngIf="weather">
+    <h4>city name: {{weather.name}}</h4>
+    <h4>description: {{weather.weather[0].description}}</h4>
+</div>
