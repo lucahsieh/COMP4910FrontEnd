@@ -5,23 +5,23 @@ import { ListDetailComponent } from './components/list-detail/list-detail.compon
 
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'index',
-    pathMatch: 'full'
-  },
-  {
-    path: 'index',
-    component: HomeComponent
-  },
-  {
-    path: ':id',
-    component: ListDetailComponent
-  },
-  {
-    path: 'detail',
-    component: ListDetailComponent
-  }
+  // {
+  //   path: '',
+  //   redirectTo: 'index',
+  //   pathMatch: 'full'
+  // },
+  // {
+  //   path: 'index',
+  //   component: HomeComponent
+  // },
+  // {
+  //   path: ':id',
+  //   component: ListDetailComponent
+  // },
+  // {
+  //   path: 'detail',
+  //   component: ListDetailComponent
+  // }
 ];
 
 @NgModule({

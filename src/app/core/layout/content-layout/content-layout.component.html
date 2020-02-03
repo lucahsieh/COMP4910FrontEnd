@@ -1,4 +1,14 @@
-<app-nav></app-nav>
-<p>content-layout here</p>
-<router-outlet></router-outlet>
+<app-toolbar></app-toolbar>
+
+<mat-sidenav-container class="example-container">
+    <mat-sidenav #sidenav mode="side" [(opened)]="opened">
+        <app-nav></app-nav>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <app-breadcrumb></app-breadcrumb>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
 <app-footer></app-footer>

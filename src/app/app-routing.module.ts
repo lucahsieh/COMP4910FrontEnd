@@ -8,25 +8,59 @@ import { AuthGuard } from './core/guard/auth.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'cities',
+    redirectTo: 'content/dashboard',
     canActivate: [AuthGuard],
+    data: {
+      breadcrumb: 'home'
+    },
     pathMatch: 'full'
   },
   {
-    path: '',
+    path: 'content',
+    data: {
+      breadcrumb: 'content'
+    },
     component: ContentLayoutComponent,
     canActivate: [AuthGuard],
     children: [
       {
-        path: 'cities',
-        loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)
+        path: 'dashboard',
+        data: {
+          breadcrumb: null
+        },
+        loadChildren: () => import('./modules/dashboard/dashboard.module').then(m => m.DashboardModule)
       },
       {
-        path: 'employee',
-        loadChildren: () => import('./modules/employee/employee.module').then(m => m.EmployeeModule)
+        path: 'timesheets',
+        data: {
+          breadcrumb: null
+        },
+        loadChildren: () => import('./modules/timesheets/timesheets.module').then(m => m.TimesheetsModule)
+      },
+      {
+        path: 'reports',
+        data: {
+          breadcrumb: null
+        },
+        loadChildren: () => import('./modules/reports/reports.module').then(m => m.ReportsModule)
       },
     ]
   },
+  // {
+  // path: '',
+  // component: ContentLayoutComponent,
+  // canActivate: [AuthGuard],
+  // children: [
+  //   {
+  //     path: 'cities',
+  //     loadChildren: () => import('./modules/home/home.module').then(m => m.HomeModule)
+  //   },
+  //   {
+  //     path: 'employee',
+  //     loadChildren: () => import('./modules/employee/employee.module').then(m => m.EmployeeModule)
+  //   },
+  // ]
+  // },
   {
     path: 'auth',
     component: LoginLayoutComponent,

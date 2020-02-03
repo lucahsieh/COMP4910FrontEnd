@@ -4,23 +4,24 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FooterComponent } from './core/layout/footer/footer.component';
-import { NavComponent } from './core/layout/nav/nav.component';
 import { ContentLayoutComponent } from './core/layout/content-layout/content-layout.component';
 import { JwtInterceptor } from './core/interceptor/jwt.interceptor';
 import { ErrorInterceptor } from './core/interceptor/error.interceptor';
 import { fakeBackendProvider } from './core/interceptor/fake-backend.interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { LoginLayoutComponent } from './core/layout/login-layout/login-layout.component';
 import { AuthGuard } from './core/guard/auth.guard';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { CoreModule } from './core/core.module';
+import { RouterModule } from '@angular/router';
+import { HomeModule } from './modules/home/home.module';
+import { BreadcrumbModule } from 'primeng/breadcrumb';
+import { MenuItem } from 'primeng/api';
 
 @NgModule({
   declarations: [
     AppComponent,
     ContentLayoutComponent,
-    LoginLayoutComponent,
-    FooterComponent,
-    NavComponent
   ],
   imports: [
     // angular
@@ -28,13 +29,23 @@ import { AuthGuard } from './core/guard/auth.guard';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterModule,
+
+
+    // material
+    MatSidenavModule,
 
     // 3rd party
 
     // core & shared
+    BreadcrumbModule,
+
 
     //app
-    AppRoutingModule
+    AppRoutingModule,
+    CoreModule,
+    HomeModule,
+    BrowserAnimationsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

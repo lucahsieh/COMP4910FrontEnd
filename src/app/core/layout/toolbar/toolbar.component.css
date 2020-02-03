@@ -1,0 +1,5 @@
+.header-align-right{
+    display: flex;
+    padding: 21px 0;
+    justify-content: flex-end;
+  }

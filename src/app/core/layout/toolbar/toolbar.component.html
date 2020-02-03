@@ -1,0 +1,10 @@
+<!-- <nav class="navbar navbar-light bg-light">
+    <a routerLink="/cities">cities</a>
+    <a routerLink="/employee">employee</a>
+    <a class="nav-item nav-link" routerLink="/">Home</a>
+    <a class="nav-item nav-link" (click)="logout()">Logout</a>
+</nav> -->
+<mat-toolbar class="header-align-right">
+    <span>{{currentUser.credentialId}}</span>
+    <a class="nav-item nav-link" (click)="logout()">Logout</a>
+</mat-toolbar>

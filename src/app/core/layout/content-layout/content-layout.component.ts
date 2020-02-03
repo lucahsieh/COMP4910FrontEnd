@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { RouterModule, ActivatedRoute, Router, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs/operators';
+import { MenuItem } from 'primeng/api/menuitem';
+import { isNullOrUndefined } from 'util';
 
 @Component({
   selector: 'app-content-layout',
@@ -7,9 +11,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContentLayoutComponent implements OnInit {
 
-  constructor() { }
+  opened: boolean = true;
+
+  constructor(
+
+  ) { }
+
 
   ngOnInit() {
   }
+
+
+
 
 }
