@@ -1,15 +1,20 @@
 <nav class="navbar navbar-dark bg-primary">
-    <span class="navbar-brand mb-0 h1">
-        App
-    </span>
     <div>
+        <span class="navbar-brand mb-0 h1">
+            App
+        </span>
+        <span class="navbar-text" *ngIf="currentUser">
+            {{currentUser.jobTitle}}
+        </span>
+    </div>
+    <div *ngIf="currentUser">
         <form class="form-inline">
             <i class="material-icons navbar-brand">
                 account_circle
             </i>
-            <span class="navbar-brand  mb-0 h4">
+            <h4 class="navbar-brand  mb-0 h4">
                 {{currentUser.firstName}} {{currentUser.lastName}}
-            </span>
+            </h4>
             <button class="btn btn-outline-light" type="button" (click)="logout()">Logout</button>
         </form>
     </div>

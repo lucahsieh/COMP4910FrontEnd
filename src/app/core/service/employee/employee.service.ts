@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessageService } from '../message.service';
 import { Observable, of } from 'rxjs';
 import { Employee } from 'src/app/shared/model/employee';
-import { Credential } from 'src/app/shared/model/credential';
 
 import { catchError, tap, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';

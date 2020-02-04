@@ -9,6 +9,7 @@ export interface User {
     token: string;
     employeeId: string;
     firstName: string;
+    jobTitle: string,
     lastName: string;
     isActive: boolean;
     supervisorId?: any;

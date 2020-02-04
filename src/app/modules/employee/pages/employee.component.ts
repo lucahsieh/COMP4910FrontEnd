@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from 'src/app/core/service/employee/employee.service';
 import { Employee } from 'src/app/shared/model/employee';
-import { Credential } from 'src/app/shared/model/credential';
 import { UserName } from 'src/app/shared/model/userName';
 import { User } from 'src/app/shared/model/user';
 
