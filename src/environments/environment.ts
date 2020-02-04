@@ -4,7 +4,12 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:4000'
+
+  // apiUrl: 'http://localhost:4000',
+
+  // NOTE: 44318 is the actual backend server.
+  authUrl: 'https://localhost:44318/',
+  apiUrl: 'https://localhost:44318/'
 };
 
 /*

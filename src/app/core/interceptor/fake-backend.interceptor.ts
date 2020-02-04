@@ -4,8 +4,49 @@ import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 import { User } from 'src/app/shared/model/user';
 
-// const users: User[] = [{ id: 1, username: 'test', password: 'test', firstName: 'Test', lastName: 'User' }];
+// fake users
+// only for testing purpose. dont do this in production code.
+const users: User[] = [
+    {
+        "userName": "A123",
+        "password": "master",
+        "token": "JWT_TOKEN1",
+        "employeeId": "A123",
+        "firstName": "Master",
+        "lastName": "Li",
+        "isActive": true,
+        "supervisorId": null,
+        "timesheetApproverId": null,
+    },
+    {
+        "userName": "A456",
+        "password": "regular",
+        "token": "JWT_TOKEN2",
+        "employeeId": "A456",
+        "firstName": "Regular",
+        "lastName": "Li",
+        "isActive": true,
+        "supervisorId": "A123",
+        "timesheetApproverId": "A789",
+    },
+    {
+        "userName": "A789",
+        "password": "lower",
+        "token": "JWT_TOKEN3",
+        "employeeId": "A789",
+        "firstName": "Lower",
+        "lastName": "Li",
+        "isActive": true,
+        "supervisorId": "A123",
+        "timesheetApproverId": null,
+    }
+];
 
+/**
+ * This class intercept the https request, when user make a
+ * login/logout request. We use client side hardcoded user 
+ * for front end dev testing. 
+ */
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -22,10 +63,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         function handleRoute() {
             switch (true) {
                 //comment out all cases and use default instead when testing with real backend
-                // case url.endsWith('/users/authenticate') && method === 'POST':   
-                //     return authenticate();
-                // case url.endsWith('/users') && method === 'GET':
-                //     return getUsers();
+                // user login.
+                case url.endsWith('/Credentials/Authenticate') && method === 'POST':
+                    return authenticate();
                 default:
                     // pass through any requests not handled above
                     return next.handle(request);
@@ -34,23 +74,12 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
         // route functions
 
-        // function authenticate() {
-        //     const { username, password } = body;
-        //     const user = users.find(x => x.username === username && x.password === password);
-        //     if (!user) return error('Username or password is incorrect');
-        //     return ok({
-        //         id: user.id,
-        //         username: user.username,
-        //         firstName: user.firstName,
-        //         lastName: user.lastName,
-        //         token: 'fake-jwt-token'
-        //     })
-        // }
-
-        // function getUsers() {
-        //     if (!isLoggedIn()) return unauthorized();
-        //     return ok(users);
-        // }
+        function authenticate() {
+            const { userName, password } = body;
+            const user = users.find(x => x.userName === userName && x.password === password);
+            if (!user) return error('Username or password is incorrect');
+            return ok(user)
+        }
 
         // helper functions
 

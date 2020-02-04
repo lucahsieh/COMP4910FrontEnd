@@ -38,6 +38,13 @@ const routes: Routes = [
         loadChildren: () => import('./modules/timesheets/timesheets.module').then(m => m.TimesheetsModule)
       },
       {
+        path: 'employees',
+        data: {
+          breadcrumb: null
+        },
+        loadChildren: () => import('./modules/employee/employee.module').then(m => m.EmployeeModule)
+      },
+      {
         path: 'reports',
         data: {
           breadcrumb: null

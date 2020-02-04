@@ -4,7 +4,7 @@ import { City } from 'src/app/shared/model/city';
 import { UserService } from 'src/app/core/service/user.service';
 import { User } from 'src/app/shared/model/user';
 import { first } from 'rxjs/operators';
-import { EmployeeService} from 'src/app/core/service/employee/employee.service';
+import { EmployeeService } from 'src/app/core/service/employee/employee.service';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   availableUsername;
 
   //inject service into constructor?
-  constructor( private cityService: CityService, private userService: UserService, private employeeService : EmployeeService) { 
+  constructor(private cityService: CityService, private userService: UserService, private employeeService: EmployeeService) {
 
   }
 
@@ -40,13 +40,13 @@ export class HomeComponent implements OnInit {
 
   }
 
-  findAvailableUsername(){
-    console.log(localStorage.getItem("currentUser") + ", token is.... "  + localStorage.getItem("currentUserToken"));
-    this.employeeService.getAvailableUsername(localStorage.getItem('currentUserToken')).subscribe( response => {
-      console.log("printing available username from home component: " + response["Username"]);
-      console.log(response);
-      this.availableUsername = response["Username"];
-    })
-  }
+  // findAvailableUsername() {
+  //   console.log(localStorage.getItem("currentUser") + ", token is.... " + localStorage.getItem("currentUserToken"));
+  //   this.employeeService.getAvailableUsername().subscribe(response => {
+  //     console.log("printing available username from home component: " + response["Username"]);
+  //     console.log(response);
+  //     this.availableUsername = response["Username"];
+  //   })
+  // }
 
 }
