@@ -3,6 +3,7 @@ import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTT
 import { Observable, of, throwError } from 'rxjs';
 import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
 import { User } from 'src/app/shared/model/user';
+import { environment } from 'src/environments/environment';
 
 // fake users
 // only for testing purpose. dont do this in production code.
@@ -64,7 +65,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
             .pipe(dematerialize());
 
         function handleRoute() {
-            switch (true) {
+            // 
+            switch (environment.fakeBackend) {
                 //comment out all cases and use default instead when testing with real backend
                 // user login.
                 case url.endsWith('/Credentials/Authenticate') && method === 'POST':
