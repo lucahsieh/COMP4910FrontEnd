@@ -8,7 +8,7 @@ import { AuthGuard } from './core/guard/auth.guard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'content/dashboard',
+    redirectTo: 'content/dashboard',  //change this to content/dashboard if needed
     canActivate: [AuthGuard],
     data: {
       breadcrumb: 'home'
