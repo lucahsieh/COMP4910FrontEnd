@@ -23,10 +23,10 @@ export class AuthenticationService {
     return this.currentUserSubject.value;
   }
 
-  login(userName: string, password: string) {
+  login(credentialId: string, password: string) {
     //perry backend code
     let baseUrl = environment.authUrl;
-    return this.http.post<any>(baseUrl + 'api/Credentials/Authenticate', { userName, password })
+    return this.http.post<any>(baseUrl + 'api/Credentials/Authenticate', { credentialId, password })
       .pipe(map(user => {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('currentUser', JSON.stringify(user));  //must serialize json to string since it saves it as key-value pair)

@@ -12,4 +12,8 @@ export class DashboardComponent implements OnInit {
   ngOnInit() {
   }
 
+  goToEmployeePage(){
+    console.log("inside dashboard go to employee page");
+  }
+
 }
