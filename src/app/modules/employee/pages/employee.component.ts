@@ -6,7 +6,8 @@ import { User } from 'src/app/shared/model/user';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { __values } from 'tslib';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-employee',
@@ -15,10 +16,10 @@ import { map } from 'rxjs/operators';
 })
 export class EmployeeComponent implements OnInit {
 
- // employeeList: User[];
+  // employeeList: User[];
   cred: User;
   availableUsername: UserName;
-  employee : User;
+  employee: User;
 
   constructor(private employeeService: EmployeeService, private http: HttpClient) { }
 
@@ -33,19 +34,35 @@ export class EmployeeComponent implements OnInit {
     // })
 
     this.employee = null;
+<<<<<<< HEAD
     console.log("inside ngOnInit");
     this.getEmployeeDetails().subscribe((data : any) => {
+=======
+
+    this.getEmployeeDetails().subscribe((data: any) => {
+>>>>>>> 1a6968613a10feb9ee34c5b132f152fa6ff065ea
       console.log(data);
     });
   }
 
 
   //do this after
-  getEmployeeDetails(){
+  getEmployeeDetails() {
     var empId = localStorage.getItem("currentUserEmployeeId");
     console.log("inside getemployeedetails, employeeId is: " + empId);
     let baseUrl = environment.authUrl;
+<<<<<<< HEAD
     console.log("request url is: " + baseUrl + 'api/Employees/'+ empId)
     return this.http.get<any>(baseUrl + 'api/employees/'+ empId);
+=======
+    console.log("request url is: " + baseUrl + 'api/Employees/' + empId)
+    return this.http.get<any>(baseUrl + 'api/Employees/' + empId).pipe(
+      tap(l => console.log(l)),
+    );
+    // .pipe(map(user => {
+    //   console.log("employee details is: " + user);
+    //   return user;
+    //}));
+>>>>>>> 1a6968613a10feb9ee34c5b132f152fa6ff065ea
   }
 }
