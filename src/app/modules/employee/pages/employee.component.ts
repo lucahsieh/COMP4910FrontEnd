@@ -34,35 +34,13 @@ export class EmployeeComponent implements OnInit {
     // })
 
     this.employee = null;
-<<<<<<< HEAD
-    console.log("inside ngOnInit");
-    this.getEmployeeDetails().subscribe((data : any) => {
-=======
 
-    this.getEmployeeDetails().subscribe((data: any) => {
->>>>>>> 1a6968613a10feb9ee34c5b132f152fa6ff065ea
-      console.log(data);
+    this.employeeService.getEmployeeDetails().subscribe((data: any) => {
+      this.employee= data;
+      console.log(this.employee["employeeFirstName"]);
     });
   }
 
 
-  //do this after
-  getEmployeeDetails() {
-    var empId = localStorage.getItem("currentUserEmployeeId");
-    console.log("inside getemployeedetails, employeeId is: " + empId);
-    let baseUrl = environment.authUrl;
-<<<<<<< HEAD
-    console.log("request url is: " + baseUrl + 'api/Employees/'+ empId)
-    return this.http.get<any>(baseUrl + 'api/employees/'+ empId);
-=======
-    console.log("request url is: " + baseUrl + 'api/Employees/' + empId)
-    return this.http.get<any>(baseUrl + 'api/Employees/' + empId).pipe(
-      tap(l => console.log(l)),
-    );
-    // .pipe(map(user => {
-    //   console.log("employee details is: " + user);
-    //   return user;
-    //}));
->>>>>>> 1a6968613a10feb9ee34c5b132f152fa6ff065ea
-  }
+  
 }

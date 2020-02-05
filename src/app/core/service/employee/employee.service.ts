@@ -47,4 +47,18 @@ export class EmployeeService {
       .get<UserName>(url, this.httpOptions)
       .pipe()
   }
+
+  getEmployeeDetails() {
+    var empId = localStorage.getItem("currentUserEmployeeId");
+    console.log("inside getemployeedetails, employeeId is: " + empId);
+    let baseUrl = environment.authUrl;
+    console.log("request url is: " + baseUrl + 'api/Employees/' + empId)
+    return this.http.get<any>(baseUrl + 'api/Employees/' + empId).pipe(
+      tap(l => console.log(l)),
+    );
+    // .pipe(map(user => {
+    //   console.log("employee details is: " + user);
+    //   return user;
+    //}));
+  }
 }
