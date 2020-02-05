@@ -66,6 +66,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
         function handleRoute() {
             // 
+            if (!environment.fakeBackend)
+                return next.handle(request);
+
             switch (environment.fakeBackend) {
                 //comment out all cases and use default instead when testing with real backend
                 // user login.
