@@ -31,6 +31,7 @@ export class AuthenticationService {
         // store user details and jwt token in local storage to keep user logged in between page refreshes
         localStorage.setItem('currentUser', JSON.stringify(user));  //must serialize json to string since it saves it as key-value pair)
         localStorage.setItem('currentUserToken', JSON.stringify(JSON.parse(localStorage.getItem("currentUser"))["token"]));
+        localStorage.setItem('currentUserEmployeeId', JSON.stringify(JSON.parse(localStorage.getItem("currentUser"))["employeeId"]))
         this.currentUserSubject.next(user);  //sets currentUserSubject to the new user  (next just sets the behaviourSubject to user)
         return user;
       }));

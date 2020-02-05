@@ -29,7 +29,7 @@ export class ToolbarComponent implements OnInit {
   goToEmployeePage(){
     console.log("inside gotoEmployeePage, local crendetial_Id is: " + JSON.stringify(JSON.parse(localStorage.getItem("currentUser"))["credentialId"]) + 
     ", employeeId is: " + JSON.stringify(JSON.parse(localStorage.getItem("currentUser"))["employeeId"]) );
-
+    this.router.navigate(['/content/employees']);
     
   }
 
