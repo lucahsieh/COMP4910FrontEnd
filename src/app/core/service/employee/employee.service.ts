@@ -41,10 +41,10 @@ export class EmployeeService {
   //     .pipe()
   // }
 
-  // getAvailableUsername(): Observable<UserName> {
-  //   let url = this.baseUrl + `api/Credentials/AvailableUsername`;
-  //   return this.http
-  //     .get<UserName>(url, this.httpOptions)
-  //     .pipe()
-  // }
+  getAvailableUsername(): Observable<UserName> {
+    let url = this.baseUrl + `api/Credentials/AvailableUsername`;
+    return this.http
+      .get<UserName>(url, this.httpOptions)
+      .pipe()
+  }
 }

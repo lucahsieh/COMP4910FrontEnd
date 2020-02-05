@@ -33,7 +33,7 @@ export class EmployeeComponent implements OnInit {
     // })
 
     this.employee = null;
-
+    console.log("inside ngOnInit");
     this.getEmployeeDetails().subscribe((data : any) => {
       console.log(data);
     });
@@ -46,10 +46,6 @@ export class EmployeeComponent implements OnInit {
     console.log("inside getemployeedetails, employeeId is: " + empId);
     let baseUrl = environment.authUrl;
     console.log("request url is: " + baseUrl + 'api/Employees/'+ empId)
-    return this.http.get<any>(baseUrl + 'api/Employees/'+ empId).pipe();
-    // .pipe(map(user => {
-    //   console.log("employee details is: " + user);
-    //   return user;
-    //}));
+    return this.http.get<any>(baseUrl + 'api/employees/'+ empId);
   }
 }
