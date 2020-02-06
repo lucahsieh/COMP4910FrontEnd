@@ -3,6 +3,11 @@ import { EmployeeService } from 'src/app/core/service/employee/employee.service'
 import { Employee } from 'src/app/shared/model/employee';
 import { UserName } from 'src/app/shared/model/userName';
 import { User } from 'src/app/shared/model/user';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
+import { __values } from 'tslib';
+import { map, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-employee',
@@ -11,11 +16,12 @@ import { User } from 'src/app/shared/model/user';
 })
 export class EmployeeComponent implements OnInit {
 
-  employeeList: User[];
+  // employeeList: User[];
   cred: User;
   availableUsername: UserName;
+  employee: User;
 
-  constructor(private employeeService: EmployeeService) { }
+  constructor(private employeeService: EmployeeService, private http: HttpClient) { }
 
   ngOnInit() {
 
@@ -26,6 +32,15 @@ export class EmployeeComponent implements OnInit {
     //   console.log("hello");
     //   console.log(this.employeeList);
     // })
+
+    this.employee = null;
+
+    this.employeeService.getEmployeeDetails().subscribe((data: any) => {
+      this.employee= data;
+      console.log(this.employee["employeeFirstName"]);
+    });
   }
 
+
+  
 }

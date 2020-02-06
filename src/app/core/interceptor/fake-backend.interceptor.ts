@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 // only for testing purpose. dont do this in production code.
 const users: User[] = [
     {
-        "userName": "A123",
+        "credentialId": "A123",
         "password": "master",
         "token": "JWT_TOKEN1",
         "employeeId": "A123",
@@ -21,7 +21,7 @@ const users: User[] = [
         "timesheetApproverId": null,
     },
     {
-        "userName": "A456",
+        "credentialId": "A456",
         "password": "regular",
         "token": "JWT_TOKEN2",
         "employeeId": "A456",
@@ -33,7 +33,7 @@ const users: User[] = [
         "timesheetApproverId": "A789",
     },
     {
-        "userName": "A789",
+        "credentialId": "A789",
         "password": "lower",
         "token": "JWT_TOKEN3",
         "employeeId": "A789",
@@ -66,6 +66,9 @@ export class FakeBackendInterceptor implements HttpInterceptor {
 
         function handleRoute() {
             // 
+            // if (!environment.fakeBackend)
+            //     return next.handle(request);
+
             switch (environment.fakeBackend) {
                 //comment out all cases and use default instead when testing with real backend
                 // user login.
@@ -80,8 +83,8 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         // route functions
 
         function authenticate() {
-            const { userName, password } = body;
-            const user = users.find(x => x.userName === userName && x.password === password);
+            const { credentialId, password } = body;
+            const user = users.find(x => x.credentialId === credentialId && x.password === password);
             if (!user) return error('Username or password is incorrect');
             return ok(user)
         }

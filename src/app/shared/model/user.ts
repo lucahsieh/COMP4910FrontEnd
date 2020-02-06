@@ -4,7 +4,7 @@
  * Should match the response of
  */
 export interface User {
-    userName: string;
+    credentialId: string;
     password: string;
     token: string;
     employeeId: string;

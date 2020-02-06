@@ -5,12 +5,15 @@
 export const environment = {
   production: false,
 
-  // apiUrl: 'http://localhost:4000',
-  fakeBackend: false,  //change this to true if you're not Perry 
+  // NOTE: Front end devs enable these lines below
+  apiUrl: 'http://localhost:4000/',
+  authUrl: 'https://localhost:44318/',
+  fakeBackend: true,
 
   // NOTE: 44318 is the actual backend server that Perry is using.
-  authUrl: 'https://localhost:44318/',
-  apiUrl: 'https://localhost:44318/'
+  // authUrl: 'https://localhost:44318/',
+  // apiUrl: 'https://localhost:44318/',
+  // fakeBackend: false,  //change this to true if you're not Perry 
 };
 
 /*
