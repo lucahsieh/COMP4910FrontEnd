@@ -35,24 +35,12 @@ export class EmployeeComponent implements OnInit {
 
     this.employee = null;
 
-    this.getEmployeeDetails().subscribe((data: any) => {
-      console.log(data);
+    this.employeeService.getEmployeeDetails().subscribe((data: any) => {
+      this.employee= data;
+      console.log(this.employee["employeeFirstName"]);
     });
   }
 
 
-  //do this after
-  getEmployeeDetails() {
-    var empId = localStorage.getItem("currentUserEmployeeId");
-    console.log("inside getemployeedetails, employeeId is: " + empId);
-    let baseUrl = environment.authUrl;
-    console.log("request url is: " + baseUrl + 'api/Employees/' + empId)
-    return this.http.get<any>(baseUrl + 'api/Employees/' + empId).pipe(
-      tap(l => console.log(l)),
-    );
-    // .pipe(map(user => {
-    //   console.log("employee details is: " + user);
-    //   return user;
-    //}));
-  }
+  
 }
