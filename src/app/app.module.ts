@@ -18,6 +18,9 @@ import { HomeModule } from './modules/home/home.module';
 import { SharedModule } from './shared/shared.module';
 
 
+import { ButtonsModule } from 'ngx-bootstrap';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +39,7 @@ import { SharedModule } from './shared/shared.module';
     MatSidenavModule,
 
     // 3rd party
+    ButtonsModule.forRoot(),
 
     // core & shared
     CoreModule,

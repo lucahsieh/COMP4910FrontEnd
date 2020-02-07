@@ -109,4 +109,16 @@ export class TimesheetComponent implements OnInit {
     event.column.editable = false;
   }
 
+  addRow(event) {
+    this.timesheet.timesheetRows.push(
+      {
+        "projectId": 1,
+        "projectName": "project Name",
+        "pwId": 2,
+        "pwName": "pw name",
+        "hours": [0, 31, 2, 3, 4, 5, 6]
+      }
+    );
+  }
+
 }

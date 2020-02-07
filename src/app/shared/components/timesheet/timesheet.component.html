@@ -1,6 +1,5 @@
-<p>timesheet works!</p>
 <!-- This is view -->
-
+<button type="button" class="btn btn-outline-primary my-2" (click)="addRow($event)">Add Row</button>
 <p-table [value]="timesheet.timesheetRows" (onEditComplete)="onEditComplete($event)">
     <ng-template pTemplate="header">
         <tr>
