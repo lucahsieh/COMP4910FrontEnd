@@ -1,2 +1,190 @@
 <p>timesheet works!</p>
 <!-- This is view -->
+
+<p-table [value]="timesheet.timesheetRows" (onEditComplete)="onEditComplete($event)">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Project Name</th>
+            <th>W.P. Name</th>
+            <th>Total</th>
+            <th>Sat</th>
+            <th>Sun</th>
+            <th>Mon</th>
+            <th>Tue</th>
+            <th>Wed</th>
+            <th>Thu</th>
+            <th>Fri</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData>
+        <tr>
+            <td pEditableColumn>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <div *ngIf="!editable">
+                            {{rowData.projectName}}
+                        </div>
+                        <div *ngIf="editable">
+                            <p-dropdown [options]="projectDropdown" [(ngModel)]="rowData.projectName"
+                                [style]="{'width':'100%'}">
+                            </p-dropdown>
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{rowData.projectName}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td pEditableColumn>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <div *ngIf="!editable">
+                            {{rowData.pwName}}
+                        </div>
+                        <div *ngIf="editable">
+                            <p-dropdown [options]="wpDropdown" [(ngModel)]="rowData.pwName" [style]="{'width':'100%'}">
+                            </p-dropdown>
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{rowData.pwName}}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td>
+                <p-cellEditor>
+                    <ng-template pTemplate="output" *ngIf="rowTotal(rowData) != 0">
+                        <span>{{rowTotal(rowData) | number}}</span>
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td pEditableColumn>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <div *ngIf="!editable">
+                            {{rowData.hours[0]}}
+                        </div>
+                        <div *ngIf="editable">
+                            <input pInputText type="text" [(ngModel)]="rowData.hours[0]">
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="output" *ngIf="rowData.hours[0] != 0">
+                        <span *ngIf="validate(rowData.hours[0])" class="error">{{rowData.hours[0]}}</span>
+                        <span *ngIf="!validate(rowData.hours[0])" class="pass">{{rowData.hours[0]}}</span>
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td pEditableColumn>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <div *ngIf="!editable">
+                            {{rowData.hours[1]}}
+                        </div>
+                        <div *ngIf="editable">
+                            <input pInputText type="text" [(ngModel)]="rowData.hours[1]" required>
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="output" *ngIf="rowData.hours[1] != 0">
+                        <span *ngIf="validate(rowData.hours[1])" class="error">{{rowData.hours[1]}}</span>
+                        <span *ngIf="!validate(rowData.hours[1])" class="pass">{{rowData.hours[1]}}</span>
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+
+            <td pEditableColumn>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <div *ngIf="!editable">
+                            {{rowData.hours[2]}}
+                        </div>
+                        <div *ngIf="editable">
+                            <input pInputText type="text" [(ngModel)]="rowData.hours[2]">
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="output" *ngIf="rowData.hours[2] != 0">
+                        <span *ngIf="validate(rowData.hours[2])" class="error">{{rowData.hours[2]}}</span>
+                        <span *ngIf="!validate(rowData.hours[2])" class="pass">{{rowData.hours[2]}}</span>
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td pEditableColumn>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <div *ngIf="!editable">
+                            {{rowData.hours[3]}}
+                        </div>
+                        <div *ngIf="editable">
+                            <input pInputText type="text" [(ngModel)]="rowData.hours[3]">
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="output" *ngIf="rowData.hours[3] != 0">
+                        <span *ngIf="validate(rowData.hours[3])" class="error">{{rowData.hours[3]}}</span>
+                        <span *ngIf="!validate(rowData.hours[3])" class="pass">{{rowData.hours[3]}}</span>
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td pEditableColumn>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <div *ngIf="!editable">
+                            {{rowData.hours[4]}}
+                        </div>
+                        <div *ngIf="editable">
+                            <input pInputText type="text" [(ngModel)]="rowData.hours[4]">
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="output" *ngIf="rowData.hours[4] != 0">
+                        <span *ngIf="validate(rowData.hours[4])" class="error">{{rowData.hours[4]}}</span>
+                        <span *ngIf="!validate(rowData.hours[4])" class="pass">{{rowData.hours[4]}}</span>
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td pEditableColumn>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <div *ngIf="!editable">
+                            {{rowData.hours[5]}}
+                        </div>
+                        <div *ngIf="editable">
+                            <input pInputText type="text" [(ngModel)]="rowData.hours[5]">
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="output" *ngIf="rowData.hours[5] != 0">
+                        <span *ngIf="validate(rowData.hours[5])" class="error">{{rowData.hours[5]}}</span>
+                        <span *ngIf="!validate(rowData.hours[5])" class="pass">{{rowData.hours[5]}}</span>
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+            <td pEditableColumn>
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <div *ngIf="!editable">
+                            {{rowData.hours[6]}}
+                        </div>
+                        <div *ngIf="editable">
+                            <input pInputText type="text" [(ngModel)]="rowData.hours[6]">
+                        </div>
+                    </ng-template>
+                    <ng-template pTemplate="output" *ngIf="rowData.hours[6] != 0">
+                        <span *ngIf="validate(rowData.hours[6])" class="error">{{rowData.hours[6]}}</span>
+                        <span *ngIf="!validate(rowData.hours[6])" class="pass">{{rowData.hours[6]}}</span>
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="footer">
+        <tr>
+            <td></td>
+            <td>Total</td>
+            <td>{{timesheetTotal()}}</td>
+            <td>{{colTotal(0)}}</td>
+            <td>{{colTotal(1)}}</td>
+            <td>{{colTotal(2)}}</td>
+            <td>{{colTotal(3)}}</td>
+            <td>{{colTotal(4)}}</td>
+            <td>{{colTotal(5)}}</td>
+            <td>{{colTotal(6)}}</td>
+        </tr>
+    </ng-template>
+</p-table>

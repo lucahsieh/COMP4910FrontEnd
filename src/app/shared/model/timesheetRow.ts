@@ -1,9 +1,8 @@
+/** this class is for Timesheet component model */
 export interface TimesheetRow {
-    timesheetId: number;
-    versionNumber: number;
-    employeeId: number;
-    weekNumber: number;
-    weekEndingIn: Date;
-    status: string;
-    signature?: any;
+    projectId: number;
+    projectName: string;
+    pwId: number;
+    pwName: string;
+    hours: number[];
 }

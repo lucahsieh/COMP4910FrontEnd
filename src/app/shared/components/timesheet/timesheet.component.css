@@ -1,0 +1,10 @@
+.pass{
+
+}
+.error{
+    /* display: block; */
+    padding-left: 5px;
+    padding-right: 5px;
+    color:red;
+    font-weight: bold;
+}

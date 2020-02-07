@@ -15,8 +15,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { CoreModule } from './core/core.module';
 import { RouterModule } from '@angular/router';
 import { HomeModule } from './modules/home/home.module';
-import { BreadcrumbModule } from 'primeng/breadcrumb';
-import { MenuItem } from 'primeng/api';
+import { SharedModule } from './shared/shared.module';
+
 
 @NgModule({
   declarations: [
@@ -38,14 +38,13 @@ import { MenuItem } from 'primeng/api';
     // 3rd party
 
     // core & shared
-    BreadcrumbModule,
-
+    CoreModule,
+    SharedModule,
 
     //app
     AppRoutingModule,
-    CoreModule,
     HomeModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

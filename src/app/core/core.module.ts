@@ -7,29 +7,28 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { NavComponent } from './layout/nav/nav.component';
 import { RouterModule } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { MenuModule } from 'primeng/menu';
-import { MenuItem } from 'primeng/api';
-import { BreadcrumbComponent } from '../shared/breadcrumb/breadcrumb.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
     LoginLayoutComponent,
     FooterComponent,
     NavComponent,
-    ToolbarComponent,
-    BreadcrumbComponent
+    ToolbarComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
+
+    // app
+    SharedModule,
 
     // material
     MatSidenavModule,
     MatToolbarModule,
 
     // primeng
-    BreadcrumbModule,
     MenuModule,
   ],
   exports: [
@@ -37,7 +36,6 @@ import { BreadcrumbComponent } from '../shared/breadcrumb/breadcrumb.component';
     FooterComponent,
     NavComponent,
     ToolbarComponent,
-    BreadcrumbComponent
   ],
   providers: [
   ]

@@ -1,4 +1,7 @@
-export interface timesheet {
+import { TimesheetRow } from './TimesheetRow';
+
+/** this class is for Timesheet component model */
+export interface Timesheet {
     timesheetId: number;
     versionNumber: number;
     employeeId: number;
@@ -6,4 +9,5 @@ export interface timesheet {
     weekEndingIn: Date;
     status: string;
     signature?: any;
+    timesheetRows: TimesheetRow[];
 }
