@@ -7,7 +7,7 @@ export interface User {
     credentialId: string;
     password: string;
     token: string;
-    employeeId: string;
+    employeeId: number;
     firstName: string;
     jobTitle: string,
     lastName: string;

@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { MessageService } from 'primeng/api/public_api';
 import { environment } from 'src/environments/environment';
 import { Observable, of } from 'rxjs';
 import { Timesheet } from 'src/app/shared/model/Timesheet';
 import { catchError } from 'rxjs/operators';
+import { MessageService } from '../message.service';
 
 @Injectable({
   providedIn: 'root'

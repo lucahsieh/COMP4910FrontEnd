@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Timesheet } from 'src/app/shared/model/Timesheet';
 import { SelectItem } from 'primeng/api/selectitem';
 import { TimesheetRow } from 'src/app/shared/model/TimesheetRow';
+import { TimesheetStatus } from 'src/app/shared/model/TimesheetStatus';
+import { TimesheetService } from 'src/app/core/service/timesheet/timesheet.service';
+import { User } from 'src/app/shared/model/user';
+import { AuthenticationService } from 'src/app/core/service/authentication.service';
 
 @Component({
   selector: 'app-timesheet-creation',
@@ -15,7 +19,12 @@ export class TimesheetCreationComponent implements OnInit {
   projectDropdown: SelectItem[];
   wpDropdown: SelectItem[];
 
-  constructor() { }
+  currentUser: User = this.authenticationService.currentUserValue;
+
+  constructor(
+    private timesheetService: TimesheetService,
+    private authenticationService: AuthenticationService
+  ) { }
 
   ngOnInit() {
     this.timesheet = new Timesheet();
@@ -23,15 +32,21 @@ export class TimesheetCreationComponent implements OnInit {
     // this.seedData();
   }
 
-  onSumbit() {
-
+  onSubmit() {
+    this.timesheet.status = TimesheetStatus.pending;
+    this.timesheetService.postTimesheet(this.timesheet).subscribe();
   }
   onSave() {
+    console.log(`post timesheet:`);
+    console.log(JSON.stringify(this.timesheet));
+    this.timesheetService.postTimesheet(this.timesheet).subscribe(
 
+    );
   }
 
 
   setEmptyTimesheetData() {
+    // set default week number as current week.
     var newTimesheet = new Timesheet();
     var weekending = new Date();
     var shit: number = 5 - weekending.getDay();
@@ -39,10 +54,23 @@ export class TimesheetCreationComponent implements OnInit {
     newTimesheet.weekEnding = this.dateFormater(weekending);
     newTimesheet.weekNumber = this.getWeek(weekending);
 
+    // init attirbutes
+    newTimesheet.employeeId = this.currentUser.employeeId;
+    newTimesheet.versionNumber = 1;
+    newTimesheet.status = TimesheetStatus.inProgress;
+
+    // Create 5 empty rows at page load.
     for (var i = 0; i < 5; i++)
       newTimesheet.timesheetRows.push(new TimesheetRow());
 
     this.timesheet = newTimesheet;
+  }
+
+  populateWPDropdown() {
+
+  }
+  populateProjectDropdown() {
+
   }
 
 
@@ -58,8 +86,8 @@ export class TimesheetCreationComponent implements OnInit {
 
   dateFormater(d: Date) {
     var yyyy = d.getFullYear();
-    var MM = d.getMonth() + 1;
-    var dd = d.getDate();
+    var MM = ("00" + (d.getMonth() + 1)).slice(-2);
+    var dd = ("00" + (d.getDate() + 1)).slice(-2);
     return `${yyyy}-${MM}-${dd}`;
   }
   /**
