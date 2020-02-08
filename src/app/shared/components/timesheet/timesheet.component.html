@@ -28,14 +28,13 @@
         </div>
     </div>
 </form>
-<div *ngIf="editable">
-    <div class="dropdown-divider  my-2"></div>
-
+<div class="dropdown-divider "></div>
+<div *ngIf="editable" class="my-3">
     <p-table [value]="timesheet.timesheetRows" (onEditComplete)="onEditComplete($event)">
         <ng-template pTemplate="header">
             <tr>
-                <th>Project Name</th>
-                <th>W.P. Name</th>
+                <th style="width:170px">Project Name</th>
+                <th style="width:170px">W.P. Name</th>
                 <th>Total</th>
                 <th>Sat</th>
                 <th>Sun</th>
@@ -54,7 +53,7 @@
                         <ng-template pTemplate="input">
 
                             <p-dropdown [options]="projectDropdown" [(ngModel)]="rowData.projectName"
-                                [style]="{'width':'100%'}">
+                                [style]="{'width':'170px'}">
                             </p-dropdown>
 
                         </ng-template>
@@ -67,7 +66,7 @@
                     <p-cellEditor>
                         <ng-template pTemplate="input">
 
-                            <p-dropdown [options]="wpDropdown" [(ngModel)]="rowData.pwName" [style]="{'width':'100%'}">
+                            <p-dropdown [options]="wpDropdown" [(ngModel)]="rowData.pwName" [style]="{'width':'170px'}">
                             </p-dropdown>
 
                         </ng-template>
@@ -101,12 +100,12 @@
                         <ng-template pTemplate="input">
 
 
-                            <input pInputText type="text" [(ngModel)]="rowData.sun" required>
+                            <input pInputText type="text" [(ngModel)]="rowData.sunday" required>
 
                         </ng-template>
-                        <ng-template pTemplate="output" *ngIf="rowData.sun != 0">
-                            <span *ngIf="validate(rowData.sun)" class="error">{{rowData.sun}}</span>
-                            <span *ngIf="!validate(rowData.sun)" class="pass">{{rowData.sun}}</span>
+                        <ng-template pTemplate="output" *ngIf="rowData.sunday != 0">
+                            <span *ngIf="validate(rowData.sunday)" class="error">{{rowData.sunday}}</span>
+                            <span *ngIf="!validate(rowData.sunday)" class="pass">{{rowData.sunday}}</span>
                         </ng-template>
                     </p-cellEditor>
                 </td>
@@ -175,7 +174,7 @@
                 <td>
                     <p-cellEditor>
                         <ng-template pTemplate="output">
-                            <button type="button" class="btn btn-link" (click)="deleteRow(rowData)">remove</button>
+                            <button type="button" class="btn btn-link" (click)="deleteRow(rowData)">x</button>
                         </ng-template>
                     </p-cellEditor>
                 </td>
@@ -183,8 +182,29 @@
         </ng-template>
         <ng-template pTemplate="footer">
             <tr>
-                <td></td>
-                <td>Total</td>
+                <td colspan="2">
+                    <div class="form-row">
+                        <div class="col">
+                            <div class="input-group ">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">Flex</span>
+                                </div>
+                                <input type="text" id="weekNum" class="form-control" [value]="'question'"
+                                    [readonly]="true">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="input-group ">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">Overtime</span>
+                                </div>
+                                <input type="text" id="weekNum" class="form-control" [value]="getOvertime()"
+                                    [readonly]="true">
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <!-- <td>Total</td> -->
                 <td>{{timesheetTotal()}}</td>
                 <td>{{colTotal("saturday")}}</td>
                 <td>{{colTotal("sunday")}}</td>

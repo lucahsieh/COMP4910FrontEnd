@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SelectItem } from 'primeng/api/selectitem';
-import { TimesheetStatus } from '../../model/TimesheetStatus.1';
 import { Timesheet } from '../../model/Timesheet';
 
 @Component({
@@ -12,75 +11,22 @@ export class TimesheetComponent implements OnInit {
 
   apiReady: boolean = false;
   validationError: boolean = false;
-
-  timesheet: Timesheet;
-
   dataReady: boolean = false;
-  editable: boolean = false;
 
-  projectDropdown: SelectItem[];
-  wpDropdown: SelectItem[];
+  @Input() editable: boolean = true;
+  @Input() timesheet: Timesheet;
+  @Input() projectDropdown: SelectItem[];
+  @Input() wpDropdown: SelectItem[];
 
 
   constructor() { }
 
   ngOnInit() {
     // this.TimesheetService.getTimesheet .....  .then( ts => this.timesheet = ts);
-    this.seedData();
+    // this.seedData();
     // this.weekEnding = this.timesheet.weekEnding;
 
     this.dataReady = true;
-  }
-
-  // TODO: replace this by sample api calls + define the json
-  seedData() {
-    this.projectDropdown = [
-      { label: 'BigProject', value: 1 },
-      { label: 'SmallProject', value: 2 },
-      { label: 'GergProject', value: 3 }
-    ];
-    this.wpDropdown = [
-      { label: 'Workpage Name', value: 1 },
-      { label: 'Big work', value: 2 },
-      { label: 'small work', value: 3 }
-    ];
-    this.timesheet = {
-      "timesheetId": 1,
-      "versionNumber": 1,
-      "employeeId": 1,
-      "weekNumber": 1,
-      "weekEnding": '2020-02-11',
-      "status": TimesheetStatus.inProgress,
-      "signature": null,
-      "timesheetRows": [
-        {
-          "projectId": 2,
-          "projectName": "project Name",
-          "pwId": 4,
-          "pwName": "string",
-          "monday": 1,
-          "tuesday": 1,
-          "wednesday": 1,
-          "thursday": 1,
-          "friday": 1,
-          "saturday": 1,
-          "sunday": 1,
-        },
-        {
-          "projectId": 1,
-          "projectName": "project Name",
-          "pwId": 3,
-          "pwName": "pw name",
-          "monday": 1,
-          "tuesday": 1,
-          "wednesday": 1,
-          "thursday": 1,
-          "friday": 1,
-          "saturday": 1,
-          "sunday": 1,
-        }
-      ]
-    };
   }
 
 
@@ -115,7 +61,6 @@ export class TimesheetComponent implements OnInit {
   colTotal(day: string) {
     let sum: number = 0;
     this.timesheet.timesheetRows.forEach(e => {
-
       switch (day) {
         case "sunday": {
           sum += +e.sunday;
@@ -206,33 +151,42 @@ export class TimesheetComponent implements OnInit {
     })
   }
 
+
+
+  getWeek(date: Date): number {
+    const today = new Date();
+    const firstDayOfYear = new Date(today.getFullYear(), 0, 1);
+    const pastDaysOfYear = (date.getTime() - firstDayOfYear.getTime()) / 86400000;
+    return Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7);
+  }
   dateFormater(d: Date) {
     var yyyy = d.getFullYear();
     var MM = d.getMonth() + 1;
     var dd = d.getDate();
     return `${yyyy}-${MM}-${dd}`;
   }
-
   /**
-   * 
-   * @param s with format "2020-10-11"
-   */
+  * 
+  * @param s with format "2020-10-11"
+  */
   stringToDate(s: string) {
     var date = new Date(s);
     console.log(date);
     return date;
   }
-  getWeek(date: Date) {
-    const today = new Date();
-    const firstDayOfYear = new Date(today.getFullYear(), 0, 1);
-    const pastDaysOfYear = (date.getTime() - firstDayOfYear.getTime()) / 86400000;
-    return Math.ceil((pastDaysOfYear + firstDayOfYear.getDay() + 1) / 7);
-  };
+
 
   onValueChange(value: Date): void {
     console.log(value);
     this.timesheet.weekEnding = this.dateFormater(value);
     this.timesheet.weekNumber = this.getWeek(value);
+  }
+
+  getOvertime() {
+    var total = this.timesheetTotal();
+    if (total - 40 > 0)
+      return total - 40;
+    return 0;
   }
 
 }

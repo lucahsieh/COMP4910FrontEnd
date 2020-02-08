@@ -32,9 +32,7 @@ const routes: Routes = [
       },
       {
         path: 'timesheets',
-        data: {
-          breadcrumb: null
-        },
+        data: { breadcrumb: 'timesheet list' },
         loadChildren: () => import('./modules/timesheets/timesheets.module').then(m => m.TimesheetsModule)
       },
       {

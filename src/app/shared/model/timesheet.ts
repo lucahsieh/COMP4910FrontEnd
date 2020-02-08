@@ -1,7 +1,10 @@
 import { TimesheetRow } from './TimesheetRow';
 
 /** this class is for Timesheet component model */
-export interface Timesheet {
+export class Timesheet {
+    constructor() {
+        this.timesheetRows = [];
+    }
     timesheetId: number;
     versionNumber: number;
     employeeId: number;
@@ -11,3 +14,4 @@ export interface Timesheet {
     signature?: any;
     timesheetRows: TimesheetRow[];
 }
+

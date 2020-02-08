@@ -1,19 +1,19 @@
 <nav class="navbar navbar-dark bg-primary">
     <div>
         <span class="navbar-brand mb-0 h1">
-            App  -- this is toolbar.component.html
+            App
         </span>
         <span class="navbar-text" *ngIf="currentUser">
-            {{currentUser.jobTitle}}
+            {{currentUser.credentialId}}
         </span>
     </div>
     <div *ngIf="currentUser">
         <form class="form-inline">
-            <i class="material-icons navbar-brand" (click) = "goToEmployeePage()">
+            <i class="material-icons navbar-brand" (click)="goToEmployeePage()">
                 account_circle
             </i>
             <h4 class="navbar-brand  mb-0 h4">
-                test {{currentUser.firstName}} {{currentUser.lastName}}
+                {{currentUser.firstName}} {{currentUser.lastName}}
             </h4>
             <button class="btn btn-outline-light" type="button" (click)="logout()">Logout</button>
         </form>
