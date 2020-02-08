@@ -6,7 +6,7 @@ export interface Timesheet {
     versionNumber: number;
     employeeId: number;
     weekNumber: number;
-    weekEndingIn: Date;
+    weekEnding: string;
     status: string;
     signature?: any;
     timesheetRows: TimesheetRow[];

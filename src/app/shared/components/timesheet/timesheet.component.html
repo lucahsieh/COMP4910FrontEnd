@@ -1,189 +1,200 @@
-<!-- This is view -->
-<button type="button" class="btn btn-outline-primary my-2" (click)="addRow($event)">Add Row</button>
-<p-table [value]="timesheet.timesheetRows" (onEditComplete)="onEditComplete($event)">
-    <ng-template pTemplate="header">
-        <tr>
-            <th>Project Name</th>
-            <th>W.P. Name</th>
-            <th>Total</th>
-            <th>Sat</th>
-            <th>Sun</th>
-            <th>Mon</th>
-            <th>Tue</th>
-            <th>Wed</th>
-            <th>Thu</th>
-            <th>Fri</th>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-rowData>
-        <tr>
-            <td pEditableColumn>
-                <p-cellEditor>
-                    <ng-template pTemplate="input">
-                        <div *ngIf="!editable">
-                            {{rowData.projectName}}
-                        </div>
-                        <div *ngIf="editable">
+<!-- This is editable -->
+<form>
+    <div class="form-row">
+
+        <div class="col-5">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Week Number</span>
+                </div>
+                <input type="text" id="weekNum" class="form-control" [value]="timesheet.weekNumber" [readonly]="true">
+            </div>
+        </div>
+
+        <div class="col-5">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Week Ending</span>
+                </div>
+                <input id="weekEnd" type="text" placeholder="Datepicker" class="form-control" bsDatepicker
+                    [daysDisabled]="[6,2,4,3,1,0]" [outsideClick]="true"
+                    [bsConfig]="{selectWeek: true, dateInputFormat: 'YYYY-MM-DD' }"
+                    (bsValueChange)="onValueChange($event)" value="{{ timesheet.weekEnding | date:'yyyy-MM-dd' }}"
+                    [readonly]="!editable" [isDisabled]="!editable" />
+            </div>
+        </div>
+        <div class="col-2">
+            <button type="button" class="btn btn-outline-primary" (click)="addRow($event)">Add Row</button>
+        </div>
+    </div>
+</form>
+<div *ngIf="editable">
+    <div class="dropdown-divider  my-2"></div>
+
+    <p-table [value]="timesheet.timesheetRows" (onEditComplete)="onEditComplete($event)">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Project Name</th>
+                <th>W.P. Name</th>
+                <th>Total</th>
+                <th>Sat</th>
+                <th>Sun</th>
+                <th>Mon</th>
+                <th>Tue</th>
+                <th>Wed</th>
+                <th>Thu</th>
+                <th>Fri</th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData>
+            <tr>
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+
                             <p-dropdown [options]="projectDropdown" [(ngModel)]="rowData.projectName"
                                 [style]="{'width':'100%'}">
                             </p-dropdown>
-                        </div>
-                    </ng-template>
-                    <ng-template pTemplate="output">
-                        {{rowData.projectName}}
-                    </ng-template>
-                </p-cellEditor>
-            </td>
-            <td pEditableColumn>
-                <p-cellEditor>
-                    <ng-template pTemplate="input">
-                        <div *ngIf="!editable">
-                            {{rowData.pwName}}
-                        </div>
-                        <div *ngIf="editable">
+
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{rowData.projectName}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+
                             <p-dropdown [options]="wpDropdown" [(ngModel)]="rowData.pwName" [style]="{'width':'100%'}">
                             </p-dropdown>
-                        </div>
-                    </ng-template>
-                    <ng-template pTemplate="output">
-                        {{rowData.pwName}}
-                    </ng-template>
-                </p-cellEditor>
-            </td>
-            <td>
-                <p-cellEditor>
-                    <ng-template pTemplate="output" *ngIf="rowTotal(rowData) != 0">
-                        <span>{{rowTotal(rowData) | number}}</span>
-                    </ng-template>
-                </p-cellEditor>
-            </td>
-            <td pEditableColumn>
-                <p-cellEditor>
-                    <ng-template pTemplate="input">
-                        <div *ngIf="!editable">
-                            {{rowData.hours[0]}}
-                        </div>
-                        <div *ngIf="editable">
-                            <input pInputText type="text" [(ngModel)]="rowData.hours[0]">
-                        </div>
-                    </ng-template>
-                    <ng-template pTemplate="output" *ngIf="rowData.hours[0] != 0">
-                        <span *ngIf="validate(rowData.hours[0])" class="error">{{rowData.hours[0]}}</span>
-                        <span *ngIf="!validate(rowData.hours[0])" class="pass">{{rowData.hours[0]}}</span>
-                    </ng-template>
-                </p-cellEditor>
-            </td>
-            <td pEditableColumn>
-                <p-cellEditor>
-                    <ng-template pTemplate="input">
-                        <div *ngIf="!editable">
-                            {{rowData.hours[1]}}
-                        </div>
-                        <div *ngIf="editable">
-                            <input pInputText type="text" [(ngModel)]="rowData.hours[1]" required>
-                        </div>
-                    </ng-template>
-                    <ng-template pTemplate="output" *ngIf="rowData.hours[1] != 0">
-                        <span *ngIf="validate(rowData.hours[1])" class="error">{{rowData.hours[1]}}</span>
-                        <span *ngIf="!validate(rowData.hours[1])" class="pass">{{rowData.hours[1]}}</span>
-                    </ng-template>
-                </p-cellEditor>
-            </td>
 
-            <td pEditableColumn>
-                <p-cellEditor>
-                    <ng-template pTemplate="input">
-                        <div *ngIf="!editable">
-                            {{rowData.hours[2]}}
-                        </div>
-                        <div *ngIf="editable">
-                            <input pInputText type="text" [(ngModel)]="rowData.hours[2]">
-                        </div>
-                    </ng-template>
-                    <ng-template pTemplate="output" *ngIf="rowData.hours[2] != 0">
-                        <span *ngIf="validate(rowData.hours[2])" class="error">{{rowData.hours[2]}}</span>
-                        <span *ngIf="!validate(rowData.hours[2])" class="pass">{{rowData.hours[2]}}</span>
-                    </ng-template>
-                </p-cellEditor>
-            </td>
-            <td pEditableColumn>
-                <p-cellEditor>
-                    <ng-template pTemplate="input">
-                        <div *ngIf="!editable">
-                            {{rowData.hours[3]}}
-                        </div>
-                        <div *ngIf="editable">
-                            <input pInputText type="text" [(ngModel)]="rowData.hours[3]">
-                        </div>
-                    </ng-template>
-                    <ng-template pTemplate="output" *ngIf="rowData.hours[3] != 0">
-                        <span *ngIf="validate(rowData.hours[3])" class="error">{{rowData.hours[3]}}</span>
-                        <span *ngIf="!validate(rowData.hours[3])" class="pass">{{rowData.hours[3]}}</span>
-                    </ng-template>
-                </p-cellEditor>
-            </td>
-            <td pEditableColumn>
-                <p-cellEditor>
-                    <ng-template pTemplate="input">
-                        <div *ngIf="!editable">
-                            {{rowData.hours[4]}}
-                        </div>
-                        <div *ngIf="editable">
-                            <input pInputText type="text" [(ngModel)]="rowData.hours[4]">
-                        </div>
-                    </ng-template>
-                    <ng-template pTemplate="output" *ngIf="rowData.hours[4] != 0">
-                        <span *ngIf="validate(rowData.hours[4])" class="error">{{rowData.hours[4]}}</span>
-                        <span *ngIf="!validate(rowData.hours[4])" class="pass">{{rowData.hours[4]}}</span>
-                    </ng-template>
-                </p-cellEditor>
-            </td>
-            <td pEditableColumn>
-                <p-cellEditor>
-                    <ng-template pTemplate="input">
-                        <div *ngIf="!editable">
-                            {{rowData.hours[5]}}
-                        </div>
-                        <div *ngIf="editable">
-                            <input pInputText type="text" [(ngModel)]="rowData.hours[5]">
-                        </div>
-                    </ng-template>
-                    <ng-template pTemplate="output" *ngIf="rowData.hours[5] != 0">
-                        <span *ngIf="validate(rowData.hours[5])" class="error">{{rowData.hours[5]}}</span>
-                        <span *ngIf="!validate(rowData.hours[5])" class="pass">{{rowData.hours[5]}}</span>
-                    </ng-template>
-                </p-cellEditor>
-            </td>
-            <td pEditableColumn>
-                <p-cellEditor>
-                    <ng-template pTemplate="input">
-                        <div *ngIf="!editable">
-                            {{rowData.hours[6]}}
-                        </div>
-                        <div *ngIf="editable">
-                            <input pInputText type="text" [(ngModel)]="rowData.hours[6]">
-                        </div>
-                    </ng-template>
-                    <ng-template pTemplate="output" *ngIf="rowData.hours[6] != 0">
-                        <span *ngIf="validate(rowData.hours[6])" class="error">{{rowData.hours[6]}}</span>
-                        <span *ngIf="!validate(rowData.hours[6])" class="pass">{{rowData.hours[6]}}</span>
-                    </ng-template>
-                </p-cellEditor>
-            </td>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="footer">
-        <tr>
-            <td></td>
-            <td>Total</td>
-            <td>{{timesheetTotal()}}</td>
-            <td>{{colTotal(0)}}</td>
-            <td>{{colTotal(1)}}</td>
-            <td>{{colTotal(2)}}</td>
-            <td>{{colTotal(3)}}</td>
-            <td>{{colTotal(4)}}</td>
-            <td>{{colTotal(5)}}</td>
-            <td>{{colTotal(6)}}</td>
-        </tr>
-    </ng-template>
-</p-table>
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            {{rowData.pwName}}
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td>
+                    <p-cellEditor>
+                        <ng-template pTemplate="output" *ngIf="rowTotal(rowData) != 0">
+                            <span>{{rowTotal(rowData) | number}}</span>
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+
+                            <input pInputText type="text" [(ngModel)]="rowData.saturday">
+
+                        </ng-template>
+                        <ng-template pTemplate="output" *ngIf="rowData.saturday != 0">
+                            <span *ngIf="validate(rowData.saturday)" class="error">{{rowData.saturday}}</span>
+                            <span *ngIf="!validate(rowData.saturday)" class="pass">{{rowData.saturday}}</span>
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+
+
+                            <input pInputText type="text" [(ngModel)]="rowData.sun" required>
+
+                        </ng-template>
+                        <ng-template pTemplate="output" *ngIf="rowData.sun != 0">
+                            <span *ngIf="validate(rowData.sun)" class="error">{{rowData.sun}}</span>
+                            <span *ngIf="!validate(rowData.sun)" class="pass">{{rowData.sun}}</span>
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+
+                            <input pInputText type="text" [(ngModel)]="rowData.monday">
+
+                        </ng-template>
+                        <ng-template pTemplate="output" *ngIf="rowData.monday != 0">
+                            <span *ngIf="validate(rowData.monday)" class="error">{{rowData.monday}}</span>
+                            <span *ngIf="!validate(rowData.monday)" class="pass">{{rowData.monday}}</span>
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+
+                            <input pInputText type="text" [(ngModel)]="rowData.tuesday">
+
+                        </ng-template>
+                        <ng-template pTemplate="output" *ngIf="rowData.tuesday != 0">
+                            <span *ngIf="validate(rowData.tuesday)" class="error">{{rowData.tuesday}}</span>
+                            <span *ngIf="!validate(rowData.tuesday)" class="pass">{{rowData.tuesday}}</span>
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+
+                            <input pInputText type="text" [(ngModel)]="rowData.wednesday">
+
+                        </ng-template>
+                        <ng-template pTemplate="output" *ngIf="rowData.wednesday != 0">
+                            <span *ngIf="validate(rowData.wednesday)" class="error">{{rowData.wednesday}}</span>
+                            <span *ngIf="!validate(rowData.wednesday)" class="pass">{{rowData.wednesday}}</span>
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="rowData.thursday">
+                        </ng-template>
+                        <ng-template pTemplate="output" *ngIf="rowData.thursday != 0">
+                            <span *ngIf="validate(rowData.thursday)" class="error">{{rowData.thursday}}</span>
+                            <span *ngIf="!validate(rowData.thursday)" class="pass">{{rowData.thursday}}</span>
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td pEditableColumn>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="rowData.friday">
+                        </ng-template>
+                        <ng-template pTemplate="output" *ngIf="rowData.friday != 0">
+                            <span *ngIf="validate(rowData.friday)" class="error">{{rowData.friday}}</span>
+                            <span *ngIf="!validate(rowData.friday)" class="pass">{{rowData.friday}}</span>
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td>
+                    <p-cellEditor>
+                        <ng-template pTemplate="output">
+                            <button type="button" class="btn btn-link" (click)="deleteRow(rowData)">remove</button>
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="footer">
+            <tr>
+                <td></td>
+                <td>Total</td>
+                <td>{{timesheetTotal()}}</td>
+                <td>{{colTotal("saturday")}}</td>
+                <td>{{colTotal("sunday")}}</td>
+                <td>{{colTotal("monday")}}</td>
+                <td>{{colTotal("tuesday")}}</td>
+                <td>{{colTotal("wednesday")}}</td>
+                <td>{{colTotal("thursday")}}</td>
+                <td>{{colTotal("friday")}}</td>
+                <td></td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>

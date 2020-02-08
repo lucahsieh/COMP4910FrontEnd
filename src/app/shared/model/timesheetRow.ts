@@ -4,5 +4,11 @@ export interface TimesheetRow {
     projectName: string;
     pwId: number;
     pwName: string;
-    hours: number[];
+    monday: number;
+    tuesday: number;
+    wednesday: number;
+    thursday: number;
+    friday: number;
+    saturday: number;
+    sunday: number;
 }

@@ -9,6 +9,8 @@ import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+
 
 @NgModule({
   declarations: [
@@ -17,12 +19,17 @@ import { BreadcrumbModule } from 'primeng/breadcrumb';
     TimesheetComponent
   ],
   imports: [
+    // angular
     CommonModule,
-
     FormsModule,
+
+    // primeng
     TableModule,
     DropdownModule,
     BreadcrumbModule,
+
+    // bootstrap
+    BsDatepickerModule.forRoot(),
 
   ],
   exports: [

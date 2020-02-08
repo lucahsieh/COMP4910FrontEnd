@@ -16,9 +16,8 @@ import { CoreModule } from './core/core.module';
 import { RouterModule } from '@angular/router';
 import { HomeModule } from './modules/home/home.module';
 import { SharedModule } from './shared/shared.module';
-
-
 import { ButtonsModule } from 'ngx-bootstrap';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 
 @NgModule({
@@ -33,6 +32,9 @@ import { ButtonsModule } from 'ngx-bootstrap';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
+    BrowserAnimationsModule,
+
+
 
 
     // material
@@ -40,6 +42,7 @@ import { ButtonsModule } from 'ngx-bootstrap';
 
     // 3rd party
     ButtonsModule.forRoot(),
+    BsDatepickerModule.forRoot(),
 
     // core & shared
     CoreModule,
@@ -48,7 +51,6 @@ import { ButtonsModule } from 'ngx-bootstrap';
     //app
     AppRoutingModule,
     HomeModule,
-    BrowserAnimationsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
