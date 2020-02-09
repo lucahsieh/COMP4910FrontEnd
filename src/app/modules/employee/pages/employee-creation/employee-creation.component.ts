@@ -43,16 +43,16 @@ export class EmployeeCreationComponent implements OnInit {
     console.log(this.employee.empUsername);
     this.employeeService.checkUserNameOK(this.employee.empUsername)
       .subscribe(response => {
-        console.log(response.status);
-        this.validUsername = (response.status === 200);
+        console.log(response);
+        this.validUsername = !response;
       })
   }
 
   onExitEmployeeId() {
     this.employeeService.checkUserEmployeeCodeOK(this.employee.empCode)
       .subscribe(response => {
-        console.log(response.status);
-        this.validEmployeeCode = (response.status === 200);
+        console.log(response);
+        this.validEmployeeCode = !response;
       })
   }
   populateEmployeeDropdown() {

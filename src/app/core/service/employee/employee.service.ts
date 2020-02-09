@@ -68,16 +68,16 @@ export class EmployeeService {
     //}));
   }
 
-  // Expect 200 OK response, other than that fails
+
   checkUserNameOK(userName: string): Observable<any> {
     let url = this.baseUrl + `api/Credentials/CheckUsernameAvailability/${userName}`;
-    return this.http.post<any>(url, {}, this.httpOptions).pipe();
+    return this.http.get<any>(url, this.httpOptions).pipe();
   }
 
-  // Expect 200 OK response, other than that fails
+
   checkUserEmployeeCodeOK(empCode: number): Observable<any> {
     let url = this.baseUrl + `api/Credentials/CheckEmployeeCodeAvailability/${empCode}`;
-    return this.http.post<any>(url, {}, this.httpOptions).pipe();
+    return this.http.get<any>(url, this.httpOptions).pipe();
   }
 
 

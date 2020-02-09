@@ -60,7 +60,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">Employee ID</span>
                     </div>
-                    <input type="text" class="form-control" [(ngModel)]="employee.empCode">
+                    <input type="text" class="form-control" [(ngModel)]="employee.empCode" (blur)="onExitEmployeeId()">
                 </div>
             </div>
             <div class="col-1">
