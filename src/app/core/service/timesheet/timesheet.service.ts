@@ -22,7 +22,7 @@ export class TimesheetService {
     private messageService: MessageService
   ) { }
 
-  postTimesheet(ts: Timesheet): Observable<Timesheet> {
+  postTimesheet(ts: Timesheet): Observable<any> {
     let url = this.baseUrl + `api/timesheets`;
     return this.http
       .post<Timesheet>(url, ts, this.httpOptions)

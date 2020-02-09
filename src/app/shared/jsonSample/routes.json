@@ -1,3 +1,7 @@
 {
-    "/api/timesheets": "/Post_Timesheet"
+    "/api/timesheets": "/Post_Timesheet",
+    "/api/employees/": "/post_Employee",
+    "/api/employees/allemployees": "/get_AllEmployees",
+    "/api/Credentials/CheckUsernameAvailability/:test": "/CheckUsernameAvailability",
+    "/api/Credentials/CheckEmployeeCodeAvailability/:test": "/CheckEmployeeCodeAvailability"
 }

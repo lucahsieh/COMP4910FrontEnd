@@ -37,9 +37,7 @@ const routes: Routes = [
       },
       {
         path: 'employees',
-        data: {
-          breadcrumb: null
-        },
+        data: { breadcrumb: 'employee list' },
         loadChildren: () => import('./modules/employee/employee.module').then(m => m.EmployeeModule)
       },
       {

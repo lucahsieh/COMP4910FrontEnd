@@ -6,8 +6,8 @@ import { Employee } from 'src/app/shared/model/employee';
 
 import { catchError, tap, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { UserName } from 'src/app/shared/model/userName';
 import { User } from 'src/app/shared/model/user';
+import { CheckUserNameResult } from 'src/app/shared/model/CheckUserName';
 
 @Injectable({
   providedIn: 'root'
@@ -15,24 +15,29 @@ import { User } from 'src/app/shared/model/user';
 
 export class EmployeeService {
   baseUrl = environment.apiUrl;
-  appid = 'e3af58d9d5e58f975d0cbf176102d731';
-
-  constructor(
-    private http: HttpClient,
-    private messageService: MessageService
-  ) { }
 
   /** headers in an httpOptions object that will be passed to every HttpClient save method. */
   httpOptions = {
     headers: new HttpHeaders({ "Content-Type": "application/json" })
   };
 
-  getEmployees(): Observable<User[]> {
+  constructor(
+    private http: HttpClient,
+    private messageService: MessageService
+  ) { }
+
+
+  getEmployees(): Observable<Employee[]> {
     let url = this.baseUrl + `api/employees/allemployees`;
-    //url = `http://localhost:3000/employeeList`;
     return this.http
-      .get<User[]>(url)
+      .get<Employee[]>(url)
       .pipe()
+  }
+  postEmployee(e: Employee): Observable<any> {
+    let url = this.baseUrl + `api/timesheets`;
+    return this.http
+      .post<Employee>(url, e, this.httpOptions)
+      .pipe(catchError(this.handleError("postProject", e)));
   }
 
   // login(): Observable<User> {
@@ -42,12 +47,12 @@ export class EmployeeService {
   //     .pipe()
   // }
 
-  getAvailableUsername(): Observable<UserName> {
-    let url = this.baseUrl + `api/Credentials/AvailableUsername`;
-    return this.http
-      .get<UserName>(url, this.httpOptions)
-      .pipe()
-  }
+  // getAvailableUsername(): Observable<UserName> {
+  //   let url = this.baseUrl + `api/Credentials/AvailableUsername`;
+  //   return this.http
+  //     .get<UserName>(url, this.httpOptions)
+  //     .pipe()
+  // }
 
   getEmployeeDetails() {
     var empId = localStorage.getItem("currentUserEmployeeId");
@@ -61,5 +66,38 @@ export class EmployeeService {
     //   console.log("employee details is: " + user);
     //   return user;
     //}));
+  }
+
+  // Expect 200 OK response, other than that fails
+  checkUserNameOK(userName: string): Observable<any> {
+    let url = this.baseUrl + `api/Credentials/CheckUsernameAvailability/${userName}`;
+    return this.http.post<any>(url, {}, this.httpOptions).pipe();
+  }
+
+  // Expect 200 OK response, other than that fails
+  checkUserEmployeeCodeOK(empCode: number): Observable<any> {
+    let url = this.baseUrl + `api/Credentials/CheckEmployeeCodeAvailability/${empCode}`;
+    return this.http.post<any>(url, {}, this.httpOptions).pipe();
+  }
+
+
+
+
+
+
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+      // TODO: send the error to remote logging infrastructure
+      console.error(error); // log to console instead
+      // TODO: better job of transforming error for user consumption
+      this.alertUser(`${operation} failed: ${error.message}`);
+      // Let the app keep running by returning an empty result.
+      return of(result as T);
+    };
+  }
+
+  private alertUser(message: string) {
+    // this.messageService.add(`WeatherService: ${message}`);
   }
 }

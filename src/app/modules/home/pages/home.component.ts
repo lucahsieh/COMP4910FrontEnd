@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   availableUsername;
 
   //inject service into constructor?
-  constructor(private cityService: CityService, private userService: UserService, private employeeService: EmployeeService) {
+  constructor(private cityService: CityService, private employeeService: EmployeeService) {
 
   }
 

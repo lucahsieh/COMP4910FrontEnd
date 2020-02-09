@@ -15,9 +15,9 @@ import { AuthenticationService } from 'src/app/core/service/authentication.servi
 export class TimesheetCreationComponent implements OnInit {
 
   editable: boolean = true;
-  timesheet: Timesheet;
-  projectDropdown: SelectItem[];
-  wpDropdown: SelectItem[];
+  timesheet: Timesheet = null;
+  projectDropdown: SelectItem[] = null;
+  wpDropdown: SelectItem[] = null;
 
   currentUser: User = this.authenticationService.currentUserValue;
 
@@ -72,6 +72,17 @@ export class TimesheetCreationComponent implements OnInit {
   populateProjectDropdown() {
 
   }
+
+  dataReady() {
+    if (this.timesheet !== null && this.projectDropdown !== null && this.wpDropdown !== null)
+      return true;
+    return false;
+  }
+
+
+
+
+
 
 
 

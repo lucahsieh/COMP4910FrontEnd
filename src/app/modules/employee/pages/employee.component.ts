@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from 'src/app/core/service/employee/employee.service';
 import { Employee } from 'src/app/shared/model/employee';
-import { UserName } from 'src/app/shared/model/userName';
 import { User } from 'src/app/shared/model/user';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -18,7 +17,6 @@ export class EmployeeComponent implements OnInit {
 
   // employeeList: User[];
   cred: User;
-  availableUsername: UserName;
   employee: User;
 
   constructor(private employeeService: EmployeeService, private http: HttpClient) { }
@@ -36,11 +34,11 @@ export class EmployeeComponent implements OnInit {
     this.employee = null;
 
     this.employeeService.getEmployeeDetails().subscribe((data: any) => {
-      this.employee= data;
+      this.employee = data;
       console.log(this.employee["employeeFirstName"]);
     });
   }
 
 
-  
+
 }
