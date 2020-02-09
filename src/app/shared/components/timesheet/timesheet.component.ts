@@ -17,7 +17,7 @@ export class TimesheetComponent implements OnInit {
   @Input() editable: boolean = true;
   @Input() timesheet: Timesheet;
   @Input() projectDropdown: SelectItem[];
-  @Input() wpDropdown: SelectItem[];
+  @Input() employeeWPs: any[];
 
 
   constructor() { }
@@ -138,6 +138,15 @@ export class TimesheetComponent implements OnInit {
       if (r.workPackageId != p.workPackageId && r.projectId != p.projectId)
         return r;
     })
+  }
+
+  populateWP(projectId: number) {
+    let wps: SelectItem[] = [];
+    this.employeeWPs.forEach(wp => {
+      if (projectId === wp.projectId)
+        wps.push({ label: wp.wpCode, value: wp.wpId });
+    })
+    return wps;
   }
 
 

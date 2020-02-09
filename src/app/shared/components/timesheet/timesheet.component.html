@@ -52,7 +52,7 @@
                     <p-cellEditor>
                         <ng-template pTemplate="input">
 
-                            <p-dropdown [options]="projectDropdown" [(ngModel)]="rowData.projectName"
+                            <p-dropdown [options]="projectDropdown" [(ngModel)]="rowData.projectId"
                                 [style]="{'width':'170px'}">
                             </p-dropdown>
 
@@ -66,7 +66,8 @@
                     <p-cellEditor>
                         <ng-template pTemplate="input">
 
-                            <p-dropdown [options]="wpDropdown" [(ngModel)]="rowData.pwName" [style]="{'width':'170px'}">
+                            <p-dropdown [options]="populateWP(rowData.projectId)" [(ngModel)]="rowData.workPackageId"
+                                [style]="{'width':'170px'}">
                             </p-dropdown>
 
                         </ng-template>

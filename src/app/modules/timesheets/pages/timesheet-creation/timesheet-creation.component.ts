@@ -7,6 +7,7 @@ import { TimesheetService } from 'src/app/core/service/timesheet/timesheet.servi
 import { User } from 'src/app/shared/model/user';
 import { AuthenticationService } from 'src/app/core/service/authentication.service';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { ProjectService } from 'src/app/core/service/project/project.service';
 
 @Component({
   selector: 'app-timesheet-creation',
@@ -20,12 +21,13 @@ export class TimesheetCreationComponent implements OnInit {
   editable: boolean = true;
   timesheet: Timesheet = null;
   projectDropdown: SelectItem[] = null;
-  wpDropdown: SelectItem[] = null;
+  employeeWPs: any[] = null;
 
   currentUser: User = this.authenticationService.currentUserValue;
 
   constructor(
     private timesheetService: TimesheetService,
+    private projectService: ProjectService,
     private authenticationService: AuthenticationService
   ) { }
 
@@ -77,17 +79,27 @@ export class TimesheetCreationComponent implements OnInit {
 
   }
 
-  populateWPDropdown() {
-
-  }
   populateProjectDropdown() {
-
+    this.projectService.getProjectsByEmployee(this.currentUser.employeeId).subscribe(result => {
+      this.employeeWPs = [];
+      this.projectDropdown = [];
+      result.projectList.foreach(p => {
+        var projectId = p.projectId;
+        var projectName = p.projectName;
+        this.projectDropdown.push({ label: projectName, value: projectId });
+        p.workPackages.foreach(wp => {
+          var wpId = p.workPackageId;
+          var wpCode = p.workPackageCode;
+          this.employeeWPs.push(
+            { projectId: projectId, projectName: projectName, wpId: wpId, wpCode: wpCode }
+          )
+        })
+      })
+    })
   }
 
   dataReady() {
-    if (this.timesheet !== null
-      // && this.projectDropdown !== null && this.wpDropdown !== null
-    )
+    if (this.timesheet !== null && this.employeeWPs !== null)
       return true;
     return false;
   }

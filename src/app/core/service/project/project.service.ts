@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { MessageService } from '../message.service';
+import { Observable } from 'rxjs';
+import { Project } from 'src/app/shared/model/Project';
 
 @Injectable({
   providedIn: 'root'
@@ -18,5 +20,11 @@ export class ProjectService {
     private http: HttpClient,
     private messageService: MessageService
   ) { }
+
+  getProjectsByEmployee(empId: number): Observable<any> {
+    let url = this.baseUrl + `api/projects/GetProjectsByEmpId/${empId}`;
+    return this.http
+      .get<any>(url, this.httpOptions).pipe();
+  }
 
 }
