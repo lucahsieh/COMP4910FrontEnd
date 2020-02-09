@@ -1,3 +1,5 @@
+import { Employee } from './employee';
+
 export class Project {
     employeeId: number;
     jobTitleId: number;
@@ -9,8 +11,8 @@ export class Project {
     isProjectManager: boolean;
     isAdmin: boolean;
     isHumanResources: boolean;
-    timesheetApprover: TimesheetApprover;
-    supervisor: Supervisor;
+    timesheetApprover: Employee;
+    supervisor: Employee;
     jobTitle?: any;
     timesheets?: any;
     employeeProjectAssignments?: any;
