@@ -1,4 +1,4 @@
-import { Employee } from './employee';
+import { Employee } from './Employee';
 import { WorkPackage } from './WorkPackage';
 
 export class Project {

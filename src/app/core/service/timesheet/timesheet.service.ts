@@ -45,6 +45,12 @@ export class TimesheetService {
       .get<any>(url, this.httpOptions).pipe();
   }
 
+  getAllTimesheet(): Observable<Timesheet[]> {
+    let url = this.baseUrl + `api/timesheets`;
+    return this.http
+      .get<Timesheet[]>(url, this.httpOptions).pipe();
+  }
+
 
 
 

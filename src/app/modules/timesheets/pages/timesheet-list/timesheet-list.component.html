@@ -1,0 +1,50 @@
+<div class="card mx-1">
+    <div class="card-body">
+        <h3 class="display-4 mb-3">Timesheet List</h3>
+        <div class="dropdown-divider "></div>
+
+
+        <!-- Table goes here -->
+        <p-table [columns]="cols" [value]="timesheets">
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                        {{col.header}}
+                        <p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
+                            ariaLabelDesc="Activate to sort in descending order"
+                            ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                    </th>
+                    <th>
+
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr>
+                    <td>
+                        {{rowData.weekNumber}}
+                    </td>
+                    <td>
+                        {{rowData.versionNumber}}
+                    </td>
+                    <td>
+                        {{rowData.weekEndingIn | date:'yyyy-MM-dd' }}
+                    </td>
+                    <td>
+                        <h5><span [className]="colorStatus(rowData.status)">{{rowData.status}}</span></h5>
+                    </td>
+
+                    <td>
+                        <button type="button" class="btn btn-link btn-sm" routerLink="view">View</button>
+                        <button *ngIf="rowData.status==='Inprogress'" type="button" class="btn btn-link btn-sm"
+                            routerLink="update">Edit</button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+
+
+    </div>
+
+
+</div>
