@@ -1,7 +1,11 @@
-<div class="card mx-1" *ngIf="ok">
+<div class="card mx-1" *ngIf="dataReady()">
     <div class="card-body">
         <!-- Title -->
         <h3 class="display-4">Create Employee</h3>
+        <div *ngFor="let alert of alerts">
+            <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">{{ alert.msg }}
+            </alert>
+        </div>
         <div class="dropdown-divider  my-3"></div>
         <h5 class="my-3">Employee Information</h5>
         <div class="form-row">
@@ -158,7 +162,7 @@
         <!-- Action section-->
         <div class="dropdown-divider my-3"></div>
         <div class="d-flex flex-row-reverse">
-            <button type="button" class="btn btn-primary  m-1 px-3" (click)="onCreate($event)">Create</button>
+            <button type="button" class="btn btn-primary  m-1 px-3" (click)="onCreate(validationError)">Create</button>
             <button type="button" class="btn btn-primary m-1 px-2" (click)="onCancel($event)">Cancel</button>
         </div>
         <div class="dropdown-divider my-3"></div>
@@ -166,3 +170,16 @@
 
 
 </div>
+
+<!-- validation error modal-->
+<ng-template #validationError>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Validation Error</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        This is a modal.
+    </div>
+</ng-template>

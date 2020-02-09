@@ -33,6 +33,7 @@ export class TimesheetCreationComponent implements OnInit {
   }
 
   onSubmit() {
+
     this.timesheet.status = TimesheetStatus.pending;
     this.timesheetService.postTimesheet(this.timesheet).subscribe();
   }

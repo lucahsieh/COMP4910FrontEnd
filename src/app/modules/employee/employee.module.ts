@@ -9,6 +9,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
 
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { AlertModule } from 'ngx-bootstrap';
 
 
 
@@ -24,6 +25,9 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 
     //primeng
     DropdownModule,
+
+    // bootstrap
+    AlertModule.forRoot(),
   ]
 })
 export class EmployeeModule { }

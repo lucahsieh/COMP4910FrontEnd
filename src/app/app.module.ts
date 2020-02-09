@@ -18,6 +18,8 @@ import { HomeModule } from './modules/home/home.module';
 import { SharedModule } from './shared/shared.module';
 import { ButtonsModule } from 'ngx-bootstrap';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 
 @NgModule({
@@ -51,6 +53,8 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     //app
     AppRoutingModule,
     HomeModule,
+    ModalModule.forRoot(),
+    AlertModule.forRoot(),
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

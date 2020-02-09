@@ -1,25 +1,24 @@
 {
   "Post_Timesheet": {
     "employeeId": null,
-    "empUsername": "alpha1",
+    "empUsername": "",
     "empPassword": "01234",
-    "empCode": "3423",
-    "labourGradeId": {
-      "label": "P4",
-      "value": 4
-    },
-    "empFirstName": "peter",
-    "empLastName": "ahn",
+    "empCode": 0,
+    "labourGradeId": 0,
+    "empFirstName": "",
+    "empLastName": "",
     "timesheetApproverId": 0,
     "supervisorId": 0,
-    "isProjectManager": true,
+    "isProjectManager": false,
     "isAdmin": false,
-    "isHumanResources": true,
+    "isHumanResources": false,
     "isActivated": true,
     "timesheetApprover": null,
     "supervisor": null
   },
-  "CheckUsernameAvailability": {},
+  "CheckUsernameAvailability": {
+    "apiId": "Credentials"
+  },
   "CheckEmployeeCodeAvailability": {},
   "post_Employee": {},
   "get_AllEmployees": [

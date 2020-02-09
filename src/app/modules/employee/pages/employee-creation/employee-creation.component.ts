@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { SelectItem } from 'primeng/api/selectitem';
 import { Employee } from 'src/app/shared/model/employee';
 import { EmployeeService } from 'src/app/core/service/employee/employee.service';
@@ -19,6 +19,7 @@ export class EmployeeCreationComponent implements OnInit {
   // userName validation
   validUsername: boolean = false;
   validEmployeeCode: boolean = false;
+  alerts: any[] = [];
 
   constructor(
     private employeeService: EmployeeService,
@@ -67,11 +68,12 @@ export class EmployeeCreationComponent implements OnInit {
           );
         })
         console.log(this.employeeDropdown);
-        this.ok = true;
       })
   }
 
-  onCreate() {
+  onCreate(template: TemplateRef<any>) {
+    if (!this.validatePage())
+      return;
     console.log("POST employee");
     console.log(JSON.stringify(this.employee));
     this.employeeService.postEmployee(this.employee).subscribe();
@@ -79,6 +81,25 @@ export class EmployeeCreationComponent implements OnInit {
   onCancel() {
 
   }
+
+  validatePage(): boolean {
+    if (!this.validUsername) {
+      this.alerts.push({
+        type: 'danger',
+        msg: `User Name: ${this.employee.empUsername} is not allowed`
+      });
+      return false;
+    }
+    if (!this.validEmployeeCode) {
+      this.alerts.push({
+        type: 'danger',
+        msg: `Employee ID : ${this.employee.empCode} is not allowed`
+      });
+      return false;
+    }
+    return true;
+  }
+
 
   dataReady() {
     if (this.grade !== null && this.employeeDropdown !== null)
