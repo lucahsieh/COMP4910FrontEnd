@@ -123,7 +123,7 @@
   ],
   "get_AllTimesheet": [
     {
-      "timesheetId": 23,
+      "timesheetId": 1,
       "versionNumber": 2,
       "employeeId": 3,
       "weekNumber": 11,
@@ -133,7 +133,7 @@
       "timesheetRows": null
     },
     {
-      "timesheetId": 1709790,
+      "timesheetId": 1,
       "versionNumber": 1,
       "employeeId": 1,
       "weekNumber": 32,
@@ -143,7 +143,7 @@
       "timesheetRows": null
     },
     {
-      "timesheetId": 170,
+      "timesheetId": 1,
       "versionNumber": 1,
       "employeeId": 1,
       "weekNumber": 34,
@@ -163,7 +163,7 @@
       "timesheetRows": null
     },
     {
-      "timesheetId": 15,
+      "timesheetId": 1,
       "versionNumber": 1,
       "employeeId": 1,
       "weekNumber": 1,
@@ -172,5 +172,32 @@
       "signature": null,
       "timesheetRows": null
     }
-  ]
+  ],
+  "get_Timesheet": {
+    "timesheetRows": [
+      {
+        "monday": "04",
+        "tuesday": "05",
+        "wednesday": "06",
+        "thursday": "06",
+        "friday": "06",
+        "saturday": "01",
+        "sunday": "02",
+        "projectId": 1,
+        "timesheetVersionNumber": 1,
+        "workPackageId": 1,
+        "timesheetId": 123
+      }
+    ],
+    "signature": null,
+    "weekEnding": "2020-02-15",
+    "weekNumber": 7,
+    "timesheetId": 1,
+    "employeeId": 1,
+    "versionNumber": 1,
+    "status": "Inprogress"
+  },
+  "avalidableTimesheetID": {
+    "id": 123
+  }
 }

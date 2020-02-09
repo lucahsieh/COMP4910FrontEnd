@@ -19,17 +19,22 @@ export class TimesheetComponent implements OnInit {
   @Input() projectDropdown: SelectItem[];
   @Input() employeeWPs: any[];
 
+  days: any[];
 
   constructor() { }
 
   ngOnInit() {
-    // this.TimesheetService.getTimesheet .....  .then( ts => this.timesheet = ts);
-    // this.seedData();
-    // this.weekEnding = this.timesheet.weekEnding;
-
     this.dataReady = true;
+    this.days = [
+      { header: 'Sat', value: 'saturday' },
+      { header: 'Sun', value: 'sunday' },
+      { header: 'Mon', value: 'monday' },
+      { header: 'Tue', value: 'tuesday' },
+      { header: 'Wed', value: 'wednesday' },
+      { header: 'Thu', value: 'thursday' },
+      { header: 'Fri', value: 'friday' }
+    ]
   }
-
 
   /** Validate hrs entered */
   validate(hr: number): boolean {
@@ -41,18 +46,11 @@ export class TimesheetComponent implements OnInit {
       this.validationError = true;
       return true;
     }
-
     return false;
   }
   rowTotal(d: any) {
     let sum: number = 0;
-    sum += +d.sunday;
-    sum += +d.monday;
-    sum += +d.tuesday;
-    sum += +d.wednesday;
-    sum += +d.thursday;
-    sum += +d.friday;
-    sum += +d.saturday;
+    this.days.forEach(day => sum += +d[day.value])
     return sum;
   }
 
@@ -61,58 +59,15 @@ export class TimesheetComponent implements OnInit {
    */
   colTotal(day: string) {
     let sum: number = 0;
-    this.timesheet.timesheetRows.forEach(e => {
-      switch (day) {
-        case "sunday": {
-          sum += +e.sunday;
-          break;
-        }
-        case "monday": {
-          sum += +e.monday;
-          break;
-        }
-        case "tuesday": {
-          sum += +e.tuesday;
-          break;
-        }
-        case "wednesday": {
-          sum += +e.wednesday;
-          break;
-        }
-        case "thursday": {
-          sum += +e.thursday;
-          break;
-        }
-        case "friday": {
-          sum += +e.friday;
-          break;
-        }
-        case "saturday": {
-          sum += +e.saturday;
-          break;
-        }
-        default: {
-          //statements; 
-          break;
-        }
-      }
-
-    });
+    this.timesheet.timesheetRows.forEach(e => sum += +e[day]);
     return sum;
   }
   timesheetTotal() {
     let sum: number = 0;
     this.timesheet.timesheetRows.forEach(e => {
-      sum += +e.sunday;
-      sum += +e.monday;
-      sum += +e.tuesday;
-      sum += +e.wednesday;
-      sum += +e.thursday;
-      sum += +e.friday;
-      sum += +e.saturday;
+      this.days.forEach(day => sum += +e[day.value]);
     })
     return sum;
-
   }
 
   /** exist edit field */

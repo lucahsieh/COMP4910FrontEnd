@@ -16,6 +16,7 @@ import { ProjectService } from 'src/app/core/service/project/project.service';
 })
 export class TimesheetCreationComponent implements OnInit {
 
+  dataReady = false;
   editable: boolean = true;
   timesheet: Timesheet = null;
   projectDropdown: SelectItem[] = null;
@@ -71,6 +72,7 @@ export class TimesheetCreationComponent implements OnInit {
           newTimesheet.timesheetRows.push(new TimesheetRow(newTimesheet.timesheetId, newTimesheet.versionNumber, 0, 0));
 
         this.timesheet = newTimesheet;
+        this.dataReady = true;
       })
 
   }
@@ -92,12 +94,6 @@ export class TimesheetCreationComponent implements OnInit {
         })
       })
     })
-  }
-
-  dataReady() {
-    if (this.timesheet !== null && this.employeeWPs !== null)
-      return true;
-    return false;
   }
 
 

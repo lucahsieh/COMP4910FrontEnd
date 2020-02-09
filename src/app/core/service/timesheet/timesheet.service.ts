@@ -33,10 +33,10 @@ export class TimesheetService {
    * 
    * @param id Timesheet ID
    */
-  getTimesheet(id: number): Observable<Timesheet> {
+  getTimesheet(id: string): Observable<Timesheet> {
     let url = this.baseUrl + `api/timesheets/${id}`;
     return this.http
-      .post<Timesheet>(url, this.httpOptions).pipe();
+      .get<Timesheet>(url, this.httpOptions).pipe();
   }
 
   getAvaliableTimesheetId(): Observable<any> {

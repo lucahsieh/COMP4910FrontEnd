@@ -4,5 +4,7 @@
     "/api/employees/allemployees": "/get_AllEmployees",
     "/api/Credentials/CheckUsernameAvailability/:test": "/CheckUsernameAvailability",
     "/api/Credentials/CheckEmployeeCodeAvailability/:test": "/CheckEmployeeCodeAvailability",
-    "/api/timesheets": "/get_AllTimesheet"
+    "/api/timesheets/availableTimesheetId": "/avalidableTimesheetID",
+    "/api/timesheets": "/get_AllTimesheet",
+    "/api/timesheets/:id": "/get_Timesheet"
 }

@@ -2,10 +2,14 @@
     <div class="card-body">
         <!-- Title -->
         <h3 class="display-4">Create Employee</h3>
+        <!-- alert -->
         <div *ngFor="let alert of alerts">
-            <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">{{ alert.msg }}
+            <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">
+                <i class="material-icons ">report</i>
+                {{ alert.msg }}
             </alert>
         </div>
+
         <div class="dropdown-divider  my-3"></div>
         <h5 class="my-3">Employee Information</h5>
         <div class="form-row">
