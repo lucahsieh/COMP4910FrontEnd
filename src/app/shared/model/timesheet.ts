@@ -4,6 +4,7 @@ import { TimesheetRow } from './TimesheetRow';
 export class Timesheet {
     constructor() {
         this.timesheetRows = [];
+        this.signature = null;
     }
     timesheetId: number;
     versionNumber: number;

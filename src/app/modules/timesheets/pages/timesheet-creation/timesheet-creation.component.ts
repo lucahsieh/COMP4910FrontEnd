@@ -6,6 +6,7 @@ import { TimesheetStatus } from 'src/app/shared/model/TimesheetStatus';
 import { TimesheetService } from 'src/app/core/service/timesheet/timesheet.service';
 import { User } from 'src/app/shared/model/user';
 import { AuthenticationService } from 'src/app/core/service/authentication.service';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-timesheet-creation',
@@ -13,6 +14,8 @@ import { AuthenticationService } from 'src/app/core/service/authentication.servi
   styleUrls: ['./timesheet-creation.component.css']
 })
 export class TimesheetCreationComponent implements OnInit {
+
+  ok = false;
 
   editable: boolean = true;
   timesheet: Timesheet = null;
@@ -27,7 +30,6 @@ export class TimesheetCreationComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.timesheet = new Timesheet();
     this.setEmptyTimesheetData();
     // this.seedData();
   }
@@ -47,24 +49,32 @@ export class TimesheetCreationComponent implements OnInit {
 
 
   setEmptyTimesheetData() {
-    // set default week number as current week.
-    var newTimesheet = new Timesheet();
-    var weekending = new Date();
-    var shit: number = 5 - weekending.getDay();
-    weekending.setDate(weekending.getDate() + shit);
-    newTimesheet.weekEnding = this.dateFormater(weekending);
-    newTimesheet.weekNumber = this.getWeek(weekending);
+    this.timesheetService
+      .getAvaliableTimesheetId()
+      .subscribe(result => {
+        var newTimesheet = new Timesheet();
+        var weekending = new Date();
+        var shit: number = 5 - weekending.getDay();
+        weekending.setDate(weekending.getDate() + shit);
+        newTimesheet.weekEnding = this.dateFormater(weekending);
+        newTimesheet.weekNumber = this.getWeek(weekending);
 
-    // init attirbutes
-    newTimesheet.employeeId = this.currentUser.employeeId;
-    newTimesheet.versionNumber = 1;
-    newTimesheet.status = TimesheetStatus.inProgress;
+        console.log(result);
+        // init attirbutes
+        newTimesheet.timesheetId = result.id;
+        newTimesheet.employeeId = this.currentUser.employeeId;
+        newTimesheet.versionNumber = 1;
+        newTimesheet.status = TimesheetStatus.inProgress;
 
-    // Create 5 empty rows at page load.
-    for (var i = 0; i < 5; i++)
-      newTimesheet.timesheetRows.push(new TimesheetRow());
+        // Create 5 empty rows at page load.
+        for (var i = 0; i < 5; i++)
+          newTimesheet.timesheetRows.push(new TimesheetRow(newTimesheet.timesheetId, newTimesheet.versionNumber, 0, 0));
 
-    this.timesheet = newTimesheet;
+        this.timesheet = newTimesheet;
+
+        this.ok = true;
+      })
+
   }
 
   populateWPDropdown() {
@@ -75,7 +85,9 @@ export class TimesheetCreationComponent implements OnInit {
   }
 
   dataReady() {
-    if (this.timesheet !== null && this.projectDropdown !== null && this.wpDropdown !== null)
+    if (this.timesheet !== null
+      // && this.projectDropdown !== null && this.wpDropdown !== null
+    )
       return true;
     return false;
   }

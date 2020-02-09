@@ -77,7 +77,7 @@
                 </td>
                 <td>
                     <p-cellEditor>
-                        <ng-template pTemplate="output" *ngIf="rowTotal(rowData) != 0">
+                        <ng-template pTemplate="output">
                             <span>{{rowTotal(rowData) | number}}</span>
                         </ng-template>
                     </p-cellEditor>
@@ -89,7 +89,7 @@
                             <input pInputText type="text" [(ngModel)]="rowData.saturday">
 
                         </ng-template>
-                        <ng-template pTemplate="output" *ngIf="rowData.saturday != 0">
+                        <ng-template pTemplate="output">
                             <span *ngIf="validate(rowData.saturday)" class="error">{{rowData.saturday}}</span>
                             <span *ngIf="!validate(rowData.saturday)" class="pass">{{rowData.saturday}}</span>
                         </ng-template>
@@ -103,7 +103,7 @@
                             <input pInputText type="text" [(ngModel)]="rowData.sunday" required>
 
                         </ng-template>
-                        <ng-template pTemplate="output" *ngIf="rowData.sunday != 0">
+                        <ng-template pTemplate="output">
                             <span *ngIf="validate(rowData.sunday)" class="error">{{rowData.sunday}}</span>
                             <span *ngIf="!validate(rowData.sunday)" class="pass">{{rowData.sunday}}</span>
                         </ng-template>
@@ -117,7 +117,7 @@
                             <input pInputText type="text" [(ngModel)]="rowData.monday">
 
                         </ng-template>
-                        <ng-template pTemplate="output" *ngIf="rowData.monday != 0">
+                        <ng-template pTemplate="output">
                             <span *ngIf="validate(rowData.monday)" class="error">{{rowData.monday}}</span>
                             <span *ngIf="!validate(rowData.monday)" class="pass">{{rowData.monday}}</span>
                         </ng-template>
@@ -130,7 +130,7 @@
                             <input pInputText type="text" [(ngModel)]="rowData.tuesday">
 
                         </ng-template>
-                        <ng-template pTemplate="output" *ngIf="rowData.tuesday != 0">
+                        <ng-template pTemplate="output">
                             <span *ngIf="validate(rowData.tuesday)" class="error">{{rowData.tuesday}}</span>
                             <span *ngIf="!validate(rowData.tuesday)" class="pass">{{rowData.tuesday}}</span>
                         </ng-template>
@@ -143,7 +143,7 @@
                             <input pInputText type="text" [(ngModel)]="rowData.wednesday">
 
                         </ng-template>
-                        <ng-template pTemplate="output" *ngIf="rowData.wednesday != 0">
+                        <ng-template pTemplate="output">
                             <span *ngIf="validate(rowData.wednesday)" class="error">{{rowData.wednesday}}</span>
                             <span *ngIf="!validate(rowData.wednesday)" class="pass">{{rowData.wednesday}}</span>
                         </ng-template>
@@ -154,7 +154,7 @@
                         <ng-template pTemplate="input">
                             <input pInputText type="text" [(ngModel)]="rowData.thursday">
                         </ng-template>
-                        <ng-template pTemplate="output" *ngIf="rowData.thursday != 0">
+                        <ng-template pTemplate="output">
                             <span *ngIf="validate(rowData.thursday)" class="error">{{rowData.thursday}}</span>
                             <span *ngIf="!validate(rowData.thursday)" class="pass">{{rowData.thursday}}</span>
                         </ng-template>
@@ -165,7 +165,7 @@
                         <ng-template pTemplate="input">
                             <input pInputText type="text" [(ngModel)]="rowData.friday">
                         </ng-template>
-                        <ng-template pTemplate="output" *ngIf="rowData.friday != 0">
+                        <ng-template pTemplate="output">
                             <span *ngIf="validate(rowData.friday)" class="error">{{rowData.friday}}</span>
                             <span *ngIf="!validate(rowData.friday)" class="pass">{{rowData.friday}}</span>
                         </ng-template>

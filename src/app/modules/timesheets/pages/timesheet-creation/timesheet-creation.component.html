@@ -1,16 +1,11 @@
 <div class="card mx-1">
-    <div class="card-body">
+    <div class="card-body" *ngIf="ok">
         <h3 class="display-4 mb-3">Create Timesheet</h3>
         <div class="dropdown-divider "></div>
         <shared-timesheet [editable]="editable" [timesheet]="timesheet" [projectDropdown]="projectDropdown"
             [wpDropdown]="wpDropdown"> </shared-timesheet>
         <div class="dropdown-divider my-3"></div>
-        <!-- <div class="input-group">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Notes</span>
-            </div>
-            <textarea class="form-control" aria-label="With textarea"></textarea>
-        </div> -->
+
         <div class="dropdown-divider my-3"></div>
         <div class="d-flex flex-row-reverse">
             <button type="button" class="btn btn-primary  m-1 px-3" (click)="onSave($event)">Save</button>

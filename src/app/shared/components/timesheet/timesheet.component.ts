@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { SelectItem } from 'primeng/api/selectitem';
 import { Timesheet } from '../../model/Timesheet';
+import { TimesheetRow } from '../../model/TimesheetRow';
 
 @Component({
   selector: 'shared-timesheet',
@@ -126,19 +127,7 @@ export class TimesheetComponent implements OnInit {
   addRow(event) {
     // TODO: replace the pushed item as empty item
     this.timesheet.timesheetRows.push(
-      {
-        "projectId": Math.floor(Math.random() * Math.floor(100)),
-        "projectName": "",
-        "pwId": Math.floor(Math.random() * Math.floor(100)),
-        "pwName": "",
-        "monday": 0,
-        "tuesday": 0,
-        "wednesday": 0,
-        "thursday": 0,
-        "friday": 0,
-        "saturday": 0,
-        "sunday": 0,
-      }
+      new TimesheetRow(this.timesheet.timesheetId, this.timesheet.versionNumber, 1, 1)
     );
   }
 
@@ -146,7 +135,7 @@ export class TimesheetComponent implements OnInit {
     console.log(p);
     var temp = this.timesheet.timesheetRows
     this.timesheet.timesheetRows = temp.filter(r => {
-      if (r.pwId != p.pwId && r.projectId != p.pwId)
+      if (r.workPackageId != p.workPackageId && r.projectId != p.projectId)
         return r;
     })
   }
