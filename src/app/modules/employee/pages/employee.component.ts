@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from 'src/app/core/service/employee/employee.service';
 import { Employee } from 'src/app/shared/model/Employee';
-import { User } from 'src/app/shared/model/user';
+import { User } from 'src/app/shared/model/User';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { __values } from 'tslib';

@@ -4,7 +4,7 @@ import { SelectItem } from 'primeng/api/selectitem';
 import { TimesheetRow } from 'src/app/shared/model/TimesheetRow';
 import { TimesheetStatus } from 'src/app/shared/model/TimesheetStatus';
 import { TimesheetService } from 'src/app/core/service/timesheet/timesheet.service';
-import { User } from 'src/app/shared/model/user';
+import { User } from 'src/app/shared/model/User';
 import { AuthenticationService } from 'src/app/core/service/authentication.service';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { ProjectService } from 'src/app/core/service/project/project.service';

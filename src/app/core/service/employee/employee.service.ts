@@ -6,7 +6,7 @@ import { Employee } from 'src/app/shared/model/Employee';
 
 import { catchError, tap, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { User } from 'src/app/shared/model/user';
+import { User } from 'src/app/shared/model/User';
 import { CheckUserNameResult } from 'src/app/shared/model/CheckUserName';
 
 @Injectable({

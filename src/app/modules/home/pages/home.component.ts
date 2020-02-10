@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CityService } from 'src/app/core/service/city/city.service';
-import { City } from 'src/app/shared/model/city';
+import { City } from 'src/app/shared/model/City';
 import { UserService } from 'src/app/core/service/user.service';
-import { User } from 'src/app/shared/model/user';
+import { User } from 'src/app/shared/model/User';
 import { first } from 'rxjs/operators';
 import { EmployeeService } from 'src/app/core/service/employee/employee.service';
 
