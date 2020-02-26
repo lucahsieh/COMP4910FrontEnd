@@ -46,7 +46,7 @@ export class TimesheetService {
   }
 
   getAllTimesheet(): Observable<Timesheet[]> {
-    let url = this.baseUrl + `api/timesheets`;
+    let url = this.baseUrl + `api/Timesheets/GetTimesheetsByEmpId/2`;
     return this.http
       .get<Timesheet[]>(url, this.httpOptions).pipe();
   }

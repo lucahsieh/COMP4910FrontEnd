@@ -9,6 +9,7 @@ import { TimesheetListComponent } from './pages/timesheet-list/timesheet-list.co
 
 import { TableModule } from 'primeng/table';
 import { TimesheetViewComponent } from './pages/timesheet-view/timesheet-view.component';
+import { TimesheetEditComponent } from './pages/timesheet-edit/timesheet-edit.component';
 
 
 
@@ -18,6 +19,7 @@ import { TimesheetViewComponent } from './pages/timesheet-view/timesheet-view.co
     TimesheetCreationComponent,
     TimesheetListComponent,
     TimesheetViewComponent,
+    TimesheetEditComponent,
   ],
   imports: [
     CommonModule,

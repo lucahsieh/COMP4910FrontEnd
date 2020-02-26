@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { SelectItem } from 'primeng/api/selectitem';
 import { Timesheet } from '../../model/Timesheet';
 import { TimesheetRow } from '../../model/TimesheetRow';
+import { MODE } from '../../model/MODE';
 
 @Component({
   selector: 'shared-timesheet',
@@ -14,7 +15,7 @@ export class TimesheetComponent implements OnInit {
   validationError: boolean = false;
   dataReady: boolean = false;
 
-  @Input() editable: boolean = true;
+  @Input() mode: MODE;
   @Input() timesheet: Timesheet;
   @Input() projectDropdown: SelectItem[];
   @Input() employeeWPs: any[];

@@ -1,24 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { Timesheet } from 'src/app/shared/model/Timesheet';
-import { SelectItem } from 'primeng/api/selectitem';
-import { TimesheetRow } from 'src/app/shared/model/TimesheetRow';
 import { TimesheetStatus } from 'src/app/shared/model/TimesheetStatus';
-import { TimesheetService } from 'src/app/core/service/timesheet/timesheet.service';
+import { TimesheetRow } from 'src/app/shared/model/TimesheetRow';
 import { User } from 'src/app/shared/model/User';
-import { AuthenticationService } from 'src/app/core/service/authentication.service';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { SelectItem } from 'primeng/api/selectitem';
+import { TimesheetService } from 'src/app/core/service/timesheet/timesheet.service';
 import { ProjectService } from 'src/app/core/service/project/project.service';
+import { AuthenticationService } from 'src/app/core/service/authentication.service';
 import { MODE } from 'src/app/shared/model/MODE';
 
 @Component({
-  selector: 'app-timesheet-creation',
-  templateUrl: './timesheet-creation.component.html',
-  styleUrls: ['./timesheet-creation.component.css']
+  selector: 'app-timesheet-edit',
+  templateUrl: './timesheet-edit.component.html',
+  styleUrls: ['./timesheet-edit.component.css']
 })
-export class TimesheetCreationComponent implements OnInit {
+export class TimesheetEditComponent implements OnInit {
 
   dataReady = false;
-  mode: MODE = MODE.Create;
+  mode: MODE = MODE.Update;
   timesheet: Timesheet = null;
   projectDropdown: SelectItem[] = null;
   employeeWPs: any[] = null;
@@ -128,4 +127,5 @@ export class TimesheetCreationComponent implements OnInit {
     console.log(date);
     return date;
   }
+
 }

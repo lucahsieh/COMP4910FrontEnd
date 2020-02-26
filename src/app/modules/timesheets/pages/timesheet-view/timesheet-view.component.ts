@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Timesheet } from 'src/app/shared/model/Timesheet';
 import { TimesheetService } from 'src/app/core/service/timesheet/timesheet.service';
+import { MODE } from 'src/app/shared/model/MODE';
 
 @Component({
   selector: 'app-timesheet-view',
@@ -11,6 +12,7 @@ import { TimesheetService } from 'src/app/core/service/timesheet/timesheet.servi
 export class TimesheetViewComponent implements OnInit {
 
   timesheet: Timesheet;
+  mode: MODE = MODE.Read;
 
   constructor(
     private route: ActivatedRoute,

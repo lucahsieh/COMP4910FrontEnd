@@ -19,10 +19,10 @@
                     [daysDisabled]="[6,2,4,3,1,0]" [outsideClick]="true"
                     [bsConfig]="{selectWeek: true, dateInputFormat: 'YYYY-MM-DD' }"
                     (bsValueChange)="onValueChange($event)" value="{{ timesheet.weekEnding | date:'yyyy-MM-dd' }}"
-                    [readonly]="!editable" [isDisabled]="!editable" />
+                    [readonly]="(mode == 1 || mode == 3)" [isDisabled]="(mode == 1 || mode == 3)" />
             </div>
         </div>
-        <div class="col-2" *ngIf="editable">
+        <div class="col-2" *ngIf="mode == 2 || mode == 3">
             <button type="button" class="btn btn-outline-primary" (click)="addRow($event)">Add Row</button>
         </div>
     </div>
@@ -44,7 +44,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-rowData>
             <tr>
-                <td [attr.pEditableColumn]="editable ? '' : null">
+                <td [attr.pEditableColumn]="mode == 2 || mode == 3  ? '' : null">
                     <p-cellEditor>
                         <ng-template pTemplate="input">
 
@@ -58,7 +58,7 @@
                         </ng-template>
                     </p-cellEditor>
                 </td>
-                <td [attr.pEditableColumn]="editable ? '' : null">
+                <td [attr.pEditableColumn]="mode == 2 || mode == 3 ? '' : null">
                     <p-cellEditor>
                         <ng-template pTemplate="input">
 
@@ -80,7 +80,7 @@
                     </p-cellEditor>
                 </td>
 
-                <td [pEditableColumn]="editable ? '' : null" *ngFor="let day of days">
+                <td [pEditableColumn]="mode == 2 || mode == 3 ? '' : null" *ngFor="let day of days">
                     <p-cellEditor>
                         <ng-template pTemplate="input">
 
@@ -95,7 +95,8 @@
                 </td>
 
                 <td class="p-1">
-                    <button *ngIf="editable" type="button" class="btn btn-link" (click)="deleteRow(rowData)">
+                    <button *ngIf="mode == 2 || mode == 3" type="button" class="btn btn-link"
+                        (click)="deleteRow(rowData)">
                         <i class="material-icons text-danger">remove_circle_outline</i>
                     </button>
                 </td>
