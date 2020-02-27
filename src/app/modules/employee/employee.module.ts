@@ -14,6 +14,7 @@ import { EmployeeListComponent } from './pages/employee-list/employee-list.compo
 import { SharedModule } from 'src/app/shared/shared.module';
 import { EmployeeViewComponent } from './pages/employee-view/employee-view.component';
 import { EmployeeEditComponent } from './pages/employee-edit/employee-edit.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 
 
@@ -31,6 +32,7 @@ import { EmployeeEditComponent } from './pages/employee-edit/employee-edit.compo
     FormsModule,
     SharedModule,
 
+
     //material
     MatButtonToggleModule,
 
@@ -39,6 +41,8 @@ import { EmployeeEditComponent } from './pages/employee-edit/employee-edit.compo
 
     // bootstrap
     AlertModule.forRoot(),
-  ]
+    ModalModule.forRoot(),
+  ],
+
 })
 export class EmployeeModule { }

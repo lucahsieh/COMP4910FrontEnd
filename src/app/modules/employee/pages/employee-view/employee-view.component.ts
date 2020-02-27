@@ -23,7 +23,7 @@ export class EmployeeViewComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      var id = params.get('id');
+      var id = params.get('empId');
       this.employeeService.getEmployee(id).subscribe(e => this.employee = e);
     });
 

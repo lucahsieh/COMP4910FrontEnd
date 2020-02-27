@@ -1,8 +1,8 @@
 {
     "/api/timesheets": "/Post_Timesheet",
-    "/api/employees/": "/post_Employee",
-    "/api/employees/:id": "/getSingleEmployee",
     "/api/employees/allemployees": "/get_AllEmployees",
+    "/api/employees/:id": "/getSingleEmployee",
+    "/api/employees/": "/post_Employee",
     "/api/Credentials/CheckUsernameAvailability/:test": "/CheckUsernameAvailability",
     "/api/Credentials/CheckEmployeeCodeAvailability/:test": "/CheckEmployeeCodeAvailability",
     "/api/timesheets/availableTimesheetId": "/avalidableTimesheetID",

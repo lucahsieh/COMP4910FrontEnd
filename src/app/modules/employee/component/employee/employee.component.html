@@ -55,13 +55,16 @@
     </div>
     <div class="col-5">
         <!-- password -->
-        <div class="input-group" *ngIf="mode===2||mode===3">
+        <div class="input-group" *ngIf="mode===2">
             <div class="input-group-prepend">
                 <span class="input-group-text">Password</span>
             </div>
             <input type="text" class="form-control" [(ngModel)]="employee.empPassword" [readOnly]="true">
         </div>
         <!-- TODO: RESET BTN -->
+        <button *ngIf="mode===3" type="button" class="btn btn-outline-secondary  m-1 px-3" (click)="onRestPw()">Reset
+            Password</button>
+
 
     </div>
     <div class="col-1"></div>
@@ -111,7 +114,7 @@
     <div class="col-5">
 
         <!-- supervisor -->
-        <div class="input-group">
+        <div class="input-group" *ngIf="employeeDropdown">
             <div class="input-group-prepend">
                 <span class="input-group-text">Supervisor</span>
             </div>

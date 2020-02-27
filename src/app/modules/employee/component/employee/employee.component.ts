@@ -38,10 +38,10 @@ export class EmployeeComponent implements OnInit {
 
   }
   populateEmployeeDropdown() {
-    this.employeeDropdown = [];
     this.employeeService
       .getEmployees()
       .subscribe(employees => {
+        this.employeeDropdown = [];
         console.log(employees);
         employees.forEach(e => {
           console.log(e);

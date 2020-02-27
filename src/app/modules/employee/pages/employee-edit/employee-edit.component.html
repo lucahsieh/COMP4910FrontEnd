@@ -1,1 +1,25 @@
-<p>employee-edit works!</p>
+<div class="card mx-1">
+    <div class="card-body">
+        <!-- Title -->
+        <h3 class="display-4">Employee Edit</h3>
+
+        <!-- <app-employee [employee]="employee" [mode]="mode" [alerts]="alerts" *ngIf="employee"></app-employee> -->
+
+        <!-- Action section-->
+        <div class="dropdown-divider my-3"></div>
+        <button type="button" class="btn btn-primary" (click)="openModal(template)">Create template modal</button>
+
+    </div>
+</div>
+<ng-template #template>
+    <h4>hi</h4>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Modal</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        This is a modal.
+    </div>
+</ng-template>
