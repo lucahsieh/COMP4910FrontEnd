@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { EmployeeRoutingModule } from './employee-routing.module';
-import { EmployeeComponent } from './pages/employee.component';
 import { EmployeeCreationComponent } from './pages/employee-creation/employee-creation.component';
 
 import { DropdownModule } from 'primeng/dropdown';
@@ -10,15 +9,25 @@ import { FormsModule } from '@angular/forms';
 
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { AlertModule } from 'ngx-bootstrap';
+import { EmployeeComponent } from './component/employee/employee.component';
+import { EmployeeListComponent } from './pages/employee-list/employee-list.component';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { EmployeeViewComponent } from './pages/employee-view/employee-view.component';
 
 
 
 @NgModule({
-  declarations: [EmployeeComponent, EmployeeCreationComponent],
+  declarations: [
+    EmployeeComponent,
+    EmployeeCreationComponent,
+    EmployeeListComponent,
+    EmployeeViewComponent,
+  ],
   imports: [
     CommonModule,
     EmployeeRoutingModule,
     FormsModule,
+    SharedModule,
 
     //material
     MatButtonToggleModule,

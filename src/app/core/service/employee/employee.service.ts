@@ -26,6 +26,12 @@ export class EmployeeService {
     private messageService: MessageService
   ) { }
 
+  getEmployee(id): Observable<Employee> {
+    let url = this.baseUrl + `api/employees/${id}`;
+    return this.http
+      .get<Employee>(url)
+      .pipe()
+  }
 
   getEmployees(): Observable<Employee[]> {
     let url = this.baseUrl + `api/employees/allemployees`;

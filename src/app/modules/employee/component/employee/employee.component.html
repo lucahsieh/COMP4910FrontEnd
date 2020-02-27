@@ -1,0 +1,195 @@
+<div class="dropdown-divider  my-3"></div>
+
+<h5 class="my-3">Employee Information</h5>
+
+<div class="form-row">
+    <div class="col-5">
+        <!-- first name -->
+        <div class="input-group ">
+            <div class="input-group-prepend">
+                <span class="input-group-text">First Name</span>
+            </div>
+            <input type="text" class="form-control" [(ngModel)]="employee.empFirstName" [readOnly]="mode === 1">
+
+        </div>
+        <span *ngIf="alerts.firstName" class="error my-2"><small>{{alerts.firstName.msg}}</small></span>
+
+
+
+    </div>
+    <div class="col-1"></div>
+    <div class="col-5">
+
+        <!-- last name -->
+        <div class="input-group ">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Last Name</span>
+            </div>
+            <input type="text" class="form-control" [(ngModel)]="employee.empLastName" [readOnly]="mode === 1">
+        </div>
+        <span *ngIf="alerts.lastName" class="error my-2"><small>{{alerts.lastName.msg}}</small></span>
+
+
+    </div>
+    <div class="col-1"></div>
+</div>
+<div class="  my-3"></div>
+<div class="form-row">
+    <div class="col-5">
+
+        <!-- user name -->
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">User Name</span>
+            </div>
+            <input type="text" class="form-control" [(ngModel)]="employee.empUsername" (blur)="onExitUserName()"
+                [readOnly]="mode === 1">
+        </div>
+
+    </div>
+    <div class="col-1">
+        <div *ngIf="(mode === 2 || mode === 3)">
+            <i *ngIf="validUsername" class="material-icons pass my-2">check_circle</i>
+            <i *ngIf="!validUsername" class="material-icons error  my-2">error</i>
+        </div>
+    </div>
+    <div class="col-5">
+        <!-- password -->
+        <div class="input-group" *ngIf="mode===2||mode===3">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Password</span>
+            </div>
+            <input type="text" class="form-control" [(ngModel)]="employee.empPassword" [readOnly]="true">
+        </div>
+        <!-- TODO: RESET BTN -->
+
+    </div>
+    <div class="col-1"></div>
+</div>
+<div class="  my-3"></div>
+<div class="form-row">
+    <div class="col-5">
+        <!-- employe ID -->
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Employee ID</span>
+            </div>
+            <input type="text" class="form-control" [(ngModel)]="employee.empCode" (blur)="onExitEmployeeId()"
+                [readOnly]="mode === 1">
+        </div>
+
+    </div>
+    <div class="col-1">
+        <div *ngIf="(mode === 2 || mode === 3)">
+            <i *ngIf="validEmployeeCode" class="material-icons pass my-2">check_circle</i>
+            <i *ngIf="!validEmployeeCode" class="material-icons error  my-2">error</i>
+        </div>
+    </div>
+    <div class="col-6"></div>
+    <div class="col-1"></div>
+</div>
+<div class="  my-3"></div>
+<div class="form-row">
+    <div class="col-5">
+
+        <!-- labour grade -->
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Labour Grade</span>
+            </div>
+            <input type="text" class="form-control" value="{{employee.labourGrade.labourGradeName}}" *ngIf="mode===1"
+                [readOnly]="true">
+            <p-dropdown class="form-control" [options]="grade" [(ngModel)]="selectedGrade" *ngIf="mode ===2 || mode===3"
+                placeholder="Select a Labour Grade" optionLabel="label"
+                [style]="{'border-width':'0px','padding':'0px'}"></p-dropdown>
+        </div>
+        <span *ngIf="alerts.labourGrade" class="error my-2"><small>{{alerts.labourGrade.msg}}</small></span>
+
+
+    </div>
+    <div class="col-1"></div>
+    <div class="col-5">
+
+        <!-- supervisor -->
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Supervisor</span>
+            </div>
+            <input type="text" class="form-control" *ngIf="mode===1" [readOnly]="true"
+                value="{{employee.supervisor.empFirstName}} {{employee.supervisor.empLastName}}">
+            <p-dropdown class="form-control" [options]="employeeDropdown" [(ngModel)]="selectedSupervisor" filter="true"
+                *ngIf="mode ===2 || mode===3" placeholder="Select a Supervisor" optionLabel="label"
+                [style]="{'border-width':'0px','padding':'0px'}">
+            </p-dropdown>
+        </div>
+        <span *ngIf="alerts.supervisor" class="error my-2"><small>{{alerts.supervisor.msg}}</small></span>
+
+
+    </div>
+    <div class="col-1"></div>
+</div>
+<div class="  my-3"></div>
+
+<div class="dropdown-divider  my-3"></div>
+<h5 class="my-3">Activation</h5>
+<div class="form-row">
+    <div class="col-12">
+
+        <!-- active/deactive -->
+        <div class="input-group">
+            <!-- <div class="input-group-prepend">
+                        <span class="input-group-text">Activation</span>
+                    </div> -->
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label
+                    [className]="employee.isActivated ? 'btn btn-outline-secondary active' : 'btn btn-outline-secondary'">
+                    <input type="radio" name="activation" id="active" [value]=true [(ngModel)]="employee.isActivated"
+                        [disabled]="mode===1">
+                    Active
+                </label>
+                <label
+                    [className]="employee.isActivated ? 'btn btn-outline-secondary' : 'btn btn-outline-secondary active'">
+                    <!--  [className]="employee.isActivated ? 'btn btn-outline-secondary' : 'btn btn-outline-secondary active'" -->
+                    <input type="radio" name="activation" id="deactive" [value]=false [(ngModel)]="employee.isActivated"
+                        [disabled]="mode===1"> Deactive
+                </label>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class=" my-3"></div>
+<div class="dropdown-divider  my-3"></div>
+<h5 class="my-3">Permissions</h5>
+<div class="form-row">
+    <div class="col-12">
+
+        <!-- permission -->
+        <div class="input-group">
+            <!-- <div class="input-group-prepend">
+                        <span class="input-group-text">Permissions</span>
+                    </div> -->
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                <label
+                    [className]="employee.isAdmin ? 'btn btn-outline-secondary active' : 'btn btn-outline-secondary'">
+                    <input type="checkbox" autocomplete="off" [value]="!employee.isAdmin" [disabled]="mode===1"
+                        [(ngModel)]="employee.isAdmin">
+                    Administrator Permission
+                </label>
+                <label
+                    [className]="employee.isProjectManager ? 'btn btn-outline-secondary active' : 'btn btn-outline-secondary'">
+                    <input type="checkbox" autocomplete="off" [value]="!employee.isProjectManager" [disabled]="mode===1"
+                        [(ngModel)]="employee.isProjectManager"> PM/EM?? Manager
+                    Permission
+                </label>
+                <label
+                    [className]="employee.isHumanResources ? 'btn btn-outline-secondary active' : 'btn btn-outline-secondary'">
+                    <input type="checkbox" autocomplete="off" [value]="!employee.isHumanResources "
+                        [disabled]="mode===1" [(ngModel)]="employee.isHumanResources"> Humane Resource Permission
+                </label>
+            </div>
+
+        </div>
+    </div>
+</div>
