@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CityService } from 'src/app/core/service/city/city.service';
-import { City } from 'src/app/shared/model/city';
+import { City } from 'src/app/shared/model/City';
 
 @Component({
   selector: 'app-list-item',

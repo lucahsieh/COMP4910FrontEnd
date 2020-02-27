@@ -5,15 +5,11 @@
 export const environment = {
   production: false,
 
-  // NOTE: Front end devs enable these lines below
-  // apiUrl: 'https://comp4911webapi-dev-as.azurewebsites.net/',
-  // authUrl: 'https://comp4911webapi-dev-as.azurewebsites.net/',
-  // fakeBackend: false,
-
   // NOTE: 44318/5001 is the actual backend server that Perry is using.
-  authUrl: 'https://localhost:44318/',
-  apiUrl: 'https://localhost:44318/',
+  authUrl: 'https://localhost:44318/',  //http://localhost:4000/' for frontend devs
+  apiUrl: 'https://localhost:44318/',  //http://localhost:4000/' for frontend devs
   fakeBackend: false,  //change this to true if you're not Perry 
+
 };
 
 /*

@@ -1,6 +1,9 @@
-<div class="card mx-1" *ngIf="dataReady">
+<div class="card mx-1" *ngIf="timesheet">
     <div class="card-body">
-        <h3 class="display-4 mb-3">Create Timesheet</h3>
+        <h3>
+            <span class="display-4 mb-3 mr-3">Edit Timesheet</span>
+            <span *ngIf="timesheet" [className]="colorStatus(timesheet.status)">{{timesheet.status}}</span>
+        </h3>
 
         <div class="dropdown-divider "></div>
 

@@ -1,22 +1,15 @@
-import { Employee } from './employee';
+import { Employee } from './Employee';
+import { WorkPackage } from './WorkPackage';
 
 export class Project {
-    employeeId: number;
-    jobTitleId: number;
-    employeeFirstName: string;
-    employeeLastName: string;
-    isActivated: boolean;
-    timesheetApproverId: number;
-    supervisorId: number;
-    isProjectManager: boolean;
-    isAdmin: boolean;
-    isHumanResources: boolean;
-    timesheetApprover: Employee;
-    supervisor: Employee;
-    jobTitle?: any;
-    timesheets?: any;
+    projectId: number;
+    projectName: string;
+    projectDescription: string;
+    projectManagerId: number;
+    startDate: Date;
+    endDate: Date;
     employeeProjectAssignments?: any;
-    employeeWorkPackageAssignments?: any;
+    workPackages?: WorkPackage;
     lastUpdatedBy: string;
     lastUpdatedTime: Date;
 }

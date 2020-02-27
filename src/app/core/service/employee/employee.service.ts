@@ -2,11 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessageService } from '../message.service';
 import { Observable, of } from 'rxjs';
-import { Employee } from 'src/app/shared/model/employee';
+import { Employee } from 'src/app/shared/model/Employee';
 
 import { catchError, tap, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { User } from 'src/app/shared/model/user';
+import { User } from 'src/app/shared/model/User';
 import { CheckUserNameResult } from 'src/app/shared/model/CheckUserName';
 
 @Injectable({
@@ -34,10 +34,25 @@ export class EmployeeService {
       .pipe()
   }
   postEmployee(e: Employee): Observable<any> {
-    let url = this.baseUrl + `api/timesheets`;
+    let url = this.baseUrl + `api/employees`;
+    let body = {
+      "empUsername": e.empUsername,
+      "empPassword": e.empPassword,
+      "empCode": e.empCode,
+      "labourGradeId": e.labourGradeId,
+      "empFirstName": e.empFirstName,
+      "empLastName": e.empLastName,
+      "timesheetApproverId": e.timesheetApproverId,
+      "supervisorId": e.supervisorId,
+      "isProjectManager": e.isProjectManager,
+      "isAdmin": e.isAdmin,
+      "isHumanResources": e.isHumanResources,
+      "isActivated": e.isActivated,
+      "jobTitleId": e.jobTitleId
+    };
     return this.http
-      .post<Employee>(url, e, this.httpOptions)
-      .pipe(catchError(this.handleError("postProject", e)));
+      .post<Employee>(url, body, this.httpOptions)
+      .pipe(catchError(this.handleError("postEmployee", e)));
   }
 
   // login(): Observable<User> {
@@ -47,12 +62,6 @@ export class EmployeeService {
   //     .pipe()
   // }
 
-  // getAvailableUsername(): Observable<UserName> {
-  //   let url = this.baseUrl + `api/Credentials/AvailableUsername`;
-  //   return this.http
-  //     .get<UserName>(url, this.httpOptions)
-  //     .pipe()
-  // }
 
   getEmployeeDetails() {
     var empId = localStorage.getItem("currentUserEmployeeId");
@@ -68,16 +77,16 @@ export class EmployeeService {
     //}));
   }
 
-  // Expect 200 OK response, other than that fails
+
   checkUserNameOK(userName: string): Observable<any> {
     let url = this.baseUrl + `api/Credentials/CheckUsernameAvailability/${userName}`;
-    return this.http.post<any>(url, {}, this.httpOptions).pipe();
+    return this.http.get<any>(url, this.httpOptions).pipe();
   }
 
-  // Expect 200 OK response, other than that fails
+
   checkUserEmployeeCodeOK(empCode: number): Observable<any> {
-    let url = this.baseUrl + `api/Credentials/CheckEmployeeCodeAvailability/${empCode}`;
-    return this.http.post<any>(url, {}, this.httpOptions).pipe();
+    let url = this.baseUrl + `api/Employees/CheckEmployeeCodeAvailability/${empCode}`;
+    return this.http.get<any>(url, this.httpOptions).pipe();
   }
 
 

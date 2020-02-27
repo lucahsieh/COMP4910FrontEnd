@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessageService } from '../message.service';
 import { Observable, of } from 'rxjs';
-import { City } from 'src/app/shared/model/city';
+import { City } from 'src/app/shared/model/City';
 import { catchError, tap } from 'rxjs/operators';
 
 @Injectable({

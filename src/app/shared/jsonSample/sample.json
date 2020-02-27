@@ -120,5 +120,84 @@
         "supervisor": null
       }
     }
-  ]
+  ],
+  "get_AllTimesheet": [
+    {
+      "timesheetId": 1,
+      "versionNumber": 2,
+      "employeeId": 3,
+      "weekNumber": 11,
+      "weekEndingIn": "2020-02-01T00:00:00",
+      "status": "Rejected",
+      "signature": null,
+      "timesheetRows": null
+    },
+    {
+      "timesheetId": 1,
+      "versionNumber": 1,
+      "employeeId": 1,
+      "weekNumber": 32,
+      "weekEndingIn": "2020-02-01T00:00:00",
+      "status": "Pending",
+      "signature": null,
+      "timesheetRows": null
+    },
+    {
+      "timesheetId": 1,
+      "versionNumber": 1,
+      "employeeId": 1,
+      "weekNumber": 34,
+      "weekEndingIn": "2020-09-01T00:00:00",
+      "status": "Inprogress",
+      "signature": null,
+      "timesheetRows": null
+    },
+    {
+      "timesheetId": 1,
+      "versionNumber": 1,
+      "employeeId": 2,
+      "weekNumber": 10,
+      "weekEndingIn": "2020-01-01T00:00:00",
+      "status": "Approved",
+      "signature": null,
+      "timesheetRows": null
+    },
+    {
+      "timesheetId": 1,
+      "versionNumber": 1,
+      "employeeId": 1,
+      "weekNumber": 1,
+      "weekEndingIn": "2020-03-01T00:00:00",
+      "status": "Approved",
+      "signature": null,
+      "timesheetRows": null
+    }
+  ],
+  "get_Timesheet": {
+    "timesheetRows": [
+      {
+        "monday": "04",
+        "tuesday": "05",
+        "wednesday": "06",
+        "thursday": "06",
+        "friday": "06",
+        "saturday": "01",
+        "sunday": "02",
+        "projectId": 1,
+        "timesheetVersionNumber": 1,
+        "workPackageId": 1,
+        "timesheetId": 123
+      }
+    ],
+    "signature": null,
+    "weekEnding": "2020-02-15",
+    "weekNumber": 7,
+    "timesheetId": 1,
+    "employeeId": 1,
+    "versionNumber": 1,
+    "status": "Inprogress"
+  },
+  "avalidableTimesheetID": {
+    "id": 123
+  }
 }

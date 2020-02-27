@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { SelectItem } from 'primeng/api/selectitem';
-import { Employee } from 'src/app/shared/model/employee';
+import { Employee } from 'src/app/shared/model/Employee';
 import { EmployeeService } from 'src/app/core/service/employee/employee.service';
 
 @Component({
@@ -43,16 +43,16 @@ export class EmployeeCreationComponent implements OnInit {
     console.log(this.employee.empUsername);
     this.employeeService.checkUserNameOK(this.employee.empUsername)
       .subscribe(response => {
-        console.log(response.status);
-        this.validUsername = (response.status === 200);
+        console.log(response);
+        this.validUsername = response;
       })
   }
 
   onExitEmployeeId() {
     this.employeeService.checkUserEmployeeCodeOK(this.employee.empCode)
       .subscribe(response => {
-        console.log(response.status);
-        this.validEmployeeCode = (response.status === 200);
+        console.log(response);
+        this.validEmployeeCode = response;
       })
   }
   populateEmployeeDropdown() {
@@ -64,7 +64,7 @@ export class EmployeeCreationComponent implements OnInit {
         employees.forEach(e => {
           console.log(e);
           this.employeeDropdown.push(
-            { "label": `${e.empFirstName} ${e.empLastName}`, "value": e.employeeId }
+            { label: `${e.empFirstName} ${e.empLastName}`, value: e.employeeId }
           );
         })
         console.log(this.employeeDropdown);
