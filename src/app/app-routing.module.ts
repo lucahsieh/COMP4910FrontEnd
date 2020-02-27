@@ -41,6 +41,12 @@ const routes: Routes = [
         loadChildren: () => import('./modules/employee/employee.module').then(m => m.EmployeeModule)
       },
       {
+        path: 'projects',
+        data: {breadcrumb: 'some breadcrumb'},
+        loadChildren: () => import('./modules/projects/projects.module')
+            .then(p => p.ProjectsModule)
+      },
+      {
         path: 'reports',
         data: {
           breadcrumb: null

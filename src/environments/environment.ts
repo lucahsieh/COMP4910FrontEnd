@@ -11,8 +11,8 @@ export const environment = {
   // fakeBackend: false,
 
   // NOTE: 44318/5001 is the actual backend server that Perry is using.
-  authUrl: 'https://localhost:5001/',
-  apiUrl: 'https://localhost:5001/',
+  authUrl: 'https://localhost:44318/',
+  apiUrl: 'https://localhost:44318/',
   fakeBackend: false,  //change this to true if you're not Perry 
 };
 

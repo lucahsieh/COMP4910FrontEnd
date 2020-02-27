@@ -20,6 +20,7 @@ import { ButtonsModule } from 'ngx-bootstrap';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { AlertModule } from 'ngx-bootstrap/alert';
+import { ProjectsModule} from './modules/projects/projects.module';
 
 
 @NgModule({
@@ -55,6 +56,7 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     HomeModule,
     ModalModule.forRoot(),
     AlertModule.forRoot(),
+    ProjectsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
