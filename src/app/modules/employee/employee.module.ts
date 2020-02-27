@@ -13,6 +13,7 @@ import { EmployeeComponent } from './component/employee/employee.component';
 import { EmployeeListComponent } from './pages/employee-list/employee-list.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { EmployeeViewComponent } from './pages/employee-view/employee-view.component';
+import { EmployeeEditComponent } from './pages/employee-edit/employee-edit.component';
 
 
 
@@ -22,6 +23,7 @@ import { EmployeeViewComponent } from './pages/employee-view/employee-view.compo
     EmployeeCreationComponent,
     EmployeeListComponent,
     EmployeeViewComponent,
+    EmployeeEditComponent,
   ],
   imports: [
     CommonModule,
