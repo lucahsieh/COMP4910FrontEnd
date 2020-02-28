@@ -10,6 +10,7 @@ import { TimesheetListComponent } from './pages/timesheet-list/timesheet-list.co
 import { TableModule } from 'primeng/table';
 import { TimesheetViewComponent } from './pages/timesheet-view/timesheet-view.component';
 import { TimesheetEditComponent } from './pages/timesheet-edit/timesheet-edit.component';
+import { TimesheetApproverViewListComponent } from './pages/timesheet-approver-view-list/timesheet-approver-view-list.component';
 
 
 
@@ -20,6 +21,7 @@ import { TimesheetEditComponent } from './pages/timesheet-edit/timesheet-edit.co
     TimesheetListComponent,
     TimesheetViewComponent,
     TimesheetEditComponent,
+    TimesheetApproverViewListComponent,
   ],
   imports: [
     CommonModule,

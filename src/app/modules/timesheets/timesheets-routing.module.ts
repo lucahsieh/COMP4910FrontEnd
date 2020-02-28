@@ -5,6 +5,7 @@ import { TimesheetCreationComponent } from './pages/timesheet-creation/timesheet
 import { SharedModule } from 'src/app/shared/shared.module';
 import { TimesheetViewComponent } from './pages/timesheet-view/timesheet-view.component';
 import { TimesheetEditComponent } from './pages/timesheet-edit/timesheet-edit.component';
+import { TimesheetApproverViewListComponent } from './pages/timesheet-approver-view-list/timesheet-approver-view-list.component';
 
 
 const routes: Routes = [
@@ -12,6 +13,8 @@ const routes: Routes = [
   { path: 'creation', component: TimesheetCreationComponent, data: { breadcrumb: 'Timesheet Creation' } },
   { path: 'view/:timesheetId', component: TimesheetViewComponent, data: { breadcrumb: 'Timesheet Detail' } },
   { path: 'edit/:timesheetId', component: TimesheetEditComponent, data: { breadcrumb: 'Timesheet Edit' } },
+  { path: 'approver/view/list', component: TimesheetApproverViewListComponent, data: { breadcrumb: 'Pending List' } },
+
 
 ];
 

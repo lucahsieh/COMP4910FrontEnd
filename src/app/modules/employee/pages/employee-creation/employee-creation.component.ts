@@ -68,4 +68,25 @@ export class EmployeeCreationComponent implements OnInit {
   displayErrorMsg(fieldName: string) {
     return (this.alerts[fieldName] != '') ? this.alerts[fieldName].msg : null;
   }
+
+
+
+  // exit event of emp id field
+  validateEmployeeCode() {
+    this.employeeService.checkUserEmployeeCodeOK(this.employee.empCode)
+      .subscribe(response => {
+        console.log(response);
+        this.validEmployeeCode = response;
+      });
+  }
+
+  // exit event of user name
+  validateUserName() {
+    this.employeeService.checkUserNameOK(this.employee.empUsername)
+      .subscribe(response => {
+        console.log(response);
+        this.validUsername = response;
+      })
+
+  }
 }

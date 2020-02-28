@@ -91,11 +91,10 @@ export class EmployeeService {
 
 
   checkUserEmployeeCodeOK(empCode: number): Observable<any> {
-    let url = this.baseUrl + `api/Employees/CheckEmployeeCodeAvailability/${empCode}`;
+
+    let url = this.baseUrl + `api/Credentials/CheckEmployeeCodeAvailability/${empCode}`;
     return this.http.get<any>(url, this.httpOptions).pipe();
   }
-
-
 
 
 

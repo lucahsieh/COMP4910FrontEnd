@@ -22,6 +22,9 @@ export class EmployeeComponent implements OnInit {
   @Input() validEmployeeCode: boolean;
   @Input() alerts;
   @Output() restPw: EventEmitter<string> = new EventEmitter<string>();
+  @Output() changeUsername: EventEmitter<string> = new EventEmitter<string>();
+  @Output() changeEmpCode: EventEmitter<string> = new EventEmitter<string>();
+
 
   constructor(
     private employeeService: EmployeeService,
@@ -56,25 +59,12 @@ export class EmployeeComponent implements OnInit {
 
   // exit event of emp id field
   onExitEmployeeId() {
-    if (this.mode = MODE.Create) {
-      this.employeeService.checkUserEmployeeCodeOK(this.employee.empCode)
-        .subscribe(response => {
-          console.log(response);
-          this.validEmployeeCode = response;
-        })
-    }
+    this.changeEmpCode.emit('payload');
   }
 
   // exit event of user name
   onExitUserName() {
-    if (this.mode = MODE.Create) {
-      console.log(this.employee.empUsername);
-      this.employeeService.checkUserNameOK(this.employee.empUsername)
-        .subscribe(response => {
-          console.log(response);
-          this.validUsername = response;
-        })
-    }
+    this.changeUsername.emit('payload');
   }
 
   // click reset password btn

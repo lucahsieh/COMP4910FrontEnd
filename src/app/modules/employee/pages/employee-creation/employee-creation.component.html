@@ -7,6 +7,7 @@
 
 
         <app-employee [employee]="employee" [mode]="mode" [validUsername]="validUsername"
+            (changeEmpCode)="validateEmployeeCode()" (changeUsername)="validateUserName()"
             [validEmployeeCode]="validEmployeeCode" [alerts]="alerts"></app-employee>
 
         <!-- Action section-->

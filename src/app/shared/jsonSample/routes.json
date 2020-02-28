@@ -7,5 +7,6 @@
     "/api/Credentials/CheckEmployeeCodeAvailability/:test": "/CheckEmployeeCodeAvailability",
     "/api/timesheets/availableTimesheetId": "/avalidableTimesheetID",
     "/api/Timesheets/GetTimesheetsByEmpId/:id": "/get_AllTimesheet",
+    "/api/timesheets/getAllPendingTimesheet/:id": "/getAllPendingTimesheetByApproverEmpId",
     "/api/timesheets/:id": "/get_Timesheet"
 }

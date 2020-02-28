@@ -120,9 +120,8 @@
             <input type="text" class="form-control" *ngIf="mode===1" [readOnly]="true"
                 value="{{employee.supervisor.empFirstName}} {{employee.supervisor.empLastName}}">
             <p-dropdown class="form-control" [options]="employeeDropdown" [(ngModel)]="selectedSupervisor" filter="true"
-                *ngIf="mode ===2 || mode===3"
-                placeholder="{{employee.supervisor.empFirstName}} {{employee.supervisor.empLastName}}"
-                optionLabel="label" [style]="{'border-width':'0px','padding':'0px'}">
+                *ngIf="mode ===2 || mode===3" placeholder="{{employee.supervisor ? employee.supervisor.empFirstName + ' ' + employee.supervisor.empLastName : 'choose a supervisor'}}
+                " optionLabel="label" [style]="{'border-width':'0px','padding':'0px'}">
             </p-dropdown>
         </div>
         <span *ngIf="alerts.supervisor" class="error my-2"><small>{{alerts.supervisor.msg}}</small></span>
