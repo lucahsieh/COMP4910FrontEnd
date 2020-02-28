@@ -15,7 +15,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { EmployeeViewComponent } from './pages/employee-view/employee-view.component';
 import { EmployeeEditComponent } from './pages/employee-edit/employee-edit.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
-
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { TableModule } from 'primeng/table';
 
 
 @NgModule({
@@ -38,10 +39,12 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 
     //primeng
     DropdownModule,
+    TableModule,
 
     // bootstrap
     AlertModule.forRoot(),
     ModalModule.forRoot(),
+    NgbModule,
   ],
 
 })

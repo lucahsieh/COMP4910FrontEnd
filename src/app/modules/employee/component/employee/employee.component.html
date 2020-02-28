@@ -43,7 +43,7 @@
                 <span class="input-group-text">User Name</span>
             </div>
             <input type="text" class="form-control" [(ngModel)]="employee.empUsername" (blur)="onExitUserName()"
-                [readOnly]="mode === 1">
+                [readOnly]="mode === 1 || mode===3">
         </div>
 
     </div>
@@ -61,7 +61,6 @@
             </div>
             <input type="text" class="form-control" [(ngModel)]="employee.empPassword" [readOnly]="true">
         </div>
-        <!-- TODO: RESET BTN -->
         <button *ngIf="mode===3" type="button" class="btn btn-outline-secondary  m-1 px-3" (click)="onRestPw()">Reset
             Password</button>
 
@@ -78,7 +77,7 @@
                 <span class="input-group-text">Employee ID</span>
             </div>
             <input type="text" class="form-control" [(ngModel)]="employee.empCode" (blur)="onExitEmployeeId()"
-                [readOnly]="mode === 1">
+                [readOnly]="mode === 1 || mode===3">
         </div>
 
     </div>
@@ -103,7 +102,7 @@
             <input type="text" class="form-control" value="{{employee.labourGrade.labourGradeName}}" *ngIf="mode===1"
                 [readOnly]="true">
             <p-dropdown class="form-control" [options]="grade" [(ngModel)]="selectedGrade" *ngIf="mode ===2 || mode===3"
-                placeholder="Select a Labour Grade" optionLabel="label"
+                placeholder="{{employee.labourGrade.labourGradeName}}" optionLabel="label"
                 [style]="{'border-width':'0px','padding':'0px'}"></p-dropdown>
         </div>
         <span *ngIf="alerts.labourGrade" class="error my-2"><small>{{alerts.labourGrade.msg}}</small></span>
@@ -121,8 +120,9 @@
             <input type="text" class="form-control" *ngIf="mode===1" [readOnly]="true"
                 value="{{employee.supervisor.empFirstName}} {{employee.supervisor.empLastName}}">
             <p-dropdown class="form-control" [options]="employeeDropdown" [(ngModel)]="selectedSupervisor" filter="true"
-                *ngIf="mode ===2 || mode===3" placeholder="Select a Supervisor" optionLabel="label"
-                [style]="{'border-width':'0px','padding':'0px'}">
+                *ngIf="mode ===2 || mode===3"
+                placeholder="{{employee.supervisor.empFirstName}} {{employee.supervisor.empLastName}}"
+                optionLabel="label" [style]="{'border-width':'0px','padding':'0px'}">
             </p-dropdown>
         </div>
         <span *ngIf="alerts.supervisor" class="error my-2"><small>{{alerts.supervisor.msg}}</small></span>

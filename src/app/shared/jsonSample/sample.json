@@ -20,7 +20,20 @@
     "apiId": "Credentials"
   },
   "CheckEmployeeCodeAvailability": {},
-  "post_Employee": {},
+  "post_Employee": {
+    "empUsername": "abc323",
+    "empCode": 43429,
+    "labourGradeId": 0,
+    "empFirstName": "Perry",
+    "empLastName": "Li",
+    "timesheetApproverId": 1,
+    "supervisorId": 1,
+    "isProjectManager": true,
+    "isAdmin": false,
+    "isHumanResources": false,
+    "isActivated": true,
+    "jobTitleId": 2
+  },
   "get_AllEmployees": [
     {
       "employeeId": 1,
@@ -35,7 +48,7 @@
       "isProjectManager": true,
       "isAdmin": true,
       "isHumanResources": true,
-      "isActivated": true,
+      "isActivated": false,
       "timesheetApprover": {
         "employeeId": 2,
         "empUsername": "Platypus123",

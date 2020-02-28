@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, Input } from '@angular/core';
+import { Component, OnInit, TemplateRef, Input, Output, EventEmitter } from '@angular/core';
 import { SelectItem } from 'primeng/api/selectitem';
 import { Employee } from 'src/app/shared/model/Employee';
 import { EmployeeService } from 'src/app/core/service/employee/employee.service';
@@ -21,6 +21,7 @@ export class EmployeeComponent implements OnInit {
   @Input() validUsername: boolean;
   @Input() validEmployeeCode: boolean;
   @Input() alerts;
+  @Output() restPw: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(
     private employeeService: EmployeeService,
@@ -55,21 +56,30 @@ export class EmployeeComponent implements OnInit {
 
   // exit event of emp id field
   onExitEmployeeId() {
-    this.employeeService.checkUserEmployeeCodeOK(this.employee.empCode)
-      .subscribe(response => {
-        console.log(response);
-        this.validEmployeeCode = response;
-      })
+    if (this.mode = MODE.Create) {
+      this.employeeService.checkUserEmployeeCodeOK(this.employee.empCode)
+        .subscribe(response => {
+          console.log(response);
+          this.validEmployeeCode = response;
+        })
+    }
   }
 
   // exit event of user name
   onExitUserName() {
-    console.log(this.employee.empUsername);
-    this.employeeService.checkUserNameOK(this.employee.empUsername)
-      .subscribe(response => {
-        console.log(response);
-        this.validUsername = response;
-      })
+    if (this.mode = MODE.Create) {
+      console.log(this.employee.empUsername);
+      this.employeeService.checkUserNameOK(this.employee.empUsername)
+        .subscribe(response => {
+          console.log(response);
+          this.validUsername = response;
+        })
+    }
+  }
+
+  // click reset password btn
+  onRestPw() {
+    this.restPw.emit('payload');
   }
 
 }
