@@ -20,7 +20,20 @@
     "apiId": "Credentials"
   },
   "CheckEmployeeCodeAvailability": {},
-  "post_Employee": {},
+  "post_Employee": {
+    "empUsername": "abc323",
+    "empCode": 43429,
+    "labourGradeId": 0,
+    "empFirstName": "Perry",
+    "empLastName": "Li",
+    "timesheetApproverId": 1,
+    "supervisorId": 1,
+    "isProjectManager": true,
+    "isAdmin": false,
+    "isHumanResources": false,
+    "isActivated": true,
+    "jobTitleId": 2
+  },
   "get_AllEmployees": [
     {
       "employeeId": 1,
@@ -35,7 +48,7 @@
       "isProjectManager": true,
       "isAdmin": true,
       "isHumanResources": true,
-      "isActivated": true,
+      "isActivated": false,
       "timesheetApprover": {
         "employeeId": 2,
         "empUsername": "Platypus123",
@@ -199,5 +212,69 @@
   },
   "avalidableTimesheetID": {
     "id": 123
+  },
+  "getSingleEmployee": {
+    "empUsername": "abc323",
+    "empCode": 43429,
+    "employeeId": 2,
+    "jobTitleId": 2,
+    "empFirstName": "Perry",
+    "empLastName": "Li",
+    "isActivated": true,
+    "timesheetApproverId": 1,
+    "supervisorId": 1,
+    "isProjectManager": true,
+    "isAdmin": false,
+    "labourGrade": {
+      "labourGradeId": 0,
+      "labourGradeName": "P1"
+    },
+    "isHumanResources": false,
+    "timesheetApprover": {
+      "employeeId": 2,
+      "jobTitleId": 2,
+      "empFirstName": "first",
+      "empLastName": "last",
+      "isActivated": true,
+      "timesheetApproverId": 1,
+      "supervisorId": 1,
+      "isProjectManager": true,
+      "isAdmin": false,
+      "isHumanResources": false,
+      "timesheetApprover": null,
+      "supervisor": null,
+      "jobTitle": null,
+      "timesheets": null,
+      "employeeProjectAssignments": null,
+      "employeeWorkPackageAssignments": null,
+      "lastUpdatedBy": "perry",
+      "lastUpdatedTime": "2020-02-05T16:39:16.46225"
+    },
+    "supervisor": {
+      "employeeId": 2,
+      "jobTitleId": 2,
+      "empFirstName": "first1",
+      "empLastName": "last1",
+      "isActivated": true,
+      "timesheetApproverId": 1,
+      "supervisorId": 1,
+      "isProjectManager": true,
+      "isAdmin": false,
+      "isHumanResources": false,
+      "timesheetApprover": null,
+      "supervisor": null,
+      "jobTitle": null,
+      "timesheets": null,
+      "employeeProjectAssignments": null,
+      "employeeWorkPackageAssignments": null,
+      "lastUpdatedBy": "perry",
+      "lastUpdatedTime": "2020-02-05T16:39:16.46225"
+    },
+    "jobTitle": null,
+    "timesheets": null,
+    "employeeProjectAssignments": null,
+    "employeeWorkPackageAssignments": null,
+    "lastUpdatedBy": "perry",
+    "lastUpdatedTime": "2020-02-05T16:39:16.46225"
   }
 }

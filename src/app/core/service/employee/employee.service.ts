@@ -26,6 +26,12 @@ export class EmployeeService {
     private messageService: MessageService
   ) { }
 
+  getEmployee(id): Observable<Employee> {
+    let url = this.baseUrl + `api/employees/${id}`;
+    return this.http
+      .get<Employee>(url)
+      .pipe()
+  }
 
   getEmployees(): Observable<Employee[]> {
     let url = this.baseUrl + `api/employees/allemployees`;
@@ -39,7 +45,7 @@ export class EmployeeService {
       "empUsername": e.empUsername,
       "empPassword": e.empPassword,
       "empCode": e.empCode,
-      "labourGradeId": e.labourGradeId,
+      "labourGradeId": e.labourGrade.labourGradeId,
       "empFirstName": e.empFirstName,
       "empLastName": e.empLastName,
       "timesheetApproverId": e.timesheetApproverId,

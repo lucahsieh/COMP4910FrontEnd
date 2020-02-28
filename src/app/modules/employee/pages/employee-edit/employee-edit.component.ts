@@ -1,40 +1,49 @@
-import { Component, OnInit, TemplateRef, Pipe, PipeTransform } from '@angular/core';
-import { SelectItem } from 'primeng/api/selectitem';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Employee } from 'src/app/shared/model/Employee';
-import { EmployeeService } from 'src/app/core/service/employee/employee.service';
-import { Alert } from 'src/app/shared/model/Alert';
 import { MODE } from 'src/app/shared/model/MODE';
+import { ActivatedRoute } from '@angular/router';
+import { EmployeeService } from 'src/app/core/service/employee/employee.service';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { Alert } from 'src/app/shared/model/Alert';
+
 
 @Component({
-  selector: 'app-employee-creation',
-  templateUrl: './employee-creation.component.html',
-  styleUrls: ['./employee-creation.component.css']
+  selector: 'app-employee-edit',
+  templateUrl: './employee-edit.component.html',
+  styleUrls: ['./employee-edit.component.css']
 })
-export class EmployeeCreationComponent implements OnInit {
+export class EmployeeEditComponent implements OnInit {
 
   employee: Employee;
-  grade: SelectItem[] = null;
-  employeeDropdown: SelectItem[] = null;
-  selectedGrade: SelectItem;
-  selectedSupervisor: SelectItem;
-  // userName validation
-  validUsername: boolean = false;
-  validEmployeeCode: boolean = false;
+  mode = MODE.Update;
   alerts = {};
-  mode = MODE.Create;
+  modalRef: BsModalRef;
+  validUsername: boolean = true;
+  validEmployeeCode: boolean = true;
 
   constructor(
+    private route: ActivatedRoute,
     private employeeService: EmployeeService,
+    private modalService: BsModalService
   ) { }
 
   ngOnInit() {
-    this.employee = new Employee();
-    this.employee.isActivated = true;
-    this.employee.empPassword = "01234";
+    this.route.paramMap.subscribe(params => {
+      var id = params.get('empId');
+      this.employeeService.getEmployee(id).subscribe(e => this.employee = e);
+    });
   }
 
+  openModal(template: TemplateRef<any>) {
+    console.log('opne')
+    console.log(template)
+    this.modalRef = this.modalService.show(template);
+  }
+  resetPw() {
+    this.employee.empPassword = '01234';
+  }
   // btn click event of creation
-  onCreate(template: TemplateRef<any>) {
+  onUpdate() {
     if (!this.validatePage())
       return;
     console.log("POST employee");
@@ -65,7 +74,7 @@ export class EmployeeCreationComponent implements OnInit {
     }
     return result;
   }
-  displayErrorMsg(fieldName: string) {
-    return (this.alerts[fieldName] != '') ? this.alerts[fieldName].msg : null;
-  }
+
 }
+
+

@@ -1,0 +1,19 @@
+<div *ngFor="let alert of alertsToArray()">
+    <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout">
+        <i class="material-icons ">report</i>
+        {{ alert.msg }}
+    </alert>
+</div>
+
+<!-- validation error modal-->
+<ng-template #validationError>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Validation Error</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        This is a modal.
+    </div>
+</ng-template>
