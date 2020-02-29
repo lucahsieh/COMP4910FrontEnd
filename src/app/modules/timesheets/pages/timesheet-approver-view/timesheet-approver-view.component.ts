@@ -53,8 +53,5 @@ export class TimesheetApproverViewComponent implements OnInit {
     this.timesheet.status = TimesheetStatus.approved;
     this.timesheetService.putTimesheet(this.timesheet).subscribe(_ => console.log(this.timesheet));
   }
-  onCancel() {
-    console.log("cancel")
-  }
 
 }

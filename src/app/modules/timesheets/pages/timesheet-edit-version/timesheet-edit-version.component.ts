@@ -46,16 +46,17 @@ export class TimesheetEditVersionComponent implements OnInit {
     // increment the version. since it is using the old timesheet to create a new one
     this.timesheet.versionNumber += 1;
     this.timesheet.status = TimesheetStatus.pending;
-    this.timesheetService.postTimesheet(this.timesheet).subscribe(_ => {
+    this.timesheetService.putTimesheet(this.timesheet).subscribe(_ => {
       // TODO : nagvigate to this page "/content/timesheets"
     });
   }
   onSave() {
     // increment the version. since it is using the old timesheet to create a new one
     this.timesheet.versionNumber += 1;
+    this.timesheet.status = TimesheetStatus.inProgress;
     console.log(`post timesheet:`);
     console.log(JSON.stringify(this.timesheet));
-    this.timesheetService.postTimesheet(this.timesheet).subscribe(_ => {
+    this.timesheetService.putTimesheet(this.timesheet).subscribe(_ => {
       // TODO : nagvigate to this page "/content/timesheets"
     });
 

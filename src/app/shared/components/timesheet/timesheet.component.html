@@ -1,6 +1,18 @@
 <form>
     <div class="form-row">
-        <div class="col-5">
+
+        <div class="col-2">
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Version</span>
+                </div>
+                <input type="text" id="weekNum" class="form-control" [value]="timesheet.versionNumber"
+                    [readonly]="true">
+            </div>
+        </div>
+
+
+        <div class="col-2">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">Week Number</span>
@@ -9,7 +21,7 @@
             </div>
         </div>
 
-        <div class="col-5">
+        <div class="col-6">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">Week Ending</span>

@@ -1,9 +1,10 @@
 <div class="card mx-1" *ngIf="timesheet">
     <div class="card-body">
         <h3>
-            <span class="display-4 mb-3 mr-3">Edit Timesheet</span>
+            <span class="display-4 mb-3 mr-3">Edit Rejected Timesheet</span>
             <span *ngIf="timesheet" [className]="colorStatus(timesheet.status)">{{timesheet.status}}</span>
         </h3>
+        <p>Submiting or saving this edited timesheet will creation this timesheet as a new version.</p>
 
         <div class="dropdown-divider "></div>
 

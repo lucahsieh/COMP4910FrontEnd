@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { WeatherService } from 'src/app/core/service/weather/weather.service';
-import { CurrentWeather } from 'src/app/shared/model/weather';
+import { CurrentWeather } from 'src/app/shared/model/Weather';
 
 @Component({
   selector: 'app-list-detail',
