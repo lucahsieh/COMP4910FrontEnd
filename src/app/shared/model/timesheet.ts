@@ -6,6 +6,7 @@ export class Timesheet {
     constructor() {
         this.timesheetRows = [];
         this.signature = null;
+        this.comment = '';
     }
     timesheetId: number;
     versionNumber: number;
@@ -16,5 +17,6 @@ export class Timesheet {
     signature?: any;
     timesheetRows: TimesheetRow[];
     owner: Employee;
+    comment: string;
 }
 

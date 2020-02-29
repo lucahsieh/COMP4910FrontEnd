@@ -1,9 +1,17 @@
 <div class="card mx-1">
-    <div class="card-body">
+    <div class="card-body" *ngIf="timesheet">
         <h3>
             <span class="display-4 mb-3 mr-3">Timesheet Detail</span>
             <span *ngIf="timesheet" [className]="colorStatus(timesheet.status)">{{timesheet.status}}</span>
         </h3>
+        <!-- alert content -->
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="timesheet.status == 'Rejected'">
+            <h4 class="alert-heading">Rejected!</h4>
+            <p>This timesheet is rejected based on the following reason. Please click Edit button to modifty this
+                timesheet.</p>
+            <hr>
+            <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+        </div>
 
         <div class="dropdown-divider "></div>
 

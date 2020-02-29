@@ -1,0 +1,34 @@
+<div class="card mx-1">
+    <div class="card-body">
+        <h3>
+            <span class="display-4 mb-3 mr-3">Pending Detail</span>
+            <span *ngIf="timesheet" [className]="colorStatus(timesheet.status)">{{timesheet.status}}</span>
+        </h3>
+
+        <div class="dropdown-divider "></div>
+
+        <shared-timesheet *ngIf="timesheet" [mode]="mode" [timesheet]="timesheet">
+        </shared-timesheet>
+
+        <div class="dropdown-divider my-3"></div>
+        <h5 class="my-3">Approver View</h5>
+
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Comment</span>
+            </div>
+            <textarea class="form-control" aria-label="With textarea" (change)="onTextareaChange($event)"
+                *ngIf="timesheet">
+                {{timesheet.comment}}
+            </textarea>
+            <!-- <input type="textarea" class="form-control" [(ngModel)]="timesheet.comment" (blur)="onExitEmployeeId()"> -->
+
+        </div>
+        <div class="d-flex flex-row-reverse">
+            <button type="button" class="btn btn-outline-success  m-1 px-3" (click)="onApprove($event)">Approve</button>
+            <button type="button" class="btn btn-outline-danger m-1 px-2" (click)="onReject($event)">Reject</button>
+            <button type="button" class="btn btn-primary m-1 px-2" (click)="onCancel($event)">Cancel</button>
+        </div>
+
+    </div>
+</div>

@@ -1,20 +1,41 @@
 {
   "Post_Timesheet": {
-    "employeeId": null,
-    "empUsername": "",
-    "empPassword": "01234",
-    "empCode": 0,
-    "labourGradeId": 0,
-    "empFirstName": "",
-    "empLastName": "",
-    "timesheetApproverId": 0,
-    "supervisorId": 0,
-    "isProjectManager": false,
-    "isAdmin": false,
-    "isHumanResources": false,
-    "isActivated": true,
-    "timesheetApprover": null,
-    "supervisor": null
+    "timesheetRows": [
+      {
+        "monday": 0,
+        "tuesday": 0,
+        "wednesday": 0,
+        "thursday": 0,
+        "friday": 0,
+        "saturday": 0,
+        "sunday": 0,
+        "projectId": 2,
+        "timesheetVersionNumber": 1,
+        "workPackageId": 5,
+        "timesheetId": 123
+      },
+      {
+        "monday": 0,
+        "tuesday": 0,
+        "wednesday": 0,
+        "thursday": 0,
+        "friday": 0,
+        "saturday": 0,
+        "sunday": 0,
+        "projectId": 3,
+        "timesheetVersionNumber": 1,
+        "workPackageId": 7,
+        "timesheetId": 123
+      }
+    ],
+    "signature": null,
+    "comment": "",
+    "weekEnding": "2020-3-20",
+    "weekNumber": 12,
+    "timesheetId": 123,
+    "employeeId": 1,
+    "versionNumber": 1,
+    "status": "inprogress"
   },
   "CheckUsernameAvailability": {
     "apiId": "Credentials"
@@ -164,10 +185,11 @@
     "signature": null,
     "weekEnding": "2020-02-15",
     "weekNumber": 7,
-    "timesheetId": 1,
+    "timesheetId": 123,
     "employeeId": 1,
     "versionNumber": 1,
-    "status": "Inprogress"
+    "status": "Rejected",
+    "comment": "jeiowjeiowjo"
   },
   "avalidableTimesheetID": {
     "id": 123
@@ -249,6 +271,46 @@
       "status": "Pending",
       "signature": null,
       "timesheetRows": null
+    }
+  ],
+  "projectWpDropdown": [
+    {
+      "projectId": 2,
+      "projectName": "ProjectName2",
+      "workPackages": [
+        {
+          "workPackageId": 3,
+          "workPackageCode": "B",
+          "name": "WpName2Root"
+        },
+        {
+          "workPackageId": 4,
+          "workPackageCode": "BA",
+          "name": "WpName2Child1"
+        },
+        {
+          "workPackageId": 5,
+          "workPackageCode": "BAA",
+          "name": "WpName2ChildChild1"
+        },
+        {
+          "workPackageId": 6,
+          "workPackageCode": "BB",
+          "name": "WpName2Child2"
+        }
+      ]
+    },
+    {
+      "projectId": 3,
+      "projectName": "ProjectName3",
+      "workPackages": [
+        {
+          "workPackageId": 7,
+          "responsibleEngineerId": 4,
+          "workPackageCode": "C",
+          "name": "WpName3Root"
+        }
+      ]
     }
   ]
 }

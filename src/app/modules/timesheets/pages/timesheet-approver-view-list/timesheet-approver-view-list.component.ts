@@ -44,7 +44,8 @@ export class TimesheetApproverViewListComponent implements OnInit {
               'weekNumber': ts.weekNumber,
               'versionNumber': ts.versionNumber,
               'weekEnding': ts.weekEnding,
-              'status': ts.status
+              'status': ts.status,
+              'timesheetId': ts.timesheetId
             })
         })
         console.log(this.displayTimesheet)

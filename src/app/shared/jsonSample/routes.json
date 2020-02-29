@@ -8,5 +8,6 @@
     "/api/timesheets/availableTimesheetId": "/avalidableTimesheetID",
     "/api/Timesheets/GetTimesheetsByEmpId/:id": "/get_AllTimesheet",
     "/api/timesheets/getAllPendingTimesheet/:id": "/getAllPendingTimesheetByApproverEmpId",
-    "/api/timesheets/:id": "/get_Timesheet"
+    "/api/timesheets/:id": "/get_Timesheet",
+    "/api/projects/ProjectWpDropdown/:empid": "/projectWpDropdown"
 }

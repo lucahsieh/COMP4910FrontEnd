@@ -9,7 +9,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">First Name</span>
             </div>
-            <input type="text" class="form-control" [(ngModel)]="employee.empFirstName" [readOnly]="mode === 1">
+            <input type="text" class="form-control" [(ngModel)]="employee.empFirstName" [readOnly]="mode ==='read'">
 
         </div>
         <span *ngIf="alerts.firstName" class="error my-2"><small>{{alerts.firstName.msg}}</small></span>
@@ -25,7 +25,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">Last Name</span>
             </div>
-            <input type="text" class="form-control" [(ngModel)]="employee.empLastName" [readOnly]="mode === 1">
+            <input type="text" class="form-control" [(ngModel)]="employee.empLastName" [readOnly]="mode ==='read'">
         </div>
         <span *ngIf="alerts.lastName" class="error my-2"><small>{{alerts.lastName.msg}}</small></span>
 
@@ -43,12 +43,12 @@
                 <span class="input-group-text">User Name</span>
             </div>
             <input type="text" class="form-control" [(ngModel)]="employee.empUsername" (blur)="onExitUserName()"
-                [readOnly]="mode === 1 || mode===3">
+                [readOnly]="mode ==='read' || mode===3">
         </div>
 
     </div>
     <div class="col-1">
-        <div *ngIf="(mode === 2 || mode === 3)">
+        <div *ngIf="(mode ==='create' || mode ==='update')">
             <i *ngIf="validUsername" class="material-icons pass my-2">check_circle</i>
             <i *ngIf="!validUsername" class="material-icons error  my-2">error</i>
         </div>
@@ -77,12 +77,12 @@
                 <span class="input-group-text">Employee ID</span>
             </div>
             <input type="text" class="form-control" [(ngModel)]="employee.empCode" (blur)="onExitEmployeeId()"
-                [readOnly]="mode === 1 || mode===3">
+                [readOnly]="mode ==='read' || mode===3">
         </div>
 
     </div>
     <div class="col-1">
-        <div *ngIf="(mode === 2 || mode === 3)">
+        <div *ngIf="(mode ==='create' || mode ==='update')">
             <i *ngIf="validEmployeeCode" class="material-icons pass my-2">check_circle</i>
             <i *ngIf="!validEmployeeCode" class="material-icons error  my-2">error</i>
         </div>

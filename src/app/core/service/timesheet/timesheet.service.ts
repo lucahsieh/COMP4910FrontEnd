@@ -25,8 +25,15 @@ export class TimesheetService {
   postTimesheet(ts: Timesheet): Observable<any> {
     let url = this.baseUrl + `api/timesheets`;
     return this.http
-      .post<Timesheet>(url, ts, this.httpOptions)
+      .post<any>(url, ts, this.httpOptions)
       .pipe(catchError(this.handleError("postProject", ts)));
+  }
+
+  putTimesheet(ts: Timesheet): Observable<any> {
+    let url = this.baseUrl + `api/timesheets/${ts.timesheetId}`;
+    return this.http
+      .put<any>(url, ts, this.httpOptions)
+      .pipe(catchError(this.handleError("putProject", ts)));
   }
 
   /**

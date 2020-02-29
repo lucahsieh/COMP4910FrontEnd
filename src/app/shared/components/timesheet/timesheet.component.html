@@ -1,6 +1,5 @@
 <form>
     <div class="form-row">
-
         <div class="col-5">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -19,10 +18,11 @@
                     [daysDisabled]="[6,2,4,3,1,0]" [outsideClick]="true"
                     [bsConfig]="{selectWeek: true, dateInputFormat: 'YYYY-MM-DD' }"
                     (bsValueChange)="onValueChange($event)" value="{{ timesheet.weekEnding | date:'yyyy-MM-dd' }}"
-                    [readonly]="(mode == 1 || mode == 3)" [isDisabled]="(mode == 1 || mode == 3)" />
+                    [readonly]="(mode == 'read' || mode =='update')"
+                    [isDisabled]="(mode == 'read' || mode =='update')" />
             </div>
         </div>
-        <div class="col-2" *ngIf="mode == 2 || mode == 3">
+        <div class="col-2" *ngIf="mode == 'create'|| mode =='update'">
             <button type="button" class="btn btn-outline-primary" (click)="addRow($event)">Add Row</button>
         </div>
     </div>
@@ -44,7 +44,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-rowData>
             <tr>
-                <td [attr.pEditableColumn]="mode == 2 || mode == 3  ? '' : null">
+                <!-- <td [attr.pEditableColumn]="mode == 'create'|| mode == 'update' ? '' : null">
                     <p-cellEditor>
                         <ng-template pTemplate="input">
 
@@ -54,11 +54,18 @@
 
                         </ng-template>
                         <ng-template pTemplate="output">
+                            
                             {{rowData.projectName}}
                         </ng-template>
                     </p-cellEditor>
+                </td> -->
+                <td>
+                    <p-dropdown [options]="populateProject()" [(ngModel)]="rowData.projectId"
+                        [style]="{'width':'170px'}" *ngIf="(mode == 'create'|| mode == 'update')">
+                    </p-dropdown>
+                    <span *ngIf="mode == 'read'">{{rowData.projectId}}</span>
                 </td>
-                <td [attr.pEditableColumn]="mode == 2 || mode == 3 ? '' : null">
+                <!-- <td [attr.pEditableColumn]="mode == 'create'|| mode == 'update'? '' : null">
                     <p-cellEditor>
                         <ng-template pTemplate="input">
 
@@ -71,6 +78,12 @@
                             {{rowData.pwName}}
                         </ng-template>
                     </p-cellEditor>
+                </td> -->
+                <td>
+                    <p-dropdown [options]="populateWps(rowData.projectId)" [(ngModel)]="rowData.workPackageId"
+                        [style]="{'width':'170px'}" *ngIf="(mode == 'create'|| mode == 'update')">
+                    </p-dropdown>
+                    <span *ngIf="mode == 'read'">{{rowData.workPackageId}}</span>
                 </td>
                 <td>
                     <p-cellEditor>
@@ -80,7 +93,7 @@
                     </p-cellEditor>
                 </td>
 
-                <td [pEditableColumn]="mode == 2 || mode == 3 ? '' : null" *ngFor="let day of days">
+                <td [pEditableColumn]="mode == 'create'|| mode == 'update'? '' : null" *ngFor="let day of days">
                     <p-cellEditor>
                         <ng-template pTemplate="input">
 
@@ -95,7 +108,7 @@
                 </td>
 
                 <td class="p-1">
-                    <button *ngIf="mode == 2 || mode == 3" type="button" class="btn btn-link"
+                    <button *ngIf="mode == 'create'|| mode == 'update'" type="button" class="btn btn-link"
                         (click)="deleteRow(rowData)">
                         <i class="material-icons text-danger">remove_circle_outline</i>
                     </button>
