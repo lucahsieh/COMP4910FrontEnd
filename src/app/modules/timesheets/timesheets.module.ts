@@ -12,6 +12,7 @@ import { TimesheetViewComponent } from './pages/timesheet-view/timesheet-view.co
 import { TimesheetEditComponent } from './pages/timesheet-edit/timesheet-edit.component';
 import { TimesheetApproverViewListComponent } from './pages/timesheet-approver-view-list/timesheet-approver-view-list.component';
 import { TimesheetApproverViewComponent } from './pages/timesheet-approver-view/timesheet-approver-view.component';
+import { TimesheetEditVersionComponent } from './pages/timesheet-edit-version/timesheet-edit-version.component';
 
 
 
@@ -24,6 +25,7 @@ import { TimesheetApproverViewComponent } from './pages/timesheet-approver-view/
     TimesheetEditComponent,
     TimesheetApproverViewListComponent,
     TimesheetApproverViewComponent,
+    TimesheetEditVersionComponent,
   ],
   imports: [
     CommonModule,

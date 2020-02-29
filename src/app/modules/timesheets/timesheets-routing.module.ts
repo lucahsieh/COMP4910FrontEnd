@@ -7,6 +7,7 @@ import { TimesheetViewComponent } from './pages/timesheet-view/timesheet-view.co
 import { TimesheetEditComponent } from './pages/timesheet-edit/timesheet-edit.component';
 import { TimesheetApproverViewListComponent } from './pages/timesheet-approver-view-list/timesheet-approver-view-list.component';
 import { TimesheetApproverViewComponent } from './pages/timesheet-approver-view/timesheet-approver-view.component';
+import { TimesheetEditVersionComponent } from './pages/timesheet-edit-version/timesheet-edit-version.component';
 
 
 const routes: Routes = [
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'creation', component: TimesheetCreationComponent, data: { breadcrumb: 'Creation' } },
   { path: 'view/:timesheetId', component: TimesheetViewComponent, data: { breadcrumb: 'Detail' } },
   { path: 'edit/:timesheetId', component: TimesheetEditComponent, data: { breadcrumb: 'Edit' } },
+  { path: 'editRejectedTimesheet/:timesheetId', component: TimesheetEditVersionComponent, data: { breadcrumb: 'Edit Rejected Timesheet' } },
   { path: 'approver/view/list', component: TimesheetApproverViewListComponent, data: { breadcrumb: 'Pending List' } },
   { path: 'approver/view/:timesheetId', component: TimesheetApproverViewComponent, data: { breadcrumb: 'Pending Detail' } },
 ];

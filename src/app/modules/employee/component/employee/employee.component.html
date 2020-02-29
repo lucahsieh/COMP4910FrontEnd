@@ -43,7 +43,7 @@
                 <span class="input-group-text">User Name</span>
             </div>
             <input type="text" class="form-control" [(ngModel)]="employee.empUsername" (blur)="onExitUserName()"
-                [readOnly]="mode ==='read' || mode===3">
+                [readOnly]="mode ==='read' || mode=='update'">
         </div>
 
     </div>
@@ -55,13 +55,14 @@
     </div>
     <div class="col-5">
         <!-- password -->
-        <div class="input-group" *ngIf="mode===2">
+        <div class="input-group" *ngIf="mode==='create'">
             <div class="input-group-prepend">
                 <span class="input-group-text">Password</span>
             </div>
             <input type="text" class="form-control" [(ngModel)]="employee.empPassword" [readOnly]="true">
         </div>
-        <button *ngIf="mode===3" type="button" class="btn btn-outline-secondary  m-1 px-3" (click)="onRestPw()">Reset
+        <button *ngIf="mode==='update'" type="button" class="btn btn-outline-secondary  m-1 px-3"
+            (click)="onRestPw()">Reset
             Password</button>
 
 
@@ -77,7 +78,7 @@
                 <span class="input-group-text">Employee ID</span>
             </div>
             <input type="text" class="form-control" [(ngModel)]="employee.empCode" (blur)="onExitEmployeeId()"
-                [readOnly]="mode ==='read' || mode===3">
+                [readOnly]="mode ==='read' || mode=='update'">
         </div>
 
     </div>
@@ -99,11 +100,11 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">Labour Grade</span>
             </div>
-            <input type="text" class="form-control" value="{{employee.labourGrade.labourGradeName}}" *ngIf="mode===1"
-                [readOnly]="true">
-            <p-dropdown class="form-control" [options]="grade" [(ngModel)]="selectedGrade" *ngIf="mode ===2 || mode===3"
-                placeholder="{{employee.labourGrade.labourGradeName}}" optionLabel="label"
-                [style]="{'border-width':'0px','padding':'0px'}"></p-dropdown>
+            <input type="text" class="form-control" value="{{employee.labourGrade.labourGradeName}}"
+                *ngIf="mode==='read'" [readOnly]="true">
+            <p-dropdown class="form-control" [options]="grade" [(ngModel)]="selectedGrade"
+                *ngIf="mode ==='create' || mode==='update'" placeholder="{{employee.labourGrade.labourGradeName}}"
+                optionLabel="label" [style]="{'border-width':'0px','padding':'0px'}"></p-dropdown>
         </div>
         <span *ngIf="alerts.labourGrade" class="error my-2"><small>{{alerts.labourGrade.msg}}</small></span>
 
@@ -113,16 +114,17 @@
     <div class="col-5">
 
         <!-- supervisor -->
-        <div class="input-group" *ngIf="employeeDropdown">
+        <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text">Supervisor</span>
             </div>
-            <input type="text" class="form-control" *ngIf="mode===1" [readOnly]="true"
-                value="{{employee.supervisor.empFirstName}} {{employee.supervisor.empLastName}}">
-            <p-dropdown class="form-control" [options]="employeeDropdown" [(ngModel)]="selectedSupervisor" filter="true"
-                *ngIf="mode ===2 || mode===3" placeholder="{{employee.supervisor ? employee.supervisor.empFirstName + ' ' + employee.supervisor.empLastName : 'choose a supervisor'}}
-                " optionLabel="label" [style]="{'border-width':'0px','padding':'0px'}">
-            </p-dropdown>
+            <input type="text" class="form-control"
+                value="{{employee.supervisor.empFirstName}} {{employee.supervisor.empLastName}}" *ngIf="mode==='read'"
+                [readOnly]="true">
+            <p-dropdown class="form-control" [options]="employeeDropdown" [(ngModel)]="selectedSupervisor"
+                *ngIf="mode ==='create' || mode==='update'"
+                placeholder="{{employee.supervisor ? employee.supervisor.empFirstName + ' ' + employee.supervisor.empLastName : 'choose a supervisor'}}"
+                optionLabel="label" [style]="{'border-width':'0px','padding':'0px'}"></p-dropdown>
         </div>
         <span *ngIf="alerts.supervisor" class="error my-2"><small>{{alerts.supervisor.msg}}</small></span>
 
@@ -146,14 +148,14 @@
                 <label
                     [className]="employee.isActivated ? 'btn btn-outline-secondary active' : 'btn btn-outline-secondary'">
                     <input type="radio" name="activation" id="active" [value]=true [(ngModel)]="employee.isActivated"
-                        [disabled]="mode===1">
+                        [disabled]="mode==='read'">
                     Active
                 </label>
                 <label
                     [className]="employee.isActivated ? 'btn btn-outline-secondary' : 'btn btn-outline-secondary active'">
                     <!--  [className]="employee.isActivated ? 'btn btn-outline-secondary' : 'btn btn-outline-secondary active'" -->
                     <input type="radio" name="activation" id="deactive" [value]=false [(ngModel)]="employee.isActivated"
-                        [disabled]="mode===1"> Deactive
+                        [disabled]="mode==='read'"> Deactive
                 </label>
             </div>
         </div>
@@ -175,20 +177,20 @@
             <div class="btn-group btn-group-toggle" data-toggle="buttons">
                 <label
                     [className]="employee.isAdmin ? 'btn btn-outline-secondary active' : 'btn btn-outline-secondary'">
-                    <input type="checkbox" autocomplete="off" [value]="!employee.isAdmin" [disabled]="mode===1"
+                    <input type="checkbox" autocomplete="off" [value]="!employee.isAdmin" [disabled]="mode==='read'"
                         [(ngModel)]="employee.isAdmin">
                     Administrator Permission
                 </label>
                 <label
                     [className]="employee.isProjectManager ? 'btn btn-outline-secondary active' : 'btn btn-outline-secondary'">
-                    <input type="checkbox" autocomplete="off" [value]="!employee.isProjectManager" [disabled]="mode===1"
-                        [(ngModel)]="employee.isProjectManager"> PM/EM?? Manager
+                    <input type="checkbox" autocomplete="off" [value]="!employee.isProjectManager"
+                        [disabled]="mode==='read'" [(ngModel)]="employee.isProjectManager"> PM/EM?? Manager
                     Permission
                 </label>
                 <label
                     [className]="employee.isHumanResources ? 'btn btn-outline-secondary active' : 'btn btn-outline-secondary'">
                     <input type="checkbox" autocomplete="off" [value]="!employee.isHumanResources "
-                        [disabled]="mode===1" [(ngModel)]="employee.isHumanResources"> Humane Resource Permission
+                        [disabled]="mode==='read'" [(ngModel)]="employee.isHumanResources"> Humane Resource Permission
                 </label>
             </div>
 

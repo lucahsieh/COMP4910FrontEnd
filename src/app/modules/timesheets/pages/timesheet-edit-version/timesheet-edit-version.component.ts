@@ -10,11 +10,12 @@ import { MODE } from 'src/app/shared/model/MODE';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-timesheet-edit',
-  templateUrl: './timesheet-edit.component.html',
-  styleUrls: ['./timesheet-edit.component.css']
+  selector: 'app-timesheet-edit-version',
+  templateUrl: './timesheet-edit-version.component.html',
+  styleUrls: ['./timesheet-edit-version.component.css']
 })
-export class TimesheetEditComponent implements OnInit {
+export class TimesheetEditVersionComponent implements OnInit {
+
 
   mode: MODE = MODE.Update;
   timesheet: Timesheet = null;
@@ -42,16 +43,23 @@ export class TimesheetEditComponent implements OnInit {
   }
 
   onSubmit() {
-
+    // increment the version. since it is using the old timesheet to create a new one
+    this.timesheet.versionNumber += 1;
     this.timesheet.status = TimesheetStatus.pending;
-    this.timesheetService.postTimesheet(this.timesheet).subscribe();
+    this.timesheetService.postTimesheet(this.timesheet).subscribe(_ => {
+      // TODO : nagvigate to this page "/content/timesheets"
+    });
   }
   onSave() {
+    // increment the version. since it is using the old timesheet to create a new one
+    this.timesheet.versionNumber += 1;
     console.log(`post timesheet:`);
     console.log(JSON.stringify(this.timesheet));
-    this.timesheetService.postTimesheet(this.timesheet).subscribe(
+    this.timesheetService.postTimesheet(this.timesheet).subscribe(_ => {
+      // TODO : nagvigate to this page "/content/timesheets"
+    });
 
-    );
+
   }
 
 
@@ -65,12 +73,6 @@ export class TimesheetEditComponent implements OnInit {
       });
     });
   }
-
-
-
-
-
-
 
   colorStatus(status: string) {
     switch (status) {
@@ -105,5 +107,4 @@ export class TimesheetEditComponent implements OnInit {
     console.log(date);
     return date;
   }
-
 }

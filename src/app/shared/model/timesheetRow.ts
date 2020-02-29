@@ -19,6 +19,7 @@ export class TimesheetRow {
     projectId: number;
     projectName: string;
     workPackageId: number;
+    workPackageCode: string;
     pwName: string;
     monday: number;
     tuesday: number;
