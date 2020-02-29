@@ -1,0 +1,20 @@
+<div class="card mx-1" *ngIf="timesheet">
+    <div class="card-body">
+        <h3>
+            <span class="display-4 mb-3 mr-3">Edit Rejected Timesheet</span>
+            <span *ngIf="timesheet" [className]="colorStatus(timesheet.status)">{{timesheet.status}}</span>
+        </h3>
+        <p>Submiting or saving this edited timesheet will creation this timesheet as a new version.</p>
+
+        <div class="dropdown-divider "></div>
+
+        <shared-timesheet [mode]="mode" [timesheet]="timesheet" [projectWp]="projectWp"> </shared-timesheet>
+
+        <div class="dropdown-divider my-3"></div>
+
+        <div class="d-flex flex-row-reverse">
+            <button type="button" class="btn btn-primary  m-1 px-3" (click)="onSave($event)">Save</button>
+            <button type="button" class="btn btn-primary m-1 px-2" (click)="onSubmit($event)">Submit</button>
+        </div>
+    </div>
+</div>

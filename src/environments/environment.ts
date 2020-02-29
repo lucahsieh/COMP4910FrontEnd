@@ -19,6 +19,7 @@ export const environment = {
   apiUrl: 'http://comp4911webapi-elaboration.apps.shift.infoteach.ca/',
   authUrl: 'http://comp4911webapi-elaboration.apps.shift.infoteach.ca/',
   fakeBackend: false
+
 };
 
 /*

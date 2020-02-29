@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Timesheet } from 'src/app/shared/model/Timesheet';
 import { TimesheetService } from 'src/app/core/service/timesheet/timesheet.service';
+import { AuthenticationService } from 'src/app/core/service/authentication.service';
 
 @Component({
   selector: 'app-timesheet-list',
@@ -15,6 +16,7 @@ export class TimesheetListComponent implements OnInit {
 
   constructor(
     private timesheetService: TimesheetService,
+    private authenticationService: AuthenticationService
   ) { }
 
   ngOnInit() {
@@ -28,7 +30,8 @@ export class TimesheetListComponent implements OnInit {
   }
 
   populateTimesheets() {
-    this.timesheetService.getAllTimesheet().subscribe(res => { this.timesheets = res; console.log(res) });
+    var userId = this.authenticationService.currentUserValue.employeeId;
+    this.timesheetService.getAllTimesheet(userId).subscribe(res => { this.timesheets = res; console.log(res) });
   }
 
   dataReady() {

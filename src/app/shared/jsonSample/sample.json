@@ -1,123 +1,116 @@
 {
   "Post_Timesheet": {
-    "employeeId": null,
-    "empUsername": "",
-    "empPassword": "01234",
-    "empCode": 0,
-    "labourGradeId": 0,
-    "empFirstName": "",
-    "empLastName": "",
-    "timesheetApproverId": 0,
-    "supervisorId": 0,
-    "isProjectManager": false,
-    "isAdmin": false,
-    "isHumanResources": false,
-    "isActivated": true,
-    "timesheetApprover": null,
-    "supervisor": null
+    "timesheetRows": [
+      {
+        "monday": 0,
+        "tuesday": 0,
+        "wednesday": 0,
+        "thursday": 0,
+        "friday": 0,
+        "saturday": 0,
+        "sunday": 0,
+        "projectId": 2,
+        "timesheetVersionNumber": 1,
+        "workPackageId": 5,
+        "timesheetId": 123
+      },
+      {
+        "monday": 0,
+        "tuesday": 0,
+        "wednesday": 0,
+        "thursday": 0,
+        "friday": 0,
+        "saturday": 0,
+        "sunday": 0,
+        "projectId": 3,
+        "timesheetVersionNumber": 1,
+        "workPackageId": 7,
+        "timesheetId": 123
+      }
+    ],
+    "signature": null,
+    "comment": "",
+    "weekEnding": "2020-3-20",
+    "weekNumber": 12,
+    "timesheetId": 123,
+    "employeeId": 1,
+    "versionNumber": 1,
+    "status": "inprogress"
   },
   "CheckUsernameAvailability": {
     "apiId": "Credentials"
   },
-  "CheckEmployeeCodeAvailability": {},
-  "post_Employee": {},
+  "CheckEmployeeCodeAvailability": {
+    "apiId": "Credentials"
+  },
+  "post_Employee": {
+    "empUsername": "jdoij",
+    "empPassword": "01234",
+    "empCode": "1323",
+    "labourGradeId": 0,
+    "empFirstName": "fjieoj",
+    "empLastName": "jiojo",
+    "timesheetApproverId": 1,
+    "supervisorId": 1,
+    "isProjectManager": false,
+    "isAdmin": false,
+    "isHumanResources": false,
+    "isActivated": true,
+    "jobTitleId": 1
+  },
   "get_AllEmployees": [
     {
       "employeeId": 1,
-      "empUsername": "chsieh39",
-      "empPassword": "01234",
-      "empCode": "3123",
-      "labourGradeId": 1,
-      "empFirstName": "luca",
-      "empLastName": "hsieh",
-      "timesheetApproverId": 0,
-      "supervisorId": 0,
-      "isProjectManager": true,
-      "isAdmin": true,
-      "isHumanResources": true,
+      "empUsername": "Platypus123",
+      "empCode": 323,
+      "empFirstName": "Perry",
+      "empLastName": "Li",
       "isActivated": true,
       "timesheetApprover": {
-        "employeeId": 2,
-        "empUsername": "Platypus123",
-        "empPassword": "01234",
-        "empCode": "43820",
-        "labourGradeId": 2,
-        "empFirstName": "perry",
-        "empLastName": "li",
-        "timesheetApproverId": 0,
-        "supervisorId": 0,
-        "isProjectManager": true,
-        "isAdmin": true,
-        "isHumanResources": true,
-        "isActivated": true,
-        "timesheetApprover": null,
-        "supervisor": null
+        "employeeId": 12,
+        "empFirstName": "first",
+        "empLastName": "last"
       },
       "supervisor": {
-        "employeeId": 2,
-        "empUsername": "Platypus123",
-        "empPassword": "01234",
-        "empCode": "43820",
-        "labourGradeId": 2,
-        "empFirstName": "perry",
-        "empLastName": "li",
-        "timesheetApproverId": 0,
-        "supervisorId": 0,
-        "isProjectManager": true,
-        "isAdmin": true,
-        "isHumanResources": true,
-        "isActivated": true,
-        "timesheetApprover": null,
-        "supervisor": null
+        "employeeId": 12,
+        "empFirstName": "first1",
+        "empLastName": "last1"
+      }
+    },
+    {
+      "employeeId": 2,
+      "empCode": 323,
+      "empFirstName": "Peter",
+      "empLastName": "Ahn",
+      "empUsername": "Platypus123",
+      "isActivated": false,
+      "timesheetApprover": {
+        "employeeId": 12,
+        "empFirstName": "first",
+        "empLastName": "last"
+      },
+      "supervisor": {
+        "employeeId": 12,
+        "empFirstName": "first1",
+        "empLastName": "last1"
       }
     },
     {
       "employeeId": 3,
-      "empUsername": "alpha1",
-      "empPassword": "01234",
-      "empCode": "3423",
-      "labourGradeId": 4,
-      "empFirstName": "peter",
-      "empLastName": "ahn",
-      "timesheetApproverId": 0,
-      "supervisorId": 0,
-      "isProjectManager": true,
-      "isAdmin": false,
-      "isHumanResources": true,
+      "empCode": 323,
+      "empFirstName": "Reneil",
+      "empLastName": "Pascua",
+      "empUsername": "Platypus123",
       "isActivated": true,
       "timesheetApprover": {
-        "employeeId": 2,
-        "empUsername": "Platypus123",
-        "empPassword": "01234",
-        "empCode": "43820",
-        "labourGradeId": 2,
-        "empFirstName": "perry",
-        "empLastName": "li",
-        "timesheetApproverId": 0,
-        "supervisorId": 0,
-        "isProjectManager": true,
-        "isAdmin": true,
-        "isHumanResources": true,
-        "isActivated": true,
-        "timesheetApprover": null,
-        "supervisor": null
+        "employeeId": 12,
+        "empFirstName": "first",
+        "empLastName": "last"
       },
       "supervisor": {
-        "employeeId": 2,
-        "empUsername": "Platypus123",
-        "empPassword": "01234",
-        "empCode": "43820",
-        "labourGradeId": 2,
-        "empFirstName": "perry",
-        "empLastName": "li",
-        "timesheetApproverId": 0,
-        "supervisorId": 0,
-        "isProjectManager": true,
-        "isAdmin": true,
-        "isHumanResources": true,
-        "isActivated": true,
-        "timesheetApprover": null,
-        "supervisor": null
+        "employeeId": 12,
+        "empFirstName": "first1",
+        "empLastName": "last1"
       }
     }
   ],
@@ -192,12 +185,132 @@
     "signature": null,
     "weekEnding": "2020-02-15",
     "weekNumber": 7,
-    "timesheetId": 1,
+    "timesheetId": 123,
     "employeeId": 1,
     "versionNumber": 1,
-    "status": "Inprogress"
+    "status": "Rejected",
+    "comment": "jeiowjeiowjo"
   },
   "avalidableTimesheetID": {
     "id": 123
-  }
+  },
+  "getSingleEmployee": {
+    "empUsername": "abc323",
+    "empCode": 43429,
+    "employeeId": 2,
+    "jobTitleId": 2,
+    "empFirstName": "Perry",
+    "empLastName": "Li",
+    "isActivated": true,
+    "isProjectManager": true,
+    "isAdmin": false,
+    "labourGrade": {
+      "labourGradeId": 0,
+      "labourGradeName": "P1"
+    },
+    "isHumanResources": false,
+    "timesheetApprover": {
+      "employeeId": 2,
+      "empFirstName": "first",
+      "empLastName": "last"
+    },
+    "supervisor": {
+      "employeeId": 2,
+      "empFirstName": "first1",
+      "empLastName": "last1"
+    },
+    "jobTitle": null
+  },
+  "getAllPendingTimesheetByApproverEmpId": [
+    {
+      "timesheetId": 1,
+      "owner": {
+        "employeeId": 1,
+        "empFirstName": "luca",
+        "empLastName": "hsieh",
+        "timesheetApprover": {
+          "employeeId": 2,
+          "empFirstName": "perry",
+          "empLastName": "li"
+        },
+        "supervisor": {
+          "employeeId": 2,
+          "empFirstName": "perry",
+          "empLastName": "li"
+        }
+      },
+      "versionNumber": 1,
+      "employeeId": 2,
+      "weekNumber": 10,
+      "weekEndingIn": "0001-01-01T00:00:00",
+      "status": "Pending",
+      "signature": null,
+      "timesheetRows": null
+    },
+    {
+      "timesheetId": 15,
+      "owner": {
+        "employeeId": 1,
+        "empFirstName": "luca",
+        "empLastName": "hsieh",
+        "timesheetApprover": {
+          "employeeId": 2,
+          "empFirstName": "perry",
+          "empLastName": "li"
+        },
+        "supervisor": {
+          "employeeId": 2,
+          "empFirstName": "perry",
+          "empLastName": "li"
+        }
+      },
+      "versionNumber": 2,
+      "employeeId": 1,
+      "weekNumber": 1,
+      "weekEndingIn": "0001-01-01T00:00:00",
+      "status": "Pending",
+      "signature": null,
+      "timesheetRows": null
+    }
+  ],
+  "projectWpDropdown": [
+    {
+      "projectId": 2,
+      "projectName": "ProjectName2",
+      "workPackages": [
+        {
+          "workPackageId": 3,
+          "workPackageCode": "B",
+          "workPackageTitle": "WpName2Root"
+        },
+        {
+          "workPackageId": 4,
+          "workPackageCode": "BA",
+          "workPackageTitle": "WpName2Child1"
+        },
+        {
+          "workPackageId": 5,
+          "workPackageCode": "BAA",
+          "workPackageTitle": "WpName2ChildChild1"
+        },
+        {
+          "workPackageId": 6,
+          "workPackageCode": "BB",
+          "workPackageTitle": "WpName2Child2"
+        }
+      ]
+    },
+    {
+      "projectId": 3,
+      "projectName": "ProjectName3",
+      "workPackages": [
+        {
+          "workPackageId": 7,
+          "responsibleEngineerId": 4,
+          "workPackageCode": "C",
+          "workPackageTitle": "WpName3Root"
+        }
+      ]
+    }
+  ]
 }

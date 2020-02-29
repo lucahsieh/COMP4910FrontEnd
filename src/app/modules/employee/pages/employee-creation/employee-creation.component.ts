@@ -1,7 +1,9 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, Pipe, PipeTransform } from '@angular/core';
 import { SelectItem } from 'primeng/api/selectitem';
 import { Employee } from 'src/app/shared/model/Employee';
 import { EmployeeService } from 'src/app/core/service/employee/employee.service';
+import { Alert } from 'src/app/shared/model/Alert';
+import { MODE } from 'src/app/shared/model/MODE';
 
 @Component({
   selector: 'app-employee-creation',
@@ -15,62 +17,23 @@ export class EmployeeCreationComponent implements OnInit {
   employeeDropdown: SelectItem[] = null;
   selectedGrade: SelectItem;
   selectedSupervisor: SelectItem;
-
   // userName validation
   validUsername: boolean = false;
   validEmployeeCode: boolean = false;
-  alerts: any[] = [];
+  alerts = {};
+  mode = MODE.Create;
 
   constructor(
     private employeeService: EmployeeService,
-  ) {
-    this.grade = [
-      { "label": 'P1', "value": 1 },
-      { "label": 'P2', "value": 2 },
-      { "label": 'P3', "value": 3 },
-      { "label": 'P4', "value": 4 },
-    ];
-  }
+  ) { }
 
   ngOnInit() {
     this.employee = new Employee();
     this.employee.isActivated = true;
     this.employee.empPassword = "01234";
-    this.populateEmployeeDropdown();
   }
 
-  onExitUserName() {
-    console.log(this.employee.empUsername);
-    this.employeeService.checkUserNameOK(this.employee.empUsername)
-      .subscribe(response => {
-        console.log(response);
-        this.validUsername = response;
-      })
-  }
-
-  onExitEmployeeId() {
-    this.employeeService.checkUserEmployeeCodeOK(this.employee.empCode)
-      .subscribe(response => {
-        console.log(response);
-        this.validEmployeeCode = response;
-      })
-  }
-  populateEmployeeDropdown() {
-    this.employeeDropdown = [];
-    this.employeeService
-      .getEmployees()
-      .subscribe(employees => {
-        console.log(employees);
-        employees.forEach(e => {
-          console.log(e);
-          this.employeeDropdown.push(
-            { label: `${e.empFirstName} ${e.empLastName}`, value: e.employeeId }
-          );
-        })
-        console.log(this.employeeDropdown);
-      })
-  }
-
+  // btn click event of creation
   onCreate(template: TemplateRef<any>) {
     if (!this.validatePage())
       return;
@@ -78,33 +41,52 @@ export class EmployeeCreationComponent implements OnInit {
     console.log(JSON.stringify(this.employee));
     this.employeeService.postEmployee(this.employee).subscribe();
   }
-  onCancel() {
 
-  }
+  // btn click event of cancel
+  onCancel() { }
 
   validatePage(): boolean {
+    var result = true;
+    if (!this.employee.empFirstName === null || this.employee.empFirstName.match(/^ *$/) !== null) {
+      this.alerts['firstName'] = new Alert('danger', 5000, `First Name cannot be empty`);
+      result = false;
+    }
+    if (!this.employee.empLastName === null || this.employee.empLastName.match(/^ *$/) !== null) {
+      this.alerts['lastName'] = new Alert('danger', 5000, `Last Name cannot be empty`);
+      result = false;
+    }
     if (!this.validUsername) {
-      this.alerts.push({
-        type: 'danger',
-        msg: `User Name: ${this.employee.empUsername} is not allowed`
-      });
-      return false;
+      this.alerts['userName'] = new Alert('danger', 5000, `User Name: ${this.employee.empUsername} is not allowed`);
+      result = false;
     }
     if (!this.validEmployeeCode) {
-      this.alerts.push({
-        type: 'danger',
-        msg: `Employee ID : ${this.employee.empCode} is not allowed`
-      });
-      return false;
+      this.alerts['employeeCode'] = new Alert('danger', 5000, `Employee ID : ${this.employee.empCode} is not allowed`);
+      result = false;
     }
-    return true;
+    return result;
+  }
+  displayErrorMsg(fieldName: string) {
+    return (this.alerts[fieldName] != '') ? this.alerts[fieldName].msg : null;
   }
 
 
-  dataReady() {
-    if (this.grade !== null && this.employeeDropdown !== null)
-      return true;
-    return false;
+
+  // exit event of emp id field
+  validateEmployeeCode() {
+    this.employeeService.checkUserEmployeeCodeOK(this.employee.empCode)
+      .subscribe(response => {
+        console.log(response);
+        this.validEmployeeCode = response;
+      });
   }
 
+  // exit event of user name
+  validateUserName() {
+    this.employeeService.checkUserNameOK(this.employee.empUsername)
+      .subscribe(response => {
+        console.log(response);
+        this.validUsername = response;
+      })
+
+  }
 }

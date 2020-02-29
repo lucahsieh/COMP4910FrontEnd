@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Timesheet } from 'src/app/shared/model/Timesheet';
 import { TimesheetStatus } from 'src/app/shared/model/TimesheetStatus';
-import { TimesheetRow } from 'src/app/shared/model/TimesheetRow';
 import { User } from 'src/app/shared/model/User';
 import { SelectItem } from 'primeng/api/selectitem';
 import { TimesheetService } from 'src/app/core/service/timesheet/timesheet.service';
 import { ProjectService } from 'src/app/core/service/project/project.service';
 import { AuthenticationService } from 'src/app/core/service/authentication.service';
 import { MODE } from 'src/app/shared/model/MODE';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-timesheet-edit',
@@ -16,23 +16,29 @@ import { MODE } from 'src/app/shared/model/MODE';
 })
 export class TimesheetEditComponent implements OnInit {
 
-  dataReady = false;
   mode: MODE = MODE.Update;
   timesheet: Timesheet = null;
   projectDropdown: SelectItem[] = null;
   employeeWPs: any[] = null;
+  projectWp: any[];
+
 
   currentUser: User = this.authenticationService.currentUserValue;
 
   constructor(
+    private route: ActivatedRoute,
     private timesheetService: TimesheetService,
     private projectService: ProjectService,
     private authenticationService: AuthenticationService
   ) { }
 
   ngOnInit() {
-    this.setEmptyTimesheetData();
-    // this.seedData();
+    this.route.paramMap.subscribe(params => {
+      var id = params.get('timesheetId');
+      console.log(`current timesheet id is  ${id}`);
+      this.timesheetService.getTimesheet(id).subscribe(ts => this.timesheet = ts);
+    });
+    this.prepareprojectWp();
   }
 
   onSubmit() {
@@ -49,51 +55,15 @@ export class TimesheetEditComponent implements OnInit {
   }
 
 
-  setEmptyTimesheetData() {
-    this.timesheetService
-      .getAvaliableTimesheetId()
-      .subscribe(result => {
-        var newTimesheet = new Timesheet();
-        var weekending = new Date();
-        var shit: number = 5 - weekending.getDay();
-        weekending.setDate(weekending.getDate() + shit);
-        newTimesheet.weekEnding = this.dateFormater(weekending);
-        newTimesheet.weekNumber = this.getWeek(weekending);
-
-        console.log(result);
-        // init attirbutes
-        newTimesheet.timesheetId = result.id;
-        newTimesheet.employeeId = this.currentUser.employeeId;
-        newTimesheet.versionNumber = 1;
-        newTimesheet.status = TimesheetStatus.inProgress;
-
-        // Create 5 empty rows at page load.
-        for (var i = 0; i < 5; i++)
-          newTimesheet.timesheetRows.push(new TimesheetRow(newTimesheet.timesheetId, newTimesheet.versionNumber, 0, 0));
-
-        this.timesheet = newTimesheet;
-        this.dataReady = true;
-      })
-
-  }
-
-  populateProjectDropdown() {
-    this.projectService.getProjectsByEmployee(this.currentUser.employeeId).subscribe(result => {
-      this.employeeWPs = [];
-      this.projectDropdown = [];
-      result.projectList.foreach(p => {
-        var projectId = p.projectId;
-        var projectName = p.projectName;
-        this.projectDropdown.push({ label: projectName, value: projectId });
-        p.workPackages.foreach(wp => {
-          var wpId = p.workPackageId;
-          var wpCode = p.workPackageCode;
-          this.employeeWPs.push(
-            { projectId: projectId, projectName: projectName, wpId: wpId, wpCode: wpCode }
-          )
-        })
-      })
-    })
+  prepareprojectWp() {
+    this.projectService.getProjectWpDropdown(this.currentUser.employeeId).subscribe(result => {
+      this.projectWp = [];
+      result.forEach(p => {
+        p.workPackages.forEach(wp => {
+          this.projectWp.push({ 'projectId': p.projectId, 'projectName': p.projectName, 'wpId': wp.workPackageId, 'wpCode': wp.workPackageCode })
+        });
+      });
+    });
   }
 
 
@@ -102,7 +72,15 @@ export class TimesheetEditComponent implements OnInit {
 
 
 
-
+  colorStatus(status: string) {
+    switch (status) {
+      case 'Approved': return 'badge badge-pill badge-success';
+      case 'Rejected': return 'badge badge-pill badge-danger';
+      case 'Pending': return 'badge badge-pill badge-warning';
+      case 'Inprogress': return 'badge badge-pill badge-info';
+      default: return 'badge badge-pill badge-dark';
+    }
+  }
 
   // helper functions
   getWeek(date: Date) {
