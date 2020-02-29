@@ -34,6 +34,9 @@ export class EmployeeComponent implements OnInit {
       { "label": 'P2', "value": 2 },
       { "label": 'P3', "value": 3 },
       { "label": 'P4', "value": 4 },
+      { "label": 'P5', "value": 5 },
+      { "label": 'DD', "value": 6 },
+      { "label": 'SS', "value": 7 }
     ];
   }
 

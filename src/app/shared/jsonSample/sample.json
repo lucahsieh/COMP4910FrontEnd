@@ -281,22 +281,22 @@
         {
           "workPackageId": 3,
           "workPackageCode": "B",
-          "name": "WpName2Root"
+          "workPackageTitle": "WpName2Root"
         },
         {
           "workPackageId": 4,
           "workPackageCode": "BA",
-          "name": "WpName2Child1"
+          "workPackageTitle": "WpName2Child1"
         },
         {
           "workPackageId": 5,
           "workPackageCode": "BAA",
-          "name": "WpName2ChildChild1"
+          "workPackageTitle": "WpName2ChildChild1"
         },
         {
           "workPackageId": 6,
           "workPackageCode": "BB",
-          "name": "WpName2Child2"
+          "workPackageTitle": "WpName2Child2"
         }
       ]
     },
@@ -308,7 +308,7 @@
           "workPackageId": 7,
           "responsibleEngineerId": 4,
           "workPackageCode": "C",
-          "name": "WpName3Root"
+          "workPackageTitle": "WpName3Root"
         }
       ]
     }
