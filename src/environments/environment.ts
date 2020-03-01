@@ -6,9 +6,9 @@ export const environment = {
   production: false,
 
   // NOTE: Front end devs enable these lines below
-  // apiUrl: 'http://localhost:4000/',
-  // authUrl: 'http://localhost:4000/',
-  // fakeBackend: true,
+  apiUrl: 'http://localhost:4000/',
+  authUrl: 'http://localhost:4000/',
+  fakeBackend: true,
 
   // NOTE: 44318/5001 is the actual backend server that Perry is using.
   // authUrl: 'https://localhost:5001/',
@@ -16,9 +16,9 @@ export const environment = {
   // fakeBackend: false,  //change this to true if you're not Perry 
 
   // NOTE: Elaboration DEMO
-  apiUrl: 'http://comp4911webapi-elaboration.apps.shift.infoteach.ca/',
-  authUrl: 'http://comp4911webapi-elaboration.apps.shift.infoteach.ca/',
-  fakeBackend: false
+  // apiUrl: 'http://comp4911webapi-elaboration.apps.shift.infoteach.ca/',
+  // authUrl: 'http://comp4911webapi-elaboration.apps.shift.infoteach.ca/',
+  // fakeBackend: false
 
 };
 

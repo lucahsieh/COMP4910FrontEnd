@@ -1,0 +1,142 @@
+<div class="dropdown-divider  my-2"></div>
+
+<h5 class="my-3">Work Package Information</h5>
+
+<div class="form-row">
+    <div class="col-5">
+        <!-- Project Name -->
+        <div class="input-group ">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Project Name</span>
+            </div>
+            <input type="text" class="form-control" [(ngModel)]="wpr.projectName" [readOnly]="true">
+        </div>
+
+    </div>
+    <div class="col-5">
+        <!-- Project Code -->
+        <div class="input-group ">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Project Code</span>
+            </div>
+            <input type="text" class="form-control" [(ngModel)]="wpr.projectCode" [readOnly]="true">
+        </div>
+    </div>
+</div>
+<div class="  my-2"></div>
+
+<div class="form-row">
+    <div class="col-5">
+        <!-- W.P. Name -->
+        <div class="input-group ">
+            <div class="input-group-prepend">
+                <span class="input-group-text">W.P. Name</span>
+            </div>
+            <input type="text" class="form-control" [(ngModel)]="wpr.workPackageName" [readOnly]="true">
+        </div>
+
+    </div>
+    <div class="col-5">
+        <!-- W.P. Code -->
+        <div class="input-group ">
+            <div class="input-group-prepend">
+                <span class="input-group-text">W.P. Code</span>
+            </div>
+            <input type="text" class="form-control" [(ngModel)]="wpr.workPackageCode" [readOnly]="true">
+        </div>
+    </div>
+    <div class="col-1"></div>
+</div>
+<div class="  my-2"></div>
+
+<div class="form-row">
+    <div class="col-5">
+        <!-- PM Name -->
+        <div class="input-group ">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Project Manager</span>
+            </div>
+            <input type="text" class="form-control"
+                value="{{wpr.projectManager.empFirstName + ' '+ wpr.projectManager.empLastName}}" [readOnly]="true">
+        </div>
+
+    </div>
+    <div class="col-5">
+        <!-- RE Code -->
+        <div class="input-group ">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Responsible Engineer</span>
+            </div>
+            <input type="text" class="form-control" [readOnly]="true"
+                value="{{wpr.responsibleEngineer.empFirstName + ' '+ wpr.responsibleEngineer.empLastName}}">
+        </div>
+    </div>
+</div>
+
+<div class="  my-4"></div>
+<div class="dropdown-divider  my-2"></div>
+<div class="  my-2"></div>
+<h5 class="my-3">Report Information</h5>
+<div class="  my-2"></div>
+
+<div class="form-row">
+    <div class="col-5">
+        <!-- Report Id -->
+        <div class="input-group ">
+            <div class="input-group-prepend">
+                <span class="input-group-text">W.P. Report ID</span>
+            </div>
+            <input type="text" class="form-control" [(ngModel)]="wpr.workPackageReportId" [readOnly]="true">
+        </div>
+
+    </div>
+    <div class="col-5">
+        <!-- Report Date -->
+        <div class="input-group ">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Report Date</span>
+            </div>
+            <!-- (bsValueChange)="onValueChange($event)" -->
+
+            <input id="reportDate" type="text" placeholder="Datepicker" class="form-control" bsDatepicker
+                [daysDisabled]="[6,0]" [outsideClick]="true"
+                [bsConfig]="{selectWeek: true, dateInputFormat: 'YYYY-MM-DD' }"
+                value="{{ wpr.reportDate | date:'yyyy-MM-dd' }}" [readonly]="true" [isDisabled]="true" />
+        </div>
+    </div>
+    <div class="col-1"></div>
+</div>
+<div class="  my-2"></div>
+
+<div class="form-row">
+    <div class="col-5">
+        <!-- Start Date -->
+        <div class="input-group ">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Start Date</span>
+            </div>
+            <input id="startDate" type="text" placeholder="Datepicker" class="form-control" bsDatepicker
+                [daysDisabled]="[6,5,4,3,2,0]" [outsideClick]="true"
+                [bsConfig]="{selectWeek: true, dateInputFormat: 'YYYY-MM-DD' }"
+                value="{{ wpr.startDate | date:'yyyy-MM-dd' }}" [readonly]="mode == 'read'"
+                [isDisabled]="mode == 'read'" />
+        </div>
+
+    </div>
+    <div class="col-5">
+        <!-- End Date -->
+        <div class="input-group ">
+            <div class="input-group-prepend">
+                <span class="input-group-text">End Date</span>
+            </div>
+            <!-- (bsValueChange)="onValueChange($event)" -->
+            <input id="endDate" type="text" placeholder="Datepicker" class="form-control" bsDatepicker
+                [daysDisabled]="[6,4,3,2,1,0]" [outsideClick]="true"
+                [bsConfig]="{selectWeek: true, dateInputFormat: 'YYYY-MM-DD' }"
+                value="{{ wpr.endDate | date:'yyyy-MM-dd' }}" [readonly]="mode == 'read'"
+                [isDisabled]="mode == 'read'" />
+        </div>
+    </div>
+    <div class="col-1"></div>
+</div>
+<div class="  my-2"></div>

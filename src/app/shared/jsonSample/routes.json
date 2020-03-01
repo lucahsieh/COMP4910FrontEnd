@@ -9,5 +9,6 @@
     "/api/Timesheets/GetTimesheetsByEmpId/:id": "/get_AllTimesheet",
     "/api/timesheets/getAllPendingTimesheet/:id": "/getAllPendingTimesheetByApproverEmpId",
     "/api/timesheets/:id": "/get_Timesheet",
-    "/api/projects/ProjectWpDropdown/:empid": "/projectWpDropdown"
+    "/api/projects/ProjectWpDropdown/:empid": "/projectWpDropdown",
+    "/api/reports/wpReport/:wpReportId": "/getWpReprot"
 }

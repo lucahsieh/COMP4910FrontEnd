@@ -312,5 +312,93 @@
         }
       ]
     }
-  ]
+  ],
+  "getWpReprot": {
+    "workPackageName": "string",
+    "workPackageId": 21,
+    "workPackageCode": "A001",
+    "workPackageTitle": 21,
+    "projectId": 1,
+    "projectCode": 1,
+    "projectName": "projectNamefefjwo",
+    "workPackageReportId": 38329,
+    "reportDate": "0001-01-01T00:00:00",
+    "startDate": "0001-01-01T00:00:00",
+    "endDate": "0001-01-01T00:00:00",
+    "projectManager": {
+      "employeeId": 39,
+      "empFirstName": "firstNameSS",
+      "empLastName": "lastNameWW",
+      "labourGrade": {
+        "labourGradeId": 3,
+        "labourGradeName": "P3"
+      }
+    },
+    "responsibleEngineer": {
+      "employeeId": 40,
+      "empFirstName": "firstNameDD",
+      "empLastName": "lastNameDD",
+      "labourGrade": {
+        "labourGradeId": 3,
+        "labourGradeName": "P3"
+      }
+    },
+    "Engineers": [
+      {
+        "employeeId": 42,
+        "empFirstName": "firstName",
+        "empLastName": "lastName",
+        "labourGrade": {
+          "labourGradeId": 3,
+          "labourGradeName": "P3"
+        }
+      },
+      {
+        "employeeId": 43,
+        "empFirstName": "firstName2",
+        "empLastName": "lastName2",
+        "labourGrade": {
+          "labourGradeId": 3,
+          "labourGradeName": "P3"
+        }
+      },
+      {
+        "employeeId": 41,
+        "empFirstName": "firstName1",
+        "empLastName": "lastName1",
+        "labourGrade": {
+          "labourGradeId": 3,
+          "labourGradeName": "P3"
+        }
+      }
+    ],
+    "comment": "longstring",
+    "workAccomplished": "longstring",
+    "workPlanned": "longstring",
+    "problemsThisPeriod": "longstring",
+    "problemsAnticipated": "longstring",
+    "details": [
+      {
+        "labourGradeId": 3,
+        "labourGradeName": "P3",
+        "reBudgetDay": 32,
+        "actualToDate": 32.32,
+        "reEestimate": 66
+      },
+      {
+        "labourGradeId": 2,
+        "labourGradeName": "P2",
+        "reBudgetDay": 32,
+        "actualToDate": 32.32,
+        "reEestimate": 66
+      },
+      {
+        "labourGradeId": 1,
+        "labourGradeName": "P1",
+        "reBudgetDay": 32,
+        "actualToDate": 32.32,
+        "reEestimate": 66
+      }
+    ]
+  }
 }

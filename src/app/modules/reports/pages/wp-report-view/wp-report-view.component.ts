@@ -1,18 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { MODE } from 'src/app/shared/model/MODE';
-import { WorkPackage } from 'src/app/shared/model/WorkPackage';
 import { WPReport } from 'src/app/shared/model/WPReport';
 import { ActivatedRoute } from '@angular/router';
 import { ReportService } from 'src/app/core/service/report/report.service';
 
 @Component({
-  selector: 'app-wp-report-creation',
-  templateUrl: './wp-report-creation.component.html',
-  styleUrls: ['./wp-report-creation.component.css']
+  selector: 'app-wp-report-view',
+  templateUrl: './wp-report-view.component.html',
+  styleUrls: ['./wp-report-view.component.css']
 })
-export class WpReportCreationComponent implements OnInit {
+export class WpReportViewComponent implements OnInit {
 
-  mode: MODE = MODE.Create;
+  mode: MODE = MODE.Read;
   wpr: WPReport = null;
 
   constructor(
