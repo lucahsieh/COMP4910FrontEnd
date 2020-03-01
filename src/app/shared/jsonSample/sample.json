@@ -383,21 +383,27 @@
         "labourGradeName": "P3",
         "reBudgetDay": 32,
         "actualToDate": 32.32,
-        "reEestimate": 66
+        "reEestimate": 66,
+        "variance": -12.33,
+        "complete": -95.43
       },
       {
         "labourGradeId": 2,
         "labourGradeName": "P2",
         "reBudgetDay": 32,
         "actualToDate": 32.32,
-        "reEestimate": 66
+        "reEestimate": 66,
+        "variance": -12.33,
+        "complete": -95.43
       },
       {
         "labourGradeId": 1,
         "labourGradeName": "P1",
         "reBudgetDay": 32,
         "actualToDate": 32.32,
-        "reEestimate": 66
+        "reEestimate": 66,
+        "variance": -12.33,
+        "complete": -95.43
       }
     ]
   }

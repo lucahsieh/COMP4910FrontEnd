@@ -18,4 +18,13 @@ export class WpReportComponent implements OnInit {
   ngOnInit() {
   }
 
+  /** exist edit field */
+  onEditComplete(event) {
+  }
+
+  /** validate RE entry */
+  validate(hr: number): boolean {
+
+    return true;
+  }
 }

@@ -1,4 +1,4 @@
-<div class="dropdown-divider  my-2"></div>
+<div class="dropdown-divider  my-3"></div>
 
 <h5 class="my-3">Work Package Information</h5>
 
@@ -73,9 +73,8 @@
     </div>
 </div>
 
-<div class="  my-4"></div>
-<div class="dropdown-divider  my-2"></div>
-<div class="  my-2"></div>
+<div class="dropdown-divider  my-4"></div>
+
 <h5 class="my-3">Report Information</h5>
 <div class="  my-2"></div>
 
@@ -140,3 +139,86 @@
     <div class="col-1"></div>
 </div>
 <div class="  my-2"></div>
+
+
+<div class="my-3" *ngIf="wpr">
+    <p-table [value]="wpr.details" (onEditComplete)="onEditComplete($event)">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Labour Grade</th>
+                <th>RE Budget (Day)</th>
+                <th>Actual To Date (Day)</th>
+                <th>Estimates Completness (Day)</th>
+                <th>Variance (%)</th>
+                <th>Complete (%)</th>
+
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData>
+            <tr>
+                <td><strong>{{rowData.labourGradeName}}</strong></td>
+                <td>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="rowData.reBudgetDay">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            <span *ngIf="validate(rowData.reBudgetDay)" class="error">{{rowData.reBudgetDay}}</span>
+                            <span *ngIf="!validate(rowData.reBudgetDay)" class="pass">{{rowData.reBudgetDay}}</span>
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td>{{rowData.actualToDate}}</td>
+                <td>
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="rowData.reEestimate">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            <span *ngIf="validate(rowData.reEestimate)" class="error">{{rowData.reEestimate}}</span>
+                            <span *ngIf="!validate(rowData.reEestimate)" class="pass">{{rowData.reEestimate}}</span>
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td>{{rowData.variance}}</td>
+                <td>{{rowData.complete}}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+<div class="dropdown-divider  my-4"></div>
+
+
+<div class="d-flex flex-wrap">
+    <div class="card bg-light mb-3 mr-3" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Comment</h5>
+            <p class="card-text">{{wpr.comment}}</p>
+        </div>
+    </div>
+    <div class="card bg-light mb-3 mr-3" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Work Accomplished This Period</h5>
+            <p class="card-text">{{wpr.workAccomplished}}</p>
+        </div>
+    </div>
+    <div class="card bg-light mb-3 mr-3" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Work Planned Next Period</h5>
+            <p class="card-text">{{wpr.workPlanned}}</p>
+        </div>
+    </div>
+    <div class="card bg-light mb-3 mr-3" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Problems This Period</h5>
+            <p class="card-text">{{wpr.problemsThisPeriod}}</p>
+        </div>
+    </div>
+    <div class="card bg-light mb-3 mr-3" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Problems Anticipated</h5>
+            <p class="card-text">{{wpr.problemsAnticipated}}</p>
+        </div>
+    </div>
+</div>

@@ -10,6 +10,7 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { ModalModule, AlertModule, BsDatepickerModule } from 'ngx-bootstrap';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { WpReportViewComponent } from './pages/wp-report-view/wp-report-view.component';
+import { TableModule } from 'primeng/table';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { WpReportViewComponent } from './pages/wp-report-view/wp-report-view.com
     //material
 
     //primeng
+    TableModule,
 
     // bootstrap
     AlertModule.forRoot(),

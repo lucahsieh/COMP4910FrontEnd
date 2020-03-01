@@ -4,4 +4,6 @@ export class WPReportRow {
     reBudgetDay: number;
     actualToDate: number;
     reEestimate: number;
+    variance: number;
+    complete: number;
 }
