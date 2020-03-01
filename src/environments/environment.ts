@@ -5,9 +5,10 @@
 export const environment = {
   production: false,
 
-  // NOTE: 44318/5001 is the actual backend server that Perry is using.
-  authUrl: 'https://localhost:44318/',  //http://localhost:4000/' for frontend devs
-  apiUrl: 'https://localhost:44318/',  //http://localhost:4000/' for frontend devs
+  // NOTE: 44318/5001 is the actual backend server that Perry is using.  https://localhost:44318/'
+  // Note:  http://comp4911webapi-elaboration.apps.shift.infoteach.ca/ is the prod server 
+  authUrl: 'http://comp4911webapi-elaboration.apps.shift.infoteach.ca/',  //http://localhost:4000/' for frontend devs
+  apiUrl: 'http://comp4911webapi-elaboration.apps.shift.infoteach.ca/',  //http://localhost:4000/' for frontend devs
   fakeBackend: false,  //change this to true if you're not Perry 
 
 };
