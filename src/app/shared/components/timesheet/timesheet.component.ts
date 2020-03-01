@@ -17,8 +17,10 @@ export class TimesheetComponent implements OnInit {
 
   @Input() mode: MODE;
   @Input() timesheet: Timesheet;
-  @Input() projectDropdown: SelectItem[];
-  @Input() employeeWPs: any[];
+  // @Input() projectDropdown: SelectItem[];
+  // @Input() employeeWPs: any[];
+
+  @Input() projectWp: any[];
 
   days: any[];
 
@@ -96,15 +98,29 @@ export class TimesheetComponent implements OnInit {
     })
   }
 
-  populateWP(projectId: number) {
-    let wps: SelectItem[] = [];
-    this.employeeWPs.forEach(wp => {
-      if (projectId === wp.projectId)
-        wps.push({ label: wp.wpCode, value: wp.wpId });
+  populateProject() {
+    let projects = [{ 'label': '---', 'value': 0 }];
+    if (!this.projectWp)
+      return projects;
+    this.projectWp.forEach(i => {
+      var item = { 'label': i.projectName, 'value': i.projectId };
+      if (projects.filter(p => { return p.value == item.value; }).length === 0) projects.push(item);
+    })
+    return projects;
+  }
+
+  populateWps(projectId) {
+    let wps = [{ 'label': '---', 'value': 0, 'projectId': 0 }];
+    if (!this.projectWp)
+      return wps;
+    if (projectId == null || projectId == 0)
+      return wps;
+    this.projectWp.forEach(i => {
+      var item = { 'label': i.wpCode, 'value': i.wpId, 'projectId': i.projectId };
+      if (item.projectId == projectId) wps.push(item);
     })
     return wps;
   }
-
 
 
   getWeek(date: Date): number {

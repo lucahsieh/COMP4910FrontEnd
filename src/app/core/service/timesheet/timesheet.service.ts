@@ -25,18 +25,31 @@ export class TimesheetService {
   postTimesheet(ts: Timesheet): Observable<any> {
     let url = this.baseUrl + `api/timesheets`;
     return this.http
-      .post<Timesheet>(url, ts, this.httpOptions)
+      .post<any>(url, ts, this.httpOptions)
       .pipe(catchError(this.handleError("postProject", ts)));
+  }
+
+  putTimesheet(ts: Timesheet): Observable<any> {
+    let url = this.baseUrl + `api/timesheets/${ts.timesheetId}`;
+    return this.http
+      .put<any>(url, ts, this.httpOptions)
+      .pipe(catchError(this.handleError("putProject", ts)));
   }
 
   /**
    * 
    * @param id Timesheet ID
    */
-  getTimesheet(id: string): Observable<Timesheet> {
+  getTimesheet(id: any): Observable<Timesheet> {
     let url = this.baseUrl + `api/timesheets/${id}`;
     return this.http
       .get<Timesheet>(url, this.httpOptions).pipe();
+  }
+
+  getPendingTimesheets(aprId: any): Observable<Timesheet[]> {
+    let url = this.baseUrl + `api/timesheets/getAllPendingTimesheet/${aprId}`;
+    return this.http
+      .get<Timesheet[]>(url, this.httpOptions).pipe();
   }
 
   getAvaliableTimesheetId(): Observable<any> {
@@ -45,8 +58,8 @@ export class TimesheetService {
       .get<any>(url, this.httpOptions).pipe();
   }
 
-  getAllTimesheet(): Observable<Timesheet[]> {
-    let url = this.baseUrl + `api/Timesheets/GetTimesheetsByEmpId/2`;
+  getAllTimesheet(empId: any): Observable<Timesheet[]> {
+    let url = this.baseUrl + `api/Timesheets/GetTimesheetsByEmpId/${empId}`;
     return this.http
       .get<Timesheet[]>(url, this.httpOptions).pipe();
   }

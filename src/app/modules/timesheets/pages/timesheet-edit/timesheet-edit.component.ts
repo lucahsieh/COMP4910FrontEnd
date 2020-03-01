@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Timesheet } from 'src/app/shared/model/Timesheet';
 import { TimesheetStatus } from 'src/app/shared/model/TimesheetStatus';
-import { TimesheetRow } from 'src/app/shared/model/TimesheetRow';
 import { User } from 'src/app/shared/model/User';
 import { SelectItem } from 'primeng/api/selectitem';
 import { TimesheetService } from 'src/app/core/service/timesheet/timesheet.service';
@@ -21,6 +20,8 @@ export class TimesheetEditComponent implements OnInit {
   timesheet: Timesheet = null;
   projectDropdown: SelectItem[] = null;
   employeeWPs: any[] = null;
+  projectWp: any[];
+
 
   currentUser: User = this.authenticationService.currentUserValue;
 
@@ -37,6 +38,7 @@ export class TimesheetEditComponent implements OnInit {
       console.log(`current timesheet id is  ${id}`);
       this.timesheetService.getTimesheet(id).subscribe(ts => this.timesheet = ts);
     });
+    this.prepareprojectWp();
   }
 
   onSubmit() {
@@ -53,23 +55,15 @@ export class TimesheetEditComponent implements OnInit {
   }
 
 
-  populateProjectDropdown() {
-    this.projectService.getProjectsByEmployee(this.currentUser.employeeId).subscribe(result => {
-      this.employeeWPs = [];
-      this.projectDropdown = [];
-      result.projectList.foreach(p => {
-        var projectId = p.projectId;
-        var projectName = p.projectName;
-        this.projectDropdown.push({ label: projectName, value: projectId });
-        p.workPackages.foreach(wp => {
-          var wpId = p.workPackageId;
-          var wpCode = p.workPackageCode;
-          this.employeeWPs.push(
-            { projectId: projectId, projectName: projectName, wpId: wpId, wpCode: wpCode }
-          )
-        })
-      })
-    })
+  prepareprojectWp() {
+    this.projectService.getProjectWpDropdown(this.currentUser.employeeId).subscribe(result => {
+      this.projectWp = [];
+      result.forEach(p => {
+        p.workPackages.forEach(wp => {
+          this.projectWp.push({ 'projectId': p.projectId, 'projectName': p.projectName, 'wpId': wp.workPackageId, 'wpCode': wp.workPackageCode })
+        });
+      });
+    });
   }
 
 

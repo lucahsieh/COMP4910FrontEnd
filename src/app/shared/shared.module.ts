@@ -10,13 +10,19 @@ import { FormsModule } from '@angular/forms';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { alertPrompComponent } from './alertPromp/alertPromp.component';
+import { AlertComponent } from 'ngx-bootstrap';
+import { AlertModule } from 'ngx-bootstrap';
+import { MapToArrayPipe } from './pipe/map-to-array.pipe';
 
 
 @NgModule({
   declarations: [
     MessageComponent,
     BreadcrumbComponent,
-    TimesheetComponent
+    TimesheetComponent,
+    alertPrompComponent,
+    MapToArrayPipe,
   ],
   imports: [
     // angular
@@ -30,12 +36,16 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
     // bootstrap
     BsDatepickerModule.forRoot(),
+    AlertModule.forRoot(),
+
 
   ],
   exports: [
     MessageComponent,
     TimesheetComponent,
     BreadcrumbComponent,
+    alertPrompComponent,
+    MapToArrayPipe,
   ]
 })
 export class SharedModule { }

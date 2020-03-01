@@ -4,7 +4,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { MessageService } from '../message.service';
-import { CurrentWeather } from 'src/app/shared/model/weather';
+import { CurrentWeather } from 'src/app/shared/model/Weather';
 
 @Injectable({
   providedIn: 'root'

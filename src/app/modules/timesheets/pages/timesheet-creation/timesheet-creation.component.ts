@@ -20,8 +20,7 @@ export class TimesheetCreationComponent implements OnInit {
   dataReady = false;
   mode: MODE = MODE.Create;
   timesheet: Timesheet = null;
-  projectDropdown: SelectItem[] = null;
-  employeeWPs: any[] = null;
+  projectWp: any[];
 
   currentUser: User = this.authenticationService.currentUserValue;
 
@@ -33,7 +32,7 @@ export class TimesheetCreationComponent implements OnInit {
 
   ngOnInit() {
     this.setEmptyTimesheetData();
-    // this.seedData();
+    this.prepareprojectWp();
   }
 
   onSubmit() {
@@ -78,23 +77,15 @@ export class TimesheetCreationComponent implements OnInit {
 
   }
 
-  populateProjectDropdown() {
-    this.projectService.getProjectsByEmployee(this.currentUser.employeeId).subscribe(result => {
-      this.employeeWPs = [];
-      this.projectDropdown = [];
-      result.projectList.foreach(p => {
-        var projectId = p.projectId;
-        var projectName = p.projectName;
-        this.projectDropdown.push({ label: projectName, value: projectId });
-        p.workPackages.foreach(wp => {
-          var wpId = p.workPackageId;
-          var wpCode = p.workPackageCode;
-          this.employeeWPs.push(
-            { projectId: projectId, projectName: projectName, wpId: wpId, wpCode: wpCode }
-          )
-        })
-      })
-    })
+  prepareprojectWp() {
+    this.projectService.getProjectWpDropdown(this.currentUser.employeeId).subscribe(result => {
+      this.projectWp = [];
+      result.forEach(p => {
+        p.workPackages.forEach(wp => {
+          this.projectWp.push({ 'projectId': p.projectId, 'projectName': p.projectName, 'wpId': wp.workPackageId, 'wpCode': wp.workPackageCode })
+        });
+      });
+    });
   }
 
 

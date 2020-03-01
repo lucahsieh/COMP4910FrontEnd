@@ -1,0 +1,56 @@
+<div class="card mx-1">
+    <div class="card-body">
+        <h3 class="display-4">Pending Timesheet List</h3>
+
+        <p-table #dt [columns]="cols" [value]="displayTimesheet" [paginator]="true" [rows]="10">
+            <ng-template pTemplate="caption">
+                <div style="text-align: right">
+                    <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                    <input type="text" pInputText size="50" placeholder="Global Filter"
+                        (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th *ngFor="let col of columns">
+                        {{col.header}}
+                    </th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <th *ngFor="let col of columns" [ngSwitch]="col.field">
+                        <input *ngSwitchCase="'empName'" pInputText type="text"
+                            (input)="dt.filter($event.target.value, col.field, 'contains')">
+                        <input *ngSwitchCase="'supervisor'" pInputText type="text"
+                            (input)="dt.filter($event.target.value, col.field, 'contains')">
+                        <input *ngSwitchCase="'approver'" pInputText type="text"
+                            (input)="dt.filter($event.target.value, col.field, 'contains')">
+                        <input *ngSwitchCase="'weekNumber'" pInputText type="text"
+                            (input)="dt.filter($event.target.value, col.field, 'contains')">
+                        <input *ngSwitchCase="'versionNumber'" pInputText type="text"
+                            (input)="dt.filter($event.target.value, col.field, 'contains')">
+                        <input *ngSwitchCase="'weekEnding'" pInputText type="text"
+                            (input)="dt.filter($event.target.value, col.field, 'contains')">
+                        <input *ngSwitchCase="'status'" pInputText type="text"
+                            (input)="dt.filter($event.target.value, col.field, 'contains')">
+                    </th>
+                    <th></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr [pSelectableRow]="rowData">
+                    <td *ngFor="let col of columns">
+                        <span *ngIf="col.field !=='status'">{{rowData[col.field]}}</span>
+                        <h5 *ngIf="col.field ==='status'">
+                            <span [className]="colorStatus(rowData[col.field])">{{rowData.status}}</span>
+                        </h5>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-link btn-sm"
+                            [routerLink]="['/content/timesheets/approver/view/', rowData[timesheetId]]">View</button>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>

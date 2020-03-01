@@ -1,10 +1,12 @@
+import { LabourGrade } from './LabourGrade';
+
 export class Employee {
     constructor() {
         this.employeeId = null;
         this.empUsername = "";
         this.empPassword = "";
         this.empCode = 1;
-        this.labourGradeId = 1;
+        this.labourGrade = new LabourGrade();
         this.empFirstName = "";
         this.empLastName = "";
         this.timesheetApproverId = 1;
@@ -22,7 +24,7 @@ export class Employee {
     empPassword: string;
     empCode: number;
     jobTitleId: number;
-    labourGradeId: number;
+    labourGrade: LabourGrade;
     empFirstName: string;
     empLastName: string;
     timesheetApproverId: number;

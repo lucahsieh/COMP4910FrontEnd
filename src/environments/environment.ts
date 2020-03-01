@@ -5,13 +5,24 @@
 export const environment = {
   production: false,
 
-  // NOTE: 44318/5001 is the actual backend server that Perry is using.  https://localhost:44318/'
-  // Note:  http://comp4911webapi-elaboration.apps.shift.infoteach.ca/ is the prod server 
-  authUrl: 'http://comp4911webapi-elaboration.apps.shift.infoteach.ca/',  //http://localhost:4000/' for frontend devs
-  apiUrl: 'http://comp4911webapi-elaboration.apps.shift.infoteach.ca/',  //http://localhost:4000/' for frontend devs
+  // NOTE: Front end devs enable these lines below. 
+  // apiUrl: 'http://localhost:4000/',
+  // authUrl: 'http://localhost:4000/',
+  // fakeBackend: true,
+
+  // NOTE: 44318/5001 is the actual backend server that Perry is using.  
+  // Keep this section commented out if you're not Perry
+  authUrl: 'https://localhost:44318/',
+  apiUrl: 'https://localhost:44318/',
   fakeBackend: false,  //change this to true if you're not Perry 
 
+    // // NOTE: Elaboration DEMO / Prod server -- only works if you are on BCIT Network
+    // apiUrl: 'http://comp4911webapi-elaboration.apps.shift.infoteach.ca/',
+    // authUrl: 'http://comp4911webapi-elaboration.apps.shift.infoteach.ca/',
+    // fakeBackend: false
+
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file

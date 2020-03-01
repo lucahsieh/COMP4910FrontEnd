@@ -1,10 +1,13 @@
 {
     "/api/timesheets": "/Post_Timesheet",
-    "/api/employees/": "/post_Employee",
     "/api/employees/allemployees": "/get_AllEmployees",
+    "/api/employees/:id": "/getSingleEmployee",
+    "/api/employees/": "/post_Employee",
     "/api/Credentials/CheckUsernameAvailability/:test": "/CheckUsernameAvailability",
     "/api/Credentials/CheckEmployeeCodeAvailability/:test": "/CheckEmployeeCodeAvailability",
     "/api/timesheets/availableTimesheetId": "/avalidableTimesheetID",
     "/api/Timesheets/GetTimesheetsByEmpId/:id": "/get_AllTimesheet",
-    "/api/timesheets/:id": "/get_Timesheet"
+    "/api/timesheets/getAllPendingTimesheet/:id": "/getAllPendingTimesheetByApproverEmpId",
+    "/api/timesheets/:id": "/get_Timesheet",
+    "/api/projects/ProjectWpDropdown/:empid": "/projectWpDropdown"
 }
