@@ -5,5 +5,5 @@ export class LabourGrade {
     }
     labourGradeName: string;
     labourGradeId: number;
-    valuePerHour: number;
+    hourlyWage: number;
 }

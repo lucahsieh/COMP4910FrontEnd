@@ -40,7 +40,7 @@ export class ReportService {
     // TODO: change to post
     return this.http.get<any>(url, this.httpOptions)
       .pipe(
-        map(data => data.actualToDate)
+        map(data => data.totalDays)
       );
   };
   postWpReport(wpr: WPReport): Observable<any> {
