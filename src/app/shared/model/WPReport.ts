@@ -1,7 +1,12 @@
 import { Employee } from './Employee';
 import { WPReportRow } from './WPReportRow';
+import { WorkPackage } from './WorkPackage';
+import { Project } from './Project';
 
 export class WPReport {
+    constructor() {
+        this.details = [];
+    }
     workPackageName: string;
     workPackageId: number;
     workPackageCode: string;
@@ -16,7 +21,7 @@ export class WPReport {
 
     projectManager: Employee;
     responsibleEngineer: Employee;
-    Engineers: Employee[];
+    engineers: Employee[];
 
     comment: string;
     workAccomplished: string;
@@ -24,4 +29,29 @@ export class WPReport {
     problemsThisPeriod: string;
     problemsAnticipated: string;
     details: WPReportRow[];
+
+    initData() {
+        this.comment = '';
+        this.workAccomplished = "";
+        this.workPlanned = "";
+        this.problemsThisPeriod = "";
+        this.problemsAnticipated = "";
+        this.startDate = "";
+        this.endDate = ""
+        this.workPackageReportId = 0
+
+    }
+    copyWPinfo(wp: WorkPackage) {
+        this.workPackageCode = wp.workPackageCode;
+        this.workPackageId = wp.workPackageId;
+        this.workPackageName = wp.name;
+        this.responsibleEngineer = wp.responsibleEngineer;
+        this.engineers = wp.engineers;
+    }
+    copyProjectInfo(p: Project) {
+        this.projectId = p.projectId;
+        this.projectCode = p.projectCode;
+        this.projectName = p.projectName;
+        this.projectManager = p.projectManager;
+    }
 }

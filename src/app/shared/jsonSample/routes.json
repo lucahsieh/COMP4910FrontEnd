@@ -1,6 +1,7 @@
 {
     "/api/timesheets": "/Post_Timesheet",
     "/api/employees/allemployees": "/get_AllEmployees",
+    "/api/employees/allLabourGrades": "/get_allLabourGrade",
     "/api/employees/:id": "/getSingleEmployee",
     "/api/employees/": "/post_Employee",
     "/api/Credentials/CheckUsernameAvailability/:test": "/CheckUsernameAvailability",
@@ -10,5 +11,6 @@
     "/api/timesheets/getAllPendingTimesheet/:id": "/getAllPendingTimesheetByApproverEmpId",
     "/api/timesheets/:id": "/get_Timesheet",
     "/api/projects/ProjectWpDropdown/:empid": "/projectWpDropdown",
+    "/api/reports/wpReport/calculateActual": "/requestActual",
     "/api/reports/wpReport/:wpReportId": "/getWpReprot"
 }

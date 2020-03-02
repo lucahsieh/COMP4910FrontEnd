@@ -5,24 +5,31 @@ import { ReportsRoutingModule } from './reports-routing.module';
 import { ReportsComponent } from './pages/reports.component';
 import { WpReportCreationComponent } from './pages/wp-report-creation/wp-report-creation.component';
 import { WpReportComponent } from './component/wp-report/wp-report.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ModalModule, AlertModule, BsDatepickerModule } from 'ngx-bootstrap';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { WpReportViewComponent } from './pages/wp-report-view/wp-report-view.component';
 import { TableModule } from 'primeng/table';
+import { WpReportStepperCreationComponent } from './component/wp-report-stepper-creation/wp-report-stepper-creation.component';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material';
 
 
 @NgModule({
-  declarations: [ReportsComponent, WpReportCreationComponent, WpReportComponent, WpReportViewComponent],
+  declarations: [ReportsComponent, WpReportCreationComponent, WpReportComponent, WpReportViewComponent, WpReportStepperCreationComponent],
   imports: [
     CommonModule,
     FormsModule,
     SharedModule,
     ReportsRoutingModule,
-
+    ReactiveFormsModule,
 
     //material
+    MatStepperModule,
+    MatFormFieldModule,
+    MatInputModule,
 
     //primeng
     TableModule,

@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { MessageService } from '../message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { catchError, map } from 'rxjs/operators';
+import { WPReportRow } from 'src/app/shared/model/WPReportRow';
 
 @Injectable({
   providedIn: 'root'
@@ -26,5 +28,26 @@ export class ReportService {
     let url = this.baseUrl + `api/reports/wpReport/${wpReportId}`;
     return this.http
       .get<WPReport>(url, this.httpOptions).pipe();
+  }
+  calculateActual(wpId, sd, ed, lgId): Observable<any> {
+    let url = this.baseUrl + `api/reports/wpReport/calculateActual`;
+    let body = {
+      "workPackageId": wpId,
+      "startDate": sd,
+      "endDate": ed,
+      "labourGradeId": lgId
+    };
+    // TODO: change to post
+    return this.http.get<any>(url, this.httpOptions)
+      .pipe(
+        map(data => data.actualToDate)
+      );
+  };
+  postWpReport(wpr: WPReport): Observable<any> {
+    let url = this.baseUrl + `api/reports/wpReport/`;
+    var result = null;
+    if (!environment.fakeBackend)
+      result = this.http.post<WPReport>(url, wpr, this.httpOptions)
+    return result;
   }
 }

@@ -406,5 +406,45 @@
         "complete": -95.43
       }
     ]
-  }
+  },
+  "requestActual": {
+    "actualToDate": 4.8
+  },
+  "get_allLabourGrade": [
+    {
+      "labourGradeId": 1,
+      "labourGradeName": "P1",
+      "valuePerHour": 50
+    },
+    {
+      "labourGradeId": 2,
+      "labourGradeName": "P2",
+      "valuePerHour": 50
+    },
+    {
+      "labourGradeId": 3,
+      "labourGradeName": "P3",
+      "valuePerHour": 50
+    },
+    {
+      "labourGradeId": 4,
+      "labourGradeName": "P4",
+      "valuePerHour": 50
+    },
+    {
+      "labourGradeId": 5,
+      "labourGradeName": "P5",
+      "valuePerHour": 50
+    },
+    {
+      "labourGradeId": 6,
+      "labourGradeName": "SS",
+      "valuePerHour": 50
+    },
+    {
+      "labourGradeId": 7,
+      "labourGradeName": "DD",
+      "valuePerHour": 50
+    }
+  ]
 }
