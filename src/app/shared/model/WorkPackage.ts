@@ -1,9 +1,11 @@
 import { Project } from './Project';
+import { Employee } from './Employee';
 
 export class WorkPackage {
     workPackageId: number;
     projectId: number;
-    responsibleEngineerId: number;
+    responsibleEngineer: Employee;
+    engineers: Employee[];
     workPackageCode: string;
     name: string;
     description: string;

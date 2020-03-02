@@ -5,21 +5,23 @@
 export const environment = {
   production: false,
 
-  // NOTE: Front end devs enable these lines below. 
-  // apiUrl: 'http://localhost:4000/',
-  // authUrl: 'http://localhost:4000/',
-  // fakeBackend: true,
+
+  // NOTE: Front end devs enable these lines below
+  apiUrl: 'http://localhost:4000/',
+  authUrl: 'http://localhost:4000/',
+  fakeBackend: true,
 
   // NOTE: 44318/5001 is the actual backend server that Perry is using.  
   // Keep this section commented out if you're not Perry
-  authUrl: 'https://localhost:44318/',
-  apiUrl: 'https://localhost:44318/',
-  fakeBackend: false,  //change this to true if you're not Perry 
+  // authUrl: 'https://localhost:44318/',
+  // apiUrl: 'https://localhost:44318/',
+  // fakeBackend: false,  //change this to true if you're not Perry 
 
-    // // NOTE: Elaboration DEMO / Prod server -- only works if you are on BCIT Network
-    // apiUrl: 'http://comp4911webapi-elaboration.apps.shift.infoteach.ca/',
-    // authUrl: 'http://comp4911webapi-elaboration.apps.shift.infoteach.ca/',
-    // fakeBackend: false
+  // // NOTE: Elaboration DEMO / Prod server -- only works if you are on BCIT Network
+  // apiUrl: 'http://comp4911webapi-elaboration.apps.shift.infoteach.ca/',
+  // authUrl: 'http://comp4911webapi-elaboration.apps.shift.infoteach.ca/',
+  // fakeBackend: false
+
 
 };
 

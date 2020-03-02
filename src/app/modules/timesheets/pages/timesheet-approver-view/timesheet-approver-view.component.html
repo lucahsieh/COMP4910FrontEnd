@@ -18,9 +18,7 @@
                 <span class="input-group-text">Comment</span>
             </div>
             <textarea class="form-control" aria-label="With textarea" (change)="onTextareaChange($event)"
-                *ngIf="timesheet">
-                {{timesheet.comment}}
-            </textarea>
+                *ngIf="timesheet">{{timesheet.comment}}</textarea>
             <!-- <input type="textarea" class="form-control" [(ngModel)]="timesheet.comment" (blur)="onExitEmployeeId()"> -->
 
         </div>

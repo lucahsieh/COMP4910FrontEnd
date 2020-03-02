@@ -8,6 +8,7 @@ import { catchError, tap, map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { User } from 'src/app/shared/model/User';
 import { CheckUserNameResult } from 'src/app/shared/model/CheckUserName';
+import { LabourGrade } from 'src/app/shared/model/LabourGrade';
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,11 @@ export class EmployeeService {
     private http: HttpClient,
     private messageService: MessageService
   ) { }
+
+  getLabourGrades(): Observable<LabourGrade[]> {
+    let url = this.baseUrl + `api/employees/allLabourGrades`;
+    return this.http.get<LabourGrade[]>(url).pipe()
+  }
 
   getEmployee(id): Observable<Employee> {
     let url = this.baseUrl + `api/employees/${id}`;
