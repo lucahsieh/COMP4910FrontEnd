@@ -52,7 +52,7 @@ export class EmployeeEditComponent implements OnInit {
   }
 
   // btn click event of cancel
-  onCancel() { }
+  onCancel(e: any) { }
 
   validatePage(): boolean {
     var result = true;

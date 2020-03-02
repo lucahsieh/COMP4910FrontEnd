@@ -34,7 +34,7 @@ export class EmployeeCreationComponent implements OnInit {
   }
 
   // btn click event of creation
-  onCreate(template: TemplateRef<any>) {
+  onCreate(e: any) {
     if (!this.validatePage())
       return;
     console.log("POST employee");
@@ -43,7 +43,7 @@ export class EmployeeCreationComponent implements OnInit {
   }
 
   // btn click event of cancel
-  onCancel() { }
+  onCancel(e: any) { }
 
   validatePage(): boolean {
     var result = true;

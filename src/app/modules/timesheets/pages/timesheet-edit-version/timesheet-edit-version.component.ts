@@ -42,7 +42,7 @@ export class TimesheetEditVersionComponent implements OnInit {
     this.prepareprojectWp();
   }
 
-  onSubmit() {
+  onSubmit(e: any) {
     // increment the version. since it is using the old timesheet to create a new one
     this.timesheet.versionNumber += 1;
     this.timesheet.status = TimesheetStatus.pending;
@@ -50,7 +50,7 @@ export class TimesheetEditVersionComponent implements OnInit {
       // TODO : nagvigate to this page "/content/timesheets"
     });
   }
-  onSave() {
+  onSave(e: any) {
     // increment the version. since it is using the old timesheet to create a new one
     this.timesheet.versionNumber += 1;
     this.timesheet.status = TimesheetStatus.inProgress;

@@ -35,12 +35,12 @@ export class TimesheetCreationComponent implements OnInit {
     this.prepareprojectWp();
   }
 
-  onSubmit() {
+  onSubmit(e: any) {
 
     this.timesheet.status = TimesheetStatus.pending;
     this.timesheetService.postTimesheet(this.timesheet).subscribe();
   }
-  onSave() {
+  onSave(e: any) {
     console.log(`post timesheet:`);
     console.log(JSON.stringify(this.timesheet));
     this.timesheetService.postTimesheet(this.timesheet).subscribe(

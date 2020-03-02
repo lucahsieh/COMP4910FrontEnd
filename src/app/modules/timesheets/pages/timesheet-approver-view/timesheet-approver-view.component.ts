@@ -28,7 +28,7 @@ export class TimesheetApproverViewComponent implements OnInit {
       this.timesheetService.getTimesheet(id).subscribe(ts => this.timesheet = ts);
     });
   }
-  onTextareaChange(e) {
+  onTextareaChange(e: any) {
     try {
       this.timesheet.comment = e.target.value;
     } catch (e) {
@@ -45,11 +45,11 @@ export class TimesheetApproverViewComponent implements OnInit {
       default: return 'badge badge-pill badge-dark';
     }
   }
-  onReject() {
+  onReject(e: any) {
     this.timesheet.status = TimesheetStatus.rejected;
     this.timesheetService.putTimesheet(this.timesheet).subscribe(_ => console.log(this.timesheet));
   }
-  onApprove() {
+  onApprove(e: any) {
     this.timesheet.status = TimesheetStatus.approved;
     this.timesheetService.putTimesheet(this.timesheet).subscribe(_ => console.log(this.timesheet));
   }
