@@ -57,7 +57,8 @@
                                 <th>Labour Grade</th>
                                 <th>RE Budget (Day)</th>
                                 <th>Actual To Date (Day)</th>
-                                <th>Estimates Completness (Day)</th>
+                                <th>RE ETC (Day)</th>
+                                <th>RE EAC (Day)</th>
                                 <th>Variance (%)</th>
                                 <th>Complete (%)</th>
 
@@ -79,17 +80,19 @@
                                         </ng-template>
                                     </p-cellEditor>
                                 </td>
-                                <td>{{rowData.actualToDate}}</td>
-                                <td [pEditableColumn]="rowData" [pEditableColumnField]="'reEestimate'">
+                                <td>{{rowData.totalDays}}</td>
+                                <td [pEditableColumn]="rowData" [pEditableColumnField]="'reETC'">
                                     <p-cellEditor>
                                         <ng-template pTemplate="input">
-                                            <input pInputText type="number" [(ngModel)]="rowData.reEestimate"
-                                                name="reEestimate">
+                                            <input pInputText type="number" [(ngModel)]="rowData.reETC" name="reETC">
                                         </ng-template>
                                         <ng-template pTemplate="output">
-                                            <span>{{rowData.reEestimate}}</span>
+                                            <span>{{rowData.reETC}}</span>
                                         </ng-template>
                                     </p-cellEditor>
+                                </td>
+                                <td class="{{rowData.variance>rowData.reBudgetDay?'text-danger':'text-success'}}">
+                                    {{rowData.reEAC}}
                                 </td>
                                 <td class="{{rowData.variance>0?'text-danger':'text-success'}}">{{rowData.variance}}
                                 </td>

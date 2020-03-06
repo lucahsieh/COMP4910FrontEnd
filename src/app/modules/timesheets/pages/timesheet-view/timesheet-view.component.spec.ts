@@ -8,9 +8,9 @@ describe('TimesheetViewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TimesheetViewComponent ]
+      declarations: [TimesheetViewComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

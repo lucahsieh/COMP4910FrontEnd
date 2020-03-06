@@ -58,8 +58,9 @@ export class WpReportCreationComponent implements OnInit {
           "labourGradeId": grade.labourGradeId,
           "labourGradeName": grade.labourGradeName,
           "reBudgetDay": 0,
-          "actualToDate": 0,
-          "reEestimate": 0,
+          "totalDays": 0,
+          "reETC": 0,
+          "reEAC": 0,
           "variance": 0,
           "complete": 0
         }

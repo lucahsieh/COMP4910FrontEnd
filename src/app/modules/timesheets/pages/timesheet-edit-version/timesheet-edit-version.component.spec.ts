@@ -8,9 +8,9 @@ describe('TimesheetEditVersionComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TimesheetEditVersionComponent ]
+      declarations: [TimesheetEditVersionComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -13,7 +13,7 @@ export class EmployeeComponent implements OnInit {
 
   @Input() employee: Employee;
   @Input() mode: MODE;
-  grade: SelectItem[] = null;
+  greadeDropdown: SelectItem[] = null;
   employeeDropdown: SelectItem[] = null;
   selectedGrade: SelectItem;
   selectedSupervisor: SelectItem;
@@ -28,22 +28,29 @@ export class EmployeeComponent implements OnInit {
 
   constructor(
     private employeeService: EmployeeService,
-  ) {
-    this.grade = [
-      { "label": 'P1', "value": 1 },
-      { "label": 'P2', "value": 2 },
-      { "label": 'P3', "value": 3 },
-      { "label": 'P4', "value": 4 },
-      { "label": 'P5', "value": 5 },
-      { "label": 'DD', "value": 6 },
-      { "label": 'SS', "value": 7 }
-    ];
-  }
+  ) { }
 
   ngOnInit() {
     if (this.mode !== MODE.Read) this.populateEmployeeDropdown();
+    if (this.mode !== MODE.Read) this.populateLabourGradeDropdown();
 
   }
+  populateLabourGradeDropdown() {
+    this.employeeService
+      .getLabourGrades()
+      .subscribe(greades => {
+        this.greadeDropdown = [];
+        console.log(greades);
+        greades.forEach(g => {
+          console.log(g);
+          this.greadeDropdown.push(
+            { label: `${g.labourGradeName}`, value: g.labourGradeId }
+          );
+        })
+        console.log(this.greadeDropdown);
+      })
+  }
+
   populateEmployeeDropdown() {
     this.employeeService
       .getEmployees()

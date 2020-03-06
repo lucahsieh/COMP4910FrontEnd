@@ -8,9 +8,9 @@ describe('WpReportCreationComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ WpReportCreationComponent ]
+      declarations: [WpReportCreationComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

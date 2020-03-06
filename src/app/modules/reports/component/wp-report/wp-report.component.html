@@ -148,7 +148,8 @@
                 <th>Labour Grade</th>
                 <th>RE Budget (Day)</th>
                 <th>Actual To Date (Day)</th>
-                <th>Estimates Completness (Day)</th>
+                <th>RE ETC (Day)</th>
+                <th>RE EAC (Day)</th>
                 <th>Variance (%)</th>
                 <th>Complete (%)</th>
 
@@ -168,18 +169,19 @@
                         </ng-template>
                     </p-cellEditor>
                 </td>
-                <td>{{rowData.actualToDate}}</td>
+                <td>{{rowData.totalDays}}</td>
                 <td>
                     <p-cellEditor>
                         <ng-template pTemplate="input">
-                            <input pInputText type="text" [(ngModel)]="rowData.reEestimate">
+                            <input pInputText type="text" [(ngModel)]="rowData.reETC">
                         </ng-template>
                         <ng-template pTemplate="output">
-                            <span *ngIf="validate(rowData.reEestimate)" class="error">{{rowData.reEestimate}}</span>
-                            <span *ngIf="!validate(rowData.reEestimate)" class="pass">{{rowData.reEestimate}}</span>
+                            <span *ngIf="validate(rowData.reETC)" class="error">{{rowData.reETC}}</span>
+                            <span *ngIf="!validate(rowData.reETC)" class="pass">{{rowData.reETC}}</span>
                         </ng-template>
                     </p-cellEditor>
                 </td>
+                <td>{{rowData.reEAC}}</td>
                 <td>{{rowData.variance}}</td>
                 <td>{{rowData.complete}}</td>
             </tr>

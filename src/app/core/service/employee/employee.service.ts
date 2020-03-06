@@ -28,7 +28,7 @@ export class EmployeeService {
   ) { }
 
   getLabourGrades(): Observable<LabourGrade[]> {
-    let url = this.baseUrl + `api/employees/allLabourGrades`;
+    let url = this.baseUrl + `api/LabourGrade`;
     return this.http.get<LabourGrade[]>(url).pipe()
   }
 
