@@ -18,6 +18,7 @@ import { MatInputModule } from '@angular/material';
 import { ProjectReportListComponent } from './pages/project-report-list/project-report-list.component';
 import { ProjectReportViewComponent } from './pages/project-report-view/project-report-view.component';
 import { ProjectReportPmViewComponent } from './component/project-report-pm-view/project-report-pm-view.component';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
 
 @NgModule({
@@ -41,6 +42,7 @@ import { ProjectReportPmViewComponent } from './component/project-report-pm-view
     AlertModule.forRoot(),
     ModalModule.forRoot(),
     BsDatepickerModule.forRoot(),
+    ButtonsModule.forRoot(),
     NgbModule,
   ]
 })

@@ -10,10 +10,12 @@ import { ReportService } from 'src/app/core/service/report/report.service';
 export class ProjectReportViewComponent implements OnInit {
 
   projectReport: ProjectReport;
-  cols: any[];
   pmViewCols: any[];
   reViewCols: any[];
-  data: WpStatus[];
+  pmData: WpStatus[];
+  reData: WpStatus[];
+  viewMode = 'pm';
+
 
   constructor(
     private ReportService: ReportService,
@@ -23,40 +25,49 @@ export class ProjectReportViewComponent implements OnInit {
     this.ReportService.getProjectReport('ew').subscribe(r => {
       this.projectReport = r;
       console.log(this.projectReport);
+      this.preparePmView(r);
+      this.prepareReView(r);
     });
-    this.cols = [
-      { field: 'workPackageCode', header: 'Code' },
-      { field: 'workPackageName', header: 'Name' },
-      { field: 'wpReBudget', header: 'RE Budget' },
-      { field: 'wpActualSepnds', header: 'ACWP' },
-      { field: 'wpReEAC', header: 'EAC' },
-      { field: 'wpPmEAC', header: 'EAC' },
-      { field: 'wpReVariance', header: 'Variance' },
-      { field: 'wpPmVariance', header: 'Variance' },
-      { field: 'wpReCompletion', header: 'Completion' },
-      { field: 'wpPmCompletion', header: 'Completion' },
-      { field: 'isClosed', header: 'Status' },
-      { field: 'engineersInitials', header: 'Members' }
-    ];
+
+
+  }
+  preparePmView(r: ProjectReport) {
+    let data: WpStatus[] = [];
+    r.lowWpStatus.forEach(lw => {
+      data.push(lw);
+    });
+    r.highWpStatus.forEach(hw => {
+      data.push(hw);
+    })
+    this.pmData = data;
+
     this.pmViewCols = [
       { field: 'workPackageCode', header: 'Code' },
       { field: 'workPackageName', header: 'Name' },
       { field: 'wpReBudget', header: 'RE Budget' },
       { field: 'wpActualSepnds', header: 'ACWP' },
-      { field: 'wpPmEAC', header: 'EAC' },
-      { field: 'wpPmVariance', header: 'Variance' },
-      { field: 'wpPmCompletion', header: 'Completion' },
+      { field: 'wpPmEAC', header: 'PM EAC' },
+      { field: 'wpPmVariance', header: 'PM Variance' },
+      { field: 'wpPmCompletion', header: 'PM Completion' },
       { field: 'isClosed', header: 'Status' },
       { field: 'engineersInitials', header: 'Members' },
     ];
+  }
+  prepareReView(r: ProjectReport) {
+    let data: WpStatus[] = [];
+    r.lowWpStatus.forEach(lw => {
+      data.push(lw);
+    });
+    this.reData = data;
+
     this.reViewCols = [
       { field: 'workPackageCode', header: 'Code' },
       { field: 'workPackageName', header: 'Name' },
       { field: 'wpReBudget', header: 'RE Budget' },
       { field: 'wpActualSepnds', header: 'ACWP' },
-      { field: 'wpReEAC', header: 'EAC' },
-      { field: 'wpReVariance', header: 'Variance' },
-      { field: 'wpReCompletion', header: 'Completion' },
+      { field: 'wpReEAC', header: 'RE EAC' },
+      { field: 'wpReVariance', header: 'RE Variance' },
+      { field: 'wpReCompletion', header: 'RE Completion' },
       { field: 'isClosed', header: 'Status' },
       { field: 'engineersInitials', header: 'Members' }
     ]

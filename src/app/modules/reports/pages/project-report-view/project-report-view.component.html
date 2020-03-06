@@ -1,95 +1,128 @@
-<div class="dropdown-divider  my-3"></div>
+<div class="card mx-1">
+    <div class="card-body">
+        <!-- Title -->
+        <h3 class="display-4">Work Package Report Detail</h3>
 
-<div class="form-row">
-    <div class="col-5">
-        <!-- Project Code -->
-        <div class="input-group ">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Project Code</span>
+        <!-- BODY -->
+
+
+        <div *ngIf="projectReport">
+            <div class="dropdown-divider  my-3"></div>
+
+            <div class="form-row">
+                <div class="col-5">
+                    <!-- Project Code -->
+                    <div class="input-group ">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Project Code</span>
+                        </div>
+                        <input type="text" class="form-control" [(ngModel)]="projectReport.projectCode"
+                            [readOnly]="true">
+                    </div>
+                </div>
+                <div class="col-5">
+                    <!-- Report ID -->
+                    <div class="input-group ">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Report Number</span>
+                        </div>
+                        <input type="text" class="form-control" [(ngModel)]="projectReport.projectReportId"
+                            [readOnly]="true">
+                    </div>
+                </div>
+
+
             </div>
-            <input type="text" class="form-control" [(ngModel)]="projectReport.projectCode" [readOnly]="true">
-        </div>
-    </div>
-    <div class="col-5">
-        <!-- Report ID -->
-        <div class="input-group ">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Report Number</span>
+            <div class="  my-2"></div>
+            <div class="form-row">
+                <div class="col-5">
+                    <!-- Project Name -->
+                    <div class="input-group ">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Project Name</span>
+                        </div>
+                        <input type="text" class="form-control" [(ngModel)]="projectReport.projectName"
+                            [readOnly]="true">
+                    </div>
+
+                </div>
+                <div class="col-5">
+                    <!-- reportDate  -->
+                    <div class="input-group ">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Report Date</span>
+                        </div>
+                        <input type="text" class="form-control" value="{{projectReport.reportDate| date:'medium'}}"
+                            [readOnly]="true">
+                    </div>
+                </div>
+
             </div>
-            <input type="text" class="form-control" [(ngModel)]="projectReport.projectReportId" [readOnly]="true">
+            <div class="  my-2"></div>
+            <div class="form-row">
+                <div class="col-5">
+                    <!-- PM Name -->
+                    <div class="input-group ">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Project Manager</span>
+                        </div>
+                        <input type="text" class="form-control"
+                            value="{{projectReport.projectManager.empFirstName + ' '+ projectReport.projectManager.empLastName}}"
+                            [readOnly]="true">
+                    </div>
+
+                </div>
+                <div class="col-5">
+                    <!-- duriation  -->
+                    <div class="input-group ">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Report Date</span>
+                        </div>
+                        <input type="text" class="form-control"
+                            value="{{projectReport.startDate| date}}  To  {{projectReport.endDate| date}}"
+                            [readOnly]="true">
+                    </div>
+                </div>
+
+            </div>
+            <div class="  my-2"></div>
+
+            <div class="btn-group" btnRadioGroup [(ngModel)]="viewMode">
+                <label class="btn btn-info" btnRadio="pm" uncheckable tabindex="0" role="button">PM Estimates</label>
+                <label class="btn btn-info" btnRadio="re" uncheckable tabindex="0" role="button">RE Estimates</label>
+            </div>
+
+            <p-table [columns]="viewMode=='pm'? pmViewCols:reViewCols" [value]="viewMode=='pm'? pmData:reData">
+                <ng-template pTemplate="header" let-columns>
+                    <tr>
+                        <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                            {{col.header}}
+                            <p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
+                                ariaLabelDesc="Activate to sort in descending order"
+                                ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                        </th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-rowData let-columns="columns">
+                    <tr>
+                        <td *ngFor="let col of columns">
+                            {{rowData[col.field]}}
+                        </td>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="footer" let-columns>
+                    <tr>
+                        <td *ngFor="let col of columns">
+                            <span *ngIf="col.field === 'workPackageCode'">Totals</span>
+                            <!-- <p *ngIf="col.field === 'wpReBudget'">{{projectReport.totals[col.field]}}</p> -->
+                            <!-- <p *ngIf="col.field === 'wpReBudget'">{{projectReport.totals[col.field]}}</p> -->
+                            {{projectReport.totals[col.field]}}
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
         </div>
+
+
     </div>
-
-
 </div>
-<div class="  my-2"></div>
-<div class="form-row">
-    <div class="col-5">
-        <!-- Project Name -->
-        <div class="input-group ">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Project Name</span>
-            </div>
-            <input type="text" class="form-control" [(ngModel)]="projectReport.projectName" [readOnly]="true">
-        </div>
-
-    </div>
-    <div class="col-5">
-        <!-- reportDate  -->
-        <div class="input-group ">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Report Date</span>
-            </div>
-            <input type="text" class="form-control" value="{{projectReport.reportDate| date:'medium'}}"
-                [readOnly]="true">
-        </div>
-    </div>
-
-</div>
-<div class="  my-2"></div>
-<div class="form-row">
-    <div class="col-5">
-        <!-- PM Name -->
-        <div class="input-group ">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Project Manager</span>
-            </div>
-            <input type="text" class="form-control"
-                value="{{projectReport.projectManager.empFirstName + ' '+ projectReport.projectManager.empLastName}}"
-                [readOnly]="true">
-        </div>
-
-    </div>
-    <div class="col-5">
-        <!-- duriation  -->
-        <div class="input-group ">
-            <div class="input-group-prepend">
-                <span class="input-group-text">Report Date</span>
-            </div>
-            <input type="text" class="form-control"
-                value="{{projectReport.startDate| date}}  To  {{projectReport.endDate| date}}" [readOnly]="true">
-        </div>
-    </div>
-
-</div>
-<div class="  my-2"></div>
-
-<p-table [columns]="cols" [value]="data">
-    <ng-template pTemplate="header" let-columns>
-        <tr>
-            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
-                {{col.header}}
-                <p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
-                    ariaLabelDesc="Activate to sort in descending order"
-                    ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
-            </th>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-rowData let-columns="columns">
-        <tr>
-            <td *ngFor="let col of columns">
-                {{rowData[col.field]}}
-            </td>
-        </tr>
-    </ng-template>
-</p-table>
