@@ -44,19 +44,16 @@
     "apiId": "Credentials"
   },
   "post_Employee": {
-    "empUsername": "jdoij",
-    "empPassword": "01234",
-    "empCode": "1323",
+    "empUsername": "abc323",
+    "empCode": 43429,
     "labourGradeId": 0,
-    "empFirstName": "fjieoj",
-    "empLastName": "jiojo",
-    "timesheetApproverId": 1,
-    "supervisorId": 1,
-    "isProjectManager": false,
+    "empFirstName": "Perry",
+    "empLastName": "Li",
+    "isProjectManager": true,
     "isAdmin": false,
     "isHumanResources": false,
     "isActivated": true,
-    "jobTitleId": 1
+    "jobTitleId": 2
   },
   "get_AllEmployees": [
     {
@@ -187,7 +184,7 @@
     "weekNumber": 7,
     "timesheetId": 123,
     "employeeId": 1,
-    "versionNumber": 1,
+    "versionNumber": 3,
     "status": "Rejected",
     "comment": "jeiowjeiowjo"
   },
@@ -382,8 +379,8 @@
         "labourGradeId": 3,
         "labourGradeName": "P3",
         "reBudgetDay": 32,
-        "actualToDate": 32.32,
-        "reEestimate": 66,
+        "totalDays": 32.32,
+        "reETC": 66,
         "variance": -12.33,
         "complete": -95.43
       },
@@ -391,8 +388,8 @@
         "labourGradeId": 2,
         "labourGradeName": "P2",
         "reBudgetDay": 32,
-        "actualToDate": 32.32,
-        "reEestimate": 66,
+        "totalDays": 32.32,
+        "reETC": 66,
         "variance": -12.33,
         "complete": -95.43
       },
@@ -400,15 +397,15 @@
         "labourGradeId": 1,
         "labourGradeName": "P1",
         "reBudgetDay": 32,
-        "actualToDate": 32.32,
-        "reEestimate": 66,
+        "totalDays": 32.32,
+        "reETC": 66,
         "variance": -12.33,
         "complete": -95.43
       }
     ]
   },
   "requestActual": {
-    "actualToDate": 4.8
+    "totalDays": 4.8
   },
   "get_allLabourGrade": [
     {
@@ -446,5 +443,89 @@
       "labourGradeName": "DD",
       "hourlyWage": 50
     }
-  ]
+  ],
+  "get__ProjectReport": {
+    "projectId": 1,
+    "projectCode": 1,
+    "projectName": "projectNamefefjwo",
+    "reportDate": "0001-01-01T00:00:00",
+    "startDate": "0001-01-01T00:00:00",
+    "endDate": "0001-01-01T00:00:00",
+    "projectReportId": 38329,
+    "projectManager": {
+      "employeeId": 39,
+      "empFirstName": "firstNameSS",
+      "empLastName": "lastNameWW"
+    },
+    "engineers": [
+      {
+        "employeeId": 42,
+        "empFirstName": "firstName",
+        "empLastName": "lastName"
+      },
+      {
+        "employeeId": 43,
+        "empFirstName": "firstName2",
+        "empLastName": "lastName2"
+      },
+      {
+        "employeeId": 41,
+        "empFirstName": "firstName1",
+        "empLastName": "lastName1"
+      }
+    ],
+    "lowWp": [
+      {
+        "workPackageCode": "A1",
+        "workPackageName": "string",
+        "wpReBudget": 1243.43,
+        "wpActualSepnds": 1222.42,
+        "wpReEAC": 1300.00,
+        "wpPmEAC": 322.43,
+        "wpReVariance": -12.33,
+        "wpPmVariance": -12.33,
+        "wpReCompletion": 70.32,
+        "wpPmCompletion": 70.32,
+        "isClosed": false,
+        "engineersInitials": "CH PL PA RP"
+      },
+      {
+        "workPackageCode": "A2",
+        "workPackageName": "string",
+        "wpReBudget": 1243.43,
+        "wpActualSepnds": 1222.42,
+        "wpReEAC": 1300.00,
+        "wpPmEAC": 322.43,
+        "wpReVariance": -12.33,
+        "wpPmVariance": -12.33,
+        "wpReCompletion": 70.32,
+        "wpPmCompletion": 70.32,
+        "isClosed": false,
+        "engineersInitials": "CH PL PA RP"
+      }
+    ],
+    "highWp": [
+      {
+        "workPackageCode": "A",
+        "workPackageName": "string",
+        "wpReBudget": 1243.43,
+        "wpActualSepnds": 1222.42,
+        "wpPmEAC": 322.43,
+        "wpPmVariance": -12.33,
+        "wpPmCompletion": 70.32,
+        "isClosed": false,
+        "engineersInitials": "CH PL PA RP"
+      }
+    ],
+    "totals": {
+      "wpReBudget": 1243.43,
+      "wpActualSepnds": 1222.42,
+      "wpReEAC": 1300.00,
+      "wpPmEAC": 322.43,
+      "wpReVariance": -12.33,
+      "wpPmVariance": -12.33,
+      "wpReCompletion": 70.32,
+      "wpPmCompletion": 70.32
+    }
+  }
 }

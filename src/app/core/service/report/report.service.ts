@@ -6,6 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { catchError, map } from 'rxjs/operators';
 import { WPReportRow } from 'src/app/shared/model/WPReportRow';
+import { ProjectReport } from 'src/app/shared/model/ProjectReport';
 
 @Injectable({
   providedIn: 'root'
@@ -49,5 +50,11 @@ export class ReportService {
     if (!environment.fakeBackend)
       result = this.http.post<WPReport>(url, wpr, this.httpOptions)
     return result;
+  }
+
+  getProjectReport(pReportId: any): Observable<ProjectReport> {
+    let url = this.baseUrl + `api/reports/projectReport/${pReportId}`;
+    return this.http
+      .get<ProjectReport>(url, this.httpOptions).pipe();
   }
 }

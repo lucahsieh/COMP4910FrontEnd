@@ -44,7 +44,7 @@ export class WpReportStepperCreationComponent implements OnInit {
           .calculateActual(this.wpr.workPackageId, this.f.startDate.value, this.f.endDate.value, row.labourGradeId)
           .subscribe(result => {
             console.log(result);
-            row.actualToDate = result;
+            row.totalDays = result;
             this.updateComplete(row);
             this.updateVariance(row);
           });
@@ -54,9 +54,9 @@ export class WpReportStepperCreationComponent implements OnInit {
 
   // (estimated - budget) / budget
   updateVariance(row: WPReportRow) {
-    if (isNaN(row.reEestimate)) return;
+    if (isNaN(row.reETC)) return;
     if (isNaN(row.reBudgetDay)) return;
-    let estimate: number = row.reEestimate;
+    let estimate: number = row.reETC;
     let budget: number = row.reBudgetDay;
     row.variance = (estimate - budget) / budget * 100;
     if (isNaN(row.variance) || !isFinite(row.variance))
@@ -66,10 +66,10 @@ export class WpReportStepperCreationComponent implements OnInit {
 
   // (actual) / estimate
   updateComplete(row: WPReportRow) {
-    if (isNaN(row.actualToDate)) return;
-    if (isNaN(row.reEestimate)) return;
-    let estimate: number = row.reEestimate;
-    let actual: number = row.actualToDate;
+    if (isNaN(row.totalDays)) return;
+    if (isNaN(row.reETC)) return;
+    let estimate: number = row.reETC;
+    let actual: number = row.totalDays;
     row.complete = actual / estimate * 100;
     if (isNaN(row.complete) || !isFinite(row.complete))
       row.complete = 0;

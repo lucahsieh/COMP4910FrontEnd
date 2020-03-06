@@ -15,10 +15,13 @@ import { WpReportStepperCreationComponent } from './component/wp-report-stepper-
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material';
+import { ProjectReportListComponent } from './pages/project-report-list/project-report-list.component';
+import { ProjectReportViewComponent } from './pages/project-report-view/project-report-view.component';
+import { ProjectReportPmViewComponent } from './component/project-report-pm-view/project-report-pm-view.component';
 
 
 @NgModule({
-  declarations: [ReportsComponent, WpReportCreationComponent, WpReportComponent, WpReportViewComponent, WpReportStepperCreationComponent],
+  declarations: [ReportsComponent, WpReportCreationComponent, WpReportComponent, WpReportViewComponent, WpReportStepperCreationComponent, ProjectReportListComponent, ProjectReportViewComponent, ProjectReportPmViewComponent],
   imports: [
     CommonModule,
     FormsModule,

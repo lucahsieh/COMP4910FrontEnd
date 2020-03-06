@@ -8,9 +8,9 @@ describe('TimesheetApproverViewListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TimesheetApproverViewListComponent ]
+      declarations: [TimesheetApproverViewListComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
