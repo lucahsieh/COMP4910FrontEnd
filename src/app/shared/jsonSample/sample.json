@@ -474,7 +474,7 @@
         "empLastName": "lastName1"
       }
     ],
-    "lowWp": [
+    "lowWpStatus": [
       {
         "workPackageCode": "A1",
         "workPackageName": "string",
@@ -504,7 +504,7 @@
         "engineersInitials": "CH PL PA RP"
       }
     ],
-    "highWp": [
+    "highWpStatus": [
       {
         "workPackageCode": "A",
         "workPackageName": "string",
