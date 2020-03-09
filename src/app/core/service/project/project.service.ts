@@ -27,7 +27,7 @@ export class ProjectService {
       .get<any>(url, this.httpOptions).pipe();
   }
   getProjectWpDropdown(empId: any): Observable<any> {
-    let url = this.baseUrl + `api/projects/ProjectWpDropdown/${empId}`;
+    let url = this.baseUrl + `api/Projects/GetAllProjectsAndLowerWpForEmp/${empId}`;
     return this.http
       .get<any>(url, this.httpOptions).pipe();
   }
