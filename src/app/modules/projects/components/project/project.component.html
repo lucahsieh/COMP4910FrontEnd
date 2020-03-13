@@ -1,0 +1,170 @@
+<div class="dropdown-divider  my-3"></div>
+
+<h5 class="my-3">Project Information</h5>
+
+<div class="form-row">
+
+    <div class="col-5">
+        <!-- project name -->
+        <div class="input-group ">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Project Name</span>
+            </div>
+            <input type="text" class="form-control" [(ngModel)]="project.projectName" [readOnly]="mode ==='read'">
+        </div>
+        <!-- <span *ngIf="alerts.projectName" class="error my-2"><small>{{alerts.projectName.msg}}</small></span> -->
+    </div>
+
+    <div class="col-1"></div>
+
+    <div class="col-5">
+        <!-- project code -->
+        <div class="input-group ">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Project #</span>
+            </div>
+            <input type="text" class="form-control" [(ngModel)]="project.projectCode" [readOnly]="mode ==='read'">
+        </div>
+        <!-- <span *ngIf="alerts.projectCode" class="error my-2"><small>{{alerts.projectCode.msg}}</small></span> -->
+    </div>
+
+    <div class="col-1"></div>
+</div>
+
+<div class="  my-3"></div>
+
+<div class="dropdown-divider  my-3"></div>
+
+<div class="form-row">
+    <div class="col-5">
+
+        <!-- start date -->
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Start Date</span>
+            </div>
+            <p-calendar *ngIf="mode==='create'" showIcon="true" [(ngModel)]="project.startDate"></p-calendar>
+            <input *ngIf="mode==='read'" type="text" class="form-control" [(ngModel)]="project.startDate" readonly=true>         
+        </div>
+
+    </div>
+    <div class="col-1">
+
+        <div *ngIf="(mode ==='create' || mode ==='update')">
+            <i *ngIf="validUsername" class="material-icons pass my-2">check_circle</i>
+            <i *ngIf="!validUsername" class="material-icons error  my-2">error</i>
+        </div>
+
+    </div>
+    <div class="col-5">
+        <!-- end date -->
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">End Date</span>
+            </div>
+            <p-calendar *ngIf="mode==='create'" showIcon="true" [(ngModel)]="project.endDate"></p-calendar>
+            <input *ngIf="mode==='read'" type="text" class="form-control" [(ngModel)]="project.endDate" readonly=true>
+        </div>
+    </div>
+    <div class="col-1"></div>
+</div>
+
+<div class="  my-3"></div>
+
+
+<div class="form-row">
+    <div class="col-5">
+        <!-- budget -->
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Budget</span>
+            </div>
+            <input type="number" class="form-control" [(ngModel)]="project.budget" [readOnly]="mode ==='read'">
+        </div>
+
+    </div>
+
+    <div class="col-6"></div>
+    <div class="col-1"></div>
+</div>
+
+<div class="dropdown-divider  my-3"></div>
+
+<div class="  my-3"></div>
+
+<div class="form-row">
+    <div class="col-5">
+        <!-- project manager -->
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Project Manager</span>
+            </div>
+        </div>
+        <!-- <span *ngIf="alerts.projectManager" class="error my-2"><small>{{alerts.projectManager.msg}}</small></span> -->
+    </div>
+    <div class="col-1"></div>
+</div>
+
+<div class="dropdown-divider  my-3"></div>
+
+<div class="form-row">
+    <div class="col-5">
+        <!-- team members -->
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Team Members</span>
+            </div>
+        </div>
+        <p-listbox *ngIf="mode ==='create'" [options]="project.employees" multiple="multiple" checkbox="checkbox" 
+        filter="filter" optionLabel="Employees"></p-listbox>
+        <!-- <span *ngIf="alerts.teamMembers" class="error my-2"><small>{{alerts.teamMembers.msg}}</small></span> -->
+    </div>
+    <div class="col-1"></div>
+</div>
+
+<div class="dropdown-divider  my-3"></div>
+<div class="form-row">
+    <div class="col-18">
+        <!-- description -->
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Description</span>
+            </div>
+            <textarea type="text class="form-control cols="70" rows="6" [(ngModel)]="project.description"
+            [readOnly]="mode === 'read'"></textarea>
+        </div>
+        <!-- <span *ngIf="alerts.description" class="error my-2"><small>{{alerts.description.msg}}</small></span> -->
+    </div>
+    <div class="col-1"></div>
+</div>
+
+<div class="  my-3"></div>
+
+<!-- <div *ngIf="mode ==='read'"> -->
+<div>
+    <div class="dropdown-divider  my-3"></div>
+    <h5 class="my-3" >Status</h5>
+    <div class="form-row">
+        <div class="col-12">
+
+            <!-- Closed -->
+            <div class="input-group">
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label
+                        [className]="project.isClosed ? 'btn btn-outline-secondary' : 'btn btn-outline-secondary active'">
+                        <input type="radio" name="isClosed" id="open" [value]=false [(ngModel)]="project.isClosed"
+                            [disabled]="mode==='read'">
+                        Open
+                    </label>
+                    <label
+                        [className]="project.isClosed ? 'btn btn-outline-secondary active' : 'btn btn-outline-secondary'">
+                        <input type="radio" name="isClosed" id="closed" [value]=true [(ngModel)]="project.isClosed"
+                            [disabled]="mode==='read'"> 
+                        Closed
+                    </label>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
