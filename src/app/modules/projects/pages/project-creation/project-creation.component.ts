@@ -14,7 +14,7 @@ import { ListboxModule } from 'primeng/listbox';
 })
 export class ProjectCreationComponent implements OnInit {
 
-  project: Project;
+  newProject: Project;
   mode = MODE.Create;
   teamMembers: SelectItem[] = null;
   employeeDropdown: SelectItem[] = null;
@@ -27,14 +27,14 @@ export class ProjectCreationComponent implements OnInit {
   }
 
   ngOnInit() {
-        this.project = new Project();
+    this.newProject = new Project();
   }
 
   onCreate(e: any) {
     if (!this.validatePage())
       return;
     console.log("POST project");
-    console.log(JSON.stringify(this.project));
+    console.log(JSON.stringify(this.newProject));
     //this.projectService.postProject(this.project).subscribe();
   }
 

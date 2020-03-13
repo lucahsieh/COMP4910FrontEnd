@@ -3,7 +3,7 @@ import { Project } from 'src/app/shared/model/Project';
 import { ProjectService } from 'src/app/core/service/project/project.service';
 import { Alert } from 'src/app/shared/model/Alert';
 import { MODE } from 'src/app/shared/model/MODE';
-import {SelectItem} from 'primeng/api';
+import { SelectItem } from 'primeng/api';
 import { CalendarModule } from 'primeng/calendar';
 import { ListboxModule } from 'primeng/listbox';
 
@@ -22,7 +22,7 @@ export class ProjectComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.project = new Project();
+    // this.project = new Project();
   }
 
 }
