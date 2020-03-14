@@ -10,7 +10,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">Project Name</span>
             </div>
-            <input type="text" class="form-control" [(ngModel)]="project.projectName" [readOnly]="mode ==='read'">
+            <input type="text" class="form-control" [(ngModel)]="project.projectName" [readOnly]="mode ==='read' || mode==='update'">
         </div>
         <span *ngIf="alerts.projectName" class="error my-2"><small>{{alerts.projectName.msg}}</small></span>
     </div>
@@ -23,7 +23,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">Project #</span>
             </div>
-            <input type="text" class="form-control" [(ngModel)]="project.projectCode" [readOnly]="mode ==='read'">
+            <input type="text" class="form-control" [(ngModel)]="project.projectCode" [readOnly]="mode ==='read' || mode==='update'">
 
             <div class="col-1">
 
@@ -104,9 +104,9 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">Project Manager</span>
             </div>
-            <input type="text" class="form-control"
+            <input type="text" class="input-group-text"
                 [(value)]="project.projectManager.empFirstName+' '+project.projectManager.empLastName"
-                [readOnly]="true">
+                [readOnly]="true" style="padding:6px; margin:4px 4px 4px 8px; border:1px solid; background-color:#BBBBBB;">
         </div>
         <span *ngIf="alerts.projectManager" class="error my-2"><small>{{alerts.projectManager.msg}}</small></span>
     </div>
@@ -156,7 +156,7 @@
 
 <div class="  my-3"></div>
 
-<div *ngIf="mode ==='read' || mode==='update' || mode==='create'">
+<div *ngIf="mode ==='read' || mode==='update'">
     <div>
         <div class="dropdown-divider  my-3"></div>
         <h5 class="my-3">Status</h5>

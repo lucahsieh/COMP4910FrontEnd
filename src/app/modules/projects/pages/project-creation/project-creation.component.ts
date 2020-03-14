@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Project } from 'src/app/shared/model/Project';
 import { ProjectService } from 'src/app/core/service/project/project.service';
+import { Routes, RouterModule, Router } from '@angular/router';
 import { Alert } from 'src/app/shared/model/Alert';
 import { MODE } from 'src/app/shared/model/MODE';
 import { SelectItem } from 'primeng/api';
@@ -28,7 +29,8 @@ export class ProjectCreationComponent implements OnInit {
 
   constructor(
     private projectService: ProjectService,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private router: Router
   ) {
   }
 
@@ -46,7 +48,10 @@ export class ProjectCreationComponent implements OnInit {
     //this.projectService.postProject(this.project).subscribe();
   }
 
-  onCancel(e: any) { }
+  //brings user back to projects list
+  onCancel(e: any) { 
+    this.router.navigate(['/content/projects']);
+  }
 
   validatePage(): boolean {
     var result = true;
