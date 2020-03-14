@@ -21,8 +21,9 @@
             </ng-template>
             <ng-template pTemplate="header" let-columns>
                 <tr>
-                    <th *ngFor="let col of columns">
+                    <th *ngFor="let col of columns" [pSortableColumn]="col.field" [ngSwitch]="col.field">
                         {{col.header}}
+                        <p-sortIcon *ngIf="col.header" [field]="col.field"></p-sortIcon>
                     </th>
                 </tr>
                 <tr>

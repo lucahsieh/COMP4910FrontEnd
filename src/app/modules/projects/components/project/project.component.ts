@@ -19,17 +19,16 @@ export class ProjectComponent implements OnInit {
   @Input() mode: MODE;
   @Input() alerts;
   employeeDropdown: SelectItem[] = null;
-  employees: string[] = [];
+  @Input() employees: any[] = [];
 
   constructor(private projectService: ProjectService, private employeeService : EmployeeService) {
   }
 
   ngOnInit() {
     if (this.mode !== MODE.Read) this.populateEmployeeDropdown();
-    this.teamMemberSelect();
   }
 
-  // Populates the employee dropdown of "team members" section
+  // Populates employee dropdown
   populateEmployeeDropdown() {
     this.employeeService
       .getEmployees()
@@ -46,13 +45,25 @@ export class ProjectComponent implements OnInit {
       })
   }
 
-  // Creates an array of names selected from "Team Members" section
+  // Adds selected entries from employee dropdown list to project.teamMembers
   teamMemberSelect() {
-    var temp = [];
-    for (var i = 0; i < this.project.teamMembers.length; i++){
-      temp.push(this.project.teamMembers[i].empFirstName + " " + this.project.teamMembers[i].empLastName);
+    var savedItems = [];
+    if (this.project.teamMembers.length > 0){
+      savedItems = this.project.teamMembers;
     }
-    this.employees = temp;
+    var temp = [];
+    for (var i = 0; i < this.employees.length; i++){
+      var label = this.employees[i].label.split(" ");
+      var efn = label[0];
+      var eln = label[1];
+      var eid = this.employees[i].value;
+
+      var tempJson = {"empFirstName": efn,
+                      "empLastName": eln,
+                      "employeeId": eid};
+      temp.push(tempJson);
+    }
+    this.project.teamMembers = temp;
   }
 
 }

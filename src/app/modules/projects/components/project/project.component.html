@@ -56,7 +56,7 @@
             </div>
             <p-calendar *ngIf="mode==='create' || mode==='update'" showTime="true" showIcon="true"
                 [(ngModel)]="project.startDate" appendTo="body" hideOnDateTimeSelect="true"></p-calendar>
-            <input *ngIf="mode==='read'" type="text" class="form-control" [(ngModel)]="project.startDate" placeHolder="project.startDate" readonly=true>
+            <input *ngIf="mode==='read'" type="text" class="form-control" [(ngModel)]="project.startDate" readonly=true>
         </div>
 
     </div>
@@ -139,7 +139,7 @@
         </div>
         <p-listbox *ngIf="mode ==='create' || mode==='update'" [options]="employeeDropdown" multiple="multiple" checkbox="checkbox"
             filter="filter" optionLabel="label" [style]="{'border-width':'0px','padding':'0px'}"
-            [(ngModel)]="project.teamMembers" (click)="teamMemberSelect()"></p-listbox>
+            [(ngModel)]="employees" (click)="teamMemberSelect()"></p-listbox>
 
 
         <!-- <span *ngIf="alerts.teamMembers" class="error my-2"><small>{{alerts.teamMembers.msg}}</small></span> -->
