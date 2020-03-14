@@ -12,7 +12,7 @@
             </div>
             <input type="text" class="form-control" [(ngModel)]="project.projectName" [readOnly]="mode ==='read'">
         </div>
-        <!-- <span *ngIf="alerts.projectName" class="error my-2"><small>{{alerts.projectName.msg}}</small></span> -->
+        <span *ngIf="alerts.projectName" class="error my-2"><small>{{alerts.projectName.msg}}</small></span>
     </div>
 
     <div class="col-1"></div>
@@ -24,8 +24,19 @@
                 <span class="input-group-text">Project #</span>
             </div>
             <input type="text" class="form-control" [(ngModel)]="project.projectCode" [readOnly]="mode ==='read'">
+
+            <div class="col-1">
+
+                <div *ngIf="(mode ==='create' || mode ==='update')">
+                    <i *ngIf="validProjectCode" class="material-icons pass my-2">check_circle</i>
+                    <i *ngIf="!validProjectCode" class="material-icons error  my-2">error</i>
+                </div>
+        
+            </div>
         </div>
-        <!-- <span *ngIf="alerts.projectCode" class="error my-2"><small>{{alerts.projectCode.msg}}</small></span> -->
+        <span *ngIf="alerts.projectCode" class="error my-2"><small>{{alerts.projectCode.msg}}</small></span>
+
+        
     </div>
 
     <div class="col-1"></div>
@@ -40,19 +51,12 @@
 
         <!-- start date -->
         <div class="input-group">
-            <div class="input-group-prepend">
+            <div class="input-group-prepend"> 
                 <span class="input-group-text">Start Date</span>
             </div>
-            <p-calendar *ngIf="mode==='create'" showIcon="true" [(ngModel)]="project.startDate"></p-calendar>
+            <p-calendar *ngIf="mode==='create' || mode==='update'" showTime="true" showIcon="true" [(ngModel)]="project.startDate"
+            hideOnDateTimeSelect="true"></p-calendar>
             <input *ngIf="mode==='read'" type="text" class="form-control" [(ngModel)]="project.startDate" readonly=true>         
-        </div>
-
-    </div>
-    <div class="col-1">
-
-        <div *ngIf="(mode ==='create' || mode ==='update')">
-            <i *ngIf="validUsername" class="material-icons pass my-2">check_circle</i>
-            <i *ngIf="!validUsername" class="material-icons error  my-2">error</i>
         </div>
 
     </div>
@@ -62,7 +66,8 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">End Date</span>
             </div>
-            <p-calendar *ngIf="mode==='create'" showIcon="true" [(ngModel)]="project.endDate"></p-calendar>
+            <p-calendar *ngIf="mode==='create'" showTime="true" showIcon="true" [(ngModel)]="project.endDate"
+            hideOnDateTimeSelect="true"></p-calendar>
             <input *ngIf="mode==='read'" type="text" class="form-control" [(ngModel)]="project.endDate" readonly=true>
         </div>
     </div>
@@ -108,15 +113,21 @@
 <div class="dropdown-divider  my-3"></div>
 
 <div class="form-row">
-    <div class="col-5">
+    <div class="col-16">
         <!-- team members -->
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text">Team Members</span>
             </div>
+                <div *ngFor="let item of employees" class="ui-g">
+                    <div class="ui-g-24" class="input-group-text" style="padding:6px; margin:4px 4px 4px 8px; border:1px solid; background-color:#BBBBBB;">{{item}}</div>
+                </div>
         </div>
-        <p-listbox *ngIf="mode ==='create'" [options]="project.employees" multiple="multiple" checkbox="checkbox" 
-        filter="filter" optionLabel="Employees"></p-listbox>
+        <p-listbox *ngIf="mode ==='create'" [options]="employeeDropdown" multiple="multiple" checkbox="checkbox" 
+        filter="filter" optionLabel="label" [style]="{'border-width':'0px','padding':'0px'}"
+        [(ngModel)]="project.teamMembers" (click)="teamMemberSelect()"></p-listbox>
+    
+
         <!-- <span *ngIf="alerts.teamMembers" class="error my-2"><small>{{alerts.teamMembers.msg}}</small></span> -->
     </div>
     <div class="col-1"></div>
@@ -140,31 +151,32 @@
 
 <div class="  my-3"></div>
 
-<!-- <div *ngIf="mode ==='read'"> -->
-<div>
-    <div class="dropdown-divider  my-3"></div>
-    <h5 class="my-3" >Status</h5>
-    <div class="form-row">
-        <div class="col-12">
+<div *ngIf="mode ==='read' || mode==='update' || mode==='create'">
+    <div>
+        <div class="dropdown-divider  my-3"></div>
+        <h5 class="my-3" >Status</h5>
+        <div class="form-row">
+            <div class="col-12">
 
-            <!-- Closed -->
-            <div class="input-group">
-                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label
-                        [className]="project.isClosed ? 'btn btn-outline-secondary' : 'btn btn-outline-secondary active'">
-                        <input type="radio" name="isClosed" id="open" [value]=false [(ngModel)]="project.isClosed"
-                            [disabled]="mode==='read'">
-                        Open
-                    </label>
-                    <label
-                        [className]="project.isClosed ? 'btn btn-outline-secondary active' : 'btn btn-outline-secondary'">
-                        <input type="radio" name="isClosed" id="closed" [value]=true [(ngModel)]="project.isClosed"
-                            [disabled]="mode==='read'"> 
-                        Closed
-                    </label>
+                <!-- status (isClosed) -->
+                <div class="input-group">
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label
+                            [className]="project.isClosed ? 'btn btn-outline-secondary' : 'btn btn-outline-secondary active'">
+                            <input type="radio" name="isClosed" id="open" [value]=false [(ngModel)]="project.isClosed"
+                                [disabled]="mode==='create' || mode==='read'">
+                            Open
+                        </label>
+                        <label
+                            [className]="project.isClosed ? 'btn btn-outline-secondary active' : 'btn btn-outline-secondary'">
+                            <input type="radio" name="isClosed" id="closed" [value]=true [(ngModel)]="project.isClosed"
+                                [disabled]="mode==='create' || mode==='read'"> 
+                            Closed
+                        </label>
+                    </div>
                 </div>
-            </div>
 
+            </div>
         </div>
     </div>
 </div>

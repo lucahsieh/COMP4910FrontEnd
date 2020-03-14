@@ -6,22 +6,22 @@ export class Project {
 
     constructor() {
         this.projectId=null;
-        this.projectName="Test Project Name";
+        this.projectName="";
         this.budget=0;
-        this.description="Test Description";
+        this.description="";
         this.projectManager = new Employee();
         this.teamMembers = [];
         this.startDate=null;
         this.endDate=null;
         this.isClosed=false;
-        this.employees=["hi", "hello", "bye"];
+        this.employees=[];
     };
     projectId: number;
     projectName: string;
     description: string;
     budget: number;
     projectManager: Employee;
-    teamMembers: Employee[];
+    teamMembers: any[];
     startDate: Date;
     endDate: Date;
     employeeProjectAssignments?: any;
