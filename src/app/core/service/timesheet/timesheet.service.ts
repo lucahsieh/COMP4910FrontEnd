@@ -47,7 +47,7 @@ export class TimesheetService {
   }
 
   getPendingTimesheets(aprId: any): Observable<Timesheet[]> {
-    let url = this.baseUrl + `api/timesheets/getAllPendingTimesheet/${aprId}`;
+    let url = this.baseUrl + `api/Timesheets/GetTimesheetsByApproverId/${aprId}`;
     return this.http
       .get<Timesheet[]>(url, this.httpOptions).pipe();
   }

@@ -8,7 +8,7 @@
     "/api/Credentials/CheckEmployeeCodeAvailability/:test": "/CheckEmployeeCodeAvailability",
     "/api/timesheets/availableTimesheetId": "/avalidableTimesheetID",
     "/api/Timesheets/GetTimesheetsByEmpId/:id": "/get_AllTimesheet",
-    "/api/timesheets/getAllPendingTimesheet/:id": "/getAllPendingTimesheetByApproverEmpId",
+    "/api/Timesheets/GetTimesheetsByApproverId/:id": "/getAllPendingTimesheetByApproverEmpId",
     "/api/timesheets/:id": "/get_Timesheet",
     "/api/Projects/GetAllProjectsAndLowerWpForEmp/:empid": "/projectWpDropdown",
     "/api/reports/wpReport/calculateActual": "/requestActual",
