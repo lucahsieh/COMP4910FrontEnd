@@ -6,6 +6,9 @@ import { MODE } from 'src/app/shared/model/MODE';
 import { SelectItem } from 'primeng/api';
 import { CalendarModule } from 'primeng/calendar';
 import { ListboxModule } from 'primeng/listbox';
+import { AuthenticationService } from 'src/app/core/service/authentication.service';
+import { Employee } from 'src/app/shared/model/Employee';
+import { User, convertToEmployee } from 'src/app/shared/model/User';
 
 @Component({
   selector: 'app-project-creation',
@@ -23,11 +26,16 @@ export class ProjectCreationComponent implements OnInit {
   validStartDate: boolean = false;
   alerts = {};
 
-  constructor(private projectService: ProjectService) {
+  constructor(
+    private projectService: ProjectService,
+    private authService: AuthenticationService
+  ) {
   }
 
   ngOnInit() {
     this.newProject = new Project();
+    let currentUser: User = this.authService.currentUserValue;
+    this.newProject.projectManager = convertToEmployee(currentUser);
   }
 
   onCreate(e: any) {
@@ -73,13 +81,13 @@ export class ProjectCreationComponent implements OnInit {
     return (this.alerts[fieldName] != '') ? this.alerts[fieldName].msg : null;
   }
 
-    // validates projectCode is unique
-    // validateProjectCode() {
-    //   this.projectService.checkProjectCode(this.newProject.projectCode)
-    //     .subscribe(response => {
-    //       console.log(response);
-    //       this.validProjectCode = response;
-    //     });
-    // }
+  // validates projectCode is unique
+  // validateProjectCode() {
+  //   this.projectService.checkProjectCode(this.newProject.projectCode)
+  //     .subscribe(response => {
+  //       console.log(response);
+  //       this.validProjectCode = response;
+  //     });
+  // }
 
 }
