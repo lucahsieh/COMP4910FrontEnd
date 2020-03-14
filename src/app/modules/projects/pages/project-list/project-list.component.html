@@ -43,8 +43,8 @@
             <ng-template pTemplate="body" let-rowData let-columns="columns">
                 <tr [pSelectableRow]="rowData">
                     <td *ngFor="let col of columns">
-                        <span *ngIf="col.field !=='activation' && col.field !=='button'">{{rowData[col.field]}}</span>
-                        <h5 *ngIf="col.field ==='activation'">
+                        <span *ngIf="col.field !=='isClosed' && col.field !=='button'">{{rowData[col.field]}}</span>
+                        <h5 *ngIf="col.field ==='isClosed'">
                             <span class="badge badge-success" *ngIf="rowData[col.field]">Open</span>
                             <span class="badge badge-danger" *ngIf="!rowData[col.field]">Closed</span>
                         </h5>

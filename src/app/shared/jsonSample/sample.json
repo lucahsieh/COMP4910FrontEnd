@@ -566,5 +566,71 @@
       "wpReCompletion": 70.32,
       "wpPmCompletion": 70.32
     }
+  },
+  "get_projects": [
+    {
+      "projectId": 5,
+      "projectName": "Super Project",
+      "projectManager": {
+        "employeeId": 2,
+        "empFirstName": "Sham",
+        "empLastName": "Saini"
+      },
+      "startDate": "0001-01-01T00:00:00",
+      "endDate": "0001-01-01T00:00:00",
+      "isClosed": false
+    },
+    {
+      "projectId": 6,
+      "projectName": "Super Project 2",
+      "projectManager": {
+        "employeeId": 2,
+        "empFirstName": "Sham",
+        "empLastName": "Saini"
+      },
+      "startDate": "0001-01-01T00:00:00",
+      "endDate": "0001-01-01T00:00:00",
+      "isClosed": false
+    }
+  ],
+  "get_project": {
+      "projectId": 1,
+      "projectName": "Super Project 2",
+      "budget": 50000,
+      "projectManager": {
+        "employeeId": 2,
+        "empFirstName": "Sham",
+        "empLastName": "Saini"
+      },
+      "startDate": "0001-01-01T00:00:00",
+      "endDate": "0001-01-01T00:00:00",
+      "isClosed": false
+  },
+  "post_project": {
+    "projectId": 1,
+    "projectName": "",
+    "projectCode": null,
+    "budget": 50000,
+    "startDate": "0001-01-01T00: 00: 00",
+    "endDate": "0001-01-01T00: 00: 00",
+    "projectManager": {
+      "employeeId": 2,
+      "empFirstName": "Sham",
+      "empLastName": "Saini"
+    },
+    "teamMembers": [
+      {
+        "employeeId": 1,
+        "empFirstName": "Sham",
+        "empLastName": "Saini"
+      },
+      {
+        "employeeId": 2,
+        "empFirstName": "Sam",
+        "empLastName": "Shaini"
+      }
+    ],
+    "description": "Thisprojectisabigone",
+    "isClosed": false
   }
 }

@@ -45,7 +45,7 @@ export class ProjectCreationComponent implements OnInit {
       return;
     console.log("POST project");
     console.log(JSON.stringify(this.newProject));
-    //this.projectService.postProject(this.project).subscribe();
+    this.projectService.postProject(this.newProject).subscribe();
   }
 
   //brings user back to projects list
