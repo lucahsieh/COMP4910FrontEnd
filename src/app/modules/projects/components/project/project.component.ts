@@ -26,6 +26,7 @@ export class ProjectComponent implements OnInit {
 
   ngOnInit() {
     if (this.mode !== MODE.Read) this.populateEmployeeDropdown();
+    this.teamMemberSelect();
   }
 
   // Populates the employee dropdown of "team members" section
@@ -49,7 +50,7 @@ export class ProjectComponent implements OnInit {
   teamMemberSelect() {
     var temp = [];
     for (var i = 0; i < this.project.teamMembers.length; i++){
-      temp.push(this.project.teamMembers[i].label);
+      temp.push(this.project.teamMembers[i].empFirstName + " " + this.project.teamMembers[i].empLastName);
     }
     this.employees = temp;
   }

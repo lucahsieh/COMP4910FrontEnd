@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Project } from 'src/app/shared/model/Project';
 import { ProjectService } from 'src/app/core/service/project/project.service';
+import { Routes, RouterModule, Router } from '@angular/router';
 import { Alert } from 'src/app/shared/model/Alert';
 import { MODE } from 'src/app/shared/model/MODE';
 import { SelectItem } from 'primeng/api';
@@ -18,7 +19,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 export class ProjectEditComponent implements OnInit {
 
   project: Project;
-  mode = MODE.Create;
+  mode = MODE.Update;
   teamMembers: SelectItem[] = null;
   employeeDropdown: SelectItem[] = null;
   // project validation
@@ -29,25 +30,27 @@ export class ProjectEditComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private projectService: ProjectService,
-    private employeeService: EmployeeService,
-    private modalService: BsModalService
+    private router: Router
   ) { }
   ngOnInit() {
-    // this.route.paramMap.subscribe(params => {
-    //   var id = params.get('projId');
-    //   this.projectService.getProject(id).subscribe(e => this.project = e);
-    // });
+    this.route.paramMap.subscribe(params => {
+      var id = params.get('projectId');
+      this.projectService.getProject(id).subscribe(e => this.project = e);
+    });
   }
 
   onUpdate() {
     if (!this.validatePage())
       return;
-    console.log("PUT project");
+    console.log("POST project");
     console.log(JSON.stringify(this.project));
-    // this.employeeService.putProject(this.project).subscribe();
+    this.projectService.postProject(this.project).subscribe();
   }
 
-  onCancel(e: any) { }
+  //brings user back to projects list
+  onCancel(e: any) { 
+    this.router.navigate(['/content/projects']);
+  }
 
   validatePage(): boolean {
     var result = true;

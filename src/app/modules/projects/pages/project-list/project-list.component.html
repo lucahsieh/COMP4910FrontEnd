@@ -1,6 +1,6 @@
-<button type="button" class="btn btn-primary my-2" routerLink="creation">Create</button>
+<!-- <button type="button" class="btn btn-primary my-2" routerLink="creation">Create</button>
 <button type="button" class="btn btn-primary my-2" [routerLink]="['edit', 111]">edit</button>
-<button type="button" class="btn btn-primary my-2" [routerLink]="['view', 111]">view</button>
+<button type="button" class="btn btn-primary my-2" [routerLink]="['view', 111]">view</button> -->
 
 <div class="card mx-1">
     <div class="card-body">
@@ -27,15 +27,15 @@
                 </tr>
                 <tr>
                     <th *ngFor="let col of columns" [ngSwitch]="col.field">
-                        <input *ngSwitchCase="'empCode'" pInputText type="text"
+                        <input *ngSwitchCase="'projectId'" pInputText type="text"
                             (input)="dt.filter($event.target.value, col.field, 'contains')" style="margin-left:-6px;">
-                        <input *ngSwitchCase="'empName'" pInputText type="text"
+                        <input *ngSwitchCase="'projectName'" pInputText type="text"
                             (input)="dt.filter($event.target.value, col.field, 'contains')" style="margin-left:-6px;">
-                        <input *ngSwitchCase="'empUsername'" pInputText type="text"
+                        <input *ngSwitchCase="'projectManager'" pInputText type="text"
                             (input)="dt.filter($event.target.value, col.field, 'contains')" style="margin-left:-6px;">
-                        <input *ngSwitchCase="'supervisorName'" pInputText type="text"
+                        <input *ngSwitchCase="'startDate'" pInputText type="text"
                             (input)="dt.filter($event.target.value, col.field, 'contains')" style="margin-left:-6px;">
-                        <input *ngSwitchCase="'approverName'" pInputText type="text"
+                        <input *ngSwitchCase="'endDate'" pInputText type="text"
                             (input)="dt.filter($event.target.value, col.field, 'contains')" style="margin-left:-6px;">
                     </th>
                 </tr>
@@ -50,9 +50,9 @@
                         </h5>
                         <div *ngIf="col.field ==='button'">
                             <button type="button" class="btn btn-link btn-sm"
-                                [routerLink]="['view', rowData.employeeId]">View</button>
+                                [routerLink]="['view', rowData.projectId]">View</button>
                             <button type="button" class="btn btn-link btn-sm"
-                                [routerLink]="['edit', rowData.employeeId]">Edit</button>
+                                [routerLink]="['edit', rowData.projectId]">Edit</button>
                         </div>
                     </td>
                 </tr>

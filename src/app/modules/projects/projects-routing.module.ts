@@ -9,8 +9,8 @@ import { ProjectEditComponent } from './pages/project-edit/project-edit.componen
 
 const routes: Routes = [
   { path: '', component: ProjectListComponent, data: { breadcrumb: null } },
-  { path: 'view/:projId', component: ProjectViewComponent, data: { breadcrumb: 'Project View' } },
-  { path: 'edit/:projId', component: ProjectEditComponent, data: { breadcrumb: 'Project Edit' } },
+  { path: 'view/:projectId', component: ProjectViewComponent, data: { breadcrumb: 'Project View' } },
+  { path: 'edit/:projectId', component: ProjectEditComponent, data: { breadcrumb: 'Project Edit' } },
   { path: 'list', component: ProjectListComponent, data: { breadcrumb: 'Project List' } },
   { path: 'creation', component: ProjectCreationComponent, data: { breadcrumb: 'Project Creation' } }
 ];

@@ -21,7 +21,7 @@ export class Project {
     description: string;
     budget: number;
     projectManager: Employee;
-    teamMembers: any[];
+    teamMembers: Employee[];
     startDate: Date;
     endDate: Date;
     employeeProjectAssignments?: any;
