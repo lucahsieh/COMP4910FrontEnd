@@ -5,9 +5,10 @@ export class WorkPackage {
     workPackageId: number;
     projectId: number;
     responsibleEngineer: Employee;
-    engineers: Employee[];
+    workers: Employee[];
     workPackageCode: string;
-    name: string;
+    workPackageTitle: string;
+    contractor: string;
     description: string;
     proposedHours: number;
     budgetHours: number;
@@ -16,7 +17,7 @@ export class WorkPackage {
     parentWorkPackageId: number;
     parentWorkPackage?: WorkPackage;
     childrenWorkPackages?: WorkPackage;
-    project?: Project;
+    projectName?: Project;
     timesheetRows?: any;
     employeeWorkPackageAssignments?: any;
     lastUpdatedBy: string;
