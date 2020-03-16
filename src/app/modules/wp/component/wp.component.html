@@ -1,1 +1,143 @@
-<p>wp works!</p>
+<div class="dropdown-divider  my-3"></div>
+
+<h5 class="my-3">Work Package Information</h5>
+
+<div class="form-row">
+    <div class="col-5">
+        <!-- project name -->
+        <div class="input-group ">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Project Name</span>
+            </div>
+            <input type="text" class="form-control" [(ngModel)]="wp.projectName" [readOnly]="(mode ==='read' || mode==='update' || mode==='create')">
+
+        </div>
+        <!--<span *ngIf="alerts.firstName" class="error my-2"><small>{{alerts.fir.msg}}</small></span>-->
+
+
+
+    </div>
+    <div class="col-1"></div>
+    <div class="col-5">
+
+        <!-- project Id -->
+        <div class="input-group ">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Project ID</span>
+            </div>
+            <input type="text" class="form-control" [(ngModel)]="wp.projectId" [readOnly]="true">
+        </div>
+        <!--<span *ngIf="alerts.lastName" class="error my-2"><small>{{alerts.lastName.msg}}</small></span>-->
+
+
+    </div>
+    <div class="col-1"></div>
+</div>
+<div class="  my-3"></div>
+<div class="form-row">
+    <div class="col-5">
+
+        <!-- wp title -->
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">W.P. Title</span>
+            </div>
+            <input type="text" class="form-control" [(ngModel)]="wp.wpTitle" (blur)="onExitUserName()"
+                [readOnly]="mode ==='read' || mode=='update'">
+        </div>
+
+    </div>
+    <div class="col-1">
+        <div *ngIf="(mode ==='create' || mode ==='update')">
+            <i *ngIf="validUsername" class="material-icons pass my-2">check_circle</i>
+            <i *ngIf="!validUsername" class="material-icons error  my-2">error</i>
+        </div>
+    </div>
+    <div class="col-5">
+        <!-- wp Id -->
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">W.P. ID</span>
+            </div>
+            <input type="text" class="form-control" [(ngModel)]="wp.wpId" [readOnly]="true">
+        </div>
+        <button *ngIf="mode==='update'" type="button" class="btn btn-outline-secondary  m-1 px-3"
+            (click)="onRestPw()">Reset
+            Password</button>
+
+
+    </div>
+    <div class="col-1"></div>
+</div>
+<div class="  my-3"></div>
+<div class="form-row">
+    <div class="col-5">
+        <!-- contractor -->
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Contractor</span>
+            </div>
+            <input type="text" class="form-control" [(ngModel)]="wp.contractor" (blur)="onExitEmployeeId()"
+                [readOnly]="mode ==='read' || mode=='update'">
+        </div>
+
+    </div>
+    <div class="col-1">
+        <div *ngIf="(mode ==='create' || mode ==='update')">
+            <i *ngIf="validEmployeeCode" class="material-icons pass my-2">check_circle</i>
+            <i *ngIf="!validEmployeeCode" class="material-icons error  my-2">error</i>
+        </div>
+    </div>
+    <div class="col-5">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Issue Date</span>
+            </div>
+            <input type="text" class="form-control" [(ngModel)]="wp.issueDate" [readOnly]="true">
+        </div>
+    </div>
+    <div class="col-1"></div>
+</div>
+<div class="  my-3"></div>
+<div class="form-row">
+    <div class="col-5">
+
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Responsible Engineer</span>
+            </div>
+            <input type="text" class="form-control" value="{{employee.labourGrade.labourGradeName}}"
+                *ngIf="mode==='read'" [readOnly]="true">
+            <p-dropdown class="form-control" [options]="greadeDropdown" [(ngModel)]="selectedGrade"
+                *ngIf="mode ==='create' || mode==='update'"
+                placeholder="{{employee.labourGrade ? employee.labourGrade.labourGradeName : 'choose a Labour Grade'}}"
+                optionLabel="label" [style]="{'border-width':'0px','padding':'0px'}"></p-dropdown>
+        </div>
+        <!--<span *ngIf="alerts.labourGrade" class="error my-2"><small>{{alerts.labourGrade.msg}}</small></span>-->
+
+    </div>
+    <div class="col-1"></div>
+    <div class="col-5">
+
+        <!-- supervisor -->
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Parent W.P.</span>
+            </div>
+            <input type="text" class="form-control"
+                value="{{employee.supervisor.empFirstName}} {{employee.supervisor.empLastName}}" *ngIf="mode==='read'"
+                [readOnly]="true">
+            <p-dropdown class="form-control" [options]="employeeDropdown" [(ngModel)]="selectedSupervisor"
+                *ngIf="mode ==='create' || mode==='update'"
+                placeholder="{{employee.supervisor ? employee.supervisor.empFirstName + ' ' + employee.supervisor.empLastName : 'choose a supervisor'}}"
+                optionLabel="label" [style]="{'border-width':'0px','padding':'0px'}"></p-dropdown>
+        </div>
+        <span *ngIf="alerts.supervisor" class="error my-2"><small>{{alerts.supervisor.msg}}</small></span>
+
+
+    </div>
+    <div class="col-1"></div>
+</div>
+<div class="  my-3"></div>
+
+<div class="dropdown-divider  my-3"></div>

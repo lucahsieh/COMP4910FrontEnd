@@ -566,5 +566,43 @@
       "wpReCompletion": 70.32,
       "wpPmCompletion": 70.32
     }
-  }
+  },
+  "get_AllWp" : [
+    {
+      "workPackageId": 1,
+      "projectId": 12345657,		
+      "projectName": "string",	
+      "workPackageTitle": "string",	
+      "isClosed": true,			
+      "responsibleEngineer": {
+        "employeeId": 1,
+        "empFirstName": "Carl",
+        "empLastName": "Weathers"
+      }  
+    },
+    {
+      "workPackageId": 2,
+      "projectId": 7654321,		
+      "projectName": "string",	
+      "workPackageTitle": "string",	
+      "isClosed": true,			
+      "responsibleEngineer": {
+        "employeeId": 2,
+        "empFirstName": "Jason",
+        "empLastName": "Statham"
+      }  
+    },
+    {
+      "workPackageId": 3,
+      "projectId": 4545463,		
+      "projectName": "string",	
+      "workPackageTitle": "string",	
+      "isClosed": true,			
+      "responsibleEngineer": {
+        "employeeId": 3,
+        "empFirstName": "Bob",
+        "empLastName": "Bob"
+      }  
+    }    
+  ]
 }

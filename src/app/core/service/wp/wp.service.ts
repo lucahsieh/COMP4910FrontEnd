@@ -28,6 +28,11 @@ export class WpService {
     return this.http.get<LabourGrade[]>(url).pipe()
   }
 
+  getAllWp(): Observable<WorkPackage[]> {
+    let url = this.baseUrl + `api/WorkPackages`;
+    return this.http.get<WorkPackage[]>(url).pipe()
+  }
+
   getAllWpByEmployeeId(id): Observable<WorkPackage[]> {
     let url = this.baseUrl + `getAllWpByEmployeeId/${id}`;
     return this.http.get<WorkPackage[]>(url).pipe();

@@ -13,5 +13,6 @@
     "/api/projects/ProjectWpDropdown/:empid": "/projectWpDropdown",
     "/api/reports/wpReport/calculateActual": "/requestActual",
     "/api/reports/wpReport/:wpReportId": "/getWpReprot",
-    "/api/reports/projectReport/:projectReportId": "/get__ProjectReport"
+    "/api/reports/projectReport/:projectReportId": "/get__ProjectReport",
+    "/api/WorkPackages": "/get_AllWp"
 }
