@@ -46,6 +46,7 @@ export class WpListComponent implements OnInit {
       { field: 'wpId', header: 'WP Id' },
       { field: 'wpTitle', header: 'WP Title' },
       { field: 'responsibleEngineer', header: 'Responsible Engineer' },
+      { field: 'status', header: 'Status'},
       { field: 'button', header: '' },
     ]
   }

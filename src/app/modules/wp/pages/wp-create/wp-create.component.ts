@@ -29,4 +29,24 @@ export class WpCreateComponent implements OnInit {
     this.wp.projectId = 11223344;
   }
 
+  validatePage(): boolean {
+    var result = true;
+    if (!this.wp.workPackageTitle === null || this.wp.workPackageTitle.match(/^ *$/) !== null) {
+      this.alerts['firstName'] = new Alert('danger', 5000, `First Name cannot be empty`);
+      result = false;
+    }
+/*    if (!this.wp.contractor === null || this.wp.workPackageId.match(/^ *$/) !== null) {
+      this.alerts['lastName'] = new Alert('danger', 5000, `Last Name cannot be empty`);
+      result = false;
+    }
+     if (!this.validUsername) {
+      this.alerts['userName'] = new Alert('danger', 5000, `User Name: ${this.employee.empUsername} is not allowed`);
+      result = false;
+    }
+    if (!this.validEmployeeCode) {
+      this.alerts['employeeCode'] = new Alert('danger', 5000, `Employee ID : ${this.employee.empCode} is not allowed`);
+      result = false;
+    } */
+    return result;
+  }
 }
