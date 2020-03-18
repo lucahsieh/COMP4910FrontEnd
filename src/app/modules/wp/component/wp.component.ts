@@ -4,7 +4,6 @@ import { WorkPackage } from 'src/app/shared/model/WorkPackage';
 import { WpService } from 'src/app/core/service/wp/wp.service';
 import { EmployeeService } from 'src/app/core/service/employee/employee.service';
 import { MODE } from 'src/app/shared/model/MODE';
-import { Alert } from 'src/app/shared/model/Alert';
 
 @Component({
   selector: 'app-wp',
@@ -21,6 +20,9 @@ export class WpComponent implements OnInit {
   selectedParent: SelectItem;
   selectedEngineer: SelectItem;
   selectedWorkers: SelectItem[] = null;
+
+  labourGrades: any[] = [];
+  cols: any[];
   //validation
   @Input() validWPId: boolean;
 
@@ -34,6 +36,8 @@ export class WpComponent implements OnInit {
     if (this.mode !== MODE.Read) this.populateEngineerDropdown();
     if (this.mode !== MODE.Read) this.populateParentDropdown();
     if (this.mode !== MODE.Read) this.populateWorkerDropdown();
+    this.initCols();
+    this.initLabourGrades();
   }
 
   populateEngineerDropdown() {
@@ -50,10 +54,55 @@ export class WpComponent implements OnInit {
   }
 
   populateParentDropdown() {
-
+    this.wpService
+      .getAllWpByProjectId()
+      .subscribe(packages => {
+        this.parentWPDropdown = [];
+        console.log(this.parentWPDropdown);
+        packages.forEach(p => {
+          this.parentWPDropdown.push(
+            {label: `${p.workPackageTitle}`, value: p.workPackageId}
+          )
+        })
+      })
   }
 
   populateWorkerDropdown() {
+    this.empService
+    .getEmployees()
+    .subscribe(employees => {
+      this.workerDropdown = [];
+      employees.forEach(e => {
+        this.workerDropdown.push(
+          { label: `${e.empFirstName} ${e.empLastName}`, value: e.employeeId }
+        )
+      })
+    })
+  }
 
+  initLabourGrades() {
+    this.empService
+      .getLabourGrades()
+      .subscribe(grades => {
+        this.labourGrades = [];
+        grades.forEach(g => {
+          console.log(g);
+          this.labourGrades.push(
+            { label: `${g.labourGradeName}`, value: g.labourGradeId }
+          );
+        })
+      })
+  }
+
+  initCols() {
+    this.cols = [
+      { field: '1', header: 'P1' },
+      { field: '2', header: 'P2' },
+      { field: '3', header: 'P3' },
+      { field: '4', header: 'P4' },
+      { field: '5', header: 'P5' },
+      { field: '6', header: 'SS'},
+      { field: '7', header: 'DD' },
+    ]
   }
 }

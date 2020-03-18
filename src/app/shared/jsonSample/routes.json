@@ -14,5 +14,6 @@
     "/api/reports/wpReport/calculateActual": "/requestActual",
     "/api/reports/wpReport/:wpReportId": "/getWpReprot",
     "/api/reports/projectReport/:projectReportId": "/get__ProjectReport",
-    "/api/WorkPackages": "/get_AllWp"
+    "/api/WorkPackages": "/get_AllWp",
+    "/api/WorkPackages/getAllWpByProjectId": "/get_WpByProjectId"
 }

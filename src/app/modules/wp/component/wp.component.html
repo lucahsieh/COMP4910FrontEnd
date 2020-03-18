@@ -57,13 +57,10 @@
         <!-- wp Id -->
         <div class="input-group">
             <div class="input-group-prepend">
-                <span class="input-group-text">W.P. ID</span>
+                <span class="input-group-text">W.P. Code</span>
             </div>
-            <input type="text" class="form-control" [(ngModel)]="wp.wpId" [readOnly]="true">
+            <input type="text" class="form-control" [(ngModel)]="wp.wpId" [readOnly]="mode ==='read'">
         </div>
-        <button *ngIf="mode==='update'" type="button" class="btn btn-outline-secondary  m-1 px-3"
-            (click)="onRestPw()">Reset
-            Password</button>
 
 
     </div>
@@ -83,17 +80,22 @@
 
     </div>
     <div class="col-1">
-        <div *ngIf="(mode ==='create' || mode ==='update')">
+        <!--<div *ngIf="(mode ==='create' || mode ==='update')">
             <i *ngIf="validEmployeeCode" class="material-icons pass my-2">check_circle</i>
             <i *ngIf="!validEmployeeCode" class="material-icons error  my-2">error</i>
-        </div>
+        </div>-->
     </div>
     <div class="col-5">
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text">Issue Date</span>
             </div>
-            <input type="text" class="form-control" [(ngModel)]="wp.issueDate" [readOnly]="true">
+        <input id="weekEnd" type="text" placeholder="Datepicker" class="form-control" bsDatepicker
+            [outsideClick]="true" [bsConfig]="{selectWeek: true, dateInputFormat: 'YYYY-MM-DD' }"
+            [isDisabled]="(mode == 'read' || mode =='update')"    
+             value="{{ wp.issueDate | date:'yyyy-MM-dd' }}"
+            [readonly]="(mode == 'read' || mode =='update')"
+             /><!--(bsValueChange)="onValueChange($event)"-->
         </div>
     </div>
     <div class="col-1"></div>
@@ -106,11 +108,11 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">Responsible Engineer</span>
             </div>
-            <input type="text" class="form-control" value="{{employee.labourGrade.labourGradeName}}"
+            <input type="text" class="form-control" value="{{wp.responsibleEngineer.employeeId}}"
                 *ngIf="mode==='read'" [readOnly]="true">
-            <p-dropdown class="form-control" [options]="greadeDropdown" [(ngModel)]="selectedGrade"
+            <p-dropdown class="form-control" [options]="engineerDropdown" [(ngModel)]="selectedEngineer"
                 *ngIf="mode ==='create' || mode==='update'"
-                placeholder="{{employee.labourGrade ? employee.labourGrade.labourGradeName : 'choose a Labour Grade'}}"
+                placeholder="{{wp.responsibleEngineer ? wp.responsibleEngineer.employeeId : 'choose a Responsible Engineer'}}"
                 optionLabel="label" [style]="{'border-width':'0px','padding':'0px'}"></p-dropdown>
         </div>
         <!--<span *ngIf="alerts.labourGrade" class="error my-2"><small>{{alerts.labourGrade.msg}}</small></span>-->
@@ -125,14 +127,13 @@
                 <span class="input-group-text">Parent W.P.</span>
             </div>
             <input type="text" class="form-control"
-                value="{{employee.supervisor.empFirstName}} {{employee.supervisor.empLastName}}" *ngIf="mode==='read'"
-                [readOnly]="true">
-            <p-dropdown class="form-control" [options]="employeeDropdown" [(ngModel)]="selectedSupervisor"
+                value="{{wp.projectId}}" *ngIf="mode==='read'" [readOnly]="true">
+            <p-dropdown class="form-control" [options]="parentWPDropdown" [(ngModel)]="selectedParent"
                 *ngIf="mode ==='create' || mode==='update'"
-                placeholder="{{employee.supervisor ? employee.supervisor.empFirstName + ' ' + employee.supervisor.empLastName : 'choose a supervisor'}}"
+                placeholder="{{'choose a Parent WP'}}"
                 optionLabel="label" [style]="{'border-width':'0px','padding':'0px'}"></p-dropdown>
         </div>
-        <span *ngIf="alerts.supervisor" class="error my-2"><small>{{alerts.supervisor.msg}}</small></span>
+        <!--<span *ngIf="alerts.supervisor" class="error my-2"><small>{{alerts.supervisor.msg}}</small></span>-->
 
 
     </div>
@@ -140,4 +141,49 @@
 </div>
 <div class="  my-3"></div>
 
+<div class="form-row">
+    <div class="col-5">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Workers</span>
+            </div>
+            <input type="text" class="form-control" value="{{wp.workers.employeeId}}"
+                *ngIf="mode==='read'" [readOnly]="true">
+            <p-dropdown class="form-control" [options]="workerDropdown" [(ngModel)]="selectedWorker"
+                *ngIf="mode ==='create' || mode==='update'"
+                placeholder="{{'choose a Worker'}}"
+                optionLabel="label" [style]="{'border-width':'0px','padding':'0px'}"></p-dropdown>
+        </div>
+    <div class="col-1"></div>
+</div>
+<div class="  my-3"></div>
+
+<div class="form-row">
+<ng-template pTemplate="header" let-columns>
+    <tr>
+        <th *ngFor="let col of columns">
+            {{col.header}}
+        </th>
+    </tr>
+    <tr>
+        <th *ngFor="let col of columns" [ngSwitch]="col.field">
+            <input *ngSwitchCase="1" pInputText type="text"
+                (input)="dt.filter($event.target.value, col.field, 'contains')">
+            <input *ngSwitchCase="2" pInputText type="text"
+                (input)="dt.filter($event.target.value, col.field, 'contains')">
+            <input *ngSwitchCase="3" pInputText type="text"
+                (input)="dt.filter($event.target.value, col.field, 'contains')">
+            <input *ngSwitchCase="4" pInputText type="text"
+                (input)="dt.filter($event.target.value, col.field, 'contains')">
+            <input *ngSwitchCase="5" pInputText type="text"
+                (input)="dt.filter($event.target.value, col.field, 'contains')">
+            <input *ngSwitchCase="6" pInputText type="text"
+                (input)="dt.filter($event.target.value, col.field, 'contains')">
+            <input *ngSwitchCase="7" pInputText type="text"
+                (input)="dt.filter($event.target.value, col.field, 'contains')">
+        </th>
+    </tr>
+</ng-template>
+</div>
+ 
 <div class="dropdown-divider  my-3"></div>

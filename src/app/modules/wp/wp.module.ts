@@ -17,6 +17,8 @@ import { AlertModule } from 'ngx-bootstrap';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TableModule } from 'primeng/table';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 
 @NgModule({
@@ -27,6 +29,7 @@ import { TableModule } from 'primeng/table';
     WpEditComponent,
     WpViewComponent],
   imports: [
+    //BrowserAnimationsModule,
     CommonModule,
     //SharedModule,
     FormsModule,
@@ -44,6 +47,7 @@ import { TableModule } from 'primeng/table';
      AlertModule.forRoot(),
      ModalModule.forRoot(),
      NgbModule,
+     BsDatepickerModule.forRoot(),
   ]
 })
 export class WpModule { }

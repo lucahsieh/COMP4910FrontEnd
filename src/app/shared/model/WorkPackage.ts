@@ -10,7 +10,7 @@ export class WorkPackage {
     workPackageCode: string;
     workPackageTitle: string;
     contractor: string;
-    issueDate: Date;
+    issueDate: string;
     isClosed: boolean;
     parentWorkPackageId: number;
     parentWorkPackage?: WorkPackage;

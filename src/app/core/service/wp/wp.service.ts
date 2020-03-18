@@ -43,8 +43,8 @@ export class WpService {
     return this.http.get<WorkPackage>(url).pipe();
   }
 
-  getAllWpByProjectId(id): Observable<WorkPackage[]> {
-    let url = this.baseUrl + `getAllWpByProjectId/${id}`;
+  getAllWpByProjectId(): Observable<WorkPackage[]> {
+    let url = this.baseUrl + `api/WorkPackages/getAllWpByProjectId`;
     return this.http.get<WorkPackage[]>(url).pipe();
   }
 

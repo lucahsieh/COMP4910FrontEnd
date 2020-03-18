@@ -27,6 +27,9 @@ export class WpCreateComponent implements OnInit {
     this.wp = new WorkPackage();
     this.wp.projectName = "The Best Project";
     this.wp.projectId = 11223344;
+    const today = new Date();
+    today.getTime();
+    this.wp.issueDate = this.dateFormater(today);
   }
 
   validatePage(): boolean {
@@ -48,5 +51,23 @@ export class WpCreateComponent implements OnInit {
       result = false;
     } */
     return result;
+  }
+
+  onValueChange(value: Date): void {
+    console.log(value);
+    this.wp.issueDate = this.dateFormater(value);
+  }
+
+  dateFormater(d: Date) {
+    var yyyy = d.getFullYear();
+    var MM = ("00" + (d.getMonth() + 1)).slice(-2);
+    var dd = ("00" + (d.getDate())).slice(-2);
+    return `${yyyy}-${MM}-${dd}`;
+  }
+
+  stringToDate(s: string) {
+    var date = new Date(s);
+    console.log(date);
+    return date;
   }
 }
