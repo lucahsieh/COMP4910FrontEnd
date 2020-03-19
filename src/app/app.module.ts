@@ -20,7 +20,11 @@ import { ButtonsModule } from 'ngx-bootstrap';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { AlertModule } from 'ngx-bootstrap/alert';
-import { ProjectsModule} from './modules/projects/projects.module';
+import { ProjectsModule } from './modules/projects/projects.module';
+import { TableModule } from 'primeng/table';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
 
 
 @NgModule({
@@ -38,6 +42,10 @@ import { ProjectsModule} from './modules/projects/projects.module';
     BrowserAnimationsModule,
 
 
+    TableModule,
+    InputTextModule,
+    DialogModule,
+    ButtonModule,
 
 
     // material

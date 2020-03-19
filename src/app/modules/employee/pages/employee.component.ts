@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeService } from 'src/app/core/service/employee/employee.service';
-import { Employee } from 'src/app/shared/model/employee';
+import { Employee } from 'src/app/shared/model/Employee';
 import { UserName } from 'src/app/shared/model/userName';
-import { User } from 'src/app/shared/model/user';
+import { User } from 'src/app/shared/model/User';
 
 @Component({
   selector: 'app-employee',
