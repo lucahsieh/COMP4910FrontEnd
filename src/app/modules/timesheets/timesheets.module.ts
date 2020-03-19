@@ -14,7 +14,9 @@ import { TimesheetApproverViewListComponent } from './pages/timesheet-approver-v
 import { TimesheetApproverViewComponent } from './pages/timesheet-approver-view/timesheet-approver-view.component';
 import { TimesheetEditVersionComponent } from './pages/timesheet-edit-version/timesheet-edit-version.component';
 
-
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,9 @@ import { TimesheetEditVersionComponent } from './pages/timesheet-edit-version/ti
 
     // primeng
     TableModule,
+    InputTextModule,
+    DialogModule,
+    ButtonModule,
   ]
 })
 export class TimesheetsModule { }

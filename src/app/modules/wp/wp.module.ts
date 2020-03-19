@@ -19,6 +19,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TableModule } from 'primeng/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
 
 
 @NgModule({
@@ -36,18 +39,22 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
     WpRoutingModule,
     SharedModule,
 
-     //material
-     MatButtonToggleModule,
+    //material
+    MatButtonToggleModule,
 
-     //primeng
-     DropdownModule,
-     TableModule,
- 
-     // bootstrap
-     AlertModule.forRoot(),
-     ModalModule.forRoot(),
-     NgbModule,
-     BsDatepickerModule.forRoot(),
+    //primeng
+    DropdownModule,
+    TableModule,
+    TableModule,
+    InputTextModule,
+    DialogModule,
+    ButtonModule,
+
+    // bootstrap
+    AlertModule.forRoot(),
+    ModalModule.forRoot(),
+    NgbModule,
+    BsDatepickerModule.forRoot(),
   ]
 })
 export class WpModule { }
