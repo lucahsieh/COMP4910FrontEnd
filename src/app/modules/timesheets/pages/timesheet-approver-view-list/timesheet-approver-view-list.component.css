@@ -1,0 +1,37 @@
+.ui-table.ui-table-cars .ui-table-caption.ui-widget-header {
+    border: 0 none;
+    padding: 12px;
+    text-align: left;
+    font-size: 20px;
+}
+
+.ui-column-filter {
+    margin-top: 1em;
+}
+
+.ui-column-filter .ui-multiselect-label {
+    font-weight: 500;
+}
+
+.ui-table.ui-table-cars .ui-table-thead > tr > th {
+    border: 0 none;
+    text-align: left;
+}
+
+.ui-table-globalfilter-container {
+    float: right;
+    display: inline;
+}
+
+.ui-table.ui-table-cars .ui-table-tbody > tr > td {
+    border: 0 none;
+}
+
+.ui-table.ui-table-cars .ui-table-tbody .ui-column-title {
+    font-size: 16px;
+}
+
+.ui-table.ui-table-cars .ui-paginator {
+    border: 0 none;
+    padding: 1em;
+}

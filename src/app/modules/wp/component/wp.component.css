@@ -1,0 +1,16 @@
+.labourInput {
+    width: 130px;
+}
+
+#labourTable {
+    margin-top: 30px;
+}
+
+.pass{
+    color:green;
+    font-style: normal;
+}
+.error{
+    color:red;
+    font-style: normal;
+}

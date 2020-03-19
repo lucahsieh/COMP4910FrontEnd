@@ -19,20 +19,20 @@
                 </tr>
                 <tr>
                     <th *ngFor="let col of columns" [ngSwitch]="col.field">
-                        <input *ngSwitchCase="'empName'" pInputText type="text"
-                            (input)="dt.filter($event.target.value, col.field, 'contains')">
-                        <input *ngSwitchCase="'supervisor'" pInputText type="text"
-                            (input)="dt.filter($event.target.value, col.field, 'contains')">
-                        <input *ngSwitchCase="'approver'" pInputText type="text"
-                            (input)="dt.filter($event.target.value, col.field, 'contains')">
-                        <input *ngSwitchCase="'weekNumber'" pInputText type="text"
-                            (input)="dt.filter($event.target.value, col.field, 'contains')">
-                        <input *ngSwitchCase="'versionNumber'" pInputText type="text"
-                            (input)="dt.filter($event.target.value, col.field, 'contains')">
-                        <input *ngSwitchCase="'weekEnding'" pInputText type="text"
-                            (input)="dt.filter($event.target.value, col.field, 'contains')">
-                        <input *ngSwitchCase="'status'" pInputText type="text"
-                            (input)="dt.filter($event.target.value, col.field, 'contains')">
+                        <input *ngSwitchCase="'empName'" pInputText type="text" class="ui-column-filter"
+                            style="width: 100%;" (input)="dt.filter($event.target.value, col.field, 'contains')">
+                        <input *ngSwitchCase="'supervisor'" pInputText type="text" class="ui-column-filter"
+                            style="width: 100%;" (input)="dt.filter($event.target.value, col.field, 'contains')">
+                        <input *ngSwitchCase="'approver'" pInputText type="text" class="ui-column-filter"
+                            style="width: 100%;" (input)="dt.filter($event.target.value, col.field, 'contains')">
+                        <input *ngSwitchCase="'weekNumber'" pInputText type="text" class="ui-column-filter"
+                            style="width: 100%;" (input)="dt.filter($event.target.value, col.field, 'contains')">
+                        <input *ngSwitchCase="'versionNumber'" pInputText type="text" class="ui-column-filter"
+                            style="width: 100%;" (input)="dt.filter($event.target.value, col.field, 'contains')">
+                        <input *ngSwitchCase="'weekEnding'" pInputText type="text" class="ui-column-filter"
+                            style="width: 100%;" (input)="dt.filter($event.target.value, col.field, 'contains')">
+                        <input *ngSwitchCase="'status'" pInputText type="text" class="ui-column-filter"
+                            style="width: 100%;" (input)="dt.filter($event.target.value, col.field, 'contains')">
                     </th>
                     <th></th>
                 </tr>

@@ -83,16 +83,19 @@
     "apiId": "Credentials"
   },
   "post_Employee": {
-    "empUsername": "abc323",
-    "empCode": 43429,
+    "empUsername": "gmakasoff",
+    "empPassword": "01234",
+    "empCode": "4",
     "labourGradeId": 0,
-    "empFirstName": "Perry",
-    "empLastName": "Li",
-    "isProjectManager": true,
+    "empFirstName": "Greg",
+    "empLastName": "Makasoff",
+    "timesheetApproverId": 1,
+    "supervisorId": 1,
+    "isProjectManager": false,
     "isAdmin": false,
     "isHumanResources": false,
     "isActivated": true,
-    "jobTitleId": 2
+    "jobTitleId": 1
   },
   "get_AllEmployees": [
     {
@@ -590,7 +593,7 @@
         "employeeId": 2,
         "empFirstName": "Sham",
         "empLastName": "Saini"
-      }, 
+      },
       "description": "this is the description lol 6",
       "startDate": "0001-01-01T00:00:00",
       "endDate": "0001-01-01T00:00:00",
@@ -618,40 +621,39 @@
         "employeeId": 2,
         "empFirstName": "Lebron",
         "empLastName": "James"
-      }, 
+      },
       "description": "Pizza management system",
       "startDate": "2020-01-05T00:00:00",
       "endDate": "2020-02-05T00:00:00",
-      "isClosed": false      
-    }   
+      "isClosed": false
+    }
   ],
   "get_project": {
-      "projectId": 1,
-      "projectName": "Super Project 2",
-      "projectCode": 10001,
-      "budget": 50000,
-      "projectManager": {
-        "employeeId": 2,
+    "projectId": 1,
+    "projectName": "Super Project 2",
+    "projectCode": 10001,
+    "budget": 50000,
+    "projectManager": {
+      "employeeId": 2,
+      "empFirstName": "Sham",
+      "empLastName": "Saini"
+    },
+    "teamMembers": [
+      {
+        "employeeId": 1,
         "empFirstName": "Sham",
         "empLastName": "Saini"
       },
-      "teamMembers": [
-        {
-          "employeeId": 1,
-          "empFirstName": "Sham",
-          "empLastName": "Saini"
-        },
-        {
-          "employeeId": 2,
-          "empFirstName": "Sam",
-          "empLastName": "Shaini"
-        }
-      ],
-      "description": "this is the description lol",
-      "startDate": "0001-01-01T00:00:00",
-      "endDate": "0001-01-01T00:00:00",
-      "isClosed": false
-      
+      {
+        "employeeId": 2,
+        "empFirstName": "Sam",
+        "empLastName": "Shaini"
+      }
+    ],
+    "description": "this is the description lol",
+    "startDate": "0001-01-01T00:00:00",
+    "endDate": "0001-01-01T00:00:00",
+    "isClosed": false
   },
   "post_project": {
     "projectId": 1,
@@ -679,5 +681,72 @@
     ],
     "description": "Thisprojectisabigone",
     "isClosed": false
-  }
+  },
+  "get_AllWp": [
+    {
+      "workPackageId": 1,
+      "projectId": 12345657,
+      "projectName": "string",
+      "workPackageTitle": "string",
+      "isClosed": true,
+      "responsibleEngineer": {
+        "employeeId": 1,
+        "empFirstName": "Carl",
+        "empLastName": "Weathers"
+      }
+    },
+    {
+      "workPackageId": 2,
+      "projectId": 7654321,
+      "projectName": "string",
+      "workPackageTitle": "string",
+      "isClosed": true,
+      "responsibleEngineer": {
+        "employeeId": 2,
+        "empFirstName": "Jason",
+        "empLastName": "Statham"
+      }
+    },
+    {
+      "workPackageId": 3,
+      "projectId": 4545463,
+      "projectName": "string",
+      "workPackageTitle": "string",
+      "isClosed": true,
+      "responsibleEngineer": {
+        "employeeId": 3,
+        "empFirstName": "Bob",
+        "empLastName": "Bob"
+      }
+    }
+  ],
+  "get_WpByProjectId": [
+    {
+      "workPackageId": 1,
+      "projectId": 1234567,
+      "projectName": "string",
+      "workPackageCode": 323,
+      "workPackageTitle": "WorkPackage1",
+      "isClosed": true,
+      "parentWorkPackageId": 4
+    },
+    {
+      "workPackageId": 2,
+      "projectId": 1234567,
+      "projectName": "string",
+      "workPackageCode": 123,
+      "workPackageTitle": "WorkPackage2",
+      "isClosed": true,
+      "parentWorkPackageId": 5
+    },
+    {
+      "workPackageId": 3,
+      "projectId": 7654321,
+      "projectName": "string",
+      "workPackageCode": 321,
+      "workPackageTitle": "WorkPackage2",
+      "isClosed": true,
+      "parentWorkPackageId": 6
+    }
+  ]
 }

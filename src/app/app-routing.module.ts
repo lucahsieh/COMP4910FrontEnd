@@ -53,6 +53,11 @@ const routes: Routes = [
         },
         loadChildren: () => import('./modules/reports/reports.module').then(m => m.ReportsModule)
       },
+      {
+        path: 'wp',
+        data: { breadcrumb: 'work package list' },
+        loadChildren: () => import('./modules/wp/wp.module').then(m => m.WpModule)
+      },
     ]
   },
   // {
