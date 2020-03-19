@@ -86,7 +86,7 @@
     "empUsername": "abc323",
     "empCode": 43429,
     "labourGradeId": 0,
-    "empFirstName": "Perry",
+    "empFirstName": "Pei-Hou",
     "empLastName": "Li",
     "isProjectManager": true,
     "isAdmin": false,
@@ -147,6 +147,41 @@
         "employeeId": 12,
         "empFirstName": "first1",
         "empLastName": "last1"
+      }
+    }
+  ],
+  "get_AllChildEmployees": [
+    {
+      "employeeId": 123,
+      "empCode": 323,
+      "empFirstName": "childfirst1",
+      "empLastName": "childlast1",
+      "timesheetApprover": {
+        "employeeId": 1,
+        "empFirstName": "approver",
+        "empLastName": "guy"
+      }
+    },
+    {
+      "employeeId": 124,
+      "empCode": 323,
+      "empFirstName": "childfirst2",
+      "empLastName": "childlast2",
+      "timesheetApprover": {
+        "employeeId": 1,
+        "empFirstName": "approver",
+        "empLastName": "guy"
+      }
+    },
+    {
+      "employeeId": 125,
+      "empCode": 323,
+      "empFirstName": "childfirst3",
+      "empLastName": "childlast3",
+      "timesheetApprover": {
+        "employeeId": 1,
+        "empFirstName": "approver",
+        "empLastName": "guy"
       }
     }
   ],

@@ -39,12 +39,18 @@ export class EmployeeService {
       .pipe()
   }
 
+  getChildEmployees(id): Observable<Employee[]> {
+    let url = this.baseUrl + `api/employees/${id}`
+    return this.http.get<Employee[]>(url).pipe()
+  }
+
   getEmployees(): Observable<Employee[]> {
     let url = this.baseUrl + `api/employees/allemployees`;
     return this.http
       .get<Employee[]>(url)
       .pipe()
   }
+
   postEmployee(e: Employee): Observable<any> {
     let url = this.baseUrl + `api/employees`;
     let body = {

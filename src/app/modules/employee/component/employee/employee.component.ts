@@ -17,6 +17,7 @@ export class EmployeeComponent implements OnInit {
   employeeDropdown: SelectItem[] = null;
   selectedGrade: SelectItem;
   selectedSupervisor: SelectItem;
+  selectedApprover: SelectItem;
   // userName validation
   @Input() validUsername: boolean;
   @Input() validEmployeeCode: boolean;
