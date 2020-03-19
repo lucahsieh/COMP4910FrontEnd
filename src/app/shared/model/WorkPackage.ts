@@ -17,7 +17,7 @@ export class WorkPackage {
     childrenWorkPackages?: WorkPackage;
     lastUpdatedBy: string;
     lastUpdatedTime: Date;
-    pmPlanning: PMPlanning[];
+    pmPlannings: PMPlanning[];
     name: string;
     engineers: Employee[];
 }

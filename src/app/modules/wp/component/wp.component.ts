@@ -62,7 +62,7 @@ export class WpComponent implements OnInit {
         console.log(this.parentWPDropdown);
         packages.forEach(p => {
           this.parentWPDropdown.push(
-            {label: `${p.workPackageTitle}`, value: p.workPackageId}
+            { label: `${p.workPackageTitle}`, value: p.workPackageId }
           )
         })
       })
@@ -78,7 +78,7 @@ export class WpComponent implements OnInit {
             { label: `${e.empFirstName} ${e.empLastName}`, value: e.employeeId }
           )
         })
-    })
+      })
   }
 
   numberOnly(event): boolean {
@@ -106,14 +106,9 @@ export class WpComponent implements OnInit {
 
   initCols() {
     this.cols = [
-      { field: 'rowName', header: '' },
-      { field: '1', header: 'P1', value: '' },
-      { field: '2', header: 'P2', value: '' },
-      { field: '3', header: 'P3', value: '' },
-      { field: '4', header: 'P4', value: '' },
-      { field: '5', header: 'P5', value: '' },
-      { field: '6', header: 'SS', value: '' },
-      { field: '7', header: 'DD', value: '' },
+      { field: 'labourGradeName', header: 'Labour Grade' },
+      { field: 'pmEAC', header: 'Project Manager EAC' },
+      { field: 'reBudget', header: 'Responsible Engineer Budget' }
     ]
   }
 }

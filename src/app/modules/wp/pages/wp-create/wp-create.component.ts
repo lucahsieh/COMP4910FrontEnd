@@ -17,20 +17,6 @@ export class WpCreateComponent implements OnInit {
 
   wp: WorkPackage;
   hours: PMPlanning[];
-  pm1: string;
-  pm2: string;
-  pm3: string;
-  pm4: string;
-  pm5: string;
-  pm6: string;
-  pm7: string;
-  re1: string;
-  re2: string;
-  re3: string;
-  re4: string;
-  re5: string;
-  re6: string;
-  re7: string;
 
   //wpCode validation
   validWpCode: boolean = false;
@@ -38,8 +24,9 @@ export class WpCreateComponent implements OnInit {
   mode = MODE.Create;
 
   constructor(
-    private wpService: WpService
-  ) {}
+    private wpService: WpService,
+    private employeeService: EmployeeService
+  ) { }
 
   ngOnInit() {
     this.wp = new WorkPackage();
@@ -50,18 +37,33 @@ export class WpCreateComponent implements OnInit {
     this.wp.issueDate = this.dateFormater(today);
   }
 
-    // btn click event of creation
-    onCreate(e: any) {
-      this.collectHours();
-      if (!this.validatePage())
-        return;
-      console.log("POST employee");
-      console.log(JSON.stringify(this.wp));
-      this.wpService.postWorkPackage(this.wp).subscribe();
-    }
-  
-    // btn click event of cancel
-    onCancel(e: any) { }
+  // btn click event of creation
+  onCreate(e: any) {
+    if (!this.validatePage())
+      return;
+    console.log("POST employee");
+    console.log(JSON.stringify(this.wp));
+    this.wpService.postWorkPackage(this.wp).subscribe();
+  }
+
+  // btn click event of cancel
+  onCancel(e: any) { }
+
+
+  initLabourGradePlanning() {
+    this.wp.pmPlannings = [];
+    this.employeeService.getLabourGrades().subscribe(grades => {
+      grades.forEach(grade => {
+        let line = {
+          "labourGradeId": grade.labourGradeId,
+          "labourGradeName": grade.labourGradeName,
+          "pmEAC": 0,
+          "reBudget": 0
+        };
+        this.wp.pmPlannings.push(line);
+      })
+    })
+  }
 
   validatePage(): boolean {
     var result = true;
@@ -90,10 +92,6 @@ export class WpCreateComponent implements OnInit {
 
   validateWpCode() {
     return true;
-  }
-
-  collectHours() {
-    console.log(this.pm1);
   }
 
   onValueChange(value: Date): void {
