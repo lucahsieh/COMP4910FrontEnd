@@ -28,16 +28,21 @@
                 </tr>
                 <tr>
                     <th *ngFor="let col of columns" [ngSwitch]="col.field">
-                        <input *ngSwitchCase="'projectId'" pInputText type="text"
-                            (input)="dt.filter($event.target.value, col.field, 'contains')" style="margin-left:-6px;">
-                        <input *ngSwitchCase="'projectName'" pInputText type="text"
-                            (input)="dt.filter($event.target.value, col.field, 'contains')" style="margin-left:-6px;">
-                        <input *ngSwitchCase="'projectManager'" pInputText type="text"
-                            (input)="dt.filter($event.target.value, col.field, 'contains')" style="margin-left:-6px;">
-                        <input *ngSwitchCase="'startDate'" pInputText type="text"
-                            (input)="dt.filter($event.target.value, col.field, 'contains')" style="margin-left:-6px;">
-                        <input *ngSwitchCase="'endDate'" pInputText type="text"
-                            (input)="dt.filter($event.target.value, col.field, 'contains')" style="margin-left:-6px;">
+                        <input *ngSwitchCase="'projectId'" pInputText type="text" class="ui-column-filter"
+                            (input)="dt.filter($event.target.value, col.field, 'contains')"
+                            style="margin-left:-6px;width: 100%;">
+                        <input *ngSwitchCase="'projectName'" pInputText type="text" class="ui-column-filter"
+                            (input)="dt.filter($event.target.value, col.field, 'contains')"
+                            style="margin-left:-6px;width: 100%;">
+                        <input *ngSwitchCase="'projectManager'" pInputText type="text" class="ui-column-filter"
+                            (input)="dt.filter($event.target.value, col.field, 'contains')"
+                            style="margin-left:-6px;width: 100%;">
+                        <input *ngSwitchCase="'startDate'" pInputText type="text" class="ui-column-filter"
+                            (input)="dt.filter($event.target.value, col.field, 'contains')"
+                            style="margin-left:-6px;width: 100%;">
+                        <input *ngSwitchCase="'endDate'" pInputText type="text" class="ui-column-filter"
+                            (input)="dt.filter($event.target.value, col.field, 'contains')"
+                            style="margin-left:-6px;width: 100%;">
                     </th>
                 </tr>
             </ng-template>

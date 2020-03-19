@@ -21,7 +21,7 @@ export class ProjectComponent implements OnInit {
   employeeDropdown: SelectItem[] = null;
   @Input() employees: any[] = [];
 
-  constructor(private projectService: ProjectService, private employeeService : EmployeeService) {
+  constructor(private projectService: ProjectService, private employeeService: EmployeeService) {
   }
 
   ngOnInit() {
@@ -48,22 +48,34 @@ export class ProjectComponent implements OnInit {
   // Adds selected entries from employee dropdown list to project.teamMembers
   teamMemberSelect() {
     var savedItems = [];
-    if (this.project.teamMembers.length > 0){
+    if (this.project.teamMembers.length > 0) {
       savedItems = this.project.teamMembers;
     }
     var temp = [];
-    for (var i = 0; i < this.employees.length; i++){
+    for (var i = 0; i < this.employees.length; i++) {
       var label = this.employees[i].label.split(" ");
       var efn = label[0];
       var eln = label[1];
       var eid = this.employees[i].value;
 
-      var tempJson = {"empFirstName": efn,
-                      "empLastName": eln,
-                      "employeeId": eid};
+      var tempJson = {
+        "empFirstName": efn,
+        "empLastName": eln,
+        "employeeId": eid
+      };
       temp.push(tempJson);
     }
     this.project.teamMembers = temp;
+  }
+
+  onStartDateChange(value: Date): void {
+    console.log(value);
+    this.project.startDate = value;
+  }
+
+  onEndDateChange(value: Date): void {
+    console.log(value);
+    this.project.endDate = value;
   }
 
 }

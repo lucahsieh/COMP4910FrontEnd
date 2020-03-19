@@ -20,6 +20,12 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TableModule } from 'primeng/table';
 import { SelectItem } from 'primeng/api';
+import { DialogModule } from 'primeng/dialog';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { MultiSelectModule } from 'primeng/multiselect';
+
 
 @NgModule({
     declarations: [ProjectCreationComponent, ProjectEditComponent, ProjectListComponent, ProjectViewComponent, ProjectComponent],
@@ -28,21 +34,27 @@ import { SelectItem } from 'primeng/api';
         ProjectsRoutingModule,
         FormsModule,
         SharedModule,
-    
+
         //material
         MatButtonToggleModule,
-    
+
         //primeng
         DropdownModule,
         TableModule,
         CalendarModule,
         ListboxModule,
-    
+        InputTextModule,
+        DialogModule,
+        ButtonModule,
+        MultiSelectModule,
+
+
         // bootstrap
         AlertModule.forRoot(),
         ModalModule.forRoot(),
         NgbModule,
+        BsDatepickerModule.forRoot(),
     ]
 })
 
-export class ProjectsModule{ }
+export class ProjectsModule { }

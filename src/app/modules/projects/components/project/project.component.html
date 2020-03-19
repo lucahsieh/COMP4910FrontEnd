@@ -10,7 +10,8 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">Project Name</span>
             </div>
-            <input type="text" class="form-control" [(ngModel)]="project.projectName" [readOnly]="mode ==='read' || mode==='update'">
+            <input type="text" class="form-control" [(ngModel)]="project.projectName"
+                [readOnly]="mode ==='read' || mode==='update'">
         </div>
         <span *ngIf="alerts.projectName" class="error my-2"><small>{{alerts.projectName.msg}}</small></span>
     </div>
@@ -21,9 +22,10 @@
         <!-- project code -->
         <div class="input-group ">
             <div class="input-group-prepend">
-                <span class="input-group-text">Project #</span>
+                <span class="input-group-text">Project Code</span>
             </div>
-            <input type="text" class="form-control" [(ngModel)]="project.projectCode" [readOnly]="mode ==='read' || mode==='update'">
+            <input type="text" class="form-control" [(ngModel)]="project.projectCode"
+                [readOnly]="mode ==='read' || mode==='update'">
 
             <div class="col-1">
 
@@ -50,25 +52,30 @@
     <div class="col-5">
 
         <!-- start date -->
-        <div class="input-group">
+        <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text">Start Date</span>
+                <span class="input-group-text" id="basic-addon1">Start Date</span>
             </div>
-            <p-calendar *ngIf="mode==='create' || mode==='update'" showTime="true" showIcon="true"
-                [(ngModel)]="project.startDate" appendTo="body" hideOnDateTimeSelect="true"></p-calendar>
-            <input *ngIf="mode==='read'" type="text" class="form-control" [(ngModel)]="project.startDate" readonly=true>
+            <input id="weekEnd" type="text" placeholder="Datepicker" class="form-control" bsDatepicker
+                [daysDisabled]="[]" [outsideClick]="true"
+                [bsConfig]="{selectWeek: true, dateInputFormat: 'YYYY-MM-DD' }"
+                (bsValueChange)="onStartDateChange($event)" value="{{ project.startDate | date:'yyyy-MM-dd' }}"
+                [readonly]="(mode == 'read' || mode =='update')" [isDisabled]="(mode == 'read' || mode =='update')" />
         </div>
 
     </div>
+    <div class="col-1"></div>
     <div class="col-5">
         <!-- end date -->
-        <div class="input-group">
+        <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text">End Date</span>
+                <span class="input-group-text" id="basic-addon1">End Date</span>
             </div>
-            <p-calendar *ngIf="mode==='create' || mode==='update'" showTime="true" showIcon="true" [(ngModel)]="project.endDate"
-                hideOnDateTimeSelect="true" appendTo="body" hideOnDateTimeSelect="true"></p-calendar>
-            <input *ngIf="mode==='read'" type="text" class="form-control" [(ngModel)]="project.endDate" readonly=true>
+            <input id="weekEnd" type="text" placeholder="Datepicker" class="form-control" bsDatepicker
+                [daysDisabled]="[]" [outsideClick]="true"
+                [bsConfig]="{selectWeek: true, dateInputFormat: 'YYYY-MM-DD' }"
+                (bsValueChange)="onEndDateChange($event)" value="{{ project.endDate | date:'yyyy-MM-dd' }}"
+                [readonly]="(mode == 'read' || mode =='update')" [isDisabled]="(mode == 'read' || mode =='update')" />
         </div>
     </div>
     <div class="col-1"></div>
@@ -104,11 +111,14 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">Project Manager</span>
             </div>
-            <input type="text" class="input-group-text"
+            <input type="text" class="form-control"
                 [(value)]="project.projectManager.empFirstName+' '+project.projectManager.empLastName"
-                [readOnly]="true" style="padding:6px; margin:4px 4px 4px 8px; border:1px solid; background-color:#BBBBBB;">
+                [readOnly]="true">
         </div>
         <span *ngIf="alerts.projectManager" class="error my-2"><small>{{alerts.projectManager.msg}}</small></span>
+        <input type="text" class="input-group-text"
+            [(value)]="project.projectManager.empFirstName+' '+project.projectManager.empLastName" [readOnly]="true"
+            style="padding:6px; margin:4px 4px 4px 8px; border:1px solid; background-color:#BBBBBB;">
     </div>
     <div class="col-1"></div>
 </div>
@@ -117,28 +127,31 @@
 
 <div class="form-row">
     <div class="col-16">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Team Members</span>
+            </div>
+            <input type="text" class="form-control" *ngIf="mode==='read'" [readOnly]="true">
+            <!-- <p-dropdown class="form-control" [options]="employeeDropdown" [(ngModel)]="selectedSupervisor"
+                *ngIf="mode ==='create' || mode==='update'"
+                placeholder="{{employee.supervisor ? employee.supervisor.empFirstName + ' ' + employee.supervisor.empLastName : 'choose a supervisor'}}"
+                optionLabel="label" [style]="{'border-width':'0px','padding':'0px'}"></p-dropdown> -->
+            <p-listbox *ngIf="mode ==='create' || mode==='update'" [options]="employeeDropdown" multiple="multiple"
+                checkbox="checkbox" filter="filter" optionLabel="label" [style]="{'border-width':'0px','padding':'0px'}"
+                [(ngModel)]="employees" (click)="teamMemberSelect()"></p-listbox>
+        </div>
         <!-- team members -->
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text">Team Members</span>
             </div>
-            <!-- <div *ngFor="let item of employees" class="ui-g">
-                <div class="ui-g-24" class="input-group-text"
-                    style="padding:6px; margin:4px 4px 4px 8px; border:1px solid; background-color:#BBBBBB;">{{item}}
-                </div>
-            </div> -->
-            <table>
-                <tr *ngFor="let x of project.teamMembers;let i = index;" style="display:block; float:left;">
-                    <td><input style="margin:4px;" [(ngModel)]="project.teamMembers[i].empFirstName + 
-                        ' ' + project.teamMembers[i].empLastName" [readOnly]=true>
-                        {{x.Name}}
-                    </td>
-                </tr>
-            </table>
-            
+            <div *ngFor="let x of project.teamMembers;let i = index;">
+                <h4><span class="badge badge-pill badge-secondary">{{x.empFirstName +' ' +x.empLastName}}</span></h4>
+            </div>
+
         </div>
-        <p-listbox *ngIf="mode ==='create' || mode==='update'" [options]="employeeDropdown" multiple="multiple" checkbox="checkbox"
-            filter="filter" optionLabel="label" [style]="{'border-width':'0px','padding':'0px'}"
+        <p-listbox *ngIf="mode ==='create' || mode==='update'" [options]="employeeDropdown" multiple="multiple"
+            checkbox="checkbox" filter="filter" optionLabel="label" [style]="{'border-width':'0px','padding':'0px'}"
             [(ngModel)]="employees" (click)="teamMemberSelect()"></p-listbox>
 
 
