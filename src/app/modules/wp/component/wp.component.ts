@@ -36,7 +36,7 @@ export class WpComponent implements OnInit {
     if (this.mode !== MODE.Read) this.populateEngineerDropdown();
     if (this.mode !== MODE.Read) this.populateParentDropdown();
     if (this.mode !== MODE.Read) this.populateWorkerDropdown();
-    this.initCols();
+    //this.initCols();
     this.initLabourGrades();
   }
 
@@ -91,18 +91,12 @@ export class WpComponent implements OnInit {
             { label: `${g.labourGradeName}`, value: g.labourGradeId }
           );
         })
+      this.cols = [];
+        grades.forEach(g => {
+            this.cols.push(
+              { field: g.labourGradeId, header: `${g.labourGradeName}`}
+            )
+          });
       })
-  }
-
-  initCols() {
-    this.cols = [
-      { field: '1', header: 'P1' },
-      { field: '2', header: 'P2' },
-      { field: '3', header: 'P3' },
-      { field: '4', header: 'P4' },
-      { field: '5', header: 'P5' },
-      { field: '6', header: 'SS'},
-      { field: '7', header: 'DD' },
-    ]
   }
 }

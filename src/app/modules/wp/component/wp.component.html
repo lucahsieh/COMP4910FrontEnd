@@ -157,7 +157,7 @@
     <div class="col-1"></div>
 </div>
 <div class="  my-3"></div>
-
+<p-table #dt [columns]="cols" [value]="displayPackage" [paginator]="true" [rows]="10">
 <div class="form-row">
 <ng-template pTemplate="header" let-columns>
     <tr>
@@ -184,6 +184,8 @@
         </th>
     </tr>
 </ng-template>
+
 </div>
+</p-table>
  
 <div class="dropdown-divider  my-3"></div>
