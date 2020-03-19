@@ -139,6 +139,9 @@
             <p-listbox *ngIf="mode ==='create' || mode==='update'" [options]="employeeDropdown" multiple="multiple"
                 checkbox="checkbox" filter="filter" optionLabel="label" [style]="{'border-width':'0px','padding':'0px'}"
                 [(ngModel)]="employees" (click)="teamMemberSelect()"></p-listbox>
+            <p-multiSelect *ngIf="mode ==='create' || mode==='update'" [options]="employeeDropdown"
+                [(ngModel)]="employees" [panelStyle]="{minWidth:'12em'}"></p-multiSelect>
+
         </div>
         <!-- team members -->
         <div class="input-group">
