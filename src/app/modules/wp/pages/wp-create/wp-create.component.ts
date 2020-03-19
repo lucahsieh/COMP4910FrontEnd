@@ -6,6 +6,7 @@ import { Employee } from 'src/app/shared/model/Employee';
 import { EmployeeService } from 'src/app/core/service/employee/employee.service';
 import { Alert } from 'src/app/shared/model/Alert';
 import { MODE } from 'src/app/shared/model/MODE';
+import { PMPlanning } from 'src/app/shared/model/PMPlanning';
 
 @Component({
   selector: 'app-wp-create',
@@ -15,7 +16,24 @@ import { MODE } from 'src/app/shared/model/MODE';
 export class WpCreateComponent implements OnInit {
 
   wp: WorkPackage;
+  hours: PMPlanning[];
+  pm1: string;
+  pm2: string;
+  pm3: string;
+  pm4: string;
+  pm5: string;
+  pm6: string;
+  pm7: string;
+  re1: string;
+  re2: string;
+  re3: string;
+  re4: string;
+  re5: string;
+  re6: string;
+  re7: string;
 
+  //wpCode validation
+  validWpCode: boolean = false;
   alerts = {};
   mode = MODE.Create;
 
@@ -32,25 +50,50 @@ export class WpCreateComponent implements OnInit {
     this.wp.issueDate = this.dateFormater(today);
   }
 
+    // btn click event of creation
+    onCreate(e: any) {
+      this.collectHours();
+      if (!this.validatePage())
+        return;
+      console.log("POST employee");
+      console.log(JSON.stringify(this.wp));
+      this.wpService.postWorkPackage(this.wp).subscribe();
+    }
+  
+    // btn click event of cancel
+    onCancel(e: any) { }
+
   validatePage(): boolean {
     var result = true;
-    if (!this.wp.workPackageTitle === null || this.wp.workPackageTitle.match(/^ *$/) !== null) {
-      this.alerts['firstName'] = new Alert('danger', 5000, `First Name cannot be empty`);
+    /* if (!this.wp.workPackageTitle === null || this.wp.workPackageTitle.match(/^ *$/) === null) {
+      this.alerts['wpTitle'] = new Alert('danger', 5000, `WP Title cannot be empty`);
       result = false;
     }
-/*    if (!this.wp.contractor === null || this.wp.workPackageId.match(/^ *$/) !== null) {
-      this.alerts['lastName'] = new Alert('danger', 5000, `Last Name cannot be empty`);
+    if (!this.wp.contractor === null || this.wp.contractor.match(/^ *$/) !== null) {
+      this.alerts['lastName'] = new Alert('danger', 5000, `Contractor cannot be empty`);
       result = false;
     }
-     if (!this.validUsername) {
-      this.alerts['userName'] = new Alert('danger', 5000, `User Name: ${this.employee.empUsername} is not allowed`);
+     if (!this.validWpCode) {
+      this.alerts['wpCode'] = new Alert('danger', 5000, `WP Code: ${this.wp.workPackageCode} is not valid`);
       result = false;
     }
-    if (!this.validEmployeeCode) {
+   if (!this.validEmployeeCode) {
       this.alerts['employeeCode'] = new Alert('danger', 5000, `Employee ID : ${this.employee.empCode} is not allowed`);
       result = false;
     } */
     return result;
+  }
+  displayErrorMsg(fieldName: string) {
+    return (this.alerts[fieldName] != '') ? this.alerts[fieldName].msg : null;
+  }
+
+
+  validateWpCode() {
+    return true;
+  }
+
+  collectHours() {
+    console.log(this.pm1);
   }
 
   onValueChange(value: Date): void {

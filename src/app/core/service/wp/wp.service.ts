@@ -29,17 +29,17 @@ export class WpService {
   }
 
   getAllWp(): Observable<WorkPackage[]> {
-    let url = this.baseUrl + `api/WorkPackages`;
+    let url = this.baseUrl + `api/WorkPackages/getAllWp`;
     return this.http.get<WorkPackage[]>(url).pipe()
   }
 
   getAllWpByEmployeeId(id): Observable<WorkPackage[]> {
-    let url = this.baseUrl + `getAllWpByEmployeeId/${id}`;
+    let url = this.baseUrl + `/api/WorkPackages/getAllWpByEmployeeId/${id}`;
     return this.http.get<WorkPackage[]>(url).pipe();
   }
 
   getWpByWpId(id): Observable<WorkPackage>{
-    let url = this.baseUrl + `getWpByWpId/${id}`;
+    let url = this.baseUrl + `/api/WorkPackages/getWpByWpId/${id}`;
     return this.http.get<WorkPackage>(url).pipe();
   }
 

@@ -24,7 +24,8 @@ export class WpComponent implements OnInit {
   labourGrades: any[] = [];
   cols: any[];
   //validation
-  @Input() validWPId: boolean;
+  @Input() validWpCode: boolean;
+  @Input() alerts;
 
 
   constructor(
@@ -36,8 +37,8 @@ export class WpComponent implements OnInit {
     if (this.mode !== MODE.Read) this.populateEngineerDropdown();
     if (this.mode !== MODE.Read) this.populateParentDropdown();
     if (this.mode !== MODE.Read) this.populateWorkerDropdown();
-    //this.initCols();
     this.initLabourGrades();
+    this.initCols();
   }
 
   populateEngineerDropdown() {
@@ -69,15 +70,24 @@ export class WpComponent implements OnInit {
 
   populateWorkerDropdown() {
     this.empService
-    .getEmployees()
-    .subscribe(employees => {
-      this.workerDropdown = [];
-      employees.forEach(e => {
-        this.workerDropdown.push(
-          { label: `${e.empFirstName} ${e.empLastName}`, value: e.employeeId }
-        )
-      })
+      .getEmployees()
+      .subscribe(employees => {
+        this.workerDropdown = [];
+        employees.forEach(e => {
+          this.workerDropdown.push(
+            { label: `${e.empFirstName} ${e.empLastName}`, value: e.employeeId }
+          )
+        })
     })
+  }
+
+  numberOnly(event): boolean {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+      return false;
+    }
+    return true;
+
   }
 
   initLabourGrades() {
@@ -91,12 +101,19 @@ export class WpComponent implements OnInit {
             { label: `${g.labourGradeName}`, value: g.labourGradeId }
           );
         })
-      this.cols = [];
-        grades.forEach(g => {
-            this.cols.push(
-              { field: g.labourGradeId, header: `${g.labourGradeName}`}
-            )
-          });
       })
+  }
+
+  initCols() {
+    this.cols = [
+      { field: 'rowName', header: '' },
+      { field: '1', header: 'P1', value: '' },
+      { field: '2', header: 'P2', value: '' },
+      { field: '3', header: 'P3', value: '' },
+      { field: '4', header: 'P4', value: '' },
+      { field: '5', header: 'P5', value: '' },
+      { field: '6', header: 'SS', value: '' },
+      { field: '7', header: 'DD', value: '' },
+    ]
   }
 }

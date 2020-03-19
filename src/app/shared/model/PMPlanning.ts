@@ -2,6 +2,6 @@
 
 export class PMPlanning {
     labourGradeId: number;
-    pmEAC: number;
-    reBudget: number;
+    pmEAC: string;
+    reBudget: string;
 }

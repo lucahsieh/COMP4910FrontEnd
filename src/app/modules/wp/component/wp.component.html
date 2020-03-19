@@ -12,14 +12,9 @@
             <input type="text" class="form-control" [(ngModel)]="wp.projectName" [readOnly]="(mode ==='read' || mode==='update' || mode==='create')">
 
         </div>
-        <!--<span *ngIf="alerts.firstName" class="error my-2"><small>{{alerts.fir.msg}}</small></span>-->
-
-
-
     </div>
     <div class="col-1"></div>
     <div class="col-5">
-
         <!-- project Id -->
         <div class="input-group ">
             <div class="input-group-prepend">
@@ -27,9 +22,6 @@
             </div>
             <input type="text" class="form-control" [(ngModel)]="wp.projectId" [readOnly]="true">
         </div>
-        <!--<span *ngIf="alerts.lastName" class="error my-2"><small>{{alerts.lastName.msg}}</small></span>-->
-
-
     </div>
     <div class="col-1"></div>
 </div>
@@ -45,26 +37,27 @@
             <input type="text" class="form-control" [(ngModel)]="wp.wpTitle" (blur)="onExitUserName()"
                 [readOnly]="mode ==='read' || mode=='update'">
         </div>
+        <span *ngIf="alerts.wpTitle" class="error my-2"><small>{{alerts.wpTitle.msg}}</small></span>
 
     </div>
     <div class="col-1">
-        <div *ngIf="(mode ==='create' || mode ==='update')">
-            <i *ngIf="validUsername" class="material-icons pass my-2">check_circle</i>
-            <i *ngIf="!validUsername" class="material-icons error  my-2">error</i>
-        </div>
     </div>
     <div class="col-5">
-        <!-- wp Id -->
+        <!-- wp Code -->
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text">W.P. Code</span>
             </div>
             <input type="text" class="form-control" [(ngModel)]="wp.wpId" [readOnly]="mode ==='read'">
         </div>
-
-
+        <!--<span *ngIf="alerts.wpCode" class="error my-2"><small>{{alerts.wpCode.msg}}</small></span>-->
     </div>
-    <div class="col-1"></div>
+    <div class="col-1">
+            <div *ngIf="(mode ==='create' || mode ==='update')">
+                <i *ngIf="validUsername" class="material-icons pass my-2">check_circle</i>
+                <i *ngIf="!validUsername" class="material-icons error  my-2">error</i>
+            </div>
+    </div>
 </div>
 <div class="  my-3"></div>
 <div class="form-row">
@@ -77,13 +70,9 @@
             <input type="text" class="form-control" [(ngModel)]="wp.contractor" (blur)="onExitEmployeeId()"
                 [readOnly]="mode ==='read' || mode=='update'">
         </div>
-
+        <!--<span *ngIf="alerts.contractor" class="error my-2"><small>{{alerts.contractor.msg}}</small></span>-->
     </div>
     <div class="col-1">
-        <!--<div *ngIf="(mode ==='create' || mode ==='update')">
-            <i *ngIf="validEmployeeCode" class="material-icons pass my-2">check_circle</i>
-            <i *ngIf="!validEmployeeCode" class="material-icons error  my-2">error</i>
-        </div>-->
     </div>
     <div class="col-5">
         <div class="input-group">
@@ -156,36 +145,54 @@
         </div>
     <div class="col-1"></div>
 </div>
-<div class="  my-3"></div>
-<p-table #dt [columns]="cols" [value]="displayPackage" [paginator]="true" [rows]="10">
-<div class="form-row">
-<ng-template pTemplate="header" let-columns>
-    <tr>
-        <th *ngFor="let col of columns">
-            {{col.header}}
-        </th>
-    </tr>
-    <tr>
-        <th *ngFor="let col of columns" [ngSwitch]="col.field">
-            <input *ngSwitchCase="1" pInputText type="text"
-                (input)="dt.filter($event.target.value, col.field, 'contains')">
-            <input *ngSwitchCase="2" pInputText type="text"
-                (input)="dt.filter($event.target.value, col.field, 'contains')">
-            <input *ngSwitchCase="3" pInputText type="text"
-                (input)="dt.filter($event.target.value, col.field, 'contains')">
-            <input *ngSwitchCase="4" pInputText type="text"
-                (input)="dt.filter($event.target.value, col.field, 'contains')">
-            <input *ngSwitchCase="5" pInputText type="text"
-                (input)="dt.filter($event.target.value, col.field, 'contains')">
-            <input *ngSwitchCase="6" pInputText type="text"
-                (input)="dt.filter($event.target.value, col.field, 'contains')">
-            <input *ngSwitchCase="7" pInputText type="text"
-                (input)="dt.filter($event.target.value, col.field, 'contains')">
-        </th>
-    </tr>
-</ng-template>
-
-</div>
-</p-table>
- 
+<div class="my-3"></div>
+    <p-table #dt [columns]="cols" [value]="displayPackage" id="labourTable">
+        <div class="form-row">
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th *ngFor="let col of columns">
+                        {{col.header}}
+                    </th>
+                </tr>
+                <tr label="pmEAC">
+                    <th *ngFor="let col of columns" [ngSwitch]="col.field">
+                        <div *ngSwitchCase="'rowName'">PM EAC</div>
+                        <input [(ngModel)]="pm1" *ngSwitchCase="'1'" pInputText type="text" class="labourInput" 
+                            (keypress)="numberOnly($event)">
+                        <input [(ngModel)]="pm2" *ngSwitchCase="'2'" pInputText type="text" class="labourInput" 
+                            (keypress)="numberOnly($event)">
+                        <input [(ngModel)]="pm3" *ngSwitchCase="'3'" pInputText type="text" class="labourInput" 
+                            (keypress)="numberOnly($event)">
+                        <input [(ngModel)]="pm4" *ngSwitchCase="'4'" pInputText type="text" class="labourInput" 
+                            (keypress)="numberOnly($event)">
+                        <input [(ngModel)]="pm5" *ngSwitchCase="'5'" pInputText type="text" class="labourInput" 
+                            (keypress)="numberOnly($event)">
+                        <input [(ngModel)]="pm6" *ngSwitchCase="'6'" pInputText type="text" class="labourInput" 
+                            (keypress)="numberOnly($event)">
+                        <input [(ngModel)]="pm7" *ngSwitchCase="'7'" pInputText type="text" class="labourInput" 
+                            (keypress)="numberOnly($event)">
+                    </th>
+                </tr>
+                <tr label="reBudget">
+                    <th *ngFor="let col of columns" [ngSwitch]="col.field">
+                        <div *ngSwitchCase="'rowName'">RE Budget</div>
+                        <input [(ngModel)]="re1" *ngSwitchCase="'1'" pInputText type="text" class="labourInput" 
+                            (keypress)="numberOnly($event)">
+                        <input [(ngModel)]="re2" *ngSwitchCase="'2'" pInputText type="text" class="labourInput" 
+                            (keypress)="numberOnly($event)">
+                        <input [(ngModel)]="re3" *ngSwitchCase="'3'" pInputText type="text" class="labourInput" 
+                            (keypress)="numberOnly($event)">
+                        <input [(ngModel)]="re4" *ngSwitchCase="'4'" pInputText type="text" class="labourInput" 
+                            (keypress)="numberOnly($event)">
+                        <input [(ngModel)]="re5" *ngSwitchCase="'5'" pInputText type="text" class="labourInput" 
+                            (keypress)="numberOnly($event)">
+                        <input [(ngModel)]="re6" *ngSwitchCase="'6'" pInputText type="text" class="labourInput" 
+                            (keypress)="numberOnly($event)">
+                        <input [(ngModel)]="re7" *ngSwitchCase="'7'" pInputText type="text" class="labourInput" 
+                            (keypress)="numberOnly($event)">
+                    </th>
+                </tr>
+            </ng-template>
+        </div>
+    </p-table> 
 <div class="dropdown-divider  my-3"></div>
