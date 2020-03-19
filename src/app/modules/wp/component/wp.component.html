@@ -126,7 +126,7 @@
     </div>
     <div class="col-1"></div>
 </div>
-<div class="  my-3"></div>
+<div class="my-3"></div>
 
 <div class="form-row">
     <div class="col-5">
@@ -142,16 +142,46 @@
         </div>
         <div class="col-1"></div>
     </div>
-    <div class="my-3"></div>
-    <p-table #dt [columns]="cols" [value]="displayPackage" id="labourTable">
-        <div class="form-row">
-            <ng-template pTemplate="header" let-columns>
-                <tr>
-                    <th *ngFor="let col of columns">
-                        {{col.header}}
-                    </th>
-                </tr>
-            </ng-template>
-        </div>
-    </p-table>
-    <div class="dropdown-divider  my-3"></div>
+</div>
+<div class=" my-3"></div>
+<div class="dropdown-divider  my-3"></div>
+<h5 class="my-3">Project Manager Planning Information</h5>
+
+<p-table [value]="wp.pmPlannings" (onEditComplete)="onEditComplete($event)" [columns]="cols"
+    [style]="{'max-width':'900px','min-width':'400px','text-align':'center'}">
+    <div class="form-row">
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th>Labour Grade</th>
+                <th>Project Manager EAC (days)</th>
+                <th>Responsible Engineer Budget (days)</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData>
+            <tr>
+                <td class="font-weight-bold">{{rowData.labourGradeName}}</td>
+                <td [pEditableColumn]="mode == 'create'|| mode == 'update'? '' : null">
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="rowData.pmEAC" style="text-align:center">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            <span>{{rowData.pmEAC}}</span>
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td [pEditableColumn]="mode == 'create'|| mode == 'update'? '' : null">
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="rowData.reBudget" style="text-align:center">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            <span>{{rowData.reBudget}}</span>
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+            </tr>
+        </ng-template>
+    </div>
+</p-table>
+<div class="dropdown-divider  my-3"></div>

@@ -35,6 +35,7 @@ export class WpCreateComponent implements OnInit {
     const today = new Date();
     today.getTime();
     this.wp.issueDate = this.dateFormater(today);
+    this.initLabourGradePlanning();
   }
 
   // btn click event of creation

@@ -111,4 +111,8 @@ export class WpComponent implements OnInit {
       { field: 'reBudget', header: 'Responsible Engineer Budget' }
     ]
   }
+  /** exist edit field */
+  onEditComplete(event) {
+  }
+
 }
