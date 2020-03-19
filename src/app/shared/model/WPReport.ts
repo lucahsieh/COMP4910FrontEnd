@@ -12,7 +12,7 @@ export class WPReport {
     workPackageCode: string;
     workPackageTitle: string;
     projectId: number;
-    projectCode: string;
+    projectCode: number;
     projectName: string;
     workPackageReportId: number;
     reportDate: string;

@@ -566,5 +566,118 @@
       "wpReCompletion": 70.32,
       "wpPmCompletion": 70.32
     }
+  },
+  "get_projects": [
+    {
+      "projectId": 5,
+      "projectCode": 10005,
+      "projectName": "Super Project",
+      "projectManager": {
+        "employeeId": 2,
+        "empFirstName": "Sham",
+        "empLastName": "Saini"
+      },
+      "description": "this is the description lol 5",
+      "startDate": "0001-01-01T00:00:00",
+      "endDate": "0001-01-01T00:00:00",
+      "isClosed": false
+    },
+    {
+      "projectId": 6,
+      "projectCode": 10006,
+      "projectName": "Super Project 2",
+      "projectManager": {
+        "employeeId": 2,
+        "empFirstName": "Sham",
+        "empLastName": "Saini"
+      }, 
+      "description": "this is the description lol 6",
+      "startDate": "0001-01-01T00:00:00",
+      "endDate": "0001-01-01T00:00:00",
+      "isClosed": false
+    },
+    {
+      "projectId": 7,
+      "projectCode": 10007,
+      "projectName": "BC Hydro System",
+      "projectManager": {
+        "employeeId": 4,
+        "empFirstName": "John",
+        "empLastName": "Doe"
+      },
+      "description": "BC Hydro information system",
+      "startDate": "2018-01-06T11:59:59",
+      "endDate": "2018-05-06T11:59:59",
+      "isClosed": true
+    },
+    {
+      "projectId": 8,
+      "projectCode": 10008,
+      "projectName": "Pizza Pizza",
+      "projectManager": {
+        "employeeId": 2,
+        "empFirstName": "Lebron",
+        "empLastName": "James"
+      }, 
+      "description": "Pizza management system",
+      "startDate": "2020-01-05T00:00:00",
+      "endDate": "2020-02-05T00:00:00",
+      "isClosed": false      
+    }   
+  ],
+  "get_project": {
+      "projectId": 1,
+      "projectName": "Super Project 2",
+      "projectCode": 10001,
+      "budget": 50000,
+      "projectManager": {
+        "employeeId": 2,
+        "empFirstName": "Sham",
+        "empLastName": "Saini"
+      },
+      "teamMembers": [
+        {
+          "employeeId": 1,
+          "empFirstName": "Sham",
+          "empLastName": "Saini"
+        },
+        {
+          "employeeId": 2,
+          "empFirstName": "Sam",
+          "empLastName": "Shaini"
+        }
+      ],
+      "description": "this is the description lol",
+      "startDate": "0001-01-01T00:00:00",
+      "endDate": "0001-01-01T00:00:00",
+      "isClosed": false
+      
+  },
+  "post_project": {
+    "projectId": 1,
+    "projectName": "",
+    "projectCode": null,
+    "budget": 50000,
+    "startDate": "0001-01-01T00: 00: 00",
+    "endDate": "0001-01-01T00: 00: 00",
+    "projectManager": {
+      "employeeId": 2,
+      "empFirstName": "Sham",
+      "empLastName": "Saini"
+    },
+    "teamMembers": [
+      {
+        "employeeId": 1,
+        "empFirstName": "Sham",
+        "empLastName": "Saini"
+      },
+      {
+        "employeeId": 2,
+        "empFirstName": "Sam",
+        "empLastName": "Shaini"
+      }
+    ],
+    "description": "Thisprojectisabigone",
+    "isClosed": false
   }
 }

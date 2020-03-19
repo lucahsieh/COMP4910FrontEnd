@@ -1,0 +1,68 @@
+<!-- <button type="button" class="btn btn-primary my-2" routerLink="creation">Create</button>
+<button type="button" class="btn btn-primary my-2" [routerLink]="['edit', 111]">edit</button>
+<button type="button" class="btn btn-primary my-2" [routerLink]="['view', 111]">view</button> -->
+
+<div class="card mx-1">
+    <div class="card-body">
+        <h3 class="display-4">Project List</h3>
+        <div class="dropdown-divider "></div>
+
+        <div class="d-flex flex-row-reverse">
+            <button type="button" class="btn btn-primary my-2" routerLink="creation">Create</button>
+        </div>
+
+        <p-table #dt [columns]="cols" [value]="displayProject" [paginator]="true" [rows]="10">
+            <ng-template pTemplate="caption">
+                <div style="text-align: right">
+                    <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                    <input type="text" pInputText size="50" placeholder="Global Filter"
+                        (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th *ngFor="let col of columns" [pSortableColumn]="col.field" [ngSwitch]="col.field">
+                        {{col.header}}
+                        <p-sortIcon *ngIf="col.header" [field]="col.field"></p-sortIcon>
+                    </th>
+                </tr>
+                <tr>
+                    <th *ngFor="let col of columns" [ngSwitch]="col.field">
+                        <input *ngSwitchCase="'projectId'" pInputText type="text" class="ui-column-filter"
+                            (input)="dt.filter($event.target.value, col.field, 'contains')"
+                            style="margin-left:-6px;width: 100%;">
+                        <input *ngSwitchCase="'projectName'" pInputText type="text" class="ui-column-filter"
+                            (input)="dt.filter($event.target.value, col.field, 'contains')"
+                            style="margin-left:-6px;width: 100%;">
+                        <input *ngSwitchCase="'projectManager'" pInputText type="text" class="ui-column-filter"
+                            (input)="dt.filter($event.target.value, col.field, 'contains')"
+                            style="margin-left:-6px;width: 100%;">
+                        <input *ngSwitchCase="'startDate'" pInputText type="text" class="ui-column-filter"
+                            (input)="dt.filter($event.target.value, col.field, 'contains')"
+                            style="margin-left:-6px;width: 100%;">
+                        <input *ngSwitchCase="'endDate'" pInputText type="text" class="ui-column-filter"
+                            (input)="dt.filter($event.target.value, col.field, 'contains')"
+                            style="margin-left:-6px;width: 100%;">
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr [pSelectableRow]="rowData">
+                    <td *ngFor="let col of columns">
+                        <span *ngIf="col.field !=='isClosed' && col.field !=='button'">{{rowData[col.field]}}</span>
+                        <h5 *ngIf="col.field ==='isClosed'">
+                            <span class="badge badge-success" *ngIf="rowData[col.field]">Open</span>
+                            <span class="badge badge-danger" *ngIf="!rowData[col.field]">Closed</span>
+                        </h5>
+                        <div *ngIf="col.field ==='button'">
+                            <button type="button" class="btn btn-link btn-sm"
+                                [routerLink]="['view', rowData.projectId]">View</button>
+                            <button type="button" class="btn btn-link btn-sm"
+                                [routerLink]="['edit', rowData.projectId]">Edit</button>
+                        </div>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>

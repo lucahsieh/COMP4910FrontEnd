@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   loading = false;
   submitted = false;
   returnUrl: string;
-  error = '';
+  error = null;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
         },
         error => {
           console.log(error);
-          this.error = error;
+          this.error = error.error;
           this.loading = false;
         });
   }
