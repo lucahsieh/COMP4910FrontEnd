@@ -35,7 +35,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">W.P. Title</span>
             </div>
-            <input type="text" class="form-control" [(ngModel)]="wp.wpTitle" (blur)="onExitUserName()"
+            <input type="text" class="form-control" [(ngModel)]="wp.wpTitle"
                 [readOnly]="mode ==='read' || mode=='update'">
         </div>
         <span *ngIf="alerts.wpTitle" class="error my-2"><small>{{alerts.wpTitle.msg}}</small></span>
@@ -49,14 +49,15 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">W.P. Code</span>
             </div>
-            <input type="text" class="form-control" [(ngModel)]="wp.wpId" [readOnly]="mode ==='read'">
+            <input type="text" class="form-control" [(ngModel)]="wp.workPackageCode" (blur)="onChangeWpCode()"
+                [readOnly]="mode ==='read'">
         </div>
-        <!--<span *ngIf="alerts.wpCode" class="error my-2"><small>{{alerts.wpCode.msg}}</small></span>-->
+        <span *ngIf="alerts.wpCode" class="error my-2"><small>{{alerts.wpCode.msg}}</small></span>
     </div>
     <div class="col-1">
         <div *ngIf="(mode ==='create' || mode ==='update')">
-            <i *ngIf="validUsername" class="material-icons pass my-2">check_circle</i>
-            <i *ngIf="!validUsername" class="material-icons error  my-2">error</i>
+            <i *ngIf="validWpCode" class="material-icons pass my-2">check_circle</i>
+            <i *ngIf="!validWpCode" class="material-icons error  my-2">error</i>
         </div>
     </div>
 </div>
@@ -68,7 +69,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">Contractor</span>
             </div>
-            <input type="text" class="form-control" [(ngModel)]="wp.contractor" (blur)="onExitEmployeeId()"
+            <input type="text" class="form-control" [(ngModel)]="wp.contractor"
                 [readOnly]="mode ==='read' || mode=='update'">
         </div>
         <!--<span *ngIf="alerts.contractor" class="error my-2"><small>{{alerts.contractor.msg}}</small></span>-->
@@ -110,13 +111,13 @@
     <div class="col-1"></div>
     <div class="col-5">
 
-        <!-- supervisor -->
+        <!-- parent Wp -->
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text">Parent W.P.</span>
             </div>
-            <input type="text" class="form-control" value="{{wp.projectId}}" *ngIf="mode==='read'" [readOnly]="true">
-            <p-dropdown class="form-control" [options]="parentWPDropdown" [(ngModel)]="selectedParent"
+            <input type="text" class="form-control" value="{{wp.projectCode}}" *ngIf="mode==='read'" [readOnly]="true">
+            <p-dropdown class="form-control" [options]="parentWPDropdown" [(ngModel)]="wp.projectCode"
                 *ngIf="mode ==='create' || mode==='update'" placeholder="{{'choose a Parent WP'}}" optionLabel="label"
                 [style]="{'border-width':'0px','padding':'0px'}"></p-dropdown>
         </div>
@@ -139,6 +140,8 @@
             <p-dropdown class="form-control" [options]="workerDropdown" [(ngModel)]="selectedWorker"
                 *ngIf="mode ==='create' || mode==='update'" placeholder="{{'choose a Worker'}}" optionLabel="label"
                 [style]="{'border-width':'0px','padding':'0px'}"></p-dropdown>
+            <!--<p-multiSelect *ngIf="mode ==='create' || mode==='update'" [options]="workerDropdown"
+                [(ngModel)]="employees" [panelStyle]="{minWidth:'12em'}"></p-multiSelect>-->
         </div>
         <div class="col-1"></div>
     </div>

@@ -26,6 +26,7 @@ export class WpComponent implements OnInit {
   //validation
   @Input() validWpCode: boolean;
   @Input() alerts;
+  @Output() changeWpCode: EventEmitter<string> = new EventEmitter<string>();
 
 
   constructor(
@@ -62,7 +63,7 @@ export class WpComponent implements OnInit {
         console.log(this.parentWPDropdown);
         packages.forEach(p => {
           this.parentWPDropdown.push(
-            { label: `${p.workPackageTitle}`, value: p.workPackageId }
+            { label: `${p.workPackageTitle}`, value: p.workPackageCode }
           )
         })
       })
@@ -110,6 +111,10 @@ export class WpComponent implements OnInit {
       { field: 'pmEAC', header: 'Project Manager EAC' },
       { field: 'reBudget', header: 'Responsible Engineer Budget' }
     ]
+  }
+
+  onChangeWpCode() {
+    this.changeWpCode.emit('payload');
   }
   /** exist edit field */
   onEditComplete(event) {

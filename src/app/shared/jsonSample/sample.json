@@ -613,8 +613,8 @@
       "workPackageId": 1,
       "projectId": 1234567,
       "projectName": "string",
-      "workPackageCode": 323,
-      "workPackageTitle": "WorkPackage1",
+      "workPackageCode": "A1",
+      "workPackageTitle": "A1",
       "isClosed": true,
       "parentWorkPackageId": 4
     },
@@ -622,8 +622,8 @@
       "workPackageId": 2,
       "projectId": 1234567,
       "projectName": "string",
-      "workPackageCode": 123,
-      "workPackageTitle": "WorkPackage2",
+      "workPackageCode": "A2",
+      "workPackageTitle": "A2",
       "isClosed": true,
       "parentWorkPackageId": 5
     },
@@ -631,8 +631,8 @@
       "workPackageId": 3,
       "projectId": 7654321,
       "projectName": "string",
-      "workPackageCode": 321,
-      "workPackageTitle": "WorkPackage2",
+      "workPackageCode": "A3",
+      "workPackageTitle": "A3",
       "isClosed": true,
       "parentWorkPackageId": 6
     }
