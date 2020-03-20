@@ -36,24 +36,38 @@ export class ProjectService {
   }
   postProject(p: Project): Observable<any> {
     let url = this.baseUrl + `api/projects`;
+    let employees = [];
+    p.employees.forEach(e => {
+      let emp = {
+        "employeeId": e.employeeId,
+        "empFirstName": e.empFirstName,
+        "empLastName": e.empLastName
+      }
+      employees.push(emp);
+    })
     let body = {
       "projectName": p.projectName,
       "projectCode": p.projectCode,
       "budget": p.budget,
       "startDate": p.startDate,
       "endDate": p.endDate,
-      "projectManager": p.projectManager,
+      "projectManager": {
+        "employeeId": p.projectManager.employeeId,
+        "empFirstName": p.projectManager.empFirstName,
+        "empLastName": p.projectManager.empLastName
+      },
       "isClosed": p.isClosed,
-      "teamMembers": p.teamMembers,
+      "employees": employees,
       "description": p.description
     };
+    console.log(JSON.stringify(body));
     return this.http
       .post<Project>(url, body, this.httpOptions)
       .pipe(catchError(this.handleError("postProject", p)));
   }
 
-  getProjects(): Observable<Project[]> {
-    let url = this.baseUrl + `api/projects`;
+  getProjects(empId: any): Observable<Project[]> {
+    let url = this.baseUrl + `api/projects/getAllProjectsByEmployeeId/${empId}`;
     return this.http
       .get<Project[]>(url)
       .pipe()
@@ -63,6 +77,13 @@ export class ProjectService {
     let url = this.baseUrl + `api/projects/${id}`;
     return this.http
       .get<Project>(url)
+      .pipe()
+  }
+
+  checkProjectCode(code: any): Observable<boolean> {
+    let url = this.baseUrl + `api/projects/checkProjectCodeAvailability/${code}`;
+    return this.http
+      .get<boolean>(url)
       .pipe()
   }
 

@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ReportService } from 'src/app/core/service/report/report.service';
 
 @Component({
-  selector: 'app-project-report-list',
-  templateUrl: './project-report-list.component.html',
-  styleUrls: ['./project-report-list.component.css']
+  selector: 'app-wp-report-list',
+  templateUrl: './wp-report-list.component.html',
+  styleUrls: ['./wp-report-list.component.css']
 })
-export class ProjectReportListComponent implements OnInit {
+export class WpReportListComponent implements OnInit {
+
 
 
   displayReports: any[] = [];
@@ -18,7 +19,7 @@ export class ProjectReportListComponent implements OnInit {
 
   ngOnInit() {
     this.cols = [
-      { field: 'endDate', header: 'Month' },
+      { field: 'endDate', header: 'Week Number' },
       { field: 'reportDate', header: 'Report Date' },
       { field: 'startDate', header: 'Start Date' },
       { field: 'endDate', header: 'End Date' },
@@ -27,7 +28,7 @@ export class ProjectReportListComponent implements OnInit {
   }
 
   populateReports() {
-    this.reportService.getAllProjectReports(32)
+    this.reportService.getAllWpReports(32)
       .subscribe(res => {
         res.forEach(r => {
           this.displayReports.push(
@@ -35,7 +36,7 @@ export class ProjectReportListComponent implements OnInit {
               'reportDate': new Date(r.reportDate),
               'startDate': new Date(r.startDate),
               'endDate': new Date(r.endDate),
-              'projectReportId': r.projectReportId
+              'workPackageReportId': r.workPackageReportId
             }
           );
         })

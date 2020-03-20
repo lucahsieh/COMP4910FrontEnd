@@ -3,6 +3,7 @@ import { Employee } from 'src/app/shared/model/Employee';
 import { EmployeeService } from 'src/app/core/service/employee/employee.service';
 import { Project } from 'src/app/shared/model/Project';
 import { ProjectService } from 'src/app/core/service/project/project.service';
+import { AuthenticationService } from 'src/app/core/service/authentication.service';
 
 
 @Component({
@@ -17,7 +18,8 @@ export class ProjectListComponent implements OnInit {
 
   constructor(
     private employeeService: EmployeeService,
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    private authService: AuthenticationService
   ) { }
 
   ngOnInit() {
@@ -26,28 +28,29 @@ export class ProjectListComponent implements OnInit {
   }
 
   initProjects() {
-    this.projectService.getProjects().subscribe(res => {
-      console.log(res);
-      res.forEach(i => {
-        console.log(i)
-        this.displayProject.push(
-          {
-            "projectId": i.projectId,
-            "projectName": i.projectName,
-            "projectManager": i.projectManager.empFirstName + " " + i.projectManager.empLastName,
-            "startDate": i.startDate,
-            "endDate": i.endDate,
-            "isClosed": !i.isClosed
-          }
-        );
-      })
-      console.log(this.displayProject);
-    });
+    this.projectService
+      .getProjects(this.authService.currentUserValue.employeeId)
+      .subscribe(res => {
+        console.log(res);
+        res.forEach(i => {
+          console.log(i)
+          this.displayProject.push(
+            {
+              "projectId": i.projectId,
+              "projectName": i.projectName,
+              "projectManager": i.projectManager.empFirstName + " " + i.projectManager.empLastName,
+              "startDate": i.startDate,
+              "endDate": i.endDate,
+              "isClosed": !i.isClosed
+            }
+          );
+        })
+        console.log(this.displayProject);
+      });
   }
 
   initCols() {
     this.cols = [
-      { field: 'projectId', header: 'Project ID' },
       { field: 'projectName', header: 'Project Name' },
       { field: 'projectManager', header: 'Project Manager' },
       { field: 'startDate', header: 'Start Date' },

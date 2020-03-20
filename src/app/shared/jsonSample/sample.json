@@ -2,21 +2,21 @@
   "Post_Timesheet": {
     "timesheetRows": [
       {
-        "monday": 0,
+        "monday": "02",
         "tuesday": 0,
         "wednesday": 0,
         "thursday": 0,
         "friday": 0,
-        "saturday": "0jioj",
-        "sunday": 0,
+        "saturday": "3",
+        "sunday": "2",
         "projectId": 0,
         "timesheetVersionNumber": 1,
         "workPackageId": 0,
         "timesheetId": 123
       },
       {
-        "monday": "-879",
-        "tuesday": "0797",
+        "monday": 0,
+        "tuesday": 0,
         "wednesday": 0,
         "thursday": 0,
         "friday": 0,
@@ -30,7 +30,7 @@
       {
         "monday": 0,
         "tuesday": 0,
-        "wednesday": "06",
+        "wednesday": 0,
         "thursday": 0,
         "friday": 0,
         "saturday": 0,
@@ -69,12 +69,12 @@
     ],
     "signature": null,
     "comment": "",
-    "weekEnding": "2020-03-07",
-    "weekNumber": 10,
+    "weekEnding": "2020-03-21",
+    "weekNumber": 12,
     "timesheetId": 123,
     "employeeId": 1,
     "versionNumber": 1,
-    "status": "Pending"
+    "status": "inprogress"
   },
   "CheckUsernameAvailability": {
     "apiId": "Credentials"
@@ -83,12 +83,12 @@
     "apiId": "Credentials"
   },
   "post_Employee": {
-    "empUsername": "gmakasoff",
+    "empUsername": "fdsf",
     "empPassword": "01234",
-    "empCode": "4",
+    "empCode": 1,
     "labourGradeId": 0,
-    "empFirstName": "Greg",
-    "empLastName": "Makasoff",
+    "empFirstName": "djsoijo",
+    "empLastName": "fsdf",
     "timesheetApproverId": 1,
     "supervisorId": 1,
     "isProjectManager": false,
@@ -570,61 +570,41 @@
       "wpPmCompletion": 70.32
     }
   },
-  "get_projects": [
+  "get_AllProjectsByEmployeeId": [
     {
-      "projectId": 5,
-      "projectCode": 10005,
-      "projectName": "Super Project",
+      "projectId": 1,
+      "projectName": "NewProject1",
       "projectManager": {
         "employeeId": 2,
-        "empFirstName": "Sham",
-        "empLastName": "Saini"
+        "empFirstName": "Perry",
+        "empLastName": "Li"
       },
-      "description": "this is the description lol 5",
-      "startDate": "0001-01-01T00:00:00",
-      "endDate": "0001-01-01T00:00:00",
+      "startDate": "2020-03-06T00:31:34.2646376",
+      "endDate": "2020-03-06T00:31:34.264638",
       "isClosed": false
     },
     {
-      "projectId": 6,
-      "projectCode": 10006,
-      "projectName": "Super Project 2",
+      "projectId": 2,
+      "projectName": "ProjectName2",
       "projectManager": {
         "employeeId": 2,
-        "empFirstName": "Sham",
-        "empLastName": "Saini"
+        "empFirstName": "Perry",
+        "empLastName": "Li"
       },
-      "description": "this is the description lol 6",
-      "startDate": "0001-01-01T00:00:00",
-      "endDate": "0001-01-01T00:00:00",
+      "startDate": "2020-02-02T00:00:00",
+      "endDate": "2020-02-18T00:00:00",
       "isClosed": false
     },
     {
-      "projectId": 7,
-      "projectCode": 10007,
-      "projectName": "BC Hydro System",
+      "projectId": 3,
+      "projectName": "ProjectName3",
       "projectManager": {
-        "employeeId": 4,
-        "empFirstName": "John",
-        "empLastName": "Doe"
+        "employeeId": 3,
+        "empFirstName": "Bruce",
+        "empLastName": "Link"
       },
-      "description": "BC Hydro information system",
-      "startDate": "2018-01-06T11:59:59",
-      "endDate": "2018-05-06T11:59:59",
-      "isClosed": true
-    },
-    {
-      "projectId": 8,
-      "projectCode": 10008,
-      "projectName": "Pizza Pizza",
-      "projectManager": {
-        "employeeId": 2,
-        "empFirstName": "Lebron",
-        "empLastName": "James"
-      },
-      "description": "Pizza management system",
-      "startDate": "2020-01-05T00:00:00",
-      "endDate": "2020-02-05T00:00:00",
+      "startDate": "2020-03-03T00:00:00",
+      "endDate": "2020-03-28T00:00:00",
       "isClosed": false
     }
   ],
@@ -638,7 +618,7 @@
       "empFirstName": "Sham",
       "empLastName": "Saini"
     },
-    "teamMembers": [
+    "employees": [
       {
         "employeeId": 1,
         "empFirstName": "Sham",
@@ -667,7 +647,7 @@
       "empFirstName": "Sham",
       "empLastName": "Saini"
     },
-    "teamMembers": [
+    "employees": [
       {
         "employeeId": 1,
         "empFirstName": "Sham",
@@ -748,5 +728,60 @@
       "isClosed": true,
       "parentWorkPackageId": 6
     }
+  ],
+  "get_AllProjectReport": [
+    {
+      "reportDate": "2020-01-03T13:32:28",
+      "startDate": "2019-12-01T00:00:00",
+      "endDate": "2019-12-31T00:00:00",
+      "projectReportId": 38329
+    },
+    {
+      "reportDate": "2020-02-03T13:32:28",
+      "startDate": "2019-12-01T00:00:00",
+      "endDate": "2020-01-30T00:00:00",
+      "projectReportId": 38329
+    },
+    {
+      "reportDate": "2020-03-03T13:32:28",
+      "startDate": "2019-12-01T00:00:00",
+      "endDate": "2020-02-28T00:00:00",
+      "projectReportId": 38329
+    },
+    {
+      "reportDate": "2020-04-03T13:32:28",
+      "startDate": "2019-12-01T00:00:00",
+      "endDate": "2020-03-30T00:00:00",
+      "projectReportId": 38329
+    }
+  ],
+  "get_AllWpReport": [
+    {
+      "reportDate": "2020-01-03T13:32:28",
+      "startDate": "2019-12-01T00:00:00",
+      "endDate": "2019-12-31T00:00:00",
+      "workPackageReportId": 38329
+    },
+    {
+      "reportDate": "2020-02-03T13:32:28",
+      "startDate": "2019-12-01T00:00:00",
+      "endDate": "2020-01-30T00:00:00",
+      "workPackageReportId": 38329
+    },
+    {
+      "reportDate": "2020-03-03T13:32:28",
+      "startDate": "2019-12-01T00:00:00",
+      "endDate": "2020-02-28T00:00:00",
+      "workPackageReportId": 38329
+    },
+    {
+      "reportDate": "2020-04-03T13:32:28",
+      "startDate": "2019-12-01T00:00:00",
+      "endDate": "2020-03-30T00:00:00",
+      "workPackageReportId": 38329
+    }
+  ],
+  "get_CheckProjectCode": [
+    true
   ]
 }

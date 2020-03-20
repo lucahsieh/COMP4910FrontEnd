@@ -28,9 +28,9 @@
                 </tr>
                 <tr>
                     <th *ngFor="let col of columns" [ngSwitch]="col.field">
-                        <input *ngSwitchCase="'projectId'" pInputText type="text" class="ui-column-filter"
+                        <!-- <input *ngSwitchCase="'projectId'" pInputText type="text" class="ui-column-filter"
                             (input)="dt.filter($event.target.value, col.field, 'contains')"
-                            style="margin-left:-6px;width: 100%;">
+                            style="margin-left:-6px;width: 100%;"> -->
                         <input *ngSwitchCase="'projectName'" pInputText type="text" class="ui-column-filter"
                             (input)="dt.filter($event.target.value, col.field, 'contains')"
                             style="margin-left:-6px;width: 100%;">
@@ -48,13 +48,19 @@
             </ng-template>
             <ng-template pTemplate="body" let-rowData let-columns="columns">
                 <tr [pSelectableRow]="rowData">
-                    <td *ngFor="let col of columns">
-                        <span *ngIf="col.field !=='isClosed' && col.field !=='button'">{{rowData[col.field]}}</span>
-                        <h5 *ngIf="col.field ==='isClosed'">
-                            <span class="badge badge-success" *ngIf="rowData[col.field]">Open</span>
-                            <span class="badge badge-danger" *ngIf="!rowData[col.field]">Closed</span>
+                    <!-- <td>{{rowData.projectId}}</td> -->
+                    <td>{{rowData.projectName}}</td>
+                    <td>{{rowData.projectManager}}</td>
+                    <td>{{rowData.startDate | date}}</td>
+                    <td>{{rowData.endDate|date}}</td>
+                    <td>
+                        <h5>
+                            <span class="badge badge-success" *ngIf="rowData.isClosed">Open</span>
+                            <span class="badge badge-danger" *ngIf="!rowData.isClosed">Closed</span>
                         </h5>
-                        <div *ngIf="col.field ==='button'">
+                    </td>
+                    <td>
+                        <div>
                             <button type="button" class="btn btn-link btn-sm"
                                 [routerLink]="['view', rowData.projectId]">View</button>
                             <button type="button" class="btn btn-link btn-sm"

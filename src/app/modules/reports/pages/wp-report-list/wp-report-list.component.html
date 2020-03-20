@@ -1,6 +1,6 @@
 <div class="card mx-1">
     <div class="card-body">
-        <h3 class="display-4">Project Cost Performance Report List</h3>
+        <h3 class="display-4">Work Package Report List</h3>
 
         <p-table [columns]="cols" [value]="displayReports" [paginator]="true" [rows]="10">
             <ng-template pTemplate="header" let-columns>
@@ -16,14 +16,14 @@
             </ng-template>
             <ng-template pTemplate="body" let-rowData let-columns="columns">
                 <tr>
-                    <td>{{rowData.endDate | date:'MMMM'}}</td>
+                    <td>{{rowData.endDate | date:'w'}}</td>
                     <td>{{rowData.reportDate | date:'MMM d, y, h:mm:ss a'}}</td>
                     <td>{{rowData.startDate | date}}</td>
                     <td>{{rowData.endDate | date}}</td>
 
                     <td>
                         <button type="button" class="btn btn-link btn-sm"
-                            [routerLink]="['/content/reports/ProjectCostPerformanceReport/view/', rowData.projectReportId]">View</button>
+                            [routerLink]="['/content/reports/WorkPackageReport/view/', rowData.workPackageReportId]">View</button>
                     </td>
                 </tr>
             </ng-template>

@@ -19,10 +19,11 @@ import { ProjectReportListComponent } from './pages/project-report-list/project-
 import { ProjectReportViewComponent } from './pages/project-report-view/project-report-view.component';
 import { ProjectReportPmViewComponent } from './component/project-report-pm-view/project-report-pm-view.component';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { WpReportListComponent } from './pages/wp-report-list/wp-report-list.component';
 
 
 @NgModule({
-  declarations: [ReportsComponent, WpReportCreationComponent, WpReportComponent, WpReportViewComponent, WpReportStepperCreationComponent, ProjectReportListComponent, ProjectReportViewComponent, ProjectReportPmViewComponent],
+  declarations: [ReportsComponent, WpReportCreationComponent, WpReportComponent, WpReportViewComponent, WpReportStepperCreationComponent, ProjectReportListComponent, ProjectReportViewComponent, ProjectReportPmViewComponent, WpReportListComponent],
   imports: [
     CommonModule,
     FormsModule,

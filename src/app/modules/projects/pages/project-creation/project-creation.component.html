@@ -3,10 +3,11 @@
         <!-- Title -->
         <h3 class="display-4">Create Project</h3>
         <!-- alert -->
-        <shared-alertPromp [alerts]="alerts"></shared-alertPromp>
+        <!-- <shared-alertPromp [alerts]="alerts"></shared-alertPromp> -->
 
-        <app-project [mode]="mode" [project]="newProject" [alerts]="alerts"
-        (changeProjCode)="validateProjectCode()"></app-project>
+        <app-project [mode]="mode" [project]="newProject" [alerts]="alerts" (changeProjectCode)="validateProjectCode()"
+            [validProjectCode]="validProjectCode">
+        </app-project>
 
         <!-- Action section-->
         <div class="dropdown-divider my-3"></div>
@@ -16,6 +17,4 @@
         </div>
         <div class="dropdown-divider my-3"></div>
     </div>
-
-
 </div>

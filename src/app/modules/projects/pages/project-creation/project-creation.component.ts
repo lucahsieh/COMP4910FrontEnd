@@ -44,16 +44,16 @@ export class ProjectCreationComponent implements OnInit {
     if (!this.validatePage())
       return;
     console.log("POST project");
-    console.log(JSON.stringify(this.newProject));
     this.projectService.postProject(this.newProject).subscribe();
   }
 
   //brings user back to projects list
-  onCancel(e: any) { 
+  onCancel(e: any) {
     this.router.navigate(['/content/projects']);
   }
 
   validatePage(): boolean {
+    this.alerts = [];
     var result = true;
     if (!this.newProject.projectName === null || this.newProject.projectName.match(/^ *$/) !== null) {
       this.alerts['projectName'] = new Alert('danger', 5000, `Project Name cannot be empty`);
@@ -79,20 +79,25 @@ export class ProjectCreationComponent implements OnInit {
       this.alerts['endDate'] = new Alert('danger', 5000, `End date must be after the start Date`);
       result = false;
     }
+    if (!this.validProjectCode) {
+      this.alerts['projectCode'] = new Alert('danger', 5000, `Project Code : ${this.newProject.projectCode} is not allowed`);
+      result = false;
+    }
     return result;
   }
 
-  displayErrorMsg(fieldName: string) {
-    return (this.alerts[fieldName] != '') ? this.alerts[fieldName].msg : null;
-  }
+  // displayErrorMsg(fieldName: string) {
+  //   return (this.alerts[fieldName] != '') ? this.alerts[fieldName].msg : null;
+  // }
 
   // validates projectCode is unique
-  // validateProjectCode() {
-  //   this.projectService.checkProjectCode(this.newProject.projectCode)
-  //     .subscribe(response => {
-  //       console.log(response);
-  //       this.validProjectCode = response;
-  //     });
-  // }
+  validateProjectCode() {
+    this.projectService.checkProjectCode(this.newProject.projectCode)
+      .subscribe(response => {
+        console.log(response);
+        this.validProjectCode = response;
+        console.log(this.validProjectCode);
+      });
+  }
 
 }

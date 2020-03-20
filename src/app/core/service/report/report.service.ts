@@ -57,4 +57,12 @@ export class ReportService {
     return this.http
       .get<ProjectReport>(url, this.httpOptions).pipe();
   }
+  getAllProjectReports(projectId: any): Observable<any> {
+    let url = this.baseUrl + `api/reports/allprojectReports/${projectId}`;
+    return this.http.get<any>(url, this.httpOptions).pipe();
+  }
+  getAllWpReports(wpCode: any): Observable<any> {
+    let url = this.baseUrl + `api/reports/wpReport/getAllWpReport/${wpCode}`;
+    return this.http.get<any>(url, this.httpOptions).pipe();
+  }
 }

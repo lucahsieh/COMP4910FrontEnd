@@ -5,23 +5,22 @@ import { SelectItem } from 'primeng/api';
 export class Project {
 
     constructor() {
-        this.projectId=null;
-        this.projectName="";
-        this.budget=0;
-        this.description="";
+        this.projectId = null;
+        this.projectName = "";
+        this.budget = 0;
+        this.description = "";
         this.projectManager = new Employee();
-        this.teamMembers = [];
-        this.startDate=null;
-        this.endDate=null;
-        this.isClosed=false;
-        this.employees=[];
+        this.employees = [];
+        this.startDate = null;
+        this.endDate = null;
+        this.isClosed = false;
     };
     projectId: number;
     projectName: string;
     description: string;
     budget: number;
     projectManager: Employee;
-    teamMembers: any[];
+    employees: any[];
     startDate: Date;
     endDate: Date;
     employeeProjectAssignments?: any;
@@ -30,5 +29,4 @@ export class Project {
     lastUpdatedTime: Date;
     projectCode: number;
     isClosed: boolean;
-    employees: string[];
 }
