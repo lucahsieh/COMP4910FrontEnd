@@ -23,7 +23,6 @@ export class ProjectEditComponent implements OnInit {
   teamMembers: SelectItem[] = null;
   employeeDropdown: SelectItem[] = null;
   // project validation
-  validProjectCode: boolean = false;
   validStartDate: boolean = false;
   alerts = {};
 
@@ -48,7 +47,7 @@ export class ProjectEditComponent implements OnInit {
   }
 
   //brings user back to projects list
-  onCancel(e: any) { 
+  onCancel(e: any) {
     this.router.navigate(['/content/projects']);
   }
 
@@ -62,10 +61,6 @@ export class ProjectEditComponent implements OnInit {
       this.alerts['projectCode'] = new Alert('danger', 5000, `Project Code must be a number`);
       result = false;
     }
-    // if (!this.validProjectCode) {
-    //   this.alerts['projectCode'] = new Alert('danger', 5000, `Project Code : ${this.project.projectCode} is not allowed`);
-    //   result = false;
-    // }
     if (this.project.startDate === null) {
       this.alerts['startDate'] = new Alert('danger', 5000, `Start Date cannot be empty`);
       result = false;

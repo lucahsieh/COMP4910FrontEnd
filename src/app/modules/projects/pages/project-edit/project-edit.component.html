@@ -5,8 +5,9 @@
         <!-- alert -->
         <shared-alertPromp [alerts]="alerts"></shared-alertPromp>
 
-        <app-project [project]="project" [mode]="mode" [alerts]="alerts"></app-project>
-
+        <app-project *ngIf="project" [mode]="mode" [project]="project" [alerts]="alerts"
+            (changeProjectCode)="validateProjectCode()" [validProjectCode]="validProjectCode">
+        </app-project>
 
         <!-- Action section-->
         <div class="dropdown-divider my-3"></div>
