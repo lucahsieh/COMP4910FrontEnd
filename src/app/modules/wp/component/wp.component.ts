@@ -14,6 +14,7 @@ export class WpComponent implements OnInit {
 
   @Input() wp: WorkPackage;
   @Input() mode: MODE;
+  @Input() employees: any[] = [];
   parentWPDropdown: SelectItem[] = null;
   engineerDropdown: SelectItem[] = null;
   workerDropdown: SelectItem[] = null;
@@ -80,6 +81,28 @@ export class WpComponent implements OnInit {
           )
         })
       })
+  }
+
+  teamMemberSelect() {
+    var savedItems = [];
+    if (this.wp.workers.length > 0) {
+      savedItems = this.wp.workers;
+    }
+    var temp = [];
+    for (var i = 0; i < this.employees.length; i++) {
+      var label = this.employees[i].label.split(" ");
+      var efn = label[0];
+      var eln = label[1];
+      var eid = this.employees[i].value;
+
+      var tempJson = {
+        "empFirstName": efn,
+        "empLastName": eln,
+        "employeeId": eid
+      };
+      temp.push(tempJson);
+    }
+    this.wp.workers = temp;
   }
 
   numberOnly(event): boolean {

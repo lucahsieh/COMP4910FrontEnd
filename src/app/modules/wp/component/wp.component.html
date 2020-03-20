@@ -137,12 +137,13 @@
             </div>
             <input type="text" class="form-control" value="{{wp.workers.employeeId}}" *ngIf="mode==='read'"
                 [readOnly]="true">
-            <p-dropdown class="form-control" [options]="workerDropdown" [(ngModel)]="selectedWorker"
-                *ngIf="mode ==='create' || mode==='update'" placeholder="{{'choose a Worker'}}" optionLabel="label"
-                [style]="{'border-width':'0px','padding':'0px'}"></p-dropdown>
-            <!--<p-multiSelect *ngIf="mode ==='create' || mode==='update'" [options]="workerDropdown"
-                [(ngModel)]="employees" [panelStyle]="{minWidth:'12em'}"></p-multiSelect>-->
-        </div>
+                <p-listbox [options]="workerDropdown" [(ngModel)]="employees" multiple="multiple" checkbox="checkbox" filter="filter" optionLabel="label">
+                    <p-header>
+                        Employees
+                    </p-header>
+                </p-listbox>
+                <p style="margin-left: 10px;">Selected Employees: <span *ngFor="let e of employees" style="margin-right: 10px">{{e.label}}</span></p>
+            </div>
         <div class="col-1"></div>
     </div>
 </div>
