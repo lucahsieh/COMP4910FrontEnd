@@ -93,7 +93,7 @@
                 </td> -->
                 <td>
                     <p-dropdown [options]="populateWps(rowData.projectId)" [(ngModel)]="rowData.workPackageId"
-                        [style]="{'width':'170px'}" *ngIf="(mode == 'create'|| mode == 'update')">
+                        [style]="{'width':'100%'}" *ngIf="(mode == 'create'|| mode == 'update')">
                     </p-dropdown>
                     <span *ngIf="mode == 'read'">{{rowData.workPackageId}}</span>
                 </td>
@@ -109,7 +109,7 @@
                     <p-cellEditor>
                         <ng-template pTemplate="input">
 
-                            <input pInputText type="text" [(ngModel)]="rowData[day.value]">
+                            <input pInputText type="number" [(ngModel)]="rowData[day.value]">
 
                         </ng-template>
                         <ng-template pTemplate="output">

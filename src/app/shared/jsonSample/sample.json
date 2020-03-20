@@ -2,13 +2,26 @@
   "Post_Timesheet": {
     "timesheetRows": [
       {
-        "monday": "02",
+        "monday": 1,
         "tuesday": 0,
         "wednesday": 0,
         "thursday": 0,
         "friday": 0,
-        "saturday": "3",
-        "sunday": "2",
+        "saturday": 0,
+        "sunday": 0,
+        "projectId": 0,
+        "timesheetVersionNumber": 1,
+        "workPackageId": 0,
+        "timesheetId": 123
+      },
+      {
+        "monday": 2,
+        "tuesday": 2,
+        "wednesday": 0,
+        "thursday": 0,
+        "friday": 0,
+        "saturday": 0,
+        "sunday": 0,
         "projectId": 0,
         "timesheetVersionNumber": 1,
         "workPackageId": 0,
@@ -16,7 +29,7 @@
       },
       {
         "monday": 0,
-        "tuesday": 0,
+        "tuesday": 1,
         "wednesday": 0,
         "thursday": 0,
         "friday": 0,
@@ -30,21 +43,8 @@
       {
         "monday": 0,
         "tuesday": 0,
-        "wednesday": 0,
-        "thursday": 0,
-        "friday": 0,
-        "saturday": 0,
-        "sunday": 0,
-        "projectId": 0,
-        "timesheetVersionNumber": 1,
-        "workPackageId": 0,
-        "timesheetId": 123
-      },
-      {
-        "monday": 0,
-        "tuesday": 0,
-        "wednesday": 0,
-        "thursday": 0,
+        "wednesday": 2,
+        "thursday": 3,
         "friday": 0,
         "saturday": 0,
         "sunday": 0,
