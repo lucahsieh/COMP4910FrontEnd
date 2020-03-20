@@ -29,7 +29,7 @@
                 <input id="weekEnd" type="text" placeholder="Datepicker" class="form-control" bsDatepicker
                     [daysDisabled]="[6,2,4,3,1,0]" [outsideClick]="true"
                     [bsConfig]="{selectWeek: true, dateInputFormat: 'YYYY-MM-DD' }"
-                    (bsValueChange)="onValueChange($event)" value="{{ timesheet.weekEnding | date:'yyyy-MM-dd' }}"
+                    (bsValueChange)="onValueChange($event)" value="{{ timesheet.weekEndingIn | date:'yyyy-MM-dd' }}"
                     [readonly]="(mode == 'read' || mode =='update')"
                     [isDisabled]="(mode == 'read' || mode =='update')" />
             </div>

@@ -12,7 +12,7 @@ export class Timesheet {
     versionNumber: number;
     employeeId: number;
     weekNumber: number;
-    weekEnding: string;
+    weekEndingIn: string;
     status: string;
     signature?: any;
     timesheetRows: TimesheetRow[];

@@ -69,7 +69,7 @@
     ],
     "signature": null,
     "comment": "",
-    "weekEnding": "2020-03-21",
+    "weekEndingIn": "2020-03-21",
     "weekNumber": 12,
     "timesheetId": 123,
     "employeeId": 1,
@@ -222,7 +222,7 @@
       }
     ],
     "signature": null,
-    "weekEnding": "2020-02-15",
+    "weekEndingIn": "2020-02-15",
     "weekNumber": 7,
     "timesheetId": 123,
     "employeeId": 1,
