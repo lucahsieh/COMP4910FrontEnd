@@ -23,17 +23,20 @@
                 </tr>
                 <tr>
                     <th *ngFor="let col of columns" [ngSwitch]="col.field">
-                        <input *ngSwitchCase="'projectId'" pInputText type="text"
+                        <input *ngSwitchCase="'projectCode'" pInputText type="text"
+                            style="margin-left:-6px;width: 100%;"
                             (input)="dt.filter($event.target.value, col.field, 'contains')">
                         <input *ngSwitchCase="'projectName'" pInputText type="text"
+                            style="margin-left:-6px;width: 100%;"
                             (input)="dt.filter($event.target.value, col.field, 'contains')">
-                        <input *ngSwitchCase="'wpId'" pInputText type="text"
+                        <input *ngSwitchCase="'wpCode'" pInputText type="text" style="margin-left:-6px;width: 100%;"
                             (input)="dt.filter($event.target.value, col.field, 'contains')">
-                        <input *ngSwitchCase="'wpTitle'" pInputText type="text"
+                        <input *ngSwitchCase="'wpTitle'" pInputText type="text" style="margin-left:-6px;width: 100%;"
                             (input)="dt.filter($event.target.value, col.field, 'contains')">
                         <input *ngSwitchCase="'responsibleEngineer'" pInputText type="text"
+                            style="margin-left:-6px;width: 100%;"
                             (input)="dt.filter($event.target.value, col.field, 'contains')">
-                        <input *ngSwitchCase="'status'" pInputText type="text"
+                        <input *ngSwitchCase="'status'" pInputText type="text" style="margin-left:-6px;width: 100%;"
                             (input)="dt.filter($event.target.value, col.field, 'contains')">
                     </th>
                 </tr>
@@ -41,16 +44,22 @@
             <ng-template pTemplate="body" let-rowData let-columns="columns">
                 <tr [pSelectableRow]="rowData">
                     <td *ngFor="let col of columns">
-                        <span *ngIf="col.field !=='activation' && col.field !=='button'">{{rowData[col.field]}}</span>
-                        <div *ngIf="col.field ==='button'">
-                            <button type="button" class="btn btn-link btn-sm"
-                                [routerLink]="['view', rowData.wpId]">View</button>
-                            <button type="button" class="btn btn-link btn-sm"
-                                [routerLink]="['edit', rowData.wpId]">Edit</button>
-                        </div>
+                        <span *ngIf="col.field !=='status' && col.field !=='button'">{{rowData[col.field]}}</span>
+                        <div *ngIf="col.field === 'status'">
+                    <td>
+                        <h5>
+                            <span class="badge badge-success" *ngIf="rowData.isClosed">Open</span>
+                            <span class="badge badge-danger" *ngIf="!rowData.isClosed">Closed</span>
+                        </h5>
                     </td>
-                </tr>
-            </ng-template>
-        </p-table>
     </div>
+    <div *ngIf="col.field ==='button'">
+        <button type="button" class="btn btn-link btn-sm" [routerLink]="['view', rowData.wpCode]">View</button>
+        <button type="button" class="btn btn-link btn-sm" [routerLink]="['edit', rowData.wpCode]">Edit</button>
+    </div>
+    </td>
+    </tr>
+    </ng-template>
+    </p-table>
+</div>
 </div>

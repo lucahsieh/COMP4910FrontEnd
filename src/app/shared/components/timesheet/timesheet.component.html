@@ -72,8 +72,8 @@
                     </p-cellEditor>
                 </td> -->
                 <td>
-                    <p-dropdown [options]="populateProject()" [(ngModel)]="rowData.projectId"
-                        [style]="{'width':'170px'}" *ngIf="(mode == 'create'|| mode == 'update')">
+                    <p-dropdown [options]="populateProject()" [(ngModel)]="rowData.projectId" [style]="{'width':'100%'}"
+                        *ngIf="(mode == 'create'|| mode == 'update')">
                     </p-dropdown>
                     <span *ngIf="mode == 'read'">{{rowData.projectId}}</span>
                 </td>
@@ -120,7 +120,7 @@
                 </td>
 
                 <td class="p-1">
-                    <button *ngIf="mode == 'create'|| mode == 'update'" type="button" class="btn btn-link"
+                    <button *ngIf="mode == 'create'|| mode == 'update'" type="button" class="btn-link-normal"
                         (click)="deleteRow(rowData)">
                         <i class="material-icons text-danger">remove_circle_outline</i>
                     </button>

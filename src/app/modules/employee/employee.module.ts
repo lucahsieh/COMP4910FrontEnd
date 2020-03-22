@@ -17,7 +17,9 @@ import { EmployeeEditComponent } from './pages/employee-edit/employee-edit.compo
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TableModule } from 'primeng/table';
-
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,9 @@ import { TableModule } from 'primeng/table';
     //primeng
     DropdownModule,
     TableModule,
+    InputTextModule,
+    DialogModule,
+    ButtonModule,
 
     // bootstrap
     AlertModule.forRoot(),

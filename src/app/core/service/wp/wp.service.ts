@@ -34,24 +34,24 @@ export class WpService {
   }
 
   getAllWpByEmployeeId(id): Observable<WorkPackage[]> {
-    let url = this.baseUrl + `/api/WorkPackages/getAllWpByEmployeeId/${id}`;
+    let url = this.baseUrl + `api/WorkPackages/getAllWpByEmployeeId/${id}`;
     return this.http.get<WorkPackage[]>(url).pipe();
   }
 
-  getWpByWpId(id): Observable<WorkPackage>{
-    let url = this.baseUrl + `/api/WorkPackages/getWpByWpId/${id}`;
+  getWpByWpCode(code: any): Observable<WorkPackage> {
+    let url = this.baseUrl + `api/WorkPackages/${code}`;
     return this.http.get<WorkPackage>(url).pipe();
   }
 
-  getAllWpByProjectId(): Observable<WorkPackage[]> {
-    let url = this.baseUrl + `api/WorkPackages/getAllWpByProjectId`;
+  getAllWpByProjectId(projectId: any): Observable<WorkPackage[]> {
+    let url = this.baseUrl + `api/WorkPackages/GetAllWorkPackagesByProjectId/${projectId}`;
     return this.http.get<WorkPackage[]>(url).pipe();
   }
 
   postWorkPackage(w: WorkPackage): Observable<any> {
     let url = this.baseUrl + `api/WorkPackages`;
     let body = {
-      "projectId": w.projectId,
+      "projectCode": w.projectCode,
       "projectName": w.projectName,
       "workPackageCode": w.workPackageCode,
       "workPackageTitle": w.workPackageTitle,
@@ -60,17 +60,17 @@ export class WpService {
       "isClosed": w.isClosed,
       "responsibleEngineer": w.responsibleEngineer,
       "parentWorkPackageId": w.parentWorkPackageId,
-      "workers": w.workers,
+      "employees": w.employees,
     }
     return this.http
-    .post<WorkPackage>(url, body, this.httpOptions)
-    .pipe(catchError(this.handleError("postWorkPackage", w)));
+      .post<WorkPackage>(url, body, this.httpOptions)
+      .pipe(catchError(this.handleError("postWorkPackage", w)));
   }
 
   putWorkPackage(w: WorkPackage): Observable<any> {
     let url = this.baseUrl + `api/WorkPackages`;
     let body = {
-      "projectId": w.projectId,
+      "projectCode": w.projectCode,
       "projectName": w.projectName,
       "workPackageCode": w.workPackageCode,
       "workPackageTitle": w.workPackageTitle,
@@ -79,11 +79,11 @@ export class WpService {
       "isClosed": w.isClosed,
       "responsibleEngineer": w.responsibleEngineer,
       "parentWorkPackageId": w.parentWorkPackageId,
-      "workers": w.workers,
+      "employees": w.employees,
     }
     return this.http
-    .put<WorkPackage>(url, body, this.httpOptions)
-    .pipe(catchError(this.handleError("putWorkPackage", w)));
+      .put<WorkPackage>(url, body, this.httpOptions)
+      .pipe(catchError(this.handleError("putWorkPackage", w)));
   }
 
   private handleError<T>(operation = 'operation', result?: T) {

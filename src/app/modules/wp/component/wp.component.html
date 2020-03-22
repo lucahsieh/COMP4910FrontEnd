@@ -9,8 +9,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">Project Name</span>
             </div>
-            <input type="text" class="form-control" [(ngModel)]="wp.projectName"
-                [readOnly]="(mode ==='read' || mode==='update' || mode==='create')">
+            <input type="text" class="form-control" [(ngModel)]="wp.projectName" [readOnly]="true">
 
         </div>
     </div>
@@ -19,9 +18,9 @@
         <!-- project Id -->
         <div class="input-group ">
             <div class="input-group-prepend">
-                <span class="input-group-text">Project ID</span>
+                <span class="input-group-text">Project Code</span>
             </div>
-            <input type="text" class="form-control" [(ngModel)]="wp.projectId" [readOnly]="true">
+            <input type="text" class="form-control" [(ngModel)]="wp.projectCode" [readOnly]="true">
         </div>
     </div>
     <div class="col-1"></div>
@@ -35,7 +34,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">W.P. Title</span>
             </div>
-            <input type="text" class="form-control" [(ngModel)]="wp.wpTitle" (blur)="onExitUserName()"
+            <input type="text" class="form-control" [(ngModel)]="wp.workPackageTitle"
                 [readOnly]="mode ==='read' || mode=='update'">
         </div>
         <span *ngIf="alerts.wpTitle" class="error my-2"><small>{{alerts.wpTitle.msg}}</small></span>
@@ -49,14 +48,15 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">W.P. Code</span>
             </div>
-            <input type="text" class="form-control" [(ngModel)]="wp.wpId" [readOnly]="mode ==='read'">
+            <input type="text" class="form-control" [(ngModel)]="wp.workPackageCode" (blur)="onChangeWpCode()"
+                [readOnly]="mode ==='read'">
         </div>
-        <!--<span *ngIf="alerts.wpCode" class="error my-2"><small>{{alerts.wpCode.msg}}</small></span>-->
+        <span *ngIf="alerts.wpCode" class="error my-2"><small>{{alerts.wpCode.msg}}</small></span>
     </div>
     <div class="col-1">
         <div *ngIf="(mode ==='create' || mode ==='update')">
-            <i *ngIf="validUsername" class="material-icons pass my-2">check_circle</i>
-            <i *ngIf="!validUsername" class="material-icons error  my-2">error</i>
+            <i *ngIf="validWpCode" class="material-icons pass my-2">check_circle</i>
+            <i *ngIf="!validWpCode" class="material-icons error  my-2">error</i>
         </div>
     </div>
 </div>
@@ -68,15 +68,17 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">Contractor</span>
             </div>
-            <input type="text" class="form-control" [(ngModel)]="wp.contractor" (blur)="onExitEmployeeId()"
+            <input type="text" class="form-control" [(ngModel)]="wp.contractor"
                 [readOnly]="mode ==='read' || mode=='update'">
         </div>
-        <!--<span *ngIf="alerts.contractor" class="error my-2"><small>{{alerts.contractor.msg}}</small></span>-->
+        <span *ngIf="alerts.contractor" class="error my-2"><small>{{alerts.contractor.msg}}</small></span>
     </div>
     <div class="col-1">
     </div>
     <div class="col-5">
-        <div class="input-group">
+        <!-- issue date -->
+
+        <!-- <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text">Issue Date</span>
             </div>
@@ -84,7 +86,14 @@
                 [outsideClick]="true" [bsConfig]="{selectWeek: true, dateInputFormat: 'YYYY-MM-DD' }"
                 [isDisabled]="(mode == 'read' || mode =='update')" value="{{ wp.issueDate | date:'yyyy-MM-dd' }}"
                 [readonly]="(mode == 'read' || mode =='update')" />
-            <!--(bsValueChange)="onValueChange($event)"-->
+        </div> -->
+
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Issue Date</span>
+            </div>
+            <input type="text" class="form-control" value="{{ wp.issueDate | date:'yyyy-MM-dd' }}" [readOnly]="true">
+
         </div>
     </div>
     <div class="col-1"></div>
@@ -97,12 +106,13 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">Responsible Engineer</span>
             </div>
-            <input type="text" class="form-control" value="{{wp.responsibleEngineer.employeeId}}" *ngIf="mode==='read'"
-                [readOnly]="true">
+            <input type="text" class="form-control"
+                value="{{ wp.responsibleEngineer ? wp.responsibleEngineer.empFirstName + ' ' + wp.responsibleEngineer.empLastName : '(Not Assigned)'}}"
+                *ngIf="mode==='read'" [readOnly]="true">
             <p-dropdown class="form-control" [options]="engineerDropdown" [(ngModel)]="selectedEngineer"
                 *ngIf="mode ==='create' || mode==='update'"
                 placeholder="{{wp.responsibleEngineer ? wp.responsibleEngineer.employeeId : 'choose a Responsible Engineer'}}"
-                optionLabel="label" [style]="{'border-width':'0px','padding':'0px'}"></p-dropdown>
+                optionLabel="label" [style]="{'border-width':'0px','padding':'0px','width':'100%'}"></p-dropdown>
         </div>
         <!--<span *ngIf="alerts.labourGrade" class="error my-2"><small>{{alerts.labourGrade.msg}}</small></span>-->
 
@@ -110,15 +120,17 @@
     <div class="col-1"></div>
     <div class="col-5">
 
-        <!-- supervisor -->
+        <!-- parent Wp -->
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text">Parent W.P.</span>
             </div>
-            <input type="text" class="form-control" value="{{wp.projectId}}" *ngIf="mode==='read'" [readOnly]="true">
-            <p-dropdown class="form-control" [options]="parentWPDropdown" [(ngModel)]="selectedParent"
-                *ngIf="mode ==='create' || mode==='update'" placeholder="{{'choose a Parent WP'}}" optionLabel="label"
-                [style]="{'border-width':'0px','padding':'0px'}"></p-dropdown>
+            <input type="text" class="form-control" value="{{wp.parentWorkPackageCode}}" *ngIf="mode==='read'"
+                [readOnly]="true">
+            <p-dropdown class="form-control" [options]="parentWPDropdown" [(ngModel)]="wp.parentWorkPackageCode"
+                (onChange)="onChangeParentWp()" *ngIf="mode ==='create' || mode==='update'"
+                placeholder="{{'choose a Parent WP'}}" optionLabel="label"
+                [style]="{'border-width':'0px','padding':'0px','width':'100%'}"></p-dropdown>
         </div>
         <!--<span *ngIf="alerts.supervisor" class="error my-2"><small>{{alerts.supervisor.msg}}</small></span>-->
 
@@ -126,32 +138,88 @@
     </div>
     <div class="col-1"></div>
 </div>
-<div class="  my-3"></div>
+<div class="my-3"></div>
 
 <div class="form-row">
-    <div class="col-5">
+    <div class="col-11">
+
+        <!-- Team Members -->
         <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Team Members</span>
+            </div>
+            <!-- <input type="text" class="form-control " *ngIf="mode==='read'" [readOnly]="true"> -->
+            <div class="d-flex flex-row form-control">
+                <div *ngFor="let x of wp.employees;let i = index;">
+                    <h4>
+                        <span class="badge badge-pill badge-secondary mr-2 my-2">
+                            {{x.empFirstName +' ' +x.empLastName}}
+                        </span>
+                    </h4>
+                </div>
+                <p-multiSelect *ngIf="mode ==='create' || mode==='update'" [options]="workerDropdown"
+                    [(ngModel)]="wp.employees" [panelStyle]="{minWidth:'12em'}" maxSelectedLabels="0">
+                </p-multiSelect>
+            </div>
+        </div>
+
+        <!-- <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text">Workers</span>
             </div>
             <input type="text" class="form-control" value="{{wp.workers.employeeId}}" *ngIf="mode==='read'"
                 [readOnly]="true">
-            <p-dropdown class="form-control" [options]="workerDropdown" [(ngModel)]="selectedWorker"
-                *ngIf="mode ==='create' || mode==='update'" placeholder="{{'choose a Worker'}}" optionLabel="label"
-                [style]="{'border-width':'0px','padding':'0px'}"></p-dropdown>
-        </div>
-        <div class="col-1"></div>
+                <p-listbox [options]="workerDropdown" [(ngModel)]="employees" multiple="multiple" 
+                    checkbox="checkbox" filter="filter" optionLabel="label" [listStyle]="{'max-height':'250px'}">
+                    <p-header>
+                        Employees
+                    </p-header>
+                </p-listbox>
+                <p style="margin-left: 10px;">Selected Employees: <span *ngFor="let e of employees" style="margin-right: 10px">{{e.label}}</span></p>
+            </div>
+        <div class="col-1"></div> -->
+
     </div>
-    <div class="my-3"></div>
-    <p-table #dt [columns]="cols" [value]="displayPackage" id="labourTable">
-        <div class="form-row">
-            <ng-template pTemplate="header" let-columns>
-                <tr>
-                    <th *ngFor="let col of columns">
-                        {{col.header}}
-                    </th>
-                </tr>
-            </ng-template>
-        </div>
-    </p-table>
-    <div class="dropdown-divider  my-3"></div>
+</div>
+<div class=" my-3"></div>
+<div class="dropdown-divider  my-3"></div>
+<h5 class="my-3">Project Manager Planning Information</h5>
+
+<p-table [value]="wp.pmPlannings" (onEditComplete)="onEditComplete($event)" [columns]="cols"
+    [style]="{'max-width':'900px','min-width':'400px','text-align':'center'}">
+    <div class="form-row">
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th>Labour Grade</th>
+                <th>Project Manager EAC (days)</th>
+                <th>Responsible Engineer Budget (days)</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData>
+            <tr>
+                <td class="font-weight-bold">{{allLabourGrade[rowData.labourGradeId]}}</td>
+                <td [pEditableColumn]="mode == 'create'|| mode == 'update'? '' : null">
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="rowData.pmEAC" style="text-align:center">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            <span>{{rowData.pmEAC}}</span>
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+                <td [pEditableColumn]="mode == 'create'|| mode == 'update'? '' : null">
+                    <p-cellEditor>
+                        <ng-template pTemplate="input">
+                            <input pInputText type="text" [(ngModel)]="rowData.reBudget" style="text-align:center">
+                        </ng-template>
+                        <ng-template pTemplate="output">
+                            <span>{{rowData.reBudget}}</span>
+                        </ng-template>
+                    </p-cellEditor>
+                </td>
+            </tr>
+        </ng-template>
+    </div>
+</p-table>
+<div class="dropdown-divider  my-3"></div>

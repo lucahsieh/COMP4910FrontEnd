@@ -43,7 +43,8 @@
     outline: #FFE085 auto 5px !important;
 }
 
-
-
-
+>>>.smallTable-width{
+    min-width: 900px;
+    min-width: 400px;
+}
 

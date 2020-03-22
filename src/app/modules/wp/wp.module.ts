@@ -22,6 +22,8 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { ListboxModule } from 'primeng/listbox';
 
 
 @NgModule({
@@ -55,6 +57,8 @@ import { DialogModule } from 'primeng/dialog';
     ModalModule.forRoot(),
     NgbModule,
     BsDatepickerModule.forRoot(),
+    MultiSelectModule,
+    ListboxModule, 
   ]
 })
 export class WpModule { }

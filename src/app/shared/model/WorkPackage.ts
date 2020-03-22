@@ -3,21 +3,20 @@ import { Employee } from './Employee';
 
 export class WorkPackage {
     workPackageId: number;
-    projectId: number;
+    projectCode: number;
     projectName: string;
+    parentWorkPackageCode: string;
     responsibleEngineer: Employee;
-    workers: Employee[];
+    employees: Employee[];
     workPackageCode: string;
     workPackageTitle: string;
     contractor: string;
     issueDate: string;
     isClosed: boolean;
     parentWorkPackageId: number;
-    parentWorkPackage?: WorkPackage;
     childrenWorkPackages?: WorkPackage;
     lastUpdatedBy: string;
     lastUpdatedTime: Date;
     pmPlannings: PMPlanning[];
     name: string;
-    engineers: Employee[];
 }

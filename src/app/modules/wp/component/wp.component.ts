@@ -12,8 +12,11 @@ import { MODE } from 'src/app/shared/model/MODE';
 })
 export class WpComponent implements OnInit {
 
+  @Input() projectId: any = 0; //must have an input for populating workers and wps
+
   @Input() wp: WorkPackage;
   @Input() mode: MODE;
+  @Input() employees: any[] = [];
   parentWPDropdown: SelectItem[] = null;
   engineerDropdown: SelectItem[] = null;
   workerDropdown: SelectItem[] = null;
@@ -26,6 +29,9 @@ export class WpComponent implements OnInit {
   //validation
   @Input() validWpCode: boolean;
   @Input() alerts;
+  @Output() fireValidateWPCode: EventEmitter<string> = new EventEmitter<string>();
+
+  allLabourGrade: any[] = [];
 
 
   constructor(
@@ -39,16 +45,34 @@ export class WpComponent implements OnInit {
     if (this.mode !== MODE.Read) this.populateWorkerDropdown();
     this.initLabourGrades();
     this.initCols();
+    this.AllLabourGrades();
+  }
+
+  AllLabourGrades() {
+    this.allLabourGrade = [];
+    this.empService.getLabourGrades().subscribe(grades => {
+      // grades.forEach(g => {
+      //   let line = {`${g.labourGradeId}`: g.labourGradeName};
+      // })
+      grades.forEach(g => this.allLabourGrade[g.labourGradeId] = g.labourGradeName)
+    })
   }
 
   populateEngineerDropdown() {
     this.empService
-      .getEmployees()
+      .getEmployeesWithinProject(this.projectId)
       .subscribe(employees => {
         this.engineerDropdown = [];
         employees.forEach(e => {
           this.engineerDropdown.push(
-            { label: `${e.empFirstName} ${e.empLastName}`, value: e.employeeId }
+            {
+              label: `${e.empFirstName} ${e.empLastName}`, value:
+              {
+                "employeeId": e.employeeId,
+                "empFirstName": e.empFirstName,
+                "empLastName": e.empLastName
+              }
+            }
           )
         })
       })
@@ -56,13 +80,12 @@ export class WpComponent implements OnInit {
 
   populateParentDropdown() {
     this.wpService
-      .getAllWpByProjectId()
+      .getAllWpByProjectId(this.projectId)
       .subscribe(packages => {
         this.parentWPDropdown = [];
-        console.log(this.parentWPDropdown);
         packages.forEach(p => {
           this.parentWPDropdown.push(
-            { label: `${p.workPackageTitle}`, value: p.workPackageId }
+            { label: `${p.workPackageCode} - ${p.workPackageTitle}`, value: p.workPackageCode }
           )
         })
       })
@@ -70,16 +93,45 @@ export class WpComponent implements OnInit {
 
   populateWorkerDropdown() {
     this.empService
-      .getEmployees()
+      .getEmployeesWithinProject(this.projectId)
       .subscribe(employees => {
         this.workerDropdown = [];
         employees.forEach(e => {
           this.workerDropdown.push(
-            { label: `${e.empFirstName} ${e.empLastName}`, value: e.employeeId }
+            {
+              label: `${e.empFirstName} ${e.empLastName}`, value:
+              {
+                "employeeId": e.employeeId,
+                "empFirstName": e.empFirstName,
+                "empLastName": e.empLastName
+              }
+            }
           )
         })
       })
   }
+
+  // teamMemberSelect() {
+  //   var savedItems = [];
+  //   if (this.wp.workers.length > 0) {
+  //     savedItems = this.wp.workers;
+  //   }
+  //   var temp = [];
+  //   for (var i = 0; i < this.employees.length; i++) {
+  //     var label = this.employees[i].label.split(" ");
+  //     var efn = label[0];
+  //     var eln = label[1];
+  //     var eid = this.employees[i].value;
+
+  //     var tempJson = {
+  //       "empFirstName": efn,
+  //       "empLastName": eln,
+  //       "employeeId": eid
+  //     };
+  //     temp.push(tempJson);
+  //   }
+  //   this.wp.workers = temp;
+  // }
 
   numberOnly(event): boolean {
     const charCode = (event.which) ? event.which : event.keyCode;
@@ -111,4 +163,17 @@ export class WpComponent implements OnInit {
       { field: 'reBudget', header: 'Responsible Engineer Budget' }
     ]
   }
+
+  onChangeWpCode() {
+    this.fireValidateWPCode.emit('payload');
+  }
+
+  onChangeParentWp() {
+    console.log('changed parent wp');
+  }
+
+  /** exist edit field */
+  onEditComplete(event) {
+  }
+
 }

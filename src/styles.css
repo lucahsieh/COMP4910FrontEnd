@@ -130,3 +130,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     border-color: #202020 !important;
     color: #808080 !important;
 }
+
+.ui-dropdown {
+    min-width: 50px !important;
+    }

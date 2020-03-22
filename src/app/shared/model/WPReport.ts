@@ -46,7 +46,7 @@ export class WPReport {
         this.workPackageId = wp.workPackageId;
         this.workPackageName = wp.name;
         this.responsibleEngineer = wp.responsibleEngineer;
-        this.engineers = wp.engineers;
+        this.engineers = wp.employees;
     }
     copyProjectInfo(p: Project) {
         this.projectId = p.projectId;
