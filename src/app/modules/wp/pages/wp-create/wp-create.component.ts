@@ -17,6 +17,7 @@ export class WpCreateComponent implements OnInit {
 
   wp: WorkPackage;
   hours: PMPlanning[];
+  employees: any[] = [];
 
   //wpCode validation
   validWpCode: boolean = false;
@@ -68,14 +69,14 @@ export class WpCreateComponent implements OnInit {
 
   validatePage(): boolean {
     var result = true;
-    /* if (!this.wp.workPackageTitle === null || this.wp.workPackageTitle.match(/^ *$/) === null) {
+    if (this.wp.workPackageTitle === null) {
       this.alerts['wpTitle'] = new Alert('danger', 5000, `WP Title cannot be empty`);
       result = false;
     }
-    if (!this.wp.contractor === null || this.wp.contractor.match(/^ *$/) !== null) {
+    if (!this.wp.contractor === null) {
       this.alerts['lastName'] = new Alert('danger', 5000, `Contractor cannot be empty`);
       result = false;
-    } */
+    }
      if (!this.validWpCode) {
       this.alerts['wpCode'] = new Alert('danger', 5000, `WP Code: ${this.wp.workPackageCode} is not valid`);
       result = false;
@@ -84,6 +85,11 @@ export class WpCreateComponent implements OnInit {
       this.alerts['employeeCode'] = new Alert('danger', 5000, `Employee ID : ${this.employee.empCode} is not allowed`);
       result = false;
     } */
+    this.employees.forEach(e => {
+      var emp = e;
+      this.wp.workers.push(emp);
+    });
+    console.log(this.wp.workers);
     return result;
   }
   displayErrorMsg(fieldName: string) {
@@ -93,9 +99,9 @@ export class WpCreateComponent implements OnInit {
   validateWpCode() {      
     this.validWpCode = false;
     var code = this.wp.workPackageCode;
-    var projCode = this.wp.projectCode['value'];
-    var codeSub = code.substring(0, projCode.length);
-    if(codeSub === projCode) {
+    var parentCode = this.wp.parentWorkPackageCode['value'];
+    var codeSub = code.substring(0, parentCode.length);
+    if(codeSub === parentCode) {
       this.validWpCode = true;
     }
     if(code.match(/^[A-Z]*\d*$/) === null) {
