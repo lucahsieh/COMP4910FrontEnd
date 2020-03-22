@@ -33,8 +33,8 @@ export class WpEditComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      var id = params.get('wpId');
-      this.wpService.getWpByWpId(id).subscribe(w => this.wp = w);
+      var code = params.get('wpCode');
+      this.wpService.getWpByWpCode(code).subscribe(w => this.wp = w);
     })
   }
 
@@ -76,34 +76,34 @@ export class WpEditComponent implements OnInit {
       this.alerts['lastName'] = new Alert('danger', 5000, `Contractor cannot be empty`);
       result = false;
     }
-     if (!this.validWpCode) {
+    if (!this.validWpCode) {
       this.alerts['wpCode'] = new Alert('danger', 5000, `WP Code: ${this.wp.workPackageCode} is not valid`);
       result = false;
     }
-   /*if (!this.validEmployeeCode) {
-      this.alerts['employeeCode'] = new Alert('danger', 5000, `Employee ID : ${this.employee.empCode} is not allowed`);
-      result = false;
-    } */
+    /*if (!this.validEmployeeCode) {
+       this.alerts['employeeCode'] = new Alert('danger', 5000, `Employee ID : ${this.employee.empCode} is not allowed`);
+       result = false;
+     } */
     this.employees.forEach(e => {
       var emp = e;
-      this.wp.workers.push(emp);
+      this.wp.employees.push(emp);
     });
-    console.log(this.wp.workers);
+    console.log(this.wp.employees);
     return result;
   }
   displayErrorMsg(fieldName: string) {
     return (this.alerts[fieldName] != '') ? this.alerts[fieldName].msg : null;
   }
 
-  validateWpCode() {      
+  validateWpCode() {
     this.validWpCode = false;
     var code = this.wp.workPackageCode;
     var projCode = this.wp.parentWorkPackageCode['value'];
     var codeSub = code.substring(0, projCode.length);
-    if(codeSub === projCode) {
+    if (codeSub === projCode) {
       this.validWpCode = true;
     }
-    if(code.match(/^[A-Z]*\d*$/) === null) {
+    if (code.match(/^[A-Z]*\d*$/) === null) {
       console.log(code);
       this.validWpCode = false;
     }

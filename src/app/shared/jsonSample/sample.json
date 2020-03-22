@@ -611,75 +611,97 @@
       }
     }
   ],
+  "get_WpByWpCode": {
+    "workPackageId": 2,
+    "projectCode": 111,
+    "projectName": "NewProject1",
+    "workPackageCode": "AB",
+    "workPackageTitle": "WpName1Child1",
+    "contractor": null,
+    "issueDate": "2020-02-20T00:00:00",
+    "isClosed": false,
+    "responsibleEngineer": {
+      "employeeId": 2,
+      "empFirstName": "Perry",
+      "empLastName": "Li"
+    },
+    "parentWorkPackageCode": "A",
+    "employees": [
+      {
+        "employeeId": 3,
+        "empFirstName": "Bruce",
+        "empLastName": "Link"
+      }
+    ],
+    "pmPlannings": [
+      {
+        "labourGradeId": 1,
+        "pmEAC": 30.0,
+        "reBudget": 80.0
+      },
+      {
+        "labourGradeId": 2,
+        "pmEAC": 55.5,
+        "reBudget": 66.6
+      }
+    ]
+  },
   "get_WpByProjectId": [
     {
-      "workPackageId": 1,
-      "projectId": 1234567,
-      "projectName": "string",
-      "workPackageCode": "A1",
-      "workPackageTitle": "A1",
-      "isClosed": true,
-      "parentWorkPackageId": 4
-    },
-    {
-      "workPackageId": 2,
-      "projectId": 1234567,
-      "projectName": "string",
-      "workPackageCode": "A2",
-      "workPackageTitle": "A2",
-      "isClosed": true,
-      "parentWorkPackageId": 5
-    },
-    {
       "workPackageId": 3,
-      "projectId": 7654321,
-      "projectName": "string",
-      "workPackageCode": "A3",
-      "workPackageTitle": "A3",
-      "isClosed": true,
-      "parentWorkPackageId": 6
-    }
-  ],
-  "get_WpByWpId": [
+      "projectCode": 222,
+      "projectName": "ProjectName2",
+      "workPackageCode": "B",
+      "workPackageTitle": "WpName2Root",
+      "contractor": null,
+      "issueDate": "2020-02-10T00:00:00",
+      "isClosed": false,
+      "responsibleEngineer": null,
+      "parentWorkPackageCode": null,
+      "employees": null,
+      "pmPlannings": null
+    },
     {
-      "workPackageId": 1,
-      "projectCode": 111,
-      "projectName": "NewProject1",
-      "workPackageCode": "AB",
-      "workPackageTitle": "WpName1Child1",
+      "workPackageId": 4,
+      "projectCode": 222,
+      "projectName": "ProjectName2",
+      "workPackageCode": "BA",
+      "workPackageTitle": "WpName2Child1",
+      "contractor": null,
+      "issueDate": "2020-02-12T00:00:00",
+      "isClosed": false,
+      "responsibleEngineer": null,
+      "parentWorkPackageCode": "B",
+      "employees": null,
+      "pmPlannings": null
+    },
+    {
+      "workPackageId": 5,
+      "projectCode": 222,
+      "projectName": "ProjectName2",
+      "workPackageCode": "BAA",
+      "workPackageTitle": "WpName2ChildChild1",
       "contractor": null,
       "issueDate": "2020-02-20T00:00:00",
       "isClosed": false,
-      "responsibleEngineer": {
-          "employeeId": 2,
-          "empFirstName": "Perry",
-          "empLastName": "Li"
-      },
-      "parentWorkPackageCode": "A",
-      "employees": [
-          {
-              "employeeId": 3,
-              "empFirstName": "Bruce",
-              "empLastName": "Link"
-          },
-          {
-            "employeeId": 2,
-            "empFirstName": "Mike",
-            "empLastName": "Tyson"
-        }
-      ],
-      "pmPlannings": [
-          {
-              "labourGradeId": 1,
-              "pmEAC": 30.0,
-              "reBudget": 80.0
-          },
-          {
-              "labourGradeId": 2,
-              "pmEAC": 55.5,
-              "reBudget": 66.6
-          }
-      ]   
+      "responsibleEngineer": null,
+      "parentWorkPackageCode": "BA",
+      "employees": null,
+      "pmPlannings": null
+    },
+    {
+      "workPackageId": 6,
+      "projectCode": 222,
+      "projectName": "ProjectName2",
+      "workPackageCode": "BB",
+      "workPackageTitle": "WpName2Child2",
+      "contractor": null,
+      "issueDate": "2020-02-14T00:00:00",
+      "isClosed": false,
+      "responsibleEngineer": null,
+      "parentWorkPackageCode": "B",
+      "employees": null,
+      "pmPlannings": null
     }
   ]
 }

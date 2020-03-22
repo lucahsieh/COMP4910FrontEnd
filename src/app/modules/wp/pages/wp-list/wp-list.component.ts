@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { WpService } from 'src/app/core/service/wp/wp.service';
 
 @Component({
@@ -8,6 +8,7 @@ import { WpService } from 'src/app/core/service/wp/wp.service';
 })
 export class WpListComponent implements OnInit {
 
+  @Input() projectId = 32; // NOTE: MUST HAVE
   displayPackage: any[] = [];
   cols: any[];
 
@@ -22,31 +23,38 @@ export class WpListComponent implements OnInit {
 
   initPackages() {
     this.wpService
-      .getAllWp()
+      //TODO: FIX THE TEST NUMBER
+      .getAllWpByProjectId(this.projectId)
       .subscribe(res => {
-      res.forEach(i => {
-        this.displayPackage.push (
-          {
-            "projectId": i.projectId,
-            "projectName": i.projectName,
-            "wpId": i.workPackageId,
-            "wpTitle": i.workPackageTitle,
-            "responsibleEngineer": i.responsibleEngineer.empFirstName + " " + i.responsibleEngineer.empLastName,
-            "status": i.isClosed
-          }
-        )
+        res.forEach(i => {
+          let reName = "(Not Assigned)";
+          if (i.responsibleEngineer !== null)
+            reName = i.responsibleEngineer.empFirstName + " " + i.responsibleEngineer.empLastName;
+          this.displayPackage.push(
+            {
+              "projectCode": i.projectCode,
+              "projectName": i.projectName,
+              "wpId": i.workPackageId,
+              "wpTitle": i.workPackageTitle,
+              "responsibleEngineer": reName,
+              "status": i.isClosed,
+              "wpCode": i.workPackageCode
+            }
+          )
+        })
       })
-    })
+    console.log("display wps")
+    console.log(this.displayPackage);
   }
 
   initCols() {
     this.cols = [
-      { field: 'projectId', header: 'Project ID' },
+      { field: 'projectCode', header: 'Project Code' },
       { field: 'projectName', header: 'Project Name' },
-      { field: 'wpId', header: 'WP Id' },
+      { field: 'wpCode', header: 'WP Code' },
       { field: 'wpTitle', header: 'WP Title' },
       { field: 'responsibleEngineer', header: 'Responsible Engineer' },
-      { field: 'status', header: 'Status'},
+      { field: 'status', header: 'Status' },
       { field: 'button', header: '' },
     ]
   }

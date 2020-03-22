@@ -8,9 +8,9 @@ import { WpEditComponent } from './pages/wp-edit/wp-edit.component';
 
 const routes: Routes = [
   { path: '', component: WpListComponent, data: { breadcrumb: null } },
-  { path: 'view/:empId', component: WpViewComponent, data: { breadcrumb: 'Employee View' } },
-  { path: 'edit/:empId', component: WpEditComponent, data: { breadcrumb: 'Employee Edit' } },
-  { path: 'creation', component: WpCreateComponent, data: { breadcrumb: 'Employee Creation' } }
+  { path: 'view/:wpCode', component: WpViewComponent, data: { breadcrumb: 'Work Package View' } },
+  { path: 'edit/:wpCode', component: WpEditComponent, data: { breadcrumb: 'Work Package Edit' } },
+  { path: 'creation', component: WpCreateComponent, data: { breadcrumb: 'Work Package Creation' } }
 ];
 
 @NgModule({

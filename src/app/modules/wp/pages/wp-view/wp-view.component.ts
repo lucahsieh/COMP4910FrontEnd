@@ -14,7 +14,7 @@ import { Alert } from 'src/app/shared/model/Alert';
 export class WpViewComponent implements OnInit {
 
   wp: WorkPackage;
-  mode: MODE.Read;
+  mode: MODE = MODE.Read;
   alerts = {};
   modalRef: BsModalRef;
   validWpCode: boolean = true;
@@ -27,8 +27,8 @@ export class WpViewComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      var id = params.get('wpId');
-      this.wpService.getWpByWpId(id).subscribe(w => this.wp = w);
+      var code = params.get('wpCode');
+      this.wpService.getWpByWpCode(code).subscribe(w => this.wp = w);
     })
   }
 }

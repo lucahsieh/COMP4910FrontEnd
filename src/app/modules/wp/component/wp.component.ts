@@ -29,7 +29,9 @@ export class WpComponent implements OnInit {
   //validation
   @Input() validWpCode: boolean;
   @Input() alerts;
-  @Output() changeWpCode: EventEmitter<string> = new EventEmitter<string>();
+  @Output() fireValidateWPCode: EventEmitter<string> = new EventEmitter<string>();
+
+  allLabourGrade: any[] = [];
 
 
   constructor(
@@ -43,6 +45,17 @@ export class WpComponent implements OnInit {
     if (this.mode !== MODE.Read) this.populateWorkerDropdown();
     this.initLabourGrades();
     this.initCols();
+    this.AllLabourGrades();
+  }
+
+  AllLabourGrades() {
+    this.allLabourGrade = [];
+    this.empService.getLabourGrades().subscribe(grades => {
+      // grades.forEach(g => {
+      //   let line = {`${g.labourGradeId}`: g.labourGradeName};
+      // })
+      grades.forEach(g => this.allLabourGrade[g.labourGradeId] = g.labourGradeName)
+    })
   }
 
   populateEngineerDropdown() {
@@ -67,10 +80,9 @@ export class WpComponent implements OnInit {
 
   populateParentDropdown() {
     this.wpService
-      .getAllWpByProjectId()
+      .getAllWpByProjectId(this.projectId)
       .subscribe(packages => {
         this.parentWPDropdown = [];
-        console.log(this.parentWPDropdown);
         packages.forEach(p => {
           this.parentWPDropdown.push(
             { label: `${p.workPackageTitle}`, value: p.workPackageCode }
@@ -153,7 +165,7 @@ export class WpComponent implements OnInit {
   }
 
   onChangeWpCode() {
-    this.changeWpCode.emit('payload');
+    this.fireValidateWPCode.emit('payload');
   }
 
   onChangeParentWp() {

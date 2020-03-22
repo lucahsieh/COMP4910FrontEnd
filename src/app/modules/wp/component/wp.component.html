@@ -9,8 +9,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">Project Name</span>
             </div>
-            <input type="text" class="form-control" [(ngModel)]="wp.projectName"
-                [readOnly]="(mode ==='read' || mode==='update' || mode==='create')">
+            <input type="text" class="form-control" [(ngModel)]="wp.projectName" [readOnly]="true">
 
         </div>
     </div>
@@ -19,9 +18,9 @@
         <!-- project Id -->
         <div class="input-group ">
             <div class="input-group-prepend">
-                <span class="input-group-text">Project ID</span>
+                <span class="input-group-text">Project Code</span>
             </div>
-            <input type="text" class="form-control" [(ngModel)]="wp.projectId" [readOnly]="true">
+            <input type="text" class="form-control" [(ngModel)]="wp.projectCode" [readOnly]="true">
         </div>
     </div>
     <div class="col-1"></div>
@@ -35,7 +34,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">W.P. Title</span>
             </div>
-            <input type="text" class="form-control" [(ngModel)]="wp.wpTitle"
+            <input type="text" class="form-control" [(ngModel)]="wp.workPackageTitle"
                 [readOnly]="mode ==='read' || mode=='update'">
         </div>
         <span *ngIf="alerts.wpTitle" class="error my-2"><small>{{alerts.wpTitle.msg}}</small></span>
@@ -77,7 +76,9 @@
     <div class="col-1">
     </div>
     <div class="col-5">
-        <div class="input-group">
+        <!-- issue date -->
+
+        <!-- <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text">Issue Date</span>
             </div>
@@ -85,7 +86,14 @@
                 [outsideClick]="true" [bsConfig]="{selectWeek: true, dateInputFormat: 'YYYY-MM-DD' }"
                 [isDisabled]="(mode == 'read' || mode =='update')" value="{{ wp.issueDate | date:'yyyy-MM-dd' }}"
                 [readonly]="(mode == 'read' || mode =='update')" />
-            <!--(bsValueChange)="onValueChange($event)"-->
+        </div> -->
+
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Issue Date</span>
+            </div>
+            <input type="text" class="form-control" value="{{ wp.issueDate | date:'yyyy-MM-dd' }}" [readOnly]="true">
+
         </div>
     </div>
     <div class="col-1"></div>
@@ -98,8 +106,9 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">Responsible Engineer</span>
             </div>
-            <input type="text" class="form-control" value="{{wp.responsibleEngineer.employeeId}}" *ngIf="mode==='read'"
-                [readOnly]="true">
+            <input type="text" class="form-control"
+                value="{{ wp.responsibleEngineer ? wp.responsibleEngineer.empFirstName + ' ' + wp.responsibleEngineer.empLastName : '(Not Assigned)'}}"
+                *ngIf="mode==='read'" [readOnly]="true">
             <p-dropdown class="form-control" [options]="engineerDropdown" [(ngModel)]="selectedEngineer"
                 *ngIf="mode ==='create' || mode==='update'"
                 placeholder="{{wp.responsibleEngineer ? wp.responsibleEngineer.employeeId : 'choose a Responsible Engineer'}}"
@@ -118,7 +127,7 @@
             </div>
             <input type="text" class="form-control" value="{{wp.projectCode}}" *ngIf="mode==='read'" [readOnly]="true">
             <p-dropdown class="form-control" [options]="parentWPDropdown" [(ngModel)]="wp.projectCode"
-                [onChange]="onChangeParentWp()" *ngIf="mode ==='create' || mode==='update'"
+                (onChange)="onChangeParentWp()" *ngIf="mode ==='create' || mode==='update'"
                 placeholder="{{'choose a Parent WP'}}" optionLabel="label"
                 [style]="{'border-width':'0px','padding':'0px'}"></p-dropdown>
         </div>
@@ -187,7 +196,7 @@
         </ng-template>
         <ng-template pTemplate="body" let-rowData>
             <tr>
-                <td class="font-weight-bold">{{rowData.labourGradeName}}</td>
+                <td class="font-weight-bold">{{allLabourGrade[rowData.labourGradeId]}}</td>
                 <td [pEditableColumn]="mode == 'create'|| mode == 'update'? '' : null">
                     <p-cellEditor>
                         <ng-template pTemplate="input">

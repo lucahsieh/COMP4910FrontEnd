@@ -6,8 +6,8 @@
         <shared-alertPromp [alerts]="alerts"></shared-alertPromp>
 
 
-        <app-wp [wp]="wp" [mode]="mode" [validWpCode]="validWpCode"
-        (changeWpCode)="validateWpCode()" [alerts]="alerts"></app-wp>
+        <app-wp [wp]="wp" [mode]="mode" [validWpCode]="validWpCode" (fireValidateWPCode)="validateWpCode()"
+            [alerts]="alerts" [projectId]="project.projectId"></app-wp>
 
         <!-- Action section-->
         <div class="dropdown-divider my-3"></div>
