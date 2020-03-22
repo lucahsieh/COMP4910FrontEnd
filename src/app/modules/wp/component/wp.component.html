@@ -72,7 +72,7 @@
             <input type="text" class="form-control" [(ngModel)]="wp.contractor"
                 [readOnly]="mode ==='read' || mode=='update'">
         </div>
-        <!--<span *ngIf="alerts.contractor" class="error my-2"><small>{{alerts.contractor.msg}}</small></span>-->
+        <span *ngIf="alerts.contractor" class="error my-2"><small>{{alerts.contractor.msg}}</small></span>
     </div>
     <div class="col-1">
     </div>
@@ -116,8 +116,8 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">Parent W.P.</span>
             </div>
-            <input type="text" class="form-control" value="{{wp.projectCode}}" *ngIf="mode==='read'" [readOnly]="true">
-            <p-dropdown class="form-control" [options]="parentWPDropdown" [(ngModel)]="wp.projectCode"
+            <input type="text" class="form-control" value="{{wp.parentWorkPackageCode}}" *ngIf="mode==='read'" [readOnly]="true">
+            <p-dropdown class="form-control" [options]="parentWPDropdown" [(ngModel)]="wp.parentWorkPackageCode"
                 *ngIf="mode ==='create' || mode==='update'" placeholder="{{'choose a Parent WP'}}" optionLabel="label"
                 [style]="{'border-width':'0px','padding':'0px'}"></p-dropdown>
         </div>
@@ -130,21 +130,23 @@
 <div class="my-3"></div>
 
 <div class="form-row">
-    <div class="col-5">
+    <div class="col-3">
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text">Workers</span>
             </div>
             <input type="text" class="form-control" value="{{wp.workers.employeeId}}" *ngIf="mode==='read'"
                 [readOnly]="true">
-                <p-listbox [options]="workerDropdown" [(ngModel)]="employees" multiple="multiple" checkbox="checkbox" filter="filter" optionLabel="label">
+                <p-listbox [options]="workerDropdown" [(ngModel)]="employees" multiple="multiple" 
+                    checkbox="checkbox" filter="filter" optionLabel="label" [listStyle]="{'max-height':'250px'}">
                     <p-header>
                         Employees
                     </p-header>
                 </p-listbox>
-                <p style="margin-left: 10px;">Selected Employees: <span *ngFor="let e of employees" style="margin-right: 10px">{{e.label}}</span></p>
-            </div>
-        <div class="col-1"></div>
+        </div>
+    </div>
+    <div class="col-3">
+        <p>Selected Employees: <span *ngFor="let e of employees"><br/>{{e.label}}</span></p>
     </div>
 </div>
 <div class=" my-3"></div>

@@ -5,7 +5,7 @@ export class WorkPackage {
     workPackageId: number;
     projectId: number;
     projectName: string;
-    projectCode: string;
+    parentWorkPackageCode: string;
     responsibleEngineer: Employee;
     workers: Employee[];
     workPackageCode: string;

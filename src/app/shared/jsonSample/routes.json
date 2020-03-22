@@ -16,5 +16,6 @@
     "/api/reports/projectReport/:projectReportId": "/get__ProjectReport",
     "/api/WorkPackages/getAllWp": "/get_AllWp",
     "/api/WorkPackages/getAllWpByProjectId": "/get_WpByProjectId",
-    "/api/WorkPackages": "/post_WorkPackage"
+    "/api/WorkPackages": "/post_WorkPackage",
+    "/api/WorkPackages/:id": "/get_WpByWpId"
 }

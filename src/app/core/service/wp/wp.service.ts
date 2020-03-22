@@ -39,7 +39,7 @@ export class WpService {
   }
 
   getWpByWpId(id): Observable<WorkPackage>{
-    let url = this.baseUrl + `/api/WorkPackages/getWpByWpId/${id}`;
+    let url = this.baseUrl + `/api/WorkPackages/${id}`;
     return this.http.get<WorkPackage>(url).pipe();
   }
 
