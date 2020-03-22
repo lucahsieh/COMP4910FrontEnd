@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MenuModule } from 'primeng/menu';
 import { SharedModule } from '../shared/shared.module';
+import { AccordionModule } from 'primeng/accordion';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { SharedModule } from '../shared/shared.module';
 
     // primeng
     MenuModule,
+    AccordionModule,
   ],
   exports: [
     LoginLayoutComponent,
