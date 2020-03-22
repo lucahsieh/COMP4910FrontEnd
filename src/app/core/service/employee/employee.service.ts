@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 import { User } from 'src/app/shared/model/User';
 import { CheckUserNameResult } from 'src/app/shared/model/CheckUserName';
 import { LabourGrade } from 'src/app/shared/model/LabourGrade';
+import { ProjectService } from '../project/project.service';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,8 @@ export class EmployeeService {
 
   constructor(
     private http: HttpClient,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private projectService: ProjectService
   ) { }
 
   getLabourGrades(): Observable<LabourGrade[]> {
@@ -44,6 +46,10 @@ export class EmployeeService {
     return this.http
       .get<Employee[]>(url)
       .pipe()
+  }
+
+  getEmployeesWithinProject(projectId: any): Observable<Employee[]> {
+    return this.projectService.getProject(projectId).pipe(map(p => p.employees));
   }
   postEmployee(e: Employee): Observable<any> {
     let url = this.baseUrl + `api/employees`;

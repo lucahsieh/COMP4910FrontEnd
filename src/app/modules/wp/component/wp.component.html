@@ -118,7 +118,8 @@
             </div>
             <input type="text" class="form-control" value="{{wp.projectCode}}" *ngIf="mode==='read'" [readOnly]="true">
             <p-dropdown class="form-control" [options]="parentWPDropdown" [(ngModel)]="wp.projectCode"
-                *ngIf="mode ==='create' || mode==='update'" placeholder="{{'choose a Parent WP'}}" optionLabel="label"
+                [onChange]="onChangeParentWp()" *ngIf="mode ==='create' || mode==='update'"
+                placeholder="{{'choose a Parent WP'}}" optionLabel="label"
                 [style]="{'border-width':'0px','padding':'0px'}"></p-dropdown>
         </div>
         <!--<span *ngIf="alerts.supervisor" class="error my-2"><small>{{alerts.supervisor.msg}}</small></span>-->
@@ -131,7 +132,28 @@
 
 <div class="form-row">
     <div class="col-5">
+
+
         <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Team Members</span>
+            </div>
+            <!-- <input type="text" class="form-control " *ngIf="mode==='read'" [readOnly]="true"> -->
+            <div class="d-flex flex-row form-control">
+                <div *ngFor="let x of wp.employees;let i = index;">
+                    <h4>
+                        <span class="badge badge-pill badge-secondary mr-2 my-2">
+                            {{x.empFirstName +' ' +x.empLastName}}
+                        </span>
+                    </h4>
+                </div>
+                <p-multiSelect *ngIf="mode ==='create' || mode==='update'" [options]="workerDropdown"
+                    [(ngModel)]="wp.employees" [panelStyle]="{minWidth:'12em'}" maxSelectedLabels="0">
+                </p-multiSelect>
+            </div>
+        </div>
+
+        <!-- <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text">Workers</span>
             </div>
@@ -144,7 +166,8 @@
                 </p-listbox>
                 <p style="margin-left: 10px;">Selected Employees: <span *ngFor="let e of employees" style="margin-right: 10px">{{e.label}}</span></p>
             </div>
-        <div class="col-1"></div>
+        <div class="col-1"></div> -->
+
     </div>
 </div>
 <div class=" my-3"></div>

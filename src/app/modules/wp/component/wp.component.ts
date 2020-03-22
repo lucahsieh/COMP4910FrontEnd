@@ -12,6 +12,8 @@ import { MODE } from 'src/app/shared/model/MODE';
 })
 export class WpComponent implements OnInit {
 
+  @Input() projectId: any = 0; //must have an input for populating workers and wps
+
   @Input() wp: WorkPackage;
   @Input() mode: MODE;
   @Input() employees: any[] = [];
@@ -45,12 +47,19 @@ export class WpComponent implements OnInit {
 
   populateEngineerDropdown() {
     this.empService
-      .getEmployees()
+      .getEmployeesWithinProject(this.projectId)
       .subscribe(employees => {
         this.engineerDropdown = [];
         employees.forEach(e => {
           this.engineerDropdown.push(
-            { label: `${e.empFirstName} ${e.empLastName}`, value: e.employeeId }
+            {
+              label: `${e.empFirstName} ${e.empLastName}`, value:
+              {
+                "employeeId": e.employeeId,
+                "empFirstName": e.empFirstName,
+                "empLastName": e.empLastName
+              }
+            }
           )
         })
       })
@@ -72,38 +81,45 @@ export class WpComponent implements OnInit {
 
   populateWorkerDropdown() {
     this.empService
-      .getEmployees()
+      .getEmployeesWithinProject(this.projectId)
       .subscribe(employees => {
         this.workerDropdown = [];
         employees.forEach(e => {
           this.workerDropdown.push(
-            { label: `${e.empFirstName} ${e.empLastName}`, value: e.employeeId }
+            {
+              label: `${e.empFirstName} ${e.empLastName}`, value:
+              {
+                "employeeId": e.employeeId,
+                "empFirstName": e.empFirstName,
+                "empLastName": e.empLastName
+              }
+            }
           )
         })
       })
   }
 
-  teamMemberSelect() {
-    var savedItems = [];
-    if (this.wp.workers.length > 0) {
-      savedItems = this.wp.workers;
-    }
-    var temp = [];
-    for (var i = 0; i < this.employees.length; i++) {
-      var label = this.employees[i].label.split(" ");
-      var efn = label[0];
-      var eln = label[1];
-      var eid = this.employees[i].value;
+  // teamMemberSelect() {
+  //   var savedItems = [];
+  //   if (this.wp.workers.length > 0) {
+  //     savedItems = this.wp.workers;
+  //   }
+  //   var temp = [];
+  //   for (var i = 0; i < this.employees.length; i++) {
+  //     var label = this.employees[i].label.split(" ");
+  //     var efn = label[0];
+  //     var eln = label[1];
+  //     var eid = this.employees[i].value;
 
-      var tempJson = {
-        "empFirstName": efn,
-        "empLastName": eln,
-        "employeeId": eid
-      };
-      temp.push(tempJson);
-    }
-    this.wp.workers = temp;
-  }
+  //     var tempJson = {
+  //       "empFirstName": efn,
+  //       "empLastName": eln,
+  //       "employeeId": eid
+  //     };
+  //     temp.push(tempJson);
+  //   }
+  //   this.wp.workers = temp;
+  // }
 
   numberOnly(event): boolean {
     const charCode = (event.which) ? event.which : event.keyCode;
@@ -139,6 +155,11 @@ export class WpComponent implements OnInit {
   onChangeWpCode() {
     this.changeWpCode.emit('payload');
   }
+
+  onChangeParentWp() {
+    console.log('changed parent wp');
+  }
+
   /** exist edit field */
   onEditComplete(event) {
   }
