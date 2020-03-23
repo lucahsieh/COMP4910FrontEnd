@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ReportService } from 'src/app/core/service/report/report.service';
 
 @Component({
@@ -9,6 +9,7 @@ import { ReportService } from 'src/app/core/service/report/report.service';
 export class WpReportListComponent implements OnInit {
 
   @Input() wpCode: any = 32; //MUST HAVE
+  @Output() goReportPage: EventEmitter<string> = new EventEmitter<string>();
 
   displayReports: any[] = [];
   cols: any[];
@@ -25,6 +26,10 @@ export class WpReportListComponent implements OnInit {
       { field: 'endDate', header: 'End Date' },
     ];
     this.populateReports();
+  }
+
+  onWpReportClick(reportId) {
+    this.goReportPage.emit(`${reportId}`);
   }
 
   populateReports() {

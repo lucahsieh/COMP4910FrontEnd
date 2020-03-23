@@ -26,6 +26,7 @@ export class ReportService {
   ) { }
 
   getWpReport(wpReportId: any): Observable<WPReport> {
+    console.log('call getWpReport');
     let url = this.baseUrl + `api/reports/wpReport/${wpReportId}`;
     return this.http
       .get<WPReport>(url, this.httpOptions).pipe();

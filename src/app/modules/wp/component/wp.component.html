@@ -201,7 +201,8 @@
                 <td [pEditableColumn]="mode == 'create'|| mode == 'update'? '' : null">
                     <p-cellEditor>
                         <ng-template pTemplate="input">
-                            <input pInputText type="text" [(ngModel)]="rowData.pmEAC" style="text-align:center">
+                            <input pInputText type="text" [(ngModel)]="rowData.pmEAC" style="text-align:center"
+                                [disabled]="mode != 'create'&& mode != 'update'">
                         </ng-template>
                         <ng-template pTemplate="output">
                             <span>{{rowData.pmEAC}}</span>
@@ -211,7 +212,8 @@
                 <td [pEditableColumn]="mode == 'create'|| mode == 'update'? '' : null">
                     <p-cellEditor>
                         <ng-template pTemplate="input">
-                            <input pInputText type="text" [(ngModel)]="rowData.reBudget" style="text-align:center">
+                            <input pInputText type="text" [(ngModel)]="rowData.reBudget" style="text-align:center"
+                                [disabled]="mode != 'create'&& mode != 'update'">
                         </ng-template>
                         <ng-template pTemplate="output">
                             <span>{{rowData.reBudget}}</span>

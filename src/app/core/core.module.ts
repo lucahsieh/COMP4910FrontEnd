@@ -11,6 +11,9 @@ import { MenuModule } from 'primeng/menu';
 import { SharedModule } from '../shared/shared.module';
 import { AccordionModule } from 'primeng/accordion';
 
+import { PanelMenuModule } from 'primeng/panelmenu';
+import { MenuItem } from 'primeng/api';
+
 @NgModule({
   declarations: [
     LoginLayoutComponent,
@@ -32,6 +35,7 @@ import { AccordionModule } from 'primeng/accordion';
     // primeng
     MenuModule,
     AccordionModule,
+    PanelMenuModule,
   ],
   exports: [
     LoginLayoutComponent,

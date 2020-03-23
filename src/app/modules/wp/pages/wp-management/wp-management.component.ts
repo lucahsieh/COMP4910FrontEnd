@@ -11,7 +11,8 @@ export class WpManagementComponent implements OnInit {
 
   activeIndex: number = 1;
   workPackageCode: string = '';
-  wpReportUrl: string = '';
+
+  wpReportId: string[] = [];
 
   constructor(
     private location: Location,
@@ -51,9 +52,22 @@ export class WpManagementComponent implements OnInit {
   }
   refreshTab() {
     let path = this.location.path();
-    if (path.includes("WorkPackageReport")) { this.wpReportUrl = this.location.path(); this.activeIndex = 4; }
-    else if (path.includes("viewwp")) { this.activeIndex = 1; }
+    // if (path.includes("WorkPackageReport")) { this.wpReportUrl = this.location.path(); this.activeIndex = 4; }
+    if (path.includes("viewwp")) { this.activeIndex = 1; }
     else if (path.includes("editwp")) { this.activeIndex = 2; }
   }
+  async goReportPage(event) {
+    console.log(event);
+    this.wpReportId.push(event);
+    console.log(this.wpReportId)
+    await delay(300);
+    this.activeIndex = this.wpReportId.length + 3;
+  }
 
+
+
+}
+
+function delay(ms: number) {
+  return new Promise(resolve => setTimeout(resolve, ms));
 }

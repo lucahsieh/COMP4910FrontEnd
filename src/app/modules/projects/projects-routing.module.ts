@@ -34,11 +34,9 @@ const routes: Routes = [
         path: 'wp/editwp/:wpCode',
         component: WpManagementComponent,
         data: { breadcrumb: 'Work Package Edit' },
-        // loadChildren: () => import('../wp/wp.module').then(m => m.EmployeeModule)
-
         children: [
           { path: '', component: WpEditComponent, data: { breadcrumb: '' } },
-          { path: 'reports/WorkPackageReport/view/:wpReportId', component: WpReportViewComponent, data: { breadcrumb: 'Work Package Report' } },
+          // { path: 'reports/WorkPackageReport/view/:wpReportId', component: WpReportViewComponent, data: { breadcrumb: 'Work Package Report' } },
         ]
       },
       {
@@ -55,7 +53,7 @@ const routes: Routes = [
         data: { breadcrumb: 'Work Package' },
         children: [
           { path: '', component: WpViewComponent, data: { breadcrumb: '' } },
-          { path: 'reports/WorkPackageReport/view/:wpReportId', component: WpReportViewComponent, data: { breadcrumb: 'Work Package Report' } },
+          // { path: 'reports/WorkPackageReport/view/:wpReportId', component: WpReportViewComponent, data: { breadcrumb: 'Work Package Report' } },
         ]
       },
 

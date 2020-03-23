@@ -109,7 +109,8 @@
                     <p-cellEditor>
                         <ng-template pTemplate="input">
 
-                            <input pInputText type="number" [(ngModel)]="rowData[day.value]">
+                            <input pInputText type="number" [(ngModel)]="rowData[day.value]"
+                                [disabled]="mode != 'create'&& mode != 'update'">
 
                         </ng-template>
                         <ng-template pTemplate="output">
