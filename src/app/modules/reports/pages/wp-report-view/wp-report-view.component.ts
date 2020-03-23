@@ -21,8 +21,8 @@ export class WpReportViewComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      var id = params.get('empId');
-      this.reportService.getWpReport(id).subscribe(r => this.wpr = r);
+      var wpReportId = params.get('wpReportId');
+      this.reportService.getWpReport(wpReportId).subscribe(r => this.wpr = r);
     });
   }
 

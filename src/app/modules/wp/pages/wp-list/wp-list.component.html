@@ -4,7 +4,7 @@
 
 <div class="d-flex justify-content-between">
     <!-- <h3 class="display-4">Work Package List</h3> -->
-    <button type="button" class="btn btn-primary mb-3" routerLink="wp/creation">Create</button>
+    <button type="button" class="btn btn-primary mb-3" routerLink="wp/createwp">Create</button>
 </div>
 <p-table #dt [columns]="cols" [value]="displayPackage" [paginator]="true" [rows]="10">
     <ng-template pTemplate="caption">
@@ -51,10 +51,10 @@
             </td>
             </div>
             <div *ngIf="col.field ==='button'">
-                <button type="button" class="btn btn-link btn-sm" [routerLink]="['wp/view', rowData.wpCode]"
+                <button type="button" class="btn btn-link btn-sm" [routerLink]="['wp/viewwp', rowData.wpCode]"
                     (click)="firePageChangeEvent()">View</button>
                 <button type="button" class="btn btn-link btn-sm"
-                    [routerLink]="['wp/edit', rowData.wpCode]">Edit</button>
+                    [routerLink]="['wp/editwp', rowData.wpCode]">Edit</button>
             </div>
             </td>
         </tr>

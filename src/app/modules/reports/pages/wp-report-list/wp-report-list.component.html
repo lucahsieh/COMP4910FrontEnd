@@ -1,7 +1,8 @@
 <!-- <div class="card mx-1">
     <div class="card-body"> -->
 
-<!-- <h3 class="display-4">Work Package Report List</h3> -->
+<h3 class="display-4">Work Package Report List</h3>
+<div class="dropdown-divider  my-3"></div>
 
 <p-table [columns]="cols" [value]="displayReports" [paginator]="true" [rows]="10">
     <ng-template pTemplate="header" let-columns>
@@ -29,6 +30,7 @@
         </tr>
     </ng-template>
 </p-table>
+<button type="button" class="btn btn-link btn-sm" [routerLink]="['abc',32 ]">View</button>
 
 
 <!-- </div>

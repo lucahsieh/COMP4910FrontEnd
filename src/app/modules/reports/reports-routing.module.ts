@@ -11,7 +11,6 @@ const routes: Routes = [
   { path: 'ProjectCostPerformanceReport/view/:projectReportId', component: ProjectReportViewComponent, data: { breadcrumb: 'Project Cost Performance Report' } },
   { path: 'WorkPackageReport/view/:wprId', component: WpReportViewComponent, data: { breadcrumb: 'View Work Package Report' } },
   { path: 'WorkPackageReport/creation/:wpId/:projectId', component: WpReportCreationComponent, data: { breadcrumb: 'Create Work Package Report' } },
-
 ];
 
 @NgModule({

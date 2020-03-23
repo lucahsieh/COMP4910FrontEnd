@@ -1,11 +1,22 @@
-<p-tabView (onChange)="onChangeTab($event)">
-    <p-tabPanel header="View">
-        <router-outlet></router-outlet>
+<p-tabView (onChange)="onChangeTab($event)" [activeIndex]="activeIndex">
+    <p-tabPanel header="...">
     </p-tabPanel>
-    <p-tabPanel header="Create">
-        <router-outlet></router-outlet>
+    <p-tabPanel header="View">
+        <!-- <router-outlet></router-outlet> -->
+        <app-wp-view></app-wp-view>
     </p-tabPanel>
     <p-tabPanel header="Edit">
+        <!-- <router-outlet></router-outlet> -->
+        <app-wp-edit></app-wp-edit>
+    </p-tabPanel>
+    <p-tabPanel header="Work Package Reports">
+        <app-wp-report-list [wpCode]="workPackageCode"></app-wp-report-list>
+
+    </p-tabPanel>
+    <p-tabPanel header="Work Package Report">
         <router-outlet></router-outlet>
     </p-tabPanel>
+    <!-- <p-tabPanel header="Create">
+        <app-wp-create [project]="project"></app-wp-create>
+    </p-tabPanel> -->
 </p-tabView>

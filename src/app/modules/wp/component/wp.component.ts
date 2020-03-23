@@ -148,7 +148,6 @@ export class WpComponent implements OnInit {
       .subscribe(grades => {
         this.labourGrades = [];
         grades.forEach(g => {
-          console.log(g);
           this.labourGrades.push(
             { label: `${g.labourGradeName}`, value: g.labourGradeId }
           );
@@ -169,7 +168,6 @@ export class WpComponent implements OnInit {
   }
 
   onChangeParentWp() {
-    console.log('changed parent wp');
   }
 
   /** exist edit field */

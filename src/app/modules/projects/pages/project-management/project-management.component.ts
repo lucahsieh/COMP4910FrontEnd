@@ -33,14 +33,12 @@ export class ProjectManagementComponent implements OnInit {
       this.projectService.getProject(id).subscribe(e => this.project = e);
     });
     this.router.events.subscribe((data) => {
-      console.log(data);
       this.toTab0();
     })
   }
 
   toTab0() {
     this.activeIndex = 0;
-    console.log("recieve")
   }
   onChangeTab(event) {
     this.activeIndex = event.index;
