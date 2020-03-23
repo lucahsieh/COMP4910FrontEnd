@@ -2,13 +2,12 @@
 
 <mat-sidenav-container class="example-container">
     <mat-sidenav #sidenav mode="side" [(opened)]="opened" class="bg-navList">
-        <app-nav></app-nav>
+        <app-nav class="m-2"></app-nav>
     </mat-sidenav>
 
     <mat-sidenav-content>
-        <app-breadcrumb></app-breadcrumb>
-        <router-outlet></router-outlet>
-
+        <app-breadcrumb class="margin-fix"></app-breadcrumb>
+        <router-outlet class="margin-fix my-3"></router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>
 

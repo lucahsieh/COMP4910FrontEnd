@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { WpService } from 'src/app/core/service/wp/wp.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { WpService } from 'src/app/core/service/wp/wp.service';
 })
 export class WpListComponent implements OnInit {
 
-  @Input() projectId = 32; // NOTE: MUST HAVE
+  @Input() projectId = 30; // NOTE: MUST HAVE
   displayPackage: any[] = [];
   cols: any[];
 

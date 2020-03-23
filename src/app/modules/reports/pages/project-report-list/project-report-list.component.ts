@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ReportService } from 'src/app/core/service/report/report.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { ReportService } from 'src/app/core/service/report/report.service';
 })
 export class ProjectReportListComponent implements OnInit {
 
-
+  @Input() projectId: any;
   displayReports: any[] = [];
   cols: any[];
 
@@ -27,7 +27,7 @@ export class ProjectReportListComponent implements OnInit {
   }
 
   populateReports() {
-    this.reportService.getAllProjectReports(32)
+    this.reportService.getAllProjectReports(this.projectId)
       .subscribe(res => {
         res.forEach(r => {
           this.displayReports.push(

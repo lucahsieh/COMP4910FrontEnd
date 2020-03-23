@@ -25,15 +25,22 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { MultiSelectModule } from 'primeng/multiselect';
+import { WpModule } from '../wp/wp.module';
+import { ProjectManagementComponent } from './pages/project-management/project-management.component';
+import { TabViewModule } from 'primeng/tabview';
+import { EmptyComponent } from './pages/empty/empty.component';
+import { ReportsModule } from '../reports/reports.module';
 
 
 @NgModule({
-    declarations: [ProjectCreationComponent, ProjectEditComponent, ProjectListComponent, ProjectViewComponent, ProjectComponent],
+    declarations: [ProjectCreationComponent, ProjectEditComponent, ProjectListComponent, ProjectViewComponent, ProjectComponent, ProjectManagementComponent, EmptyComponent],
     imports: [
         CommonModule,
         ProjectsRoutingModule,
         FormsModule,
         SharedModule,
+        WpModule,
+        ReportsModule,
 
         //material
         MatButtonToggleModule,
@@ -47,6 +54,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
         DialogModule,
         ButtonModule,
         MultiSelectModule,
+        TabViewModule,
 
 
         // bootstrap

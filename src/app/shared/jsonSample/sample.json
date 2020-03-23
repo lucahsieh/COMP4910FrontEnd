@@ -493,7 +493,7 @@
     "reportDate": "0001-01-01T00:00:00",
     "startDate": "0001-01-01T00:00:00",
     "endDate": "0001-01-01T00:00:00",
-    "projectReportId": 38329,
+    "projectReportId": 342,
     "projectManager": {
       "employeeId": 39,
       "empFirstName": "firstNameSS",
@@ -801,25 +801,25 @@
       "reportDate": "2020-01-03T13:32:28",
       "startDate": "2019-12-01T00:00:00",
       "endDate": "2019-12-31T00:00:00",
-      "projectReportId": 38329
+      "projectReportId": 324
     },
     {
       "reportDate": "2020-02-03T13:32:28",
       "startDate": "2019-12-01T00:00:00",
       "endDate": "2020-01-30T00:00:00",
-      "projectReportId": 38329
+      "projectReportId": 3832349
     },
     {
       "reportDate": "2020-03-03T13:32:28",
       "startDate": "2019-12-01T00:00:00",
       "endDate": "2020-02-28T00:00:00",
-      "projectReportId": 38329
+      "projectReportId": 12
     },
     {
       "reportDate": "2020-04-03T13:32:28",
       "startDate": "2019-12-01T00:00:00",
       "endDate": "2020-03-30T00:00:00",
-      "projectReportId": 38329
+      "projectReportId": 432
     }
   ],
   "get_AllWpReport": [

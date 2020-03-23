@@ -9,4 +9,7 @@
         <app-wp *ngIf="wp" [wp]="wp" [mode]="mode" [validWpCode]="validWpCode" (changeWpCode)="validateWpCode()"
             [alerts]="alerts"></app-wp>
 
+        <h5 class="lead">Work Package Reports</h5>
+        <app-wp-report-list *ngIf="wp" [wpCode]="wp.workPackageCode"></app-wp-report-list>
     </div>
+</div>

@@ -24,6 +24,9 @@ import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { MultiSelectModule } from 'primeng/multiselect';
 import { ListboxModule } from 'primeng/listbox';
+import { ReportsModule } from '../reports/reports.module';
+import { WpManagementComponent } from './pages/wp-management/wp-management.component';
+import { TabViewModule } from 'primeng/tabview';
 
 
 @NgModule({
@@ -32,7 +35,9 @@ import { ListboxModule } from 'primeng/listbox';
     WpListComponent,
     WpCreateComponent,
     WpEditComponent,
-    WpViewComponent],
+    WpViewComponent,
+    WpManagementComponent
+  ],
   imports: [
     //BrowserAnimationsModule,
     CommonModule,
@@ -40,6 +45,7 @@ import { ListboxModule } from 'primeng/listbox';
     FormsModule,
     WpRoutingModule,
     SharedModule,
+    ReportsModule,
 
     //material
     MatButtonToggleModule,
@@ -51,6 +57,8 @@ import { ListboxModule } from 'primeng/listbox';
     InputTextModule,
     DialogModule,
     ButtonModule,
+    TabViewModule,
+
 
     // bootstrap
     AlertModule.forRoot(),
@@ -58,7 +66,15 @@ import { ListboxModule } from 'primeng/listbox';
     NgbModule,
     BsDatepickerModule.forRoot(),
     MultiSelectModule,
-    ListboxModule, 
+    ListboxModule,
+  ],
+  exports: [
+    WpComponent,
+    WpListComponent,
+    WpCreateComponent,
+    WpEditComponent,
+    WpViewComponent,
+    WpManagementComponent
   ]
 })
 export class WpModule { }

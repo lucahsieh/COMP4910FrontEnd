@@ -1,0 +1,11 @@
+<p-tabView (onChange)="onChangeTab($event)">
+    <p-tabPanel header="View">
+        <router-outlet></router-outlet>
+    </p-tabPanel>
+    <p-tabPanel header="Create">
+        <router-outlet></router-outlet>
+    </p-tabPanel>
+    <p-tabPanel header="Edit">
+        <router-outlet></router-outlet>
+    </p-tabPanel>
+</p-tabView>

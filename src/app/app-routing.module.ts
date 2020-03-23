@@ -32,19 +32,19 @@ const routes: Routes = [
       },
       {
         path: 'timesheets',
-        data: { breadcrumb: 'timesheet list' },
+        data: { breadcrumb: 'Timesheet List' },
         loadChildren: () => import('./modules/timesheets/timesheets.module').then(m => m.TimesheetsModule)
       },
       {
         path: 'employees',
-        data: { breadcrumb: 'employee list' },
+        data: { breadcrumb: 'Employee List' },
         loadChildren: () => import('./modules/employee/employee.module').then(m => m.EmployeeModule)
       },
       {
         path: 'projects',
-        data: {breadcrumb: 'some breadcrumb'},
+        data: { breadcrumb: 'Project List' },
         loadChildren: () => import('./modules/projects/projects.module')
-            .then(p => p.ProjectsModule)
+          .then(p => p.ProjectsModule)
       },
       {
         path: 'reports',

@@ -23,7 +23,17 @@ import { WpReportListComponent } from './pages/wp-report-list/wp-report-list.com
 
 
 @NgModule({
-  declarations: [ReportsComponent, WpReportCreationComponent, WpReportComponent, WpReportViewComponent, WpReportStepperCreationComponent, ProjectReportListComponent, ProjectReportViewComponent, ProjectReportPmViewComponent, WpReportListComponent],
+  declarations: [
+    ReportsComponent,
+    WpReportCreationComponent,
+    WpReportComponent,
+    WpReportViewComponent,
+    WpReportStepperCreationComponent,
+    ProjectReportListComponent,
+    ProjectReportViewComponent,
+    ProjectReportPmViewComponent,
+    WpReportListComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -45,6 +55,13 @@ import { WpReportListComponent } from './pages/wp-report-list/wp-report-list.com
     BsDatepickerModule.forRoot(),
     ButtonsModule.forRoot(),
     NgbModule,
+  ],
+  exports: [
+    WpReportCreationComponent,
+    WpReportViewComponent,
+    ProjectReportListComponent,
+    ProjectReportViewComponent,
+    WpReportListComponent
   ]
 })
 export class ReportsModule { }
