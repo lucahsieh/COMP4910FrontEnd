@@ -1,24 +1,22 @@
-import { Project } from './Project';
+import { PMPlanning } from './PMPlanning';
 import { Employee } from './Employee';
 
 export class WorkPackage {
     workPackageId: number;
-    projectId: number;
+    projectCode: number;
+    projectName: string;
+    parentWorkPackageCode: string;
     responsibleEngineer: Employee;
-    engineers: Employee[];
+    employees: Employee[];
     workPackageCode: string;
-    name: string;
-    description: string;
-    proposedHours: number;
-    budgetHours: number;
-    issueDate: Date;
+    workPackageTitle: string;
+    contractor: string;
+    issueDate: string;
     isClosed: boolean;
     parentWorkPackageId: number;
-    parentWorkPackage?: WorkPackage;
     childrenWorkPackages?: WorkPackage;
-    project?: Project;
-    timesheetRows?: any;
-    employeeWorkPackageAssignments?: any;
     lastUpdatedBy: string;
     lastUpdatedTime: Date;
+    pmPlannings: PMPlanning[];
+    name: string;
 }

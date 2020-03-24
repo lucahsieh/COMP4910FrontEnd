@@ -19,10 +19,24 @@ import { ProjectReportListComponent } from './pages/project-report-list/project-
 import { ProjectReportViewComponent } from './pages/project-report-view/project-report-view.component';
 import { ProjectReportPmViewComponent } from './component/project-report-pm-view/project-report-pm-view.component';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { WpReportListComponent } from './pages/wp-report-list/wp-report-list.component';
 
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
-  declarations: [ReportsComponent, WpReportCreationComponent, WpReportComponent, WpReportViewComponent, WpReportStepperCreationComponent, ProjectReportListComponent, ProjectReportViewComponent, ProjectReportPmViewComponent],
+  declarations: [
+    ReportsComponent,
+    WpReportCreationComponent,
+    WpReportComponent,
+    WpReportViewComponent,
+    WpReportStepperCreationComponent,
+    ProjectReportListComponent,
+    ProjectReportViewComponent,
+    ProjectReportPmViewComponent,
+    WpReportListComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -37,6 +51,9 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
 
     //primeng
     TableModule,
+    InputTextModule,
+    DialogModule,
+    ButtonModule,
 
     // bootstrap
     AlertModule.forRoot(),
@@ -44,6 +61,13 @@ import { ButtonsModule } from 'ngx-bootstrap/buttons';
     BsDatepickerModule.forRoot(),
     ButtonsModule.forRoot(),
     NgbModule,
+  ],
+  exports: [
+    WpReportCreationComponent,
+    WpReportViewComponent,
+    ProjectReportListComponent,
+    ProjectReportViewComponent,
+    WpReportListComponent
   ]
 })
 export class ReportsModule { }

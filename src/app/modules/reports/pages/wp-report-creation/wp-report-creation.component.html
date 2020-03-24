@@ -1,5 +1,6 @@
 <div class="card mx-1">
     <div class="card-body">
-        <app-wp-report-stepper-creation (submitEvent)="submitReport()" [wpr]="wpr"></app-wp-report-stepper-creation>
+        <app-wp-report-stepper-creation (submitEvent)="submitReport()" (cancelEvent)="cancelEvent()" [wpr]="wpr">
+        </app-wp-report-stepper-creation>
     </div>
 </div>

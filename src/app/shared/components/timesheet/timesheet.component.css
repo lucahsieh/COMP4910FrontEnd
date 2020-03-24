@@ -8,3 +8,8 @@
     color:red;
     font-weight: bold;
 }
+
+.btn-link-normal{
+    background-color: transparent !important;
+    border-color: transparent !important;
+}

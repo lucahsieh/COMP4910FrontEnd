@@ -12,7 +12,7 @@ export class WPReport {
     workPackageCode: string;
     workPackageTitle: string;
     projectId: number;
-    projectCode: string;
+    projectCode: number;
     projectName: string;
     workPackageReportId: number;
     reportDate: string;
@@ -37,16 +37,14 @@ export class WPReport {
         this.problemsThisPeriod = "";
         this.problemsAnticipated = "";
         this.startDate = "";
-        this.endDate = ""
-        this.workPackageReportId = 0
-
+        this.endDate = "";
     }
     copyWPinfo(wp: WorkPackage) {
         this.workPackageCode = wp.workPackageCode;
         this.workPackageId = wp.workPackageId;
         this.workPackageName = wp.name;
         this.responsibleEngineer = wp.responsibleEngineer;
-        this.engineers = wp.engineers;
+        this.engineers = wp.employees;
     }
     copyProjectInfo(p: Project) {
         this.projectId = p.projectId;

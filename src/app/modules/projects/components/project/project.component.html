@@ -1,0 +1,173 @@
+<h5 class="lead">Project Information</h5>
+<div class="form-row">
+    <div class="col-5">
+        <!-- project name -->
+        <div class="input-group ">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Project Name</span>
+            </div>
+            <input type="text" class="form-control" [(ngModel)]="project.projectName"
+                [readOnly]="mode ==='read' || mode==='update'">
+        </div>
+        <span *ngIf="alerts.projectName" class="error my-2"><small>{{alerts.projectName.msg}}</small></span>
+    </div>
+
+    <div class="col-1"></div>
+
+    <div class="col-5">
+        <!-- project code -->
+        <div class="input-group ">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Project Code</span>
+            </div>
+            <input type="text" class="form-control" [(ngModel)]="project.projectCode"
+                [readOnly]="mode ==='read' || mode==='update'" (blur)="onExitProjectCode()">
+        </div>
+        <span *ngIf="alerts.projectCode" class="error my-2"><small>{{alerts.projectCode.msg}}</small></span>
+
+
+    </div>
+
+
+    <div class="col-1">
+        <div *ngIf="(mode ==='create' || mode ==='update')">
+            <i *ngIf="validProjectCode" class="material-icons pass my-2">check_circle</i>
+            <i *ngIf="!validProjectCode" class="material-icons error  my-2">error</i>
+        </div>
+    </div>
+</div>
+
+<div class="  my-3"></div>
+<div class="form-row my-3">
+    <div class="col-5">
+
+        <!-- start date -->
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Start Date</span>
+            </div>
+            <input id="startDate" type="text" placeholder="Datepicker" class="form-control" bsDatepicker
+                [daysDisabled]="[]" [outsideClick]="true"
+                [bsConfig]="{selectWeek: true, dateInputFormat: 'YYYY-MM-DD' }"
+                (bsValueChange)="onStartDateChange($event)" value="{{ project.startDate | date:'yyyy-MM-dd' }}"
+                [readonly]="(mode == 'read' || mode =='update')" [isDisabled]="(mode == 'read' || mode =='update')" />
+        </div>
+        <span *ngIf="alerts.startDate" class="error my-2"><small>{{alerts.startDate.msg}}</small></span>
+
+
+    </div>
+    <div class="col-1"></div>
+    <div class="col-5">
+        <!-- end date -->
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">End Date</span>
+            </div>
+            <input id="endDate" type="text" placeholder="Datepicker" class="form-control" bsDatepicker
+                [daysDisabled]="[]" [outsideClick]="true"
+                [bsConfig]="{selectWeek: true, dateInputFormat: 'YYYY-MM-DD' }"
+                (bsValueChange)="onEndDateChange($event)" value="{{ project.endDate | date:'yyyy-MM-dd' }}"
+                [readonly]="(mode == 'read' || mode =='update')" [isDisabled]="(mode == 'read' || mode =='update')" />
+        </div>
+        <span *ngIf="alerts.endDate" class="error my-2"><small>{{alerts.endDate.msg}}</small></span>
+    </div>
+    <div class="col-1"></div>
+</div>
+
+<div class="my-3"></div>
+
+<div class="form-row">
+    <div class="col-5">
+        <!-- budget -->
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Budget</span>
+            </div>
+            <input type="number" class="form-control" [(ngModel)]="project.budget" [readOnly]="mode ==='read'">
+        </div>
+    </div>
+    <div class="col-1"></div>
+
+    <!-- status -->
+    <div class="col-5">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Project Status</span>
+            </div>
+            <!-- <input type="number" class="form-control" [(ngModel)]="project.budget" [readOnly]="mode ==='read'"> -->
+            <div class="btn-group btn-group-toggle form-control" data-toggle="buttons">
+                <label
+                    [className]="project.isClosed ? 'btn btn-outline-secondary btn-sm' : 'btn btn-outline-secondary active btn-sm'">
+                    <input type="radio" name="isClosed" id="open" [value]=false [(ngModel)]="project.isClosed"
+                        [disabled]="mode==='create' || mode==='read'">
+                    Open
+                </label>
+                <label
+                    [className]="project.isClosed ? 'btn btn-outline-secondary active btn-sm' : 'btn btn-outline-secondary btn-sm' ">
+                    <input type="radio" name="isClosed" id="closed" [value]=true [(ngModel)]="project.isClosed"
+                        [disabled]="mode==='create' || mode==='read'">
+                    Closed
+                </label>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class=" my-3"></div>
+
+<div class="form-row">
+    <div class="col-5">
+        <!-- project manager -->
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Project Manager</span>
+            </div>
+            <input type="text" class="form-control"
+                [(value)]="project.projectManager.empFirstName+' '+project.projectManager.empLastName"
+                [readOnly]="true">
+        </div>
+        <span *ngIf="alerts.projectManager" class="error my-2"><small>{{alerts.projectManager.msg}}</small></span>
+    </div>
+    <div class="col-1"></div>
+</div>
+<div class="my-3"></div>
+<div class="form-row">
+    <div class="col-11">
+        <!-- team members -->
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Team Members</span>
+            </div>
+            <!-- <input type="text" class="form-control " *ngIf="mode==='read'" [readOnly]="true"> -->
+            <div class="d-flex flex-row form-control">
+                <div *ngFor="let x of project.employees;let i = index;">
+                    <h4>
+                        <span class="badge badge-pill badge-secondary mr-2 my-2">
+                            {{x.empFirstName +' ' +x.empLastName}}
+                        </span>
+                    </h4>
+                </div>
+                <p-multiSelect *ngIf="mode ==='create' || mode==='update'" [options]="employeeDropdown"
+                    [(ngModel)]="project.employees" [panelStyle]="{minWidth:'12em'}" maxSelectedLabels="0">
+                </p-multiSelect>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class=" my-3"></div>
+<div class="form-row">
+    <div class="col-11">
+        <!-- description -->
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text">Description</span>
+            </div>
+            <textarea class="form-control" aria-label="With textarea" [(ngModel)]="project.description"
+                [readOnly]="mode !=='create' && mode!=='update'"></textarea>
+        </div>
+        <div class="col-1"></div>
+    </div>
+
+    <div class="  my-3"></div>

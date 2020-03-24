@@ -1,16 +1,18 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Employee } from 'src/app/shared/model/Employee';
 import { MODE } from 'src/app/shared/model/MODE';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { EmployeeService } from 'src/app/core/service/employee/employee.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { Alert } from 'src/app/shared/model/Alert';
+import { MyToastService } from 'src/app/core/service/my-toast.service';
+
 
 
 @Component({
   selector: 'app-employee-edit',
   templateUrl: './employee-edit.component.html',
-  styleUrls: ['./employee-edit.component.css']
+  styleUrls: ['./employee-edit.component.css'],
 })
 export class EmployeeEditComponent implements OnInit {
 
@@ -23,8 +25,10 @@ export class EmployeeEditComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private employeeService: EmployeeService,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    private myToastService: MyToastService,
   ) { }
 
   ngOnInit() {
@@ -41,6 +45,14 @@ export class EmployeeEditComponent implements OnInit {
   }
   resetPw() {
     this.employee.empPassword = '01234';
+    this.employeeService.getEmployee(this.employee.employeeId).subscribe(emp => {
+      emp.empPassword = '01234';
+      this.employeeService.putEmployee(emp);
+      this.modalRef.hide();
+      this.myToastService.addSuccess('Password Changed', 'Reset to defaul password.');
+
+    })
+    //TODO: SHOW MESSAGE.
   }
   // btn click event of creation
   onUpdate() {
@@ -48,11 +60,16 @@ export class EmployeeEditComponent implements OnInit {
       return;
     console.log("POST employee");
     console.log(JSON.stringify(this.employee));
-    this.employeeService.postEmployee(this.employee).subscribe();
+    this.employeeService.postEmployee(this.employee).subscribe(_ => {
+      this.myToastService.addSuccess('Update successfully', `${this.employee.empFirstName + ' ' + this.employee.empLastName} is updated.`);
+      this.router.navigate([`/content/employees/view/${this.employee.employeeId}`]);
+    });
   }
 
   // btn click event of cancel
-  onCancel(e: any) { }
+  onCancel(e: any) {
+    this.router.navigate([`/content/employees`]);
+  }
 
   validatePage(): boolean {
     var result = true;

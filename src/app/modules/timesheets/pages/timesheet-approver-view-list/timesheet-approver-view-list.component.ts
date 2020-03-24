@@ -25,7 +25,7 @@ export class TimesheetApproverViewListComponent implements OnInit {
       { field: 'approver', header: 'Approver' },
       { field: 'weekNumber', header: 'Week' },
       { field: 'versionNumber', header: 'Version' },
-      { field: 'weekEnding', header: 'week Ending' },
+      { field: ' weekEndingIn', header: 'week Ending' },
       { field: 'status', header: 'Status' }
     ];
     this.populateTimesheets();
@@ -43,7 +43,7 @@ export class TimesheetApproverViewListComponent implements OnInit {
               'supervisor': `${ts.owner.supervisor.empFirstName} ${ts.owner.supervisor.empLastName}`,
               'weekNumber': ts.weekNumber,
               'versionNumber': ts.versionNumber,
-              'weekEnding': ts.weekEnding,
+              'weekEndingIn': ts.weekEndingIn,
               'status': ts.status,
               'timesheetId': ts.timesheetId
             })

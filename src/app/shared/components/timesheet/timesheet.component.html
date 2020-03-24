@@ -29,7 +29,7 @@
                 <input id="weekEnd" type="text" placeholder="Datepicker" class="form-control" bsDatepicker
                     [daysDisabled]="[6,2,4,3,1,0]" [outsideClick]="true"
                     [bsConfig]="{selectWeek: true, dateInputFormat: 'YYYY-MM-DD' }"
-                    (bsValueChange)="onValueChange($event)" value="{{ timesheet.weekEnding | date:'yyyy-MM-dd' }}"
+                    (bsValueChange)="onValueChange($event)" value="{{ timesheet.weekEndingIn | date:'yyyy-MM-dd' }}"
                     [readonly]="(mode == 'read' || mode =='update')"
                     [isDisabled]="(mode == 'read' || mode =='update')" />
             </div>
@@ -72,8 +72,8 @@
                     </p-cellEditor>
                 </td> -->
                 <td>
-                    <p-dropdown [options]="populateProject()" [(ngModel)]="rowData.projectId"
-                        [style]="{'width':'170px'}" *ngIf="(mode == 'create'|| mode == 'update')">
+                    <p-dropdown [options]="populateProject()" [(ngModel)]="rowData.projectId" [style]="{'width':'100%'}"
+                        *ngIf="(mode == 'create'|| mode == 'update')">
                     </p-dropdown>
                     <span *ngIf="mode == 'read'">{{rowData.projectId}}</span>
                 </td>
@@ -93,7 +93,7 @@
                 </td> -->
                 <td>
                     <p-dropdown [options]="populateWps(rowData.projectId)" [(ngModel)]="rowData.workPackageId"
-                        [style]="{'width':'170px'}" *ngIf="(mode == 'create'|| mode == 'update')">
+                        [style]="{'width':'100%'}" *ngIf="(mode == 'create'|| mode == 'update')">
                     </p-dropdown>
                     <span *ngIf="mode == 'read'">{{rowData.workPackageId}}</span>
                 </td>
@@ -109,7 +109,8 @@
                     <p-cellEditor>
                         <ng-template pTemplate="input">
 
-                            <input pInputText type="text" [(ngModel)]="rowData[day.value]">
+                            <input pInputText type="number" [(ngModel)]="rowData[day.value]"
+                                [disabled]="mode != 'create'&& mode != 'update'">
 
                         </ng-template>
                         <ng-template pTemplate="output">
@@ -120,7 +121,7 @@
                 </td>
 
                 <td class="p-1">
-                    <button *ngIf="mode == 'create'|| mode == 'update'" type="button" class="btn btn-link"
+                    <button *ngIf="mode == 'create'|| mode == 'update'" type="button" class="btn-link-normal"
                         (click)="deleteRow(rowData)">
                         <i class="material-icons text-danger">remove_circle_outline</i>
                     </button>

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { ReportService } from 'src/app/core/service/report/report.service';
 
 @Component({
   selector: 'app-project-report-list',
@@ -7,9 +8,38 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectReportListComponent implements OnInit {
 
-  constructor() { }
+  @Input() projectId: any;
+  displayReports: any[] = [];
+  cols: any[];
+
+  constructor(
+    private reportService: ReportService
+  ) { }
 
   ngOnInit() {
+    this.cols = [
+      { field: 'endDate', header: 'Month' },
+      { field: 'reportDate', header: 'Report Date' },
+      { field: 'startDate', header: 'Start Date' },
+      { field: 'endDate', header: 'End Date' },
+    ];
+    this.populateReports();
+  }
+
+  populateReports() {
+    this.reportService.getAllProjectReports(this.projectId)
+      .subscribe(res => {
+        res.forEach(r => {
+          this.displayReports.push(
+            {
+              'reportDate': new Date(r.reportDate),
+              'startDate': new Date(r.startDate),
+              'endDate': new Date(r.endDate),
+              'projectReportId': r.projectReportId
+            }
+          );
+        })
+      })
   }
 
 }

@@ -54,11 +54,11 @@ export class TimesheetCreationComponent implements OnInit {
       .getAvaliableTimesheetId()
       .subscribe(result => {
         var newTimesheet = new Timesheet();
-        var weekending = new Date();
-        var shit: number = 5 - weekending.getDay();
-        weekending.setDate(weekending.getDate() + shit);
-        newTimesheet.weekEnding = this.dateFormater(weekending);
-        newTimesheet.weekNumber = this.getWeek(weekending);
+        var weekEndingIn = new Date();
+        var shit: number = 5 - weekEndingIn.getDay();
+        weekEndingIn.setDate(weekEndingIn.getDate() + shit);
+        newTimesheet.weekEndingIn = this.dateFormater(weekEndingIn);
+        newTimesheet.weekNumber = this.getWeek(weekEndingIn);
 
         console.log(result);
         // init attirbutes

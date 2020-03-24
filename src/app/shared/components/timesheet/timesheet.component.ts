@@ -148,7 +148,7 @@ export class TimesheetComponent implements OnInit {
 
   onValueChange(value: Date): void {
     console.log(value);
-    this.timesheet.weekEnding = this.dateFormater(value);
+    this.timesheet.weekEndingIn = this.dateFormater(value);
     this.timesheet.weekNumber = this.getWeek(value);
   }
 

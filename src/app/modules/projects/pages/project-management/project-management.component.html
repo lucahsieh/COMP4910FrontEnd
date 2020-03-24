@@ -1,0 +1,41 @@
+<!-- <div class="card mx-1">
+    <div class="card-body">
+        <h6 class="">Project</h6>
+        <h1 *ngIf="project">{{project.projectName}}</h1>
+    </div>
+</div> -->
+
+<p-tabView [activeIndex]="activeIndex" (onChange)="onChangeTab($event)" *ngIf="project">
+    <!-- Tab -->
+    <p-tabPanel header="...">
+        <div class="my-3"></div>
+    </p-tabPanel>
+
+    <!-- Tab -->
+    <p-tabPanel header="Project" leftIcon="pi pi-briefcase">
+        <h5 class="mt-4">Project Cost Performance Reports:</h5>
+        <h1 *ngIf="project" class="display-4">{{project.projectName}}</h1>
+        <div class="dropdown-divider mb-3"></div>
+        <app-project-view class=""></app-project-view>
+    </p-tabPanel>
+
+    <!-- Tab -->
+    <p-tabPanel header="Project Cost Performance Reports" leftIcon="pi pi-chart-bar">
+        <h5 class="mt-4">{{project.projectName}}</h5>
+        <h1 *ngIf="project" class="display-4">Cost Performance Reports</h1>
+        <div class="dropdown-divider mb-3"></div>
+        <app-project-report-list [projectId]="project.projectId" class=""></app-project-report-list>
+    </p-tabPanel>
+
+    <!-- Tab -->
+    <p-tabPanel header="Work Packages" leftIcon="pi pi-sitemap">
+        <h5 class="mt-4">{{project.projectName}}</h5>
+        <h1 *ngIf="project" class="display-4">Work Packages</h1>
+        <div class="dropdown-divider mb-3"></div>
+        <app-wp-list [projectId]="project.projectId" *ngIf="project" class=""></app-wp-list>
+    </p-tabPanel>
+    <!-- Work Package Report -->
+
+</p-tabView>
+<div class="my-3"></div>
+<router-outlet></router-outlet>

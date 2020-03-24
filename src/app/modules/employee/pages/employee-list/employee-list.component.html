@@ -23,15 +23,18 @@
                 </tr>
                 <tr>
                     <th *ngFor="let col of columns" [ngSwitch]="col.field">
-                        <input *ngSwitchCase="'empCode'" pInputText type="text"
+                        <input *ngSwitchCase="'empCode'" pInputText type="text" style="margin-left:-6px;width: 100%;"
                             (input)="dt.filter($event.target.value, col.field, 'contains')">
-                        <input *ngSwitchCase="'empName'" pInputText type="text"
+                        <input *ngSwitchCase="'empName'" pInputText type="text" style="margin-left:-6px;width: 100%;"
                             (input)="dt.filter($event.target.value, col.field, 'contains')">
                         <input *ngSwitchCase="'empUsername'" pInputText type="text"
+                            style="margin-left:-6px;width: 100%;"
                             (input)="dt.filter($event.target.value, col.field, 'contains')">
                         <input *ngSwitchCase="'supervisorName'" pInputText type="text"
+                            style="margin-left:-6px;width: 100%;"
                             (input)="dt.filter($event.target.value, col.field, 'contains')">
                         <input *ngSwitchCase="'approverName'" pInputText type="text"
+                            style="margin-left:-6px;width: 100%;"
                             (input)="dt.filter($event.target.value, col.field, 'contains')">
                     </th>
                 </tr>

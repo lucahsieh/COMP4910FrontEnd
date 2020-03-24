@@ -1,7 +1,136 @@
 /* You can add global styles to this file, and also import other style files */
-@import '../node_modules/primeng/resources/themes/nova-light/theme.css';
+/* @import '../node_modules/primeng/resources/themes/nova-light/theme.css';
 @import '../node_modules/primeicons/primeicons.css';
-@import '../node_modules/primeng/resources/primeng.min.css';
+@import '../node_modules/primeng/resources/primeng.min.css'; */
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+/* Primary color */
+.btn-primary {
+    color: white;
+    background-color: #ffc621;
+    border-color: #ffc621
+}
+
+.btn-primary:hover {
+    color: white;
+    background-color: #ff9f1f;
+    border-color: #ff9f1f
+}
+
+.btn-primary:focus,
+.btn-primary.focus {
+    box-shadow: 0 0 0 .2rem #FFE085;
+}
+
+.btn-primary.disabled,
+.btn-primary:disabled {
+    color: white;
+    background-color: #ffc621;
+    border-color: #ffc621
+}
+
+.btn-primary:not(:disabled):not(.disabled):active,
+.btn-primary:not(:disabled):not(.disabled).active,
+.show>.btn-primary.dropdown-toggle {
+    color: white;
+    background-color: #FF841F;
+    border-color: #FF841F
+}
+
+.btn-primary:not(:disabled):not(.disabled):active:focus,
+.btn-primary:not(:disabled):not(.disabled).active:focus,
+.show>.btn-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 .2rem #FFE085;
+}
+
+.btn-outline-primary {
+    color: #ffc621;
+    background-color: transparent;
+    background-image: none;
+    border-color: #ffc621
+}
+
+.btn-outline-primary:hover {
+    color: white;
+    background-color: #FFD41F;
+    border-color: #FFD41F
+}
+
+.btn-outline-primary:focus,
+.btn-outline-primary.focus {
+    box-shadow: 0 0 0 .2rem #FFE085;
+}
+
+.btn-outline-primary.disabled,
+.btn-outline-primary:disabled {
+    color: #ffc621;
+    background-color: transparent
+}
+
+.btn-outline-primary:not(:disabled):not(.disabled):active,
+.btn-outline-primary:not(:disabled):not(.disabled).active,
+.show>.btn-outline-primary.dropdown-toggle {
+    color: white;
+    background-color: #FFD41F;
+    border-color: #FFD41F
+}
+
+.btn-outline-primary:not(:disabled):not(.disabled):active:focus,
+.btn-outline-primary:not(:disabled):not(.disabled).active:focus,
+.show>.btn-outline-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 .2rem #FFE085;
+}
+
+
+/* Status colors */
+.badge-success{
+    color:#fff;
+    background-color:#28a745;
+}
+.badge-danger{
+    color:#fff;
+    background-color:#dc3545;
+}
+.badge-warning{
+    color:#fff;
+    background-color:#ffc107;
+}
+.badge-info{
+    color:#fff;
+    background-color:#17a2b8;
+}
+
+
+
+.btn-link{
+    color: #ffc621;
+    background-color: transparent;
+    background-image: none;
+    border-color: #ffc621;
+    margin-left: 5px;
+}
+
+.btn-link:hover{
+    text-decoration:none;
+    color: white;
+    background-color: #ff9f1f;
+    border-color: #ff9f1f
+}
+
+.bg-theme{
+    background-color: #dc3545 !important;
+    background-image: linear-gradient(to right, #F39C05, #F3C704) !important;
+}
+.bg-navList{
+    background-color: #202020 !important;
+    border-color: #202020 !important;
+    color: #808080 !important;
+}
+
+.ui-dropdown {
+    min-width: 50px !important;
+    }

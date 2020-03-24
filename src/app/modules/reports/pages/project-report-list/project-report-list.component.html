@@ -1,1 +1,39 @@
-<p>project-report-list works!</p>
+<!-- <div class="card mx-1">
+    <div class="card-body"> -->
+
+
+<div>
+    <!-- <h3 class="display-4">Project Cost Performance Report List</h3> -->
+
+    <p-table [columns]="cols" [value]="displayReports" [paginator]="true" [rows]="10">
+        <ng-template pTemplate="header" let-columns>
+            <tr>
+                <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                    {{col.header}}
+                    <p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
+                        ariaLabelDesc="Activate to sort in descending order"
+                        ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                </th>
+                <th></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr>
+                <td>{{rowData.endDate | date:'MMMM'}}</td>
+                <td>{{rowData.reportDate | date:'MMM d, y, h:mm:ss a'}}</td>
+                <td>{{rowData.startDate | date}}</td>
+                <td>{{rowData.endDate | date}}</td>
+
+                <td>
+                    <button type="button" class="btn btn-link btn-sm"
+                        [routerLink]="['reports/ProjectCostPerformanceReport/view/', rowData.projectReportId]">View</button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+
+
+
+<!-- </div>
+</div> -->

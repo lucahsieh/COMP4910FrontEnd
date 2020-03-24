@@ -9,13 +9,27 @@ import { RouterModule } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MenuModule } from 'primeng/menu';
 import { SharedModule } from '../shared/shared.module';
+import { AccordionModule } from 'primeng/accordion';
+
+import { PanelMenuModule } from 'primeng/panelmenu';
+import { ToastDisplayComponent } from './layout/toast-display/toast-display.component';
+
+import { ToastModule } from 'primeng/toast';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
+
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
     LoginLayoutComponent,
     FooterComponent,
     NavComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    ToastDisplayComponent,
   ],
   imports: [
     CommonModule,
@@ -30,12 +44,23 @@ import { SharedModule } from '../shared/shared.module';
 
     // primeng
     MenuModule,
+    AccordionModule,
+    PanelMenuModule,
+    ToastModule,
+    MessagesModule,
+    MessageModule,
+
+    BrowserModule,
+    BrowserAnimationsModule,
+    FormsModule,
+
   ],
   exports: [
     LoginLayoutComponent,
     FooterComponent,
     NavComponent,
     ToolbarComponent,
+    ToastDisplayComponent,
   ],
   providers: [
   ]

@@ -14,6 +14,9 @@ import { alertPrompComponent } from './alertPromp/alertPromp.component';
 import { AlertComponent } from 'ngx-bootstrap';
 import { AlertModule } from 'ngx-bootstrap';
 import { MapToArrayPipe } from './pipe/map-to-array.pipe';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
 
 
 @NgModule({
@@ -33,6 +36,10 @@ import { MapToArrayPipe } from './pipe/map-to-array.pipe';
     TableModule,
     DropdownModule,
     BreadcrumbModule,
+    InputTextModule,
+    DialogModule,
+    ButtonModule,
+
 
     // bootstrap
     BsDatepickerModule.forRoot(),

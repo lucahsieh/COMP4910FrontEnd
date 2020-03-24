@@ -122,7 +122,7 @@
             <p-dropdown class="form-control" [options]="greadeDropdown" [(ngModel)]="selectedGrade"
                 *ngIf="mode ==='create' || mode==='update'"
                 placeholder="{{employee.labourGrade ? employee.labourGrade.labourGradeName : 'choose a Labour Grade'}}"
-                optionLabel="label" [style]="{'border-width':'0px','padding':'0px'}"></p-dropdown>
+                optionLabel="label" [style]="{'border-width':'0px','padding':'0px','width':'100%'}"></p-dropdown>
         </div>
         <span *ngIf="alerts.labourGrade" class="error my-2"><small>{{alerts.labourGrade.msg}}</small></span>
 
@@ -141,7 +141,7 @@
             <p-dropdown class="form-control" [options]="employeeDropdown" [(ngModel)]="selectedSupervisor"
                 *ngIf="mode ==='create' || mode==='update'"
                 placeholder="{{employee.supervisor ? employee.supervisor.empFirstName + ' ' + employee.supervisor.empLastName : 'choose a supervisor'}}"
-                optionLabel="label" [style]="{'border-width':'0px','padding':'0px'}"></p-dropdown>
+                optionLabel="label" [style]="{'border-width':'0px','padding':'0px','width':'100%'}"></p-dropdown>
         </div>
         <span *ngIf="alerts.supervisor" class="error my-2"><small>{{alerts.supervisor.msg}}</small></span>
 

@@ -1,0 +1,13 @@
+<!-- <div class="card mx-1">
+    <div class="card-body"> -->
+<!-- Title -->
+<h3 class="display-4">Work Package</h3>
+<!-- alert -->
+<shared-alertPromp [alerts]="alerts"></shared-alertPromp>
+
+
+<app-wp *ngIf="wp" [wp]="wp" [mode]="mode" [validWpCode]="validWpCode" (changeWpCode)="validateWpCode()"
+    [alerts]="alerts"></app-wp>
+<!-- 
+    </div>
+</div> -->

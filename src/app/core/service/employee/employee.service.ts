@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 import { User } from 'src/app/shared/model/User';
 import { CheckUserNameResult } from 'src/app/shared/model/CheckUserName';
 import { LabourGrade } from 'src/app/shared/model/LabourGrade';
+import { ProjectService } from '../project/project.service';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +25,8 @@ export class EmployeeService {
 
   constructor(
     private http: HttpClient,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private projectService: ProjectService
   ) { }
 
   getLabourGrades(): Observable<LabourGrade[]> {
@@ -51,6 +53,31 @@ export class EmployeeService {
       .pipe()
   }
 
+  getEmployeesWithinProject(projectId: any): Observable<Employee[]> {
+    return this.projectService.getProject(projectId).pipe(map(p => p.employees));
+  }
+
+  putEmployee(e: Employee): Observable<any> {
+    let url = this.baseUrl + `api/employees/${e.employeeId}`;
+    let body = {
+      "empUsername": e.empUsername,
+      "empPassword": e.empPassword,
+      "empCode": e.empCode,
+      "labourGradeId": e.labourGrade.labourGradeId,
+      "empFirstName": e.empFirstName,
+      "empLastName": e.empLastName,
+      "timesheetApproverId": e.timesheetApproverId,
+      "supervisorId": e.supervisorId,
+      "isProjectManager": e.isProjectManager,
+      "isAdmin": e.isAdmin,
+      "isHumanResources": e.isHumanResources,
+      "isActivated": e.isActivated,
+      "jobTitleId": e.jobTitleId
+    };
+    return this.http
+      .put<Employee>(url, body, this.httpOptions)
+      .pipe(catchError(this.handleError("postEmployee", e)));
+  }
   postEmployee(e: Employee): Observable<any> {
     let url = this.baseUrl + `api/employees`;
     let body = {

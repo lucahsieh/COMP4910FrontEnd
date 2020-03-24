@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { MODE } from 'src/app/shared/model/MODE';
 import { WPReport } from 'src/app/shared/model/WPReport';
 import { ActivatedRoute } from '@angular/router';
@@ -11,6 +11,7 @@ import { ReportService } from 'src/app/core/service/report/report.service';
 })
 export class WpReportViewComponent implements OnInit {
 
+  @Input() wpReportId: any;
   mode: MODE = MODE.Read;
   wpr: WPReport = null;
 
@@ -20,10 +21,11 @@ export class WpReportViewComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-      var id = params.get('empId');
-      this.reportService.getWpReport(id).subscribe(r => this.wpr = r);
-    });
+    // this.route.paramMap.subscribe(params => {
+    //   var wpReportId = params.get('wpReportId');
+    //   
+    // });
+    this.reportService.getWpReport(this.wpReportId).subscribe(r => this.wpr = r);
   }
 
 }
