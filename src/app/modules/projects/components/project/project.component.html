@@ -6,7 +6,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">Project Name</span>
             </div>
-            <input type="text" class="form-control" [(ngModel)]="project.projectName"
+            <input type="text" class="form-control" [(ngModel)]="project.projectName" (blur)="onFieldExit()"
                 [readOnly]="mode ==='read' || mode==='update'">
         </div>
         <span *ngIf="alerts.projectName" class="error my-2"><small>{{alerts.projectName.msg}}</small></span>
@@ -30,7 +30,7 @@
 
 
     <div class="col-1">
-        <div *ngIf="(mode ==='create' || mode ==='update')">
+        <div *ngIf="(mode ==='create')">
             <i *ngIf="validProjectCode" class="material-icons pass my-2">check_circle</i>
             <i *ngIf="!validProjectCode" class="material-icons error  my-2">error</i>
         </div>
@@ -67,7 +67,7 @@
                 [daysDisabled]="[]" [outsideClick]="true"
                 [bsConfig]="{selectWeek: true, dateInputFormat: 'YYYY-MM-DD' }"
                 (bsValueChange)="onEndDateChange($event)" value="{{ project.endDate | date:'yyyy-MM-dd' }}"
-                [readonly]="(mode == 'read' || mode =='update')" [isDisabled]="(mode == 'read' || mode =='update')" />
+                [readonly]="(mode == 'read') || isSupervisorView" [isDisabled]="(mode == 'read')" />
         </div>
         <span *ngIf="alerts.endDate" class="error my-2"><small>{{alerts.endDate.msg}}</small></span>
     </div>
@@ -76,7 +76,7 @@
 
 <div class="my-3"></div>
 
-<div class="form-row">
+<div class="form-row" *ngIf="!isSupervisorView">
     <div class="col-5">
         <!-- budget -->
         <div class="input-group">
@@ -140,7 +140,7 @@
                 <span class="input-group-text">Team Members</span>
             </div>
             <!-- <input type="text" class="form-control " *ngIf="mode==='read'" [readOnly]="true"> -->
-            <div class="d-flex flex-row form-control">
+            <div class="d-flex flex-wrap form-control ">
                 <div *ngFor="let x of project.employees;let i = index;">
                     <h4>
                         <span class="badge badge-pill badge-secondary mr-2 my-2">
@@ -165,7 +165,7 @@
                 <span class="input-group-text">Description</span>
             </div>
             <textarea class="form-control" aria-label="With textarea" [(ngModel)]="project.description"
-                [readOnly]="mode !=='create' && mode!=='update'"></textarea>
+                [readOnly]="mode =='read' || isSupervisorView"></textarea>
         </div>
         <div class="col-1"></div>
     </div>

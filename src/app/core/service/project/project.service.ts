@@ -112,6 +112,11 @@ export class ProjectService {
       .pipe()
   }
 
+  getAllOpenProject(): Observable<any[]> {
+    let url = this.baseUrl + `api/projects/getAllOpenProjects`;
+    return this.http.get<any[]>(url).pipe()
+  }
+
   checkProjectCode(code: any): Observable<boolean> {
     let url = this.baseUrl + `api/projects/checkProjectCodeAvailability/${code}`;
     return this.http

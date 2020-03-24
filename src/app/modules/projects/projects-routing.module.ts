@@ -14,11 +14,17 @@ import { WpReportViewComponent } from '../reports/pages/wp-report-view/wp-report
 import { WpReportCreationComponent } from '../reports/pages/wp-report-creation/wp-report-creation.component';
 import { WpComponent } from '../wp/component/wp.component';
 import { WpManagementComponent } from '../wp/pages/wp-management/wp-management.component';
+import { ProjectListSupervisorComponent } from './pages/project-list-supervisor/project-list-supervisor.component';
+import { ProjectViewSupervisorComponent } from './pages/project-view-supervisor/project-view-supervisor.component';
 
 
 
 const routes: Routes = [
   { path: '', component: ProjectListComponent, data: { breadcrumb: null } },
+
+  { path: 'supervisor/projectlist', component: ProjectListSupervisorComponent, data: { breadcrumb: 'Project List' } },
+  { path: 'supervisor/projectlist/view/:projectId', component: ProjectViewSupervisorComponent, data: { breadcrumb: 'Add Project Members' } },
+
   { path: 'edit/:projectId', component: ProjectEditComponent, data: { breadcrumb: 'Project Edit' } },
   // { path: 'list', component: ProjectListComponent, data: { breadcrumb: 'Project List' } },
   { path: 'creation', component: ProjectCreationComponent, data: { breadcrumb: 'Project Creation' } },

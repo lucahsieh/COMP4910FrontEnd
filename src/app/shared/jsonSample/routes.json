@@ -15,6 +15,7 @@
     "/api/reports/wpReport/:wpReportId": "/getWpReprot",
     "/api/reports/projectReport/:projectReportId": "/get__ProjectReport",
     "/api/projects/getAllProjectsByEmployeeId/:empId": "/get_AllProjectsByEmployeeId",
+    "/api/projects/getAllOpenProjects": "/get_allOpenProject",
     "/api/projects/:projectId": "/get_project",
     "/api/projects/:id": "/post_project",
     "/api/WorkPackages/getAllWp": "/get_AllWp",
@@ -26,5 +27,6 @@
     "/api/reports/wpReport/getAllWpReport/:wpCode": "/get_AllWpReport",
     "/api/projects/checkProjectCodeAvailability/:code": "/get_CheckProjectCode",
     "/api/WorkPackages/GetTotalHoursByWpIdRange/:wpCode/:sd/:ed/:lgid": "/get__actualDaysByWpidRange",
-    "/api/workpackagereports/:wpCode/:labourGradeId": "/get__ReBudget"
+    "/api/workpackagereports/:wpCode/:labourGradeId": "/get__ReBudget",
+    "/api/employees/getChildren/:empId": "/get__AllChildrenEmployee"
 }

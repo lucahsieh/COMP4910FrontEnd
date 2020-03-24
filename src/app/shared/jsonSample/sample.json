@@ -879,5 +879,78 @@
   },
   "get__ReBudget": {
     "reBudgetDay": 33
-  }
+  },
+  "get__AllChildrenEmployee": [
+    {
+      "employeeId": 4,
+      "empCode": 123,
+      "empFirstName": "Employee4FirstName",
+      "empLastName": "Employee4LastName",
+      "timesheetApprover": {
+        "employeeId": 3,
+        "empFirstName": "Bruce",
+        "empLastName": "Link"
+      }
+    },
+    {
+      "employeeId": 5,
+      "empCode": 222,
+      "empFirstName": "Employee5FirstName",
+      "empLastName": "Employee5LastName",
+      "timesheetApprover": {
+        "employeeId": 3,
+        "empFirstName": "Bruce",
+        "empLastName": "Link"
+      }
+    },
+    {
+      "employeeId": 35,
+      "empCode": 32,
+      "empFirstName": "Employee32FirstName",
+      "empLastName": "Employee23LastName",
+      "timesheetApprover": {
+        "employeeId": 3,
+        "empFirstName": "Bruce",
+        "empLastName": "Link"
+      }
+    }
+  ],
+  "get_allOpenProject": [
+    {
+      "projectId": 1,
+      "projectName": "NewProject1",
+      "projectManager": {
+        "employeeId": 2,
+        "empFirstName": "Perry",
+        "empLastName": "Li"
+      },
+      "startDate": "2020-03-06T00:31:34.2646376",
+      "endDate": "2020-03-06T00:31:34.264638",
+      "isClosed": false
+    },
+    {
+      "projectId": 2,
+      "projectName": "ProjectName2",
+      "projectManager": {
+        "employeeId": 2,
+        "empFirstName": "Perry",
+        "empLastName": "Li"
+      },
+      "startDate": "2020-02-02T00:00:00",
+      "endDate": "2020-02-18T00:00:00",
+      "isClosed": false
+    },
+    {
+      "projectId": 3,
+      "projectName": "ProjectName3",
+      "projectManager": {
+        "employeeId": 3,
+        "empFirstName": "Bruce",
+        "empLastName": "Link"
+      },
+      "startDate": "2020-03-03T00:00:00",
+      "endDate": "2020-03-28T00:00:00",
+      "isClosed": false
+    }
+  ]
 }

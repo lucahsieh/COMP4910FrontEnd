@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { MessageService } from '../message.service';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Observer } from 'rxjs';
 import { Employee } from 'src/app/shared/model/Employee';
 
 import { catchError, tap, map } from 'rxjs/operators';
@@ -32,6 +32,11 @@ export class EmployeeService {
   getLabourGrades(): Observable<LabourGrade[]> {
     let url = this.baseUrl + `api/LabourGrade`;
     return this.http.get<LabourGrade[]>(url).pipe()
+  }
+
+  getAllChildrenEmployees(empId): Observable<Employee[]> {
+    let url = this.baseUrl + `api/employees/getChildren/${empId}`;
+    return this.http.get<Employee[]>(url).pipe()
   }
 
   getEmployee(id): Observable<Employee> {

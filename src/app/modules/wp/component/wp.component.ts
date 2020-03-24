@@ -83,6 +83,9 @@ export class WpComponent implements OnInit {
       .getAllWpByProjectId(this.projectId)
       .subscribe(packages => {
         this.parentWPDropdown = [];
+        this.parentWPDropdown.push(
+          { label: `----`, value: null }
+        )
         packages.forEach(p => {
           this.parentWPDropdown.push(
             { label: `${p.workPackageCode} - ${p.workPackageTitle}`, value: p.workPackageCode }
@@ -168,6 +171,7 @@ export class WpComponent implements OnInit {
   }
 
   onChangeParentWp() {
+    this.fireValidateWPCode.emit('payload');
   }
 
   /** exist edit field */

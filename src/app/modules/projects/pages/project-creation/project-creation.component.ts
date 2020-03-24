@@ -10,6 +10,7 @@ import { ListboxModule } from 'primeng/listbox';
 import { AuthenticationService } from 'src/app/core/service/authentication.service';
 import { Employee } from 'src/app/shared/model/Employee';
 import { User, convertToEmployee } from 'src/app/shared/model/User';
+import { MyToastService } from 'src/app/core/service/my-toast.service';
 
 @Component({
   selector: 'app-project-creation',
@@ -25,11 +26,12 @@ export class ProjectCreationComponent implements OnInit {
   // project validation
   validProjectCode: boolean = false;
   validStartDate: boolean = false;
-  alerts = {};
+  alerts = [];
 
   constructor(
     private projectService: ProjectService,
     private authService: AuthenticationService,
+    private myToastService: MyToastService,
     private router: Router
   ) {
   }
@@ -41,10 +43,20 @@ export class ProjectCreationComponent implements OnInit {
   }
 
   onCreate(e: any) {
-    if (!this.validatePage())
+    if (!this.validatePage()) {
+      this.myToastService.addError('Your data entry is rejected.', 'Please review the highlighted fields');
+      console.log(this.alerts)
+      // for (let key in this.alerts) {
+      //   let value = this.alerts[key];
+      //   this.myToastService.addError('Validation Error', `${value.msg}`);
+      // }
       return;
+    }
     console.log("POST project");
-    this.projectService.postProject(this.newProject).subscribe();
+    this.projectService.postProject(this.newProject).subscribe(_ => {
+      this.myToastService.addSuccess(`Project created Successfully`, `Project ${this.newProject.projectName} created.`);
+      this.router.navigate([`/content/projects`]);
+    });
   }
 
   //brings user back to projects list
@@ -63,10 +75,6 @@ export class ProjectCreationComponent implements OnInit {
       this.alerts['projectCode'] = new Alert('danger', 5000, `Project Code must be a number`);
       result = false;
     }
-    // if (!this.validProjectCode) {
-    //   this.alerts['projectCode'] = new Alert('danger', 5000, `Project Code : ${this.newProject.projectCode} is not allowed`);
-    //   result = false;
-    // }
     if (this.newProject.startDate === null) {
       this.alerts['startDate'] = new Alert('danger', 5000, `Start Date cannot be empty`);
       result = false;

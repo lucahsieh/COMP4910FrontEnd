@@ -6,7 +6,7 @@
         <!-- <shared-alertPromp [alerts]="alerts"></shared-alertPromp> -->
 
         <app-project [mode]="mode" [project]="newProject" [alerts]="alerts" (changeProjectCode)="validateProjectCode()"
-            [validProjectCode]="validProjectCode">
+            [validProjectCode]="validProjectCode" (vlidatePage)="validatePage()">
         </app-project>
 
         <!-- Action section-->

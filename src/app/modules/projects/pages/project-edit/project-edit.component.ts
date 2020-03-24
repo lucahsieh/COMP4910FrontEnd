@@ -10,6 +10,7 @@ import { ListboxModule } from 'primeng/listbox';
 import { ActivatedRoute } from '@angular/router';
 import { EmployeeService } from 'src/app/core/service/employee/employee.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { MyToastService } from 'src/app/core/service/my-toast.service';
 
 @Component({
   selector: 'app-project-edit',
@@ -29,6 +30,7 @@ export class ProjectEditComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private projectService: ProjectService,
+    private myToastService: MyToastService,
     private router: Router
   ) { }
   ngOnInit() {
@@ -39,11 +41,15 @@ export class ProjectEditComponent implements OnInit {
   }
 
   onUpdate() {
-    if (!this.validatePage())
+    if (!this.validatePage()) {
+      this.myToastService.addError('Your data entry is rejected.', 'Please review the highlighted fields');
       return;
-    console.log("POST project");
+    } console.log("POST project");
     console.log(JSON.stringify(this.project));
-    this.projectService.postProject(this.project).subscribe();
+    this.projectService.postProject(this.project).subscribe(_ => {
+      this.myToastService.addSuccess(`Project Saved Successfully`, `Project ${this.project.projectName} saved ${new Date().toLocaleString}.`);
+      this.router.navigate([`/content/projects/view/${this.project.projectId}`]);
+    });
   }
 
   //brings user back to projects list

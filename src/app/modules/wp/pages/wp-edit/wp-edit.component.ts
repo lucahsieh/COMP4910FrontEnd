@@ -34,7 +34,10 @@ export class WpEditComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       var code = params.get('wpCode');
-      this.wpService.getWpByWpCode(code).subscribe(w => this.wp = w);
+      this.wpService.getWpByWpCode(code).subscribe(w => {
+        this.wp = w;
+        this.validateWpCode();
+      });
     })
   }
 
@@ -96,16 +99,34 @@ export class WpEditComponent implements OnInit {
   }
 
   validateWpCode() {
-    this.validWpCode = false;
-    var code = this.wp.workPackageCode;
-    var projCode = this.wp.parentWorkPackageCode['value'];
-    var codeSub = code.substring(0, projCode.length);
-    if (codeSub === projCode) {
+    //       this.alerts['wpCode'] = new Alert('danger', 5000, `WP Code: ${this.wp.workPackageCode} is not valid`);
+    this.validWpCode = true;
+    this.alerts = {};
+    this.wp.workPackageCode = this.wp.workPackageCode.toUpperCase();
+    let code: string = this.wp.workPackageCode;
+    var parentCode = this.wp.parentWorkPackageCode['value'];
+
+    // When there is no parent code
+    let regexp2 = new RegExp('\\b[A-Z]+\\b');
+    if (!parentCode) {
+      console.log('parentcode')
+      console.log(code.match(regexp2))
+      if (code.match(regexp2) === null) {
+        console.log(code.match(regexp2))
+        this.validWpCode = false;
+        this.alerts['wpCode'] = new Alert('danger', 5000, `Only allow alphabet characters if no parent work package code.`);
+        return false;
+      }
       this.validWpCode = true;
+      return true;
     }
-    if (code.match(/^[A-Z]*\d*$/) === null) {
-      console.log(code);
+
+
+    // When there is parent code
+    let regexp = new RegExp('\\b' + parentCode + '\\d{1}\\b');
+    if (code.match(regexp) === null) {
       this.validWpCode = false;
+      this.alerts['wpCode'] = new Alert('danger', 5000, `Only appending one more digits to parent code.`);
     }
   }
 
