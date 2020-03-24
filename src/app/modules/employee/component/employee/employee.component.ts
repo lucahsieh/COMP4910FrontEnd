@@ -17,7 +17,7 @@ export class EmployeeComponent implements OnInit {
   employeeDropdown: SelectItem[] = null;
   selectedGrade: SelectItem;
   selectedSupervisor: SelectItem;
-  selectedApprover: Employee;
+  selectedApprover: SelectItem;
   // userName validation
   @Input() validUsername: boolean;
   @Input() validEmployeeCode: boolean;
@@ -80,5 +80,10 @@ export class EmployeeComponent implements OnInit {
   // click reset password btn
   onRestPw() {
     this.restPw.emit('payload');
+  }
+
+  onChange(event) {
+    console.log(this.selectedApprover);
+    this.employee.timesheetApprover.employeeId = this.selectedApprover.value;
   }
 }

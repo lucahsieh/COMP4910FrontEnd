@@ -39,7 +39,7 @@ export class EmployeeEditComponent implements OnInit {
   }
 
   openModal(template: TemplateRef<any>) {
-    console.log('opne')
+    console.log('open')
     console.log(template)
     this.modalRef = this.modalService.show(template);
   }
@@ -54,6 +54,7 @@ export class EmployeeEditComponent implements OnInit {
     })
     //TODO: SHOW MESSAGE.
   }
+  
   // btn click event of creation
   onUpdate() {
     if (!this.validatePage())

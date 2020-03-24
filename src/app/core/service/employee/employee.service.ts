@@ -42,7 +42,7 @@ export class EmployeeService {
   }
 
   getChildEmployees(id): Observable<Employee[]> {
-    let url = this.baseUrl + `api/employees/${id}`
+    let url = this.baseUrl + `api/employees/getChildren/${id}`
     return this.http.get<Employee[]>(url).pipe()
   }
 

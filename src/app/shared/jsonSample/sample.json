@@ -88,7 +88,7 @@
     "labourGradeId": 0,
     "empFirstName": "Perry",
     "empLastName": "Li",
-    "timesheetApproverId": 2,
+    "timesheetApproverId": 1,
     "supervisorId": 2,
     "isProjectManager": true,
     "isAdmin": false,
