@@ -3,3 +3,8 @@
     padding: 21px 0;
     justify-content: flex-end;
   }
+
+.title{
+  font-size: 1.75rem !important;
+  font-family: 'Signika', sans-serif !important;
+}

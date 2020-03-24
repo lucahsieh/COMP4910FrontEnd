@@ -61,7 +61,10 @@ export class WpService {
       "responsibleEngineer": w.responsibleEngineer,
       "parentWorkPackageId": w.parentWorkPackageId,
       "employees": w.employees,
+      "pmPlannings": w.pmPlannings
     }
+    console.log('postWorkPackage');
+    console.log(JSON.stringify(body));
     return this.http
       .post<WorkPackage>(url, body, this.httpOptions)
       .pipe(catchError(this.handleError("postWorkPackage", w)));
@@ -80,7 +83,10 @@ export class WpService {
       "responsibleEngineer": w.responsibleEngineer,
       "parentWorkPackageId": w.parentWorkPackageId,
       "employees": w.employees,
+      "pmPlannings": w.pmPlannings
     }
+    console.log('putWorkPackage');
+    console.log(JSON.stringify(body));
     return this.http
       .put<WorkPackage>(url, body, this.httpOptions)
       .pipe(catchError(this.handleError("putWorkPackage", w)));

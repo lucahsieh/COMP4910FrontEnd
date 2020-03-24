@@ -20,8 +20,11 @@
     "/api/WorkPackages/getAllWp": "/get_AllWp",
     "/api/WorkPackages/GetAllWorkPackagesByProjectId/:projectId": "/get_WpByProjectId",
     "/api/WorkPackages/:wpCode": "/get_wpByWpCode",
+    "/api/WorkPackages/getAllWpByEmployeeId/:empid": "/get__AllWpByEmployeeId",
     "/api/WorkPackages": "/post_WorkPackage",
     "/api/reports/allprojectReports/:projectid": "/get_AllProjectReport",
     "/api/reports/wpReport/getAllWpReport/:wpCode": "/get_AllWpReport",
-    "/api/projects/checkProjectCodeAvailability/:code": "/get_CheckProjectCode"
+    "/api/projects/checkProjectCodeAvailability/:code": "/get_CheckProjectCode",
+    "/api/WorkPackages/GetTotalHoursByWpIdRange/:wpCode/:sd/:ed/:lgid": "/get__actualDaysByWpidRange",
+    "/api/workpackagereports/:wpCode/:labourGradeId": "/get__ReBudget"
 }

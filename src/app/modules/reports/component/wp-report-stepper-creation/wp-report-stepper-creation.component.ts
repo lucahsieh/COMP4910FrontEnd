@@ -15,7 +15,7 @@ import { WPReportRow } from 'src/app/shared/model/WPReportRow';
 export class WpReportStepperCreationComponent implements OnInit {
 
   firstFormGroup: FormGroup;
-
+  @Output() cancelEvent: EventEmitter<string> = new EventEmitter<string>();
   @Output() submitEvent: EventEmitter<string> = new EventEmitter<string>();
   @Input() wpr: WPReport;
 
@@ -41,10 +41,11 @@ export class WpReportStepperCreationComponent implements OnInit {
     if (event.selectedIndex === 1) {
       this.wpr.details.forEach(row => {
         this.reportService
-          .calculateActual(this.wpr.workPackageId, this.f.startDate.value, this.f.endDate.value, row.labourGradeId)
+          .calculateActual(this.wpr.workPackageCode, this.f.startDate.value, this.f.endDate.value, row.labourGradeId)
           .subscribe(result => {
             console.log(result);
             row.totalDays = result;
+            this.updateEAC(row);
             this.updateComplete(row);
             this.updateVariance(row);
           });
@@ -56,7 +57,7 @@ export class WpReportStepperCreationComponent implements OnInit {
   updateVariance(row: WPReportRow) {
     if (isNaN(row.reETC)) return;
     if (isNaN(row.reBudgetDay)) return;
-    let estimate: number = row.reETC;
+    let estimate: number = row.reEAC;
     let budget: number = row.reBudgetDay;
     row.variance = (estimate - budget) / budget * 100;
     if (isNaN(row.variance) || !isFinite(row.variance))
@@ -68,17 +69,25 @@ export class WpReportStepperCreationComponent implements OnInit {
   updateComplete(row: WPReportRow) {
     if (isNaN(row.totalDays)) return;
     if (isNaN(row.reETC)) return;
-    let estimate: number = row.reETC;
+    let estimate: number = row.reEAC;
     let actual: number = row.totalDays;
     row.complete = actual / estimate * 100;
     if (isNaN(row.complete) || !isFinite(row.complete))
       row.complete = 0;
     return row.complete;
   }
+  updateEAC(row: WPReportRow) {
+    if (isNaN(row.totalDays)) return;
+    if (isNaN(row.reETC)) return;
+    let estimate: number = row.reETC;
+    let actual: number = row.totalDays;
+    row.reEAC = 0 + estimate + actual;
+  }
 
   onEditComplete(event) {
     console.log(event);
     let row: WPReportRow = event.data;
+    this.updateEAC(row);
     this.updateComplete(row);
     this.updateVariance(row);
   }
@@ -87,6 +96,9 @@ export class WpReportStepperCreationComponent implements OnInit {
     this.wpr.startDate = this.firstFormGroup.controls.startDate.value;
     this.wpr.endDate = this.firstFormGroup.controls.endDate.value;
     this.submitEvent.emit('payload');
+  }
+  onCancel(event) {
+    this.cancelEvent.emit('payload');
   }
 
 }

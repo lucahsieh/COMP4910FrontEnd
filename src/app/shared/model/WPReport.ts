@@ -37,9 +37,7 @@ export class WPReport {
         this.problemsThisPeriod = "";
         this.problemsAnticipated = "";
         this.startDate = "";
-        this.endDate = ""
-        this.workPackageReportId = 0
-
+        this.endDate = "";
     }
     copyWPinfo(wp: WorkPackage) {
         this.workPackageCode = wp.workPackageCode;

@@ -21,6 +21,9 @@ import { ProjectReportPmViewComponent } from './component/project-report-pm-view
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { WpReportListComponent } from './pages/wp-report-list/wp-report-list.component';
 
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
   declarations: [
@@ -48,6 +51,9 @@ import { WpReportListComponent } from './pages/wp-report-list/wp-report-list.com
 
     //primeng
     TableModule,
+    InputTextModule,
+    DialogModule,
+    ButtonModule,
 
     // bootstrap
     AlertModule.forRoot(),

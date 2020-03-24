@@ -25,21 +25,27 @@ export class ReportService {
     private messageService: MessageService
   ) { }
 
+  getReBudgetDays(wpCode: any, labourGradeId: any): Observable<any> {
+    let url = this.baseUrl + `api/workpackagereports/${wpCode}/${labourGradeId}`;
+    return this.http
+      .get<any>(url, this.httpOptions)
+      .pipe(
+        map(data => data.reBudgetDay)
+      )
+  }
+
   getWpReport(wpReportId: any): Observable<WPReport> {
     console.log('call getWpReport');
     let url = this.baseUrl + `api/reports/wpReport/${wpReportId}`;
     return this.http
       .get<WPReport>(url, this.httpOptions).pipe();
   }
-  calculateActual(wpId, sd, ed, lgId): Observable<any> {
-    let url = this.baseUrl + `api/reports/wpReport/calculateActual`;
-    let body = {
-      "workPackageId": wpId,
-      "startDate": sd,
-      "endDate": ed,
-      "labourGradeId": lgId
-    };
+  calculateActual(wpCode, sd: Date, ed: Date, lgId): Observable<any> {
+    let sds = this.formateDate(sd);
+    let eds = this.formateDate(ed);
+    let url = this.baseUrl + `api/WorkPackages/GetTotalHoursByWpIdRange/${wpCode}/${sds}/${eds}/${lgId}`;
     // TODO: change to post
+    console.log(url);
     return this.http.get<any>(url, this.httpOptions)
       .pipe(
         map(data => data.totalDays)
@@ -48,8 +54,22 @@ export class ReportService {
   postWpReport(wpr: WPReport): Observable<any> {
     let url = this.baseUrl + `api/reports/wpReport/`;
     var result = null;
+    var body = {
+      'workPackageCode': wpr.workPackageCode,
+      "reportDate": wpr.reportDate,
+      "startDate": wpr.startDate,
+      "endDate": wpr.endDate,
+      "comment": wpr.comment,
+      "workAccomplished": wpr.workAccomplished,
+      "workPlanned": wpr.workPlanned,
+      "problemsThisPeriod": wpr.problemsThisPeriod,
+      "problemsAnticipated": wpr.problemsAnticipated,
+      "details": wpr.details
+    }
+    console.log('postWpReport');
+    console.log(JSON.stringify(body));
     if (!environment.fakeBackend)
-      result = this.http.post<WPReport>(url, wpr, this.httpOptions)
+      result = this.http.post<WPReport>(url, body, this.httpOptions)
     return result;
   }
 
@@ -65,5 +85,19 @@ export class ReportService {
   getAllWpReports(wpCode: any): Observable<any> {
     let url = this.baseUrl + `api/reports/wpReport/getAllWpReport/${wpCode}`;
     return this.http.get<any>(url, this.httpOptions).pipe();
+  }
+
+  private formateDate(date: any): string {
+    var d = new Date(date),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+
+    if (month.length < 2)
+      month = '0' + month;
+    if (day.length < 2)
+      day = '0' + day;
+
+    return [year, month, day].join('-');
   }
 }

@@ -18,6 +18,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 
+
 @NgModule({
   declarations: [
     MessageComponent,
@@ -38,6 +39,7 @@ import { DialogModule } from 'primeng/dialog';
     InputTextModule,
     DialogModule,
     ButtonModule,
+
 
     // bootstrap
     BsDatepickerModule.forRoot(),

@@ -21,6 +21,10 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 
+import { ToastModule } from 'primeng/toast';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
+
 @NgModule({
   declarations: [
     EmployeeComponent,
@@ -45,6 +49,10 @@ import { DialogModule } from 'primeng/dialog';
     InputTextModule,
     DialogModule,
     ButtonModule,
+
+    ToastModule,
+    MessagesModule,
+    MessageModule,
 
     // bootstrap
     AlertModule.forRoot(),

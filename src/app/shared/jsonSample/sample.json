@@ -83,19 +83,16 @@
     "apiId": "Credentials"
   },
   "post_Employee": {
-    "empUsername": "fdsf",
-    "empPassword": "01234",
-    "empCode": 1,
+    "empUsername": "abc323",
+    "empCode": 43429,
     "labourGradeId": 0,
-    "empFirstName": "djsoijo",
-    "empLastName": "fsdf",
-    "timesheetApproverId": 1,
-    "supervisorId": 1,
-    "isProjectManager": false,
+    "empFirstName": "Perry",
+    "empLastName": "Li",
+    "isProjectManager": true,
     "isAdmin": false,
     "isHumanResources": false,
     "isActivated": true,
-    "jobTitleId": 1
+    "jobTitleId": 2
   },
   "get_AllEmployees": [
     {
@@ -353,96 +350,83 @@
     }
   ],
   "getWpReprot": {
-    "workPackageName": "string",
-    "workPackageId": 21,
-    "workPackageCode": "A001",
-    "workPackageTitle": 21,
+    "workPackageName": "WpName1Root",
+    "workPackageId": 2,
+    "workPackageCode": "A",
     "projectId": 1,
-    "projectCode": 1,
-    "projectName": "projectNamefefjwo",
-    "workPackageReportId": 38329,
-    "reportDate": "0001-01-01T00:00:00",
-    "startDate": "0001-01-01T00:00:00",
-    "endDate": "0001-01-01T00:00:00",
+    "ProjectCode": 111,
+    "projectName": "NewProject1",
+    "workPackageReportId": 1,
+    "reportDate": "2020-03-01T00:00:00",
+    "startDate": "2020-02-25T00:00:00",
+    "endDate": "2020-02-27T00:00:00",
     "projectManager": {
-      "employeeId": 39,
-      "empFirstName": "firstNameSS",
-      "empLastName": "lastNameWW",
+      "employeeId": 2,
+      "empFirstName": "Perry",
+      "empLastName": "Li",
       "labourGrade": {
-        "labourGradeId": 3,
-        "labourGradeName": "P3"
+        "labourGradeId": 2,
+        "labourGradeName": "code2",
+        "hourlyWage": 23
       }
     },
     "responsibleEngineer": {
-      "employeeId": 40,
-      "empFirstName": "firstNameDD",
-      "empLastName": "lastNameDD",
+      "employeeId": 2,
+      "empFirstName": "Perry",
+      "empLastName": "Li",
       "labourGrade": {
-        "labourGradeId": 3,
-        "labourGradeName": "P3"
+        "labourGradeId": 2,
+        "labourGradeName": "code2",
+        "hourlyWage": 23
       }
     },
-    "Engineers": [
+    "engineers": [
       {
-        "employeeId": 42,
-        "empFirstName": "firstName",
-        "empLastName": "lastName",
+        "employeeId": 2,
+        "empFirstName": "Perry",
+        "empLastName": "Li",
         "labourGrade": {
-          "labourGradeId": 3,
-          "labourGradeName": "P3"
+          "labourGradeId": 2,
+          "labourGradeName": "code2",
+          "hourlyWage": 23
         }
       },
       {
-        "employeeId": 43,
-        "empFirstName": "firstName2",
-        "empLastName": "lastName2",
+        "employeeId": 3,
+        "empFirstName": "Bruce",
+        "empLastName": "Link",
         "labourGrade": {
           "labourGradeId": 3,
-          "labourGradeName": "P3"
-        }
-      },
-      {
-        "employeeId": 41,
-        "empFirstName": "firstName1",
-        "empLastName": "lastName1",
-        "labourGrade": {
-          "labourGradeId": 3,
-          "labourGradeName": "P3"
+          "labourGradeName": "code3",
+          "hourlyWage": 10
         }
       }
     ],
-    "comment": "longstring",
-    "workAccomplished": "longstring",
-    "workPlanned": "longstring",
-    "problemsThisPeriod": "longstring",
-    "problemsAnticipated": "longstring",
+    "comment": "seeded comment",
+    "workAccomplished": "seeded stuff",
+    "workPlanned": "seeded planned",
+    "problemsThisPeriod": "seeded problems",
+    "problemsAnticipated": "seeded anticipated",
     "details": [
       {
         "labourGradeId": 3,
-        "labourGradeName": "P3",
-        "reBudgetDay": 32,
-        "totalDays": 32.32,
-        "reETC": 66,
-        "variance": -12.33,
-        "complete": -95.43
+        "labourGradeName": "labourgrade3name",
+        "reBudgetDay": 20.5,
+        "totalDays": 50,
+        "reETC": 21.5,
+        "reEAC": 8,
+        "variance": 30,
+        "complete": 90
       },
       {
-        "labourGradeId": 2,
-        "labourGradeName": "P2",
-        "reBudgetDay": 32,
-        "totalDays": 32.32,
-        "reETC": 66,
-        "variance": -12.33,
-        "complete": -95.43
-      },
-      {
-        "labourGradeId": 1,
-        "labourGradeName": "P1",
-        "reBudgetDay": 32,
-        "totalDays": 32.32,
-        "reETC": 66,
-        "variance": -12.33,
-        "complete": -95.43
+        "labourGradeId": 4,
+        "labourGradeName": "labourgrade4name",
+        "reBudgetDay": 19,
+        "totalDays": 19.5,
+        "reETC": 42,
+        "reEAC": 42,
+        "variance": 50,
+        "complete": 50
       }
     ]
   },
@@ -728,8 +712,8 @@
     "pmPlannings": [
       {
         "labourGradeId": 1,
-        "pmEAC": 30.0,
-        "reBudget": 80.0
+        "pmEAC": 30,
+        "reBudget": 80
       },
       {
         "labourGradeId": 2,
@@ -876,8 +860,8 @@
     "pmPlannings": [
       {
         "labourGradeId": 1,
-        "pmEAC": 30.0,
-        "reBudget": 80.0
+        "pmEAC": 30,
+        "reBudget": 80
       },
       {
         "labourGradeId": 2,
@@ -885,5 +869,67 @@
         "reBudget": 66.6
       }
     ]
+  },
+  "get__AllWpByEmployeeId": [
+    {
+      "workPackageId": 1,
+      "projectCode": 111,
+      "projectName": "NewProject1",
+      "workPackageCode": "A",
+      "workPackageTitle": "WpName1Root",
+      "contractor": null,
+      "issueDate": "2020-02-15T00:00:00",
+      "isClosed": false,
+      "responsibleEngineer": {
+        "employeeId": 2,
+        "empFirstName": "Perry",
+        "empLastName": "Li"
+      },
+      "parentWorkPackageCode": null,
+      "employees": null,
+      "pmPlannings": null
+    },
+    {
+      "workPackageId": 2,
+      "projectCode": 111,
+      "projectName": "NewProject1",
+      "workPackageCode": "AB",
+      "workPackageTitle": "WpName1Child1",
+      "contractor": null,
+      "issueDate": "2020-02-20T00:00:00",
+      "isClosed": false,
+      "responsibleEngineer": {
+        "employeeId": 2,
+        "empFirstName": "Perry",
+        "empLastName": "Li"
+      },
+      "parentWorkPackageCode": "A",
+      "employees": null,
+      "pmPlannings": null
+    },
+    {
+      "workPackageId": 5,
+      "projectCode": 222,
+      "projectName": "ProjectName2",
+      "workPackageCode": "BAA",
+      "workPackageTitle": "WpName2ChildChild1",
+      "contractor": null,
+      "issueDate": "2020-02-20T00:00:00",
+      "isClosed": false,
+      "responsibleEngineer": {
+        "employeeId": 2,
+        "empFirstName": "Perry",
+        "empLastName": "Li"
+      },
+      "parentWorkPackageCode": "BA",
+      "employees": null,
+      "pmPlannings": null
+    }
+  ],
+  "get__actualDaysByWpidRange": {
+    "totalDays": 2.62
+  },
+  "get__ReBudget": {
+    "reBudgetDay": 33
   }
 }

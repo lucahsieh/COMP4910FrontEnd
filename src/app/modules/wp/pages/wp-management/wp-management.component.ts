@@ -11,6 +11,7 @@ export class WpManagementComponent implements OnInit {
 
   activeIndex: number = 1;
   workPackageCode: string = '';
+  creationTab: string[] = [];
 
   wpReportId: string[] = [];
 
@@ -61,10 +62,17 @@ export class WpManagementComponent implements OnInit {
     this.wpReportId.push(event);
     console.log(this.wpReportId)
     await delay(300);
-    this.activeIndex = this.wpReportId.length + 3;
+    this.activeIndex = this.wpReportId.length + 3 + this.creationTab.length;
   }
-
-
+  async goCreation(event) {
+    this.creationTab.push('creation');
+    await delay(300);
+    this.activeIndex = this.creationTab.length + 3;
+  }
+  taskComplete(event) {
+    this.creationTab = [];
+    this.activeIndex = 3;
+  }
 
 }
 

@@ -10,6 +10,7 @@ export class WpReportListComponent implements OnInit {
 
   @Input() wpCode: any = 32; //MUST HAVE
   @Output() goReportPage: EventEmitter<string> = new EventEmitter<string>();
+  @Output() fireReportCreation: EventEmitter<string> = new EventEmitter<string>();
 
   displayReports: any[] = [];
   cols: any[];
@@ -30,6 +31,9 @@ export class WpReportListComponent implements OnInit {
 
   onWpReportClick(reportId) {
     this.goReportPage.emit(`${reportId}`);
+  }
+  onCreatClick(event) {
+    this.fireReportCreation.emit('payload');
   }
 
   populateReports() {

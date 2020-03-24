@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MODE } from 'src/app/shared/model/MODE';
 import { WorkPackage } from 'src/app/shared/model/WorkPackage';
 import { WPReport } from 'src/app/shared/model/WPReport';
@@ -8,6 +8,7 @@ import { ProjectService } from 'src/app/core/service/project/project.service';
 import { EmployeeService } from 'src/app/core/service/employee/employee.service';
 import { LabourGrade } from 'src/app/shared/model/LabourGrade';
 import { Employee } from 'src/app/shared/model/Employee';
+import { WpService } from 'src/app/core/service/wp/wp.service';
 
 @Component({
   selector: 'app-wp-report-creation',
@@ -19,12 +20,15 @@ export class WpReportCreationComponent implements OnInit {
   mode: MODE = MODE.Create;
   wpr: WPReport;
   dataReady: boolean = false;
+  @Input() wpCode: string;
+  @Output() taskComplete: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(
     private route: ActivatedRoute,
     private reportService: ReportService,
     private employeeService: EmployeeService,
     private projectService: ProjectService,
+    private wpService: WpService,
   ) { }
 
   ngOnInit() {
@@ -35,15 +39,17 @@ export class WpReportCreationComponent implements OnInit {
 
   prepareEmptyReport() {
     this.route.paramMap.subscribe(params => {
-      var projectId = params.get('projectId');
-      var wpId = params.get('wpId');
       this.wpr = new WPReport();
+      this.wpService.getWpByWpCode(this.wpCode).subscribe(wp => {
+        this.wpr.copyWPinfo(wp);
+        this.wpr.initData();
+        this.updateReBugetDay();
+      })
       //TODO: call projectService to get project info.
       // this.wpr.copyProjectInfo(p);
       //TODO: call wpService to get wp info.
       // this.wpr.copyWPinfo(wp);   
       //NOTE: below is the sample result of the previous call completed.
-      this.wpr.initData();
     });
   }
 
@@ -68,9 +74,19 @@ export class WpReportCreationComponent implements OnInit {
     })
   }
 
+  updateReBugetDay() {
+    this.wpr.details.forEach(d => {
+      this.reportService.getReBudgetDays(this.wpr.workPackageCode, d.labourGradeId).subscribe(res => d.reBudgetDay = res);
+    })
+  }
+
   submitReport() {
-    console.log(this.wpr);
-    this.reportService.postWpReport(this.wpr)
+    this.reportService.postWpReport(this.wpr);
+    this.taskComplete.emit('onSubmit')
+  }
+
+  cancelEvent() {
+    this.taskComplete.emit('onSubmit')
   }
 
 

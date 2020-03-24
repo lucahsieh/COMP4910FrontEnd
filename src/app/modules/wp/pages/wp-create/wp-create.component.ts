@@ -49,6 +49,7 @@ export class WpCreateComponent implements OnInit {
     const today = new Date();
     today.getTime();
     this.wp.issueDate = this.dateFormater(today);
+    this.wp.isClosed = false;
   }
 
   // btn click event of creation
@@ -101,7 +102,6 @@ export class WpCreateComponent implements OnInit {
       var emp = e;
       this.wp.employees.push(emp);
     });
-    console.log(this.wp.employees);
     return result;
   }
   displayErrorMsg(fieldName: string) {

@@ -176,14 +176,19 @@
                             <input pInputText type="text" [(ngModel)]="rowData.reETC">
                         </ng-template>
                         <ng-template pTemplate="output">
-                            <span *ngIf="validate(rowData.reETC)" class="error">{{rowData.reETC}}</span>
-                            <span *ngIf="!validate(rowData.reETC)" class="pass">{{rowData.reETC}}</span>
+                            <span *ngIf="validate(rowData.reETC)"
+                                class="error">{{rowData.reETC| number: '1.0-2'}}</span>
+                            <span *ngIf="!validate(rowData.reETC)"
+                                class="pass">{{rowData.reETC| number: '1.0-2'}}</span>
                         </ng-template>
                     </p-cellEditor>
                 </td>
-                <td>{{rowData.reEAC}}</td>
-                <td>{{rowData.variance}}</td>
-                <td>{{rowData.complete}}</td>
+                <td class="{{rowData.reEAC>rowData.reBudgetDay?'text-danger':'text-success'}}">
+                    {{rowData.reEAC| number: '1.0-2'}}</td>
+                <td class="{{rowData.variance>0?'text-danger':'text-success'}}">{{rowData.variance| number: '1.0-2'}}%
+                </td>
+                <td class="{{rowData.complete>=0?'text-success':'text-danger'}}">{{rowData.complete| number: '1.0-2'}}%
+                </td>
             </tr>
         </ng-template>
     </p-table>

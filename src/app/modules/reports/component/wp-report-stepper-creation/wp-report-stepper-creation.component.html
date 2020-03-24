@@ -73,10 +73,10 @@
                                             <!-- <input matInput formControlName="secondCtrl" placeholder="Eff" required> -->
 
                                             <input pInputText type="number" [(ngModel)]="rowData.reBudgetDay"
-                                                name="reBudgetDay">
+                                                name="reBudgetDay" [disabled]="true">
                                         </ng-template>
                                         <ng-template pTemplate="output">
-                                            <span>{{rowData.reBudgetDay}}</span>
+                                            <span>{{rowData.reBudgetDay| number}}</span>
                                         </ng-template>
                                     </p-cellEditor>
                                 </td>
@@ -87,16 +87,18 @@
                                             <input pInputText type="number" [(ngModel)]="rowData.reETC" name="reETC">
                                         </ng-template>
                                         <ng-template pTemplate="output">
-                                            <span>{{rowData.reETC}}</span>
+                                            <span>{{rowData.reETC| number}}</span>
                                         </ng-template>
                                     </p-cellEditor>
                                 </td>
-                                <td class="{{rowData.variance>rowData.reBudgetDay?'text-danger':'text-success'}}">
-                                    {{rowData.reEAC}}
+                                <td class="{{rowData.reEAC>rowData.reBudgetDay?'text-danger':'text-success'}}">
+                                    {{rowData.reEAC| number}}
                                 </td>
-                                <td class="{{rowData.variance>0?'text-danger':'text-success'}}">{{rowData.variance}}
+                                <td class="{{rowData.variance>0?'text-danger':'text-success'}}">
+                                    {{rowData.variance| number: '1.0-2'}} %
                                 </td>
-                                <td class="{{rowData.complete>=0?'text-success':'text-danger'}}">{{rowData.complete}}
+                                <td class="{{rowData.complete>=0?'text-success':'text-danger'}}">
+                                    {{rowData.complete| number: '1.0-2'}} %
                                 </td>
                             </tr>
                         </ng-template>
@@ -149,22 +151,24 @@
         </form>
     </mat-step>
 
-    <mat-step>
+    <!-- <mat-step>
         <form>
             <ng-template matStepLabel>Review</ng-template>
-            <p>TODO</p>
+
+
             <div>
-                <button mat-button matStepperPrevious>Back</button>
-                <button mat-button matStepperNext>Next</button>
+                <button type="button" class="btn btn-outline-dark btn-sm mr-3" matStepperPrevious>Back</button>
+                <button type="button" class="btn btn-outline-dark btn-sm mr-3" matStepperNext>Next</button>
             </div>
         </form>
-    </mat-step>
+    </mat-step> -->
     <mat-step>
         <ng-template matStepLabel>Submit Report</ng-template>
         <!-- <p>You are now done.</p> -->
         <div>
             <button type="button" class="btn btn-outline-dark btn-sm mr-3" matStepperPrevious>Back</button>
-            <button type="button" class="btn btn-outline-dark btn-sm mr-3" (click)="onSubmit($event)">Submit</button>
+            <button type="button" class="btn btn-secondary btn-sm mr-3" (click)="onCancel($event)">Cancel</button>
+            <button type="button" class="btn btn-primary btn-sm mr-3" (click)="onSubmit($event)">Submit</button>
         </div>
     </mat-step>
 </mat-vertical-stepper>

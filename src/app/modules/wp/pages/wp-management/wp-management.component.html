@@ -2,27 +2,27 @@
     <p-tabPanel header="...">
     </p-tabPanel>
     <p-tabPanel header="View" leftIcon="pi pi-eye">
-        <!-- <router-outlet></router-outlet> -->
         <app-wp-view></app-wp-view>
     </p-tabPanel>
     <p-tabPanel header="Edit" leftIcon="pi pi-pencil">
         <!-- [disabled]="true" -->
-        <!-- <router-outlet></router-outlet> -->
         <app-wp-edit></app-wp-edit>
     </p-tabPanel>
     <p-tabPanel header="Work Package Reports" leftIcon="pi pi-th-large">
-        <app-wp-report-list [wpCode]="workPackageCode" (goReportPage)="goReportPage($event)"></app-wp-report-list>
-
+        <app-wp-report-list [wpCode]="workPackageCode" (goReportPage)="goReportPage($event)"
+            (fireReportCreation)="goCreation($event)"></app-wp-report-list>
     </p-tabPanel>
+
+    <div *ngFor="let c of creationTab">
+        <p-tabPanel header="Create Report" leftIcon="pi pi-plus" *ngIf="creationTab" [closable]="true">
+            <app-wp-report-creation [wpCode]="workPackageCode" (taskComplete)="taskComplete($event)">
+            </app-wp-report-creation>
+        </p-tabPanel>
+    </div>
+
     <div *ngFor="let id of wpReportId">
         <p-tabPanel header="Work Package Report" leftIcon="pi pi-bookmark" [closable]="true">
             <app-wp-report-view [wpReportId]="id" *ngIf="id"></app-wp-report-view>
         </p-tabPanel>
     </div>
-    <!-- <p-tabPanel header="Work Package Report">
-        <app-wp-report-view [wpReportId]="wpReportId" *ngIf="wpReportId"></app-wp-report-view>
-    </p-tabPanel> -->
-    <!-- <p-tabPanel header="Create">
-        <app-wp-create [project]="project"></app-wp-create>
-    </p-tabPanel> -->
 </p-tabView>

@@ -51,6 +51,28 @@ export class EmployeeService {
   getEmployeesWithinProject(projectId: any): Observable<Employee[]> {
     return this.projectService.getProject(projectId).pipe(map(p => p.employees));
   }
+
+  putEmployee(e: Employee): Observable<any> {
+    let url = this.baseUrl + `api/employees/${e.employeeId}`;
+    let body = {
+      "empUsername": e.empUsername,
+      "empPassword": e.empPassword,
+      "empCode": e.empCode,
+      "labourGradeId": e.labourGrade.labourGradeId,
+      "empFirstName": e.empFirstName,
+      "empLastName": e.empLastName,
+      "timesheetApproverId": e.timesheetApproverId,
+      "supervisorId": e.supervisorId,
+      "isProjectManager": e.isProjectManager,
+      "isAdmin": e.isAdmin,
+      "isHumanResources": e.isHumanResources,
+      "isActivated": e.isActivated,
+      "jobTitleId": e.jobTitleId
+    };
+    return this.http
+      .put<Employee>(url, body, this.httpOptions)
+      .pipe(catchError(this.handleError("postEmployee", e)));
+  }
   postEmployee(e: Employee): Observable<any> {
     let url = this.baseUrl + `api/employees`;
     let body = {
