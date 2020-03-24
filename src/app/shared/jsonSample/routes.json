@@ -3,6 +3,7 @@
     "/api/employees/allemployees": "/get_AllEmployees",
     "/api/LabourGrade": "/get_allLabourGrade",
     "/api/employees/:id": "/getSingleEmployee",
+    "/api/employees/getChildren/:id": "/get_AllChildEmployees",
     "/api/employees/": "/post_Employee",
     "/api/Credentials/CheckUsernameAvailability/:test": "/CheckUsernameAvailability",
     "/api/Credentials/CheckEmployeeCodeAvailability/:test": "/CheckEmployeeCodeAvailability",

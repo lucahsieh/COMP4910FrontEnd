@@ -97,11 +97,11 @@
           </div>
           <input type="text" class="form-control"
               value="{{employee.timesheetApprover.empFirstName}} {{employee.timesheetApprover.empLastName}}" *ngIf="mode==='read'"
-              [readOnly]="true">
+              [readOnly]="true" >
           <p-dropdown class="form-control" [options]="employeeDropdown" [(ngModel)]="selectedApprover"
               *ngIf="mode ==='create' || mode==='update'"
               placeholder="{{employee.timesheetApprover ? employee.timesheetApprover.empFirstName + ' ' + employee.timesheetApprover.empLastName : 'choose an approver'}}"
-              optionLabel="label" [style]="{'border-width':'0px','padding':'0px'}"></p-dropdown>
+              optionLabel="label" [style]="{'border-width':'0px','padding':'0px'}" ></p-dropdown>
       </div>
       <span *ngIf="alerts.supervisor" class="error my-2"><small>{{alerts.supervisor.msg}}</small></span>
     </div>

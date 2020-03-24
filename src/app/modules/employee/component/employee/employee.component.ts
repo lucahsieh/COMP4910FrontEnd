@@ -17,7 +17,7 @@ export class EmployeeComponent implements OnInit {
   employeeDropdown: SelectItem[] = null;
   selectedGrade: SelectItem;
   selectedSupervisor: SelectItem;
-  selectedApprover: SelectItem;
+  selectedApprover: Employee;
   // userName validation
   @Input() validUsername: boolean;
   @Input() validEmployeeCode: boolean;
@@ -25,7 +25,6 @@ export class EmployeeComponent implements OnInit {
   @Output() restPw: EventEmitter<string> = new EventEmitter<string>();
   @Output() changeUsername: EventEmitter<string> = new EventEmitter<string>();
   @Output() changeEmpCode: EventEmitter<string> = new EventEmitter<string>();
-
 
   constructor(
     private employeeService: EmployeeService,
@@ -82,5 +81,4 @@ export class EmployeeComponent implements OnInit {
   onRestPw() {
     this.restPw.emit('payload');
   }
-
 }
