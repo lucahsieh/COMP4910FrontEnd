@@ -2,79 +2,27 @@
   "Post_Timesheet": {
     "timesheetRows": [
       {
-        "monday": 1,
-        "tuesday": 0,
-        "wednesday": 0,
-        "thursday": 0,
-        "friday": 0,
-        "saturday": 0,
-        "sunday": 0,
-        "projectId": 0,
+        "monday": "04",
+        "tuesday": "05",
+        "wednesday": "06",
+        "thursday": "06",
+        "friday": "06",
+        "saturday": "01",
+        "sunday": "02",
+        "projectId": 1,
         "timesheetVersionNumber": 1,
-        "workPackageId": 0,
-        "timesheetId": 123
-      },
-      {
-        "monday": 2,
-        "tuesday": 2,
-        "wednesday": 0,
-        "thursday": 0,
-        "friday": 0,
-        "saturday": 0,
-        "sunday": 0,
-        "projectId": 0,
-        "timesheetVersionNumber": 1,
-        "workPackageId": 0,
-        "timesheetId": 123
-      },
-      {
-        "monday": 0,
-        "tuesday": 1,
-        "wednesday": 0,
-        "thursday": 0,
-        "friday": 0,
-        "saturday": 0,
-        "sunday": 0,
-        "projectId": 0,
-        "timesheetVersionNumber": 1,
-        "workPackageId": 0,
-        "timesheetId": 123
-      },
-      {
-        "monday": 0,
-        "tuesday": 0,
-        "wednesday": 2,
-        "thursday": 3,
-        "friday": 0,
-        "saturday": 0,
-        "sunday": 0,
-        "projectId": 0,
-        "timesheetVersionNumber": 1,
-        "workPackageId": 0,
-        "timesheetId": 123
-      },
-      {
-        "monday": 0,
-        "tuesday": 0,
-        "wednesday": 0,
-        "thursday": 0,
-        "friday": 0,
-        "saturday": 0,
-        "sunday": 0,
-        "projectId": 0,
-        "timesheetVersionNumber": 1,
-        "workPackageId": 0,
+        "workPackageId": 1,
         "timesheetId": 123
       }
     ],
     "signature": null,
-    "comment": "",
-    "weekEndingIn": "2020-03-21",
-    "weekNumber": 12,
+    "weekEndingIn": "2020-02-15",
+    "weekNumber": 7,
     "timesheetId": 123,
     "employeeId": 1,
-    "versionNumber": 1,
-    "status": "inprogress"
+    "versionNumber": 6,
+    "status": "inprogress",
+    "comment": "jeiowjeiowjo"
   },
   "CheckUsernameAvailability": {
     "apiId": "Credentials"
@@ -223,7 +171,7 @@
     "weekNumber": 7,
     "timesheetId": 123,
     "employeeId": 1,
-    "versionNumber": 3,
+    "versionNumber": 5,
     "status": "Rejected",
     "comment": "jeiowjeiowjo"
   },

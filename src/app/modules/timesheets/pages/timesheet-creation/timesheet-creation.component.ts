@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Timesheet } from 'src/app/shared/model/Timesheet';
 import { SelectItem } from 'primeng/api/selectitem';
 import { TimesheetRow } from 'src/app/shared/model/TimesheetRow';
@@ -9,6 +9,9 @@ import { AuthenticationService } from 'src/app/core/service/authentication.servi
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { ProjectService } from 'src/app/core/service/project/project.service';
 import { MODE } from 'src/app/shared/model/MODE';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap';
+import { MyToastService } from 'src/app/core/service/my-toast.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-timesheet-creation',
@@ -22,11 +25,15 @@ export class TimesheetCreationComponent implements OnInit {
   timesheet: Timesheet = null;
   projectWp: any[];
 
+  modalRef: BsModalRef;
   currentUser: User = this.authenticationService.currentUserValue;
 
   constructor(
     private timesheetService: TimesheetService,
     private projectService: ProjectService,
+    private modalService: BsModalService,
+    private myToastService: MyToastService,
+    private router: Router,
     private authenticationService: AuthenticationService
   ) { }
 
@@ -35,17 +42,27 @@ export class TimesheetCreationComponent implements OnInit {
     this.prepareprojectWp();
   }
 
-  onSubmit(e: any) {
+  onSubmitConfrimed() {
 
     this.timesheet.status = TimesheetStatus.pending;
-    this.timesheetService.postTimesheet(this.timesheet).subscribe();
+    this.timesheetService.postTimesheet(this.timesheet).subscribe(_ => {
+      this.modalRef.hide();
+      this.myToastService.addSuccess('Timesheet Sumitted Successfully', `Timesheet of week ${this.timesheet.weekEndingIn} is sumitted to your supervisor.`);
+      this.router.navigate([`/content/timesheets`]);
+    })
   }
+
+  onSubmit(e: any, template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
+
   onSave(e: any) {
     console.log(`post timesheet:`);
     console.log(JSON.stringify(this.timesheet));
-    this.timesheetService.postTimesheet(this.timesheet).subscribe(
-
-    );
+    this.timesheetService.postTimesheet(this.timesheet).subscribe(_ => {
+      this.myToastService.addInfo(`Timesheet Updated`, `Timesheet of week ${this.timesheet.weekEndingIn} saved on ${new Date().toLocaleString()}`);
+      this.router.navigate([`/content/timesheets`]);
+    });
   }
 
 

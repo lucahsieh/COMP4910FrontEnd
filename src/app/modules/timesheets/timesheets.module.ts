@@ -17,6 +17,7 @@ import { TimesheetEditVersionComponent } from './pages/timesheet-edit-version/ti
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
+import { ModalModule } from 'ngx-bootstrap';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,10 @@ import { DialogModule } from 'primeng/dialog';
     InputTextModule,
     DialogModule,
     ButtonModule,
+
+    // bootstrap
+    ModalModule.forRoot(),
+
   ]
 })
 export class TimesheetsModule { }

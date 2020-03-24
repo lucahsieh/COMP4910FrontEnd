@@ -7,6 +7,8 @@ export class Timesheet {
         this.timesheetRows = [];
         this.signature = null;
         this.comment = '';
+        this.flexTime = 0;
+        this.overTime = 0;
     }
     timesheetId: number;
     versionNumber: number;
@@ -18,5 +20,8 @@ export class Timesheet {
     timesheetRows: TimesheetRow[];
     owner: Employee;
     comment: string;
+    flexTime: number;
+    overTime: number;
+
 }
 

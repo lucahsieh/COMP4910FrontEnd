@@ -15,7 +15,7 @@
         <div class="col-2">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">Week Number</span>
+                    <span class="input-group-text" id="basic-addon1">Week No.</span>
                 </div>
                 <input type="text" id="weekNum" class="form-control" [value]="timesheet.weekNumber" [readonly]="true">
             </div>
@@ -43,11 +43,12 @@
 
 <!-- This is editable -->
 <div class="my-3">
-    <p-table [value]="timesheet.timesheetRows" (onEditComplete)="onEditComplete($event)">
+    <p-table [value]="timesheet.timesheetRows" (onEditComplete)="onEditComplete($event)"
+        [style]="{'text-align':'center'}">
         <ng-template pTemplate="header">
             <tr>
-                <th style="width:170px">Project Name</th>
-                <th style="width:170px">W.P. Name</th>
+                <th style="width:20%">Project Name</th>
+                <th style="width:17%">W.P. Code</th>
                 <th>Total</th>
 
                 <th *ngFor="let day of days">{{day.header}}</th>
@@ -100,7 +101,7 @@
                 <td>
                     <p-cellEditor>
                         <ng-template pTemplate="output">
-                            <span>{{rowTotal(rowData) | number}}</span>
+                            <span><strong>{{rowTotal(rowData) | number}}</strong></span>
                         </ng-template>
                     </p-cellEditor>
                 </td>
@@ -109,7 +110,7 @@
                     <p-cellEditor>
                         <ng-template pTemplate="input">
 
-                            <input pInputText type="number" [(ngModel)]="rowData[day.value]"
+                            <input pInputText type="number" [(ngModel)]="rowData[day.value]" style="text-align:center"
                                 [disabled]="mode != 'create'&& mode != 'update'">
 
                         </ng-template>
@@ -137,8 +138,8 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1">Flex</span>
                                 </div>
-                                <input type="text" id="weekNum" class="form-control" [value]="'question'"
-                                    [readonly]="true">
+                                <input type="text" id="flex" class="form-control" [(ngModel)]="timesheet.flexTime"
+                                    style="text-align:center" [disabled]="mode != 'create'&& mode != 'update'">
                             </div>
                         </div>
                         <div class="col">
@@ -146,8 +147,8 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1">Overtime</span>
                                 </div>
-                                <input type="text" id="weekNum" class="form-control" [value]="getOvertime()"
-                                    [readonly]="true">
+                                <input type="text" id="over" class="form-control" [(ngModel)]="timesheet.overTime"
+                                    style="text-align:center" [disabled]="mode != 'create'&& mode != 'update'">
                             </div>
                         </div>
                     </div>
