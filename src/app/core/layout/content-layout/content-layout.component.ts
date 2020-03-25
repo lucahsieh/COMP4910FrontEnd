@@ -12,6 +12,7 @@ import { isNullOrUndefined } from 'util';
 export class ContentLayoutComponent implements OnInit {
 
   opened: boolean = true;
+  showFiller = true;
 
   constructor(
 

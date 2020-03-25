@@ -24,6 +24,7 @@ import { DialogModule } from 'primeng/dialog';
 import { ToastModule } from 'primeng/toast';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
+import { EmployeeChangeApproverComponent } from './pages/employee-change-approver/employee-change-approver.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { MessageModule } from 'primeng/message';
     EmployeeListComponent,
     EmployeeViewComponent,
     EmployeeEditComponent,
+    EmployeeChangeApproverComponent,
   ],
   imports: [
     CommonModule,

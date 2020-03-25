@@ -99,20 +99,17 @@ export class WpEditComponent implements OnInit {
   }
 
   validateWpCode() {
-    //       this.alerts['wpCode'] = new Alert('danger', 5000, `WP Code: ${this.wp.workPackageCode} is not valid`);
     this.validWpCode = true;
     this.alerts = {};
     this.wp.workPackageCode = this.wp.workPackageCode.toUpperCase();
     let code: string = this.wp.workPackageCode;
-    var parentCode = this.wp.parentWorkPackageCode['value'];
+    var parentCode = null;
+    if (this.wp.parentWorkPackageCode)
+      parentCode = this.wp.parentWorkPackageCode['value'];
 
     // When there is no parent code
-    let regexp2 = new RegExp('\\b[A-Z]+\\b');
     if (!parentCode) {
-      console.log('parentcode')
-      console.log(code.match(regexp2))
-      if (code.match(regexp2) === null) {
-        console.log(code.match(regexp2))
+      if (code.match(/^[A-Z]+$/) === null) {
         this.validWpCode = false;
         this.alerts['wpCode'] = new Alert('danger', 5000, `Only allow alphabet characters if no parent work package code.`);
         return false;
@@ -120,7 +117,6 @@ export class WpEditComponent implements OnInit {
       this.validWpCode = true;
       return true;
     }
-
 
     // When there is parent code
     let regexp = new RegExp('\\b' + parentCode + '\\d{1}\\b');

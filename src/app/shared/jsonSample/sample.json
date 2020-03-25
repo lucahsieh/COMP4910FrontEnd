@@ -181,29 +181,14 @@
   "getSingleEmployee": {
     "empUsername": "abc323",
     "empCode": 43429,
-    "employeeId": 2,
-    "jobTitleId": 2,
+    "labourGradeId": 0,
     "empFirstName": "Perry",
     "empLastName": "Li",
-    "isActivated": true,
     "isProjectManager": true,
     "isAdmin": false,
-    "labourGrade": {
-      "labourGradeId": 0,
-      "labourGradeName": "P1"
-    },
     "isHumanResources": false,
-    "timesheetApprover": {
-      "employeeId": 2,
-      "empFirstName": "first",
-      "empLastName": "last"
-    },
-    "supervisor": {
-      "employeeId": 2,
-      "empFirstName": "first1",
-      "empLastName": "last1"
-    },
-    "jobTitle": null
+    "isActivated": true,
+    "jobTitleId": 2
   },
   "getAllPendingTimesheetByApproverEmpId": [
     {
@@ -226,7 +211,7 @@
       "versionNumber": 1,
       "employeeId": 2,
       "weekNumber": 10,
-      "weekEndingIn": "0001-01-01T00:00:00",
+      "weekEndingIn": "2019-12-17T00:00:00",
       "status": "Pending",
       "signature": null,
       "timesheetRows": null
@@ -251,7 +236,7 @@
       "versionNumber": 2,
       "employeeId": 1,
       "weekNumber": 1,
-      "weekEndingIn": "0001-01-01T00:00:00",
+      "weekEndingIn": "2020-01-26T00:00:00",
       "status": "Pending",
       "signature": null,
       "timesheetRows": null
