@@ -1,0 +1,89 @@
+<div class="card mx-1">
+    <div class="card-body">
+        <h3 class="display-4">Chanage Timesheet Approver</h3>
+        <div class="dropdown-divider "></div>
+        <p class="lead">The table below lists all your employees that you supervise.</p>
+
+        <p-table #dt [columns]="cols" [value]="displayEmployee" [paginator]="true" [rows]="10"
+            [style]="{'text-align':'center'}">
+            <ng-template pTemplate="caption">
+                <div>
+                    <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                    <input type="text" pInputText size="50" placeholder="Global Filter"
+                        (input)="dt.filterGlobal($event.target.value, 'contains')" style="width:auto">
+                </div>
+            </ng-template>
+            <ng-template pTemplate="header" let-columns>
+                <tr>
+                    <th style="width: 120px;">Employee ID</th>
+                    <th>Employee Name</th>
+                    <th>Approver</th>
+                    <th>Activation</th>
+                    <th style="width: 250px;"></th>
+                </tr>
+                <tr>
+                    <th *ngFor="let col of columns" [ngSwitch]="col.field">
+                        <input *ngSwitchCase="'empCode'" pInputText type="text" style="margin-left:-6px;width: 100%;"
+                            (input)="dt.filter($event.target.value, col.field, 'contains')">
+                        <input *ngSwitchCase="'empName'" pInputText type="text" style="margin-left:-6px;width: 100%;"
+                            (input)="dt.filter($event.target.value, col.field, 'contains')">
+                        <input *ngSwitchCase="'empUsername'" pInputText type="text"
+                            style="margin-left:-6px;width: 100%;"
+                            (input)="dt.filter($event.target.value, col.field, 'contains')">
+                        <input *ngSwitchCase="'approverName'" pInputText type="text"
+                            style="margin-left:-6px;width: 100%;"
+                            (input)="dt.filter($event.target.value, col.field, 'contains')">
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-rowData let-columns="columns">
+                <tr [pSelectableRow]="rowData">
+                    <td *ngFor="let col of columns">
+                        <span *ngIf="col.field !=='activation' && col.field !=='button'">{{rowData[col.field]}}</span>
+                        <h5 *ngIf="col.field ==='activation'">
+                            <span class="badge badge-success" *ngIf="rowData[col.field]">Activated</span>
+                            <span class="badge badge-danger" *ngIf="!rowData[col.field]">Deactivated</span>
+                        </h5>
+                        <div *ngIf="col.field ==='button'">
+                            <button type="button" class="btn btn-link btn-sm"
+                                (click)="openModal(rowData[employeeId],template)">Change Timesheet Approver</button>
+                        </div>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
+
+<!-- rest pw confirmation window -->
+<ng-template #template>
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Change Timesheet Approver</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <span class="lead">Employee Information</span>
+        <table class="container">
+            <tr class="row">
+                <td class="col-6"><strong>Employee Name:</strong>
+                    {{selectedEmp.empFirstName}} {{selectedEmp.empLastName}}</td>
+                <td class="col-6"><strong>Employee Id:</strong>
+                    {{selectedEmp.employeeId}}</td>
+            </tr>
+        </table>
+        <div class="dropdown-divider "></div>
+        <span class="lead">New Timesheet Approver</span>
+        <p-dropdown [options]="employeeDropdown" [(ngModel)]="selectedEmp.timesheetApprover" filter="true"
+            placeholder="{{selectedEmp.timesheetApprover ? (selectedEmp.timesheetApprover.empFirstName + ' ' + selectedEmp.timesheetApprover.empLastName) : 'choose an employee'}}"
+            optionLabel="label" [style]="{'padding':'0px','width':'100%'}"></p-dropdown>
+    </div>
+
+    <!-- 'border-width':'0px', -->
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary  m-1 px-3" (click)="modalRef.hide()">Cancel</button>
+        <button type="button" class="btn btn-danger  m-1 px-3" (click)="onSaveChange()">Save Change</button>
+    </div>
+</ng-template>

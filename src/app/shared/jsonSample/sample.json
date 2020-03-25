@@ -937,5 +937,8 @@
       "endDate": "2020-03-28T00:00:00",
       "isClosed": false
     }
+  ],
+  "changePW": [
+    true
   ]
 }

@@ -14,7 +14,8 @@
 -->
 
 <mat-drawer-container class="example-container" autosize>
-    <mat-drawer #drawer class="example-sidenav bg-navList" mode="side" opened="true">
+    <mat-drawer #drawer class="example-sidenav bg-navList" mode="side" opened="true" (mouseenter)="mouseEnter('div a') "
+        (mouseleave)="mouseLeave('div A')">
         <app-nav class="m-2" [showFiller]="showFiller"></app-nav>
         <!-- <button (click)="showFiller = !showFiller" mat-raised-button>
             T

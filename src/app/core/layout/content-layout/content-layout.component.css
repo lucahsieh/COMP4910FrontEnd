@@ -39,6 +39,8 @@
 
 .example-sidenav {
   /* padding: 20px; */
+  position: absolute;
   padding-right: 10px;
+  z-index: 100;
 }
 

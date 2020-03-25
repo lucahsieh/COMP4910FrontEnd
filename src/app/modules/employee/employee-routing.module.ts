@@ -5,10 +5,12 @@ import { EmployeeListComponent } from './pages/employee-list/employee-list.compo
 import { EmployeeViewComponent } from './pages/employee-view/employee-view.component';
 import { EmployeeEditComponent } from './pages/employee-edit/employee-edit.component';
 import { EmployeeChangeApproverComponent } from './pages/employee-change-approver/employee-change-approver.component';
+import { EmployeeResetPWComponent } from './pages/employee-reset-pw/employee-reset-pw.component';
 
 
 const routes: Routes = [
   { path: '', component: EmployeeListComponent, data: { breadcrumb: null } },
+  { path: 'changePassword', component: EmployeeResetPWComponent, data: { breadcrumb: 'Change Password' } },
   { path: 'supervisor/changeTimesheetApprover', component: EmployeeChangeApproverComponent, data: { breadcrumb: 'Change Timesheet Approver' } },
   { path: 'view/:empId', component: EmployeeViewComponent, data: { breadcrumb: 'Employee View' } },
   { path: 'edit/:empId', component: EmployeeEditComponent, data: { breadcrumb: 'Employee Edit' } },

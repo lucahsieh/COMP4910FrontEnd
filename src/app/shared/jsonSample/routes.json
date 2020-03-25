@@ -28,5 +28,6 @@
     "/api/projects/checkProjectCodeAvailability/:code": "/get_CheckProjectCode",
     "/api/WorkPackages/GetTotalHoursByWpIdRange/:wpCode/:sd/:ed/:lgid": "/get__actualDaysByWpidRange",
     "/api/workpackagereports/:wpCode/:labourGradeId": "/get__ReBudget",
-    "/api/employees/getChildren/:empId": "/get__AllChildrenEmployee"
+    "/api/employees/getChildren/:empId": "/get__AllChildrenEmployee",
+    "/api/Credentials/Authenticate/ChangePW": "/changePW"
 }

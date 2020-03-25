@@ -5,7 +5,7 @@ import { EmployeeRoutingModule } from './employee-routing.module';
 import { EmployeeCreationComponent } from './pages/employee-creation/employee-creation.component';
 
 import { DropdownModule } from 'primeng/dropdown';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { AlertModule } from 'ngx-bootstrap';
@@ -25,6 +25,7 @@ import { ToastModule } from 'primeng/toast';
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { EmployeeChangeApproverComponent } from './pages/employee-change-approver/employee-change-approver.component';
+import { EmployeeResetPWComponent } from './pages/employee-reset-pw/employee-reset-pw.component';
 
 @NgModule({
   declarations: [
@@ -34,13 +35,14 @@ import { EmployeeChangeApproverComponent } from './pages/employee-change-approve
     EmployeeViewComponent,
     EmployeeEditComponent,
     EmployeeChangeApproverComponent,
+    EmployeeResetPWComponent,
   ],
   imports: [
     CommonModule,
     EmployeeRoutingModule,
     FormsModule,
     SharedModule,
-
+    ReactiveFormsModule,
 
     //material
     MatButtonToggleModule,

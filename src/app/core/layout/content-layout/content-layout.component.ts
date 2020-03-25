@@ -12,7 +12,7 @@ import { isNullOrUndefined } from 'util';
 export class ContentLayoutComponent implements OnInit {
 
   opened: boolean = true;
-  showFiller = true;
+  showFiller = false;
 
   constructor(
 
@@ -22,6 +22,13 @@ export class ContentLayoutComponent implements OnInit {
   ngOnInit() {
   }
 
+  mouseEnter(div: string) {
+    this.showFiller = !this.showFiller;
+  }
+
+  mouseLeave(div: string) {
+    this.showFiller = !this.showFiller;
+  }
 
 
 

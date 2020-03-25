@@ -1,12 +1,12 @@
 <ul class="list-group list-group-flush">
-    <li class="list-group-item bg-navList">
-        <!-- <span *ngIf="showFiller">MAIN MENU</span> -->
+    <!-- [@slideInOut]="showFiller" -->
+    <!-- <li class="list-group-item bg-navList">
         <button class="button d-flex align-items-center" (click)="showFiller = !showFiller" mat-raised-button>
             <span class="material-icons noHMargin" *ngIf="!showFiller">keyboard_arrow_right</span>
-            <span class="material-icons noHMargin" *ngIf="showFiller">keyboard_arrow_left</span>
-            <span class="navText" *ngIf="showFiller">Hide Menu</span>
+            <span class="material-icons noHMargin" *ngIf="showFiller" []>keyboard_arrow_left</span>
+            <span class="navText" *ngIf="showFiller" []>Hide Menu</span>
         </button>
-    </li>
+    </li> -->
     <li class="list-group-item bg-navList">
         <a routerLink="/content/projects" class="d-flex align-items-center">
             <span class="material-icons">description</span>
@@ -37,8 +37,12 @@
             <span class="material-icons">library_add_check</span>
             <span class="navText" *ngIf="showFiller">Pending Timsheets</span>
         </a></li>
+    <li class="list-group-item bg-navList">
+        <a routerLink="/content/employees/changePassword" class="d-flex align-items-center">
+            <span class="material-icons">vpn_key</span>
+            <span class="navText" *ngIf="showFiller">Change Password</span>
+        </a></li>
     <!-- <li class="list-group-item bg-navList"><a routerLink="/content/reports">Reports</a></li> -->
     <!-- <li class="list-group-item bg-navList"><a routerLink="/content/wp">Work Packages</a></li> -->
-
 
 </ul>

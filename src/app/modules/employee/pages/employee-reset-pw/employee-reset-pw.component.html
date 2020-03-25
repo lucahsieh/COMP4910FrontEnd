@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-center align-items-center height70vh">
+    <div class="card" style="width:400px">
+        <h4 class="card-header">Change Your Password</h4>
+        <div class="card-body">
+            <form [formGroup]="changPwForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" formControlName="username" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.username.errors }" readonly />
+                    <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                        <div *ngIf="f.username.errors.required">Username is required</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password">Old Password</label>
+                    <input type="password" formControlName="password" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Old Password is required</div>
+                        <div *ngIf="f.password.errors.minLength">minLength Password is required</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="passwordNew">New Password</label>
+                    <input type="password" formControlName="passwordNew" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.passwordNew.errors }" />
+                    <div *ngIf="submitted && f.passwordNew.errors" class="invalid-feedback">
+                        <div *ngIf="f.passwordNew.errors.required">New Password is required</div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="passwordNewRe">Confirm New Password</label>
+                    <input type="password" formControlName="passwordNewRe" class="form-control"
+                        [ngClass]="{ 'is-invalid': submitted && f.passwordNewRe.errors }" />
+                    <div *ngIf="submitted && f.passwordNewRe.errors" class="invalid-feedback">
+                        <div *ngIf="f.passwordNewRe.errors.required">Confirm Password is required</div>
+                    </div>
+                </div>
+                <div *ngIf="changPwForm.errors?.passwordMatch && (changPwForm.touched || changPwForm.dirty)"
+                    class="cross-validation-error-message alert alert-danger">
+                    New Password is not matched.
+                </div>
+
+                <button type="button" class="btn btn-secondary  m-1 px-3"
+                    routerLink="/content/dashboard">Cancel</button>
+                <button [disabled]="loading" class="btn btn-primary">
+                    <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                    Submit
+                </button>
+                <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error.message}}</div>
+            </form>
+        </div>
+    </div>
+</div>
