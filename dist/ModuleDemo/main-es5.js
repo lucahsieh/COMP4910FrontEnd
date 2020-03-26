@@ -171,7 +171,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<nav class=\"navbar navbar-dark bg-theme\">\n    <div>\n        <span class=\"navbar-brand mb-0 h1 title\">\n            Gerg's Beans\n        </span>\n        <span class=\"navbar-text\" *ngIf=\"currentUser\">\n            {{currentUser.credentialId}}\n        </span>\n        <span class=\"navbar-text\">\n            fix version v1.0.1\n        </span>\n\n    </div>\n    <div *ngIf=\"currentUser\">\n        <form class=\"form-inline\">\n            <i class=\"material-icons navbar-brand\" (click)=\"goToEmployeePage()\">\n                account_circle\n            </i>\n            <h4 class=\"navbar-brand  mb-0 h4\">\n                {{currentUser.firstName}} {{currentUser.lastName}}\n            </h4>\n            <button class=\"btn btn-outline-light\" type=\"button\" (click)=\"logout()\">Logout</button>\n        </form>\n    </div>\n</nav>";
+    __webpack_exports__["default"] = "<nav class=\"navbar navbar-dark bg-theme\">\n    <div>\n        <span class=\"navbar-brand mb-0 h1 title\">\n            Gerg's Beans\n        </span>\n        <span class=\"navbar-text\" *ngIf=\"currentUser\">\n            {{currentUser.credentialId}}\n        </span>\n        <span class=\"navbar-text\">\n            fix version v1.0.2\n        </span>\n\n    </div>\n    <div *ngIf=\"currentUser\">\n        <form class=\"form-inline\">\n            <i class=\"material-icons navbar-brand\" (click)=\"goToEmployeePage()\">\n                account_circle\n            </i>\n            <h4 class=\"navbar-brand  mb-0 h4\">\n                {{currentUser.firstName}} {{currentUser.lastName}}\n            </h4>\n            <button class=\"btn btn-outline-light\" type=\"button\" (click)=\"logout()\">Logout</button>\n        </form>\n    </div>\n</nav>";
     /***/
   },
 
@@ -5935,11 +5935,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             console.log(res);
             res.forEach(function (i) {
               console.log(i);
+              var projectManagerName = ' ';
+
+              if (i.projectManager) {
+                projectManagerName = i.projectManager.empFirstName + " " + i.projectManager.empLastName;
+              }
 
               _this18.displayProject.push({
                 "projectId": i.projectId,
                 "projectName": i.projectName,
-                "projectManager": i.projectManager.empFirstName + " " + i.projectManager.empLastName,
+                "projectManager": projectManagerName,
                 "startDate": i.startDate,
                 "endDate": i.endDate,
                 "isClosed": !i.isClosed
