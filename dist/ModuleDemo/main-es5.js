@@ -171,7 +171,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<nav class=\"navbar navbar-dark bg-theme\">\n    <div>\n        <span class=\"navbar-brand mb-0 h1 title\">\n            Gerg's Beans\n        </span>\n        <span class=\"navbar-text\" *ngIf=\"currentUser\">\n            {{currentUser.credentialId}}\n        </span>\n        <span class=\"navbar-text\">\n            version v1.0.3\n        </span>\n\n    </div>\n    <div *ngIf=\"currentUser\">\n        <form class=\"form-inline\">\n            <i class=\"material-icons navbar-brand\" (click)=\"goToEmployeePage()\">\n                account_circle\n            </i>\n            <h4 class=\"navbar-brand  mb-0 h4\">\n                {{currentUser.firstName}} {{currentUser.lastName}}\n            </h4>\n            <button class=\"btn btn-outline-light\" type=\"button\" (click)=\"logout()\">Logout</button>\n        </form>\n    </div>\n</nav>";
+    __webpack_exports__["default"] = "<nav class=\"navbar navbar-dark bg-theme\">\n    <div>\n        <span class=\"navbar-brand mb-0 h1 title\">\n            Gerg's Beans\n        </span>\n        <span class=\"navbar-text\" *ngIf=\"currentUser\">\n            {{currentUser.credentialId}}\n        </span>\n        <span class=\"navbar-text\">\n            version v1.0.4\n        </span>\n\n    </div>\n    <div *ngIf=\"currentUser\">\n        <form class=\"form-inline\">\n            <i class=\"material-icons navbar-brand\" (click)=\"goToEmployeePage()\">\n                account_circle\n            </i>\n            <h4 class=\"navbar-brand  mb-0 h4\">\n                {{currentUser.firstName}} {{currentUser.lastName}}\n            </h4>\n            <button class=\"btn btn-outline-light\" type=\"button\" (click)=\"logout()\">Logout</button>\n        </form>\n    </div>\n</nav>";
     /***/
   },
 
@@ -3555,7 +3555,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "checkUserEmployeeCodeOK",
         value: function checkUserEmployeeCodeOK(empCode) {
-          var url = this.baseUrl + "api/Credentials/CheckEmployeeCodeAvailability/".concat(empCode);
+          var url = this.baseUrl + "api/Employees/CheckEmployeeCodeAvailability/".concat(empCode);
           return this.http.get(url, this.httpOptions).pipe();
         }
       }, {
@@ -10698,7 +10698,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "dispalyError",
         value: function dispalyError() {
-          console.log(this.validationError);
           return Object.keys(this.validationError).length != 0;
         }
       }]);

@@ -181,12 +181,12 @@
                         [(ngModel)]="employee.isAdmin">
                     Administrator Permission
                 </label>
-                <label
+                <!-- <label
                     [className]="employee.isProjectManager ? 'btn btn-outline-secondary active' : 'btn btn-outline-secondary'">
                     <input type="checkbox" autocomplete="off" [value]="!employee.isProjectManager"
                         [disabled]="mode==='read'" [(ngModel)]="employee.isProjectManager"> PM/EM?? Manager
                     Permission
-                </label>
+                </label> -->
                 <label
                     [className]="employee.isHumanResources ? 'btn btn-outline-secondary active' : 'btn btn-outline-secondary'">
                     <input type="checkbox" autocomplete="off" [value]="!employee.isHumanResources "

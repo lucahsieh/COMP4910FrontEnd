@@ -216,7 +216,6 @@ export class TimesheetComponent implements OnInit {
   }
 
   dispalyError() {
-    console.log(this.validationError)
     return Object.keys(this.validationError).length != 0;
   }
 
