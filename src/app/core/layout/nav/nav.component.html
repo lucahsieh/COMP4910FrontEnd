@@ -12,6 +12,11 @@
             <span class="material-icons">description</span>
             <span class="navText" *ngIf="showFiller">Projects</span>
         </a></li>
+    <li class="list-group-item bg-navList">
+        <a routerLink="/content/timesheets" class="d-flex align-items-center">
+            <span class="material-icons">av_timer</span>
+            <span class="navText" *ngIf="showFiller">Timesheets</span>
+        </a></li>
     <li class="list-group-item bg-navList ">
         <a routerLink="/content/employees" class="d-flex align-items-center">
             <span class="material-icons">group</span>
@@ -26,11 +31,6 @@
         <a routerLink="/content/projects/supervisor/projectlist" class="d-flex align-items-center">
             <span class="material-icons">person_add</span>
             <span class="navText" *ngIf="showFiller">Project Members</span>
-        </a></li>
-    <li class="list-group-item bg-navList">
-        <a routerLink="/content/timesheets" class="d-flex align-items-center">
-            <span class="material-icons">av_timer</span>
-            <span class="navText" *ngIf="showFiller">Timesheets</span>
         </a></li>
     <li class="list-group-item bg-navList">
         <a routerLink="/content/timesheets/approver/view/list" class="d-flex align-items-center">
