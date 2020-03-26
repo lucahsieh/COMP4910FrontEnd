@@ -189,7 +189,7 @@ export class TimesheetComponent implements OnInit {
     if (totalhrs > 40) {
       let flex = this.timesheet.flexTime
       let overtime = this.timesheet.overTime
-      if ((40 - flex - overtime) !== 0) {
+      if ((totalhrs - flex - overtime - 40) !== 0) {
         this.validationError['flexTime'] = { msgs: 'You must allocate hours into flex or overtime', type: 'danger' };
       }
     }
