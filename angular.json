@@ -26,7 +26,7 @@
             "styles": [
               "node_modules/primeng/resources/primeng.min.css",
               "node_modules/primeicons/primeicons.css",
-              "nova-light/theme.css",
+              "./src/nova-light/theme.css",
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
@@ -97,7 +97,7 @@
             "styles": [
               "node_modules/primeng/resources/primeng.min.css",
               "node_modules/primeicons/primeicons.css",
-              "nova-light/theme.css",
+              "./src/nova-light/theme.css",
               "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",

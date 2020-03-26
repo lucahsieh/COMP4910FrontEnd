@@ -21,7 +21,27 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"dropdown-divider  my-3\"></div>\r\n\r\n<h5 class=\"my-3\">Employee Information</h5>\r\n\r\n<div class=\"form-row\">\r\n    <div class=\"col-5\">\r\n        <!-- first name -->\r\n        <div class=\"input-group \">\r\n            <div class=\"input-group-prepend\">\r\n                <span class=\"input-group-text\">First Name</span>\r\n            </div>\r\n            <input type=\"text\" class=\"form-control\" [(ngModel)]=\"employee.empFirstName\" [readOnly]=\"mode ==='read'\">\r\n\r\n        </div>\r\n        <span *ngIf=\"alerts.firstName\" class=\"error my-2\"><small>{{alerts.firstName.msg}}</small></span>\r\n\r\n\r\n\r\n    </div>\r\n    <div class=\"col-1\"></div>\r\n    <div class=\"col-5\">\r\n\r\n        <!-- last name -->\r\n        <div class=\"input-group \">\r\n            <div class=\"input-group-prepend\">\r\n                <span class=\"input-group-text\">Last Name</span>\r\n            </div>\r\n            <input type=\"text\" class=\"form-control\" [(ngModel)]=\"employee.empLastName\" [readOnly]=\"mode ==='read'\">\r\n        </div>\r\n        <span *ngIf=\"alerts.lastName\" class=\"error my-2\"><small>{{alerts.lastName.msg}}</small></span>\r\n\r\n\r\n    </div>\r\n    <div class=\"col-1\"></div>\r\n</div>\r\n<div class=\"  my-3\"></div>\r\n<div class=\"form-row\">\r\n    <div class=\"col-5\">\r\n\r\n        <!-- user name -->\r\n        <div class=\"input-group\">\r\n            <div class=\"input-group-prepend\">\r\n                <span class=\"input-group-text\">User Name</span>\r\n            </div>\r\n            <input type=\"text\" class=\"form-control\" [(ngModel)]=\"employee.empUsername\" (blur)=\"onExitUserName()\"\r\n                [readOnly]=\"mode ==='read' || mode=='update'\">\r\n        </div>\r\n\r\n    </div>\r\n    <div class=\"col-1\">\r\n        <div *ngIf=\"(mode ==='create' || mode ==='update')\">\r\n            <i *ngIf=\"validUsername\" class=\"material-icons pass my-2\">check_circle</i>\r\n            <i *ngIf=\"!validUsername\" class=\"material-icons error  my-2\">error</i>\r\n        </div>\r\n    </div>\r\n    <div class=\"col-5\">\r\n        <!-- password -->\r\n        <div class=\"input-group\" *ngIf=\"mode==='create'\">\r\n            <div class=\"input-group-prepend\">\r\n                <span class=\"input-group-text\">Password</span>\r\n            </div>\r\n            <input type=\"text\" class=\"form-control\" [(ngModel)]=\"employee.empPassword\" [readOnly]=\"true\">\r\n        </div>\r\n        <button *ngIf=\"mode==='update'\" type=\"button\" class=\"btn btn-outline-secondary  m-1 px-3\"\r\n            (click)=\"onRestPw()\">Reset\r\n            Password</button>\r\n\r\n\r\n    </div>\r\n    <div class=\"col-1\"></div>\r\n</div>\r\n<div class=\"  my-3\"></div>\r\n<div class=\"form-row\">\r\n    <div class=\"col-5\">\r\n        <!-- employe ID -->\r\n        <div class=\"input-group\">\r\n            <div class=\"input-group-prepend\">\r\n                <span class=\"input-group-text\">Employee ID</span>\r\n            </div>\r\n            <input type=\"text\" class=\"form-control\" [(ngModel)]=\"employee.empCode\" (blur)=\"onExitEmployeeId()\"\r\n                [readOnly]=\"mode ==='read' || mode=='update'\">\r\n        </div>\r\n\r\n    </div>\r\n    <div class=\"col-1\">\r\n        <div *ngIf=\"(mode ==='create' || mode ==='update')\">\r\n            <i *ngIf=\"validEmployeeCode\" class=\"material-icons pass my-2\">check_circle</i>\r\n            <i *ngIf=\"!validEmployeeCode\" class=\"material-icons error  my-2\">error</i>\r\n        </div>\r\n    </div>\r\n    <div class=\"col-6\"></div>\r\n    <div class=\"col-1\"></div>\r\n</div>\r\n<div class=\"  my-3\"></div>\r\n<div class=\"form-row\">\r\n    <div class=\"col-5\">\r\n\r\n        <!-- labour grade -->\r\n        <div class=\"input-group\">\r\n            <div class=\"input-group-prepend\">\r\n                <span class=\"input-group-text\">Labour Grade</span>\r\n            </div>\r\n            <input type=\"text\" class=\"form-control\" value=\"{{employee.labourGrade.labourGradeName}}\"\r\n                *ngIf=\"mode==='read'\" [readOnly]=\"true\">\r\n            <p-dropdown class=\"form-control\" [options]=\"greadeDropdown\" [(ngModel)]=\"selectedGrade\"\r\n                *ngIf=\"mode ==='create' || mode==='update'\"\r\n                placeholder=\"{{employee.labourGrade ? employee.labourGrade.labourGradeName : 'choose a Labour Grade'}}\"\r\n                optionLabel=\"label\" [style]=\"{'border-width':'0px','padding':'0px'}\"></p-dropdown>\r\n        </div>\r\n        <span *ngIf=\"alerts.labourGrade\" class=\"error my-2\"><small>{{alerts.labourGrade.msg}}</small></span>\r\n\r\n    </div>\r\n    <div class=\"col-1\"></div>\r\n    <div class=\"col-5\">\r\n\r\n        <!-- supervisor -->\r\n        <div class=\"input-group\">\r\n            <div class=\"input-group-prepend\">\r\n                <span class=\"input-group-text\">Supervisor</span>\r\n            </div>\r\n            <input type=\"text\" class=\"form-control\"\r\n                value=\"{{employee.supervisor.empFirstName}} {{employee.supervisor.empLastName}}\" *ngIf=\"mode==='read'\"\r\n                [readOnly]=\"true\">\r\n            <p-dropdown class=\"form-control\" [options]=\"employeeDropdown\" [(ngModel)]=\"selectedSupervisor\"\r\n                *ngIf=\"mode ==='create' || mode==='update'\"\r\n                placeholder=\"{{employee.supervisor ? employee.supervisor.empFirstName + ' ' + employee.supervisor.empLastName : 'choose a supervisor'}}\"\r\n                optionLabel=\"label\" [style]=\"{'border-width':'0px','padding':'0px'}\"></p-dropdown>\r\n        </div>\r\n        <span *ngIf=\"alerts.supervisor\" class=\"error my-2\"><small>{{alerts.supervisor.msg}}</small></span>\r\n\r\n\r\n    </div>\r\n    <div class=\"col-1\"></div>\r\n</div>\r\n<div class=\"  my-3\"></div>\r\n\r\n<div class=\"dropdown-divider  my-3\"></div>\r\n<h5 class=\"my-3\">Activation</h5>\r\n<div class=\"form-row\">\r\n    <div class=\"col-12\">\r\n\r\n        <!-- active/deactive -->\r\n        <div class=\"input-group\">\r\n            <!-- <div class=\"input-group-prepend\">\r\n                        <span class=\"input-group-text\">Activation</span>\r\n                    </div> -->\r\n            <div class=\"btn-group btn-group-toggle\" data-toggle=\"buttons\">\r\n                <label\r\n                    [className]=\"employee.isActivated ? 'btn btn-outline-secondary active' : 'btn btn-outline-secondary'\">\r\n                    <input type=\"radio\" name=\"activation\" id=\"active\" [value]=true [(ngModel)]=\"employee.isActivated\"\r\n                        [disabled]=\"mode==='read'\">\r\n                    Active\r\n                </label>\r\n                <label\r\n                    [className]=\"employee.isActivated ? 'btn btn-outline-secondary' : 'btn btn-outline-secondary active'\">\r\n                    <!--  [className]=\"employee.isActivated ? 'btn btn-outline-secondary' : 'btn btn-outline-secondary active'\" -->\r\n                    <input type=\"radio\" name=\"activation\" id=\"deactive\" [value]=false [(ngModel)]=\"employee.isActivated\"\r\n                        [disabled]=\"mode==='read'\"> Deactive\r\n                </label>\r\n            </div>\r\n        </div>\r\n\r\n    </div>\r\n</div>\r\n\r\n<div class=\" my-3\"></div>\r\n<div class=\"dropdown-divider  my-3\"></div>\r\n<h5 class=\"my-3\">Permissions</h5>\r\n<div class=\"form-row\">\r\n    <div class=\"col-12\">\r\n\r\n        <!-- permission -->\r\n        <div class=\"input-group\">\r\n            <!-- <div class=\"input-group-prepend\">\r\n                        <span class=\"input-group-text\">Permissions</span>\r\n                    </div> -->\r\n            <div class=\"btn-group btn-group-toggle\" data-toggle=\"buttons\">\r\n                <label\r\n                    [className]=\"employee.isAdmin ? 'btn btn-outline-secondary active' : 'btn btn-outline-secondary'\">\r\n                    <input type=\"checkbox\" autocomplete=\"off\" [value]=\"!employee.isAdmin\" [disabled]=\"mode==='read'\"\r\n                        [(ngModel)]=\"employee.isAdmin\">\r\n                    Administrator Permission\r\n                </label>\r\n                <label\r\n                    [className]=\"employee.isProjectManager ? 'btn btn-outline-secondary active' : 'btn btn-outline-secondary'\">\r\n                    <input type=\"checkbox\" autocomplete=\"off\" [value]=\"!employee.isProjectManager\"\r\n                        [disabled]=\"mode==='read'\" [(ngModel)]=\"employee.isProjectManager\"> PM/EM?? Manager\r\n                    Permission\r\n                </label>\r\n                <label\r\n                    [className]=\"employee.isHumanResources ? 'btn btn-outline-secondary active' : 'btn btn-outline-secondary'\">\r\n                    <input type=\"checkbox\" autocomplete=\"off\" [value]=\"!employee.isHumanResources \"\r\n                        [disabled]=\"mode==='read'\" [(ngModel)]=\"employee.isHumanResources\"> Humane Resource Permission\r\n                </label>\r\n            </div>\r\n\r\n        </div>\r\n    </div>\r\n</div>";
+    __webpack_exports__["default"] = "<div class=\"dropdown-divider  my-3\"></div>\n\n<h5 class=\"my-3\">Employee Information</h5>\n\n<div class=\"form-row\">\n    <div class=\"col-5\">\n        <!-- first name -->\n        <div class=\"input-group \">\n            <div class=\"input-group-prepend\">\n                <span class=\"input-group-text\">First Name</span>\n            </div>\n            <input type=\"text\" class=\"form-control\" [(ngModel)]=\"employee.empFirstName\" [readOnly]=\"mode ==='read'\">\n\n        </div>\n        <span *ngIf=\"alerts.firstName\" class=\"error my-2\"><small>{{alerts.firstName.msg}}</small></span>\n\n\n\n    </div>\n    <div class=\"col-1\"></div>\n    <div class=\"col-5\">\n\n        <!-- last name -->\n        <div class=\"input-group \">\n            <div class=\"input-group-prepend\">\n                <span class=\"input-group-text\">Last Name</span>\n            </div>\n            <input type=\"text\" class=\"form-control\" [(ngModel)]=\"employee.empLastName\" [readOnly]=\"mode ==='read'\">\n        </div>\n        <span *ngIf=\"alerts.lastName\" class=\"error my-2\"><small>{{alerts.lastName.msg}}</small></span>\n\n\n    </div>\n    <div class=\"col-1\"></div>\n</div>\n<div class=\"  my-3\"></div>\n<div class=\"form-row\">\n    <div class=\"col-5\">\n\n        <!-- user name -->\n        <div class=\"input-group\">\n            <div class=\"input-group-prepend\">\n                <span class=\"input-group-text\">User Name</span>\n            </div>\n            <input type=\"text\" class=\"form-control\" [(ngModel)]=\"employee.empUsername\" (blur)=\"onExitUserName()\"\n                [readOnly]=\"mode ==='read' || mode=='update'\">\n        </div>\n\n    </div>\n    <div class=\"col-1\">\n        <div *ngIf=\"(mode ==='create' || mode ==='update')\">\n            <i *ngIf=\"validUsername\" class=\"material-icons pass my-2\">check_circle</i>\n            <i *ngIf=\"!validUsername\" class=\"material-icons error  my-2\">error</i>\n        </div>\n    </div>\n    <div class=\"col-5\">\n        <!-- password -->\n        <div class=\"input-group\" *ngIf=\"mode==='create'\">\n            <div class=\"input-group-prepend\">\n                <span class=\"input-group-text\">Password</span>\n            </div>\n            <input type=\"text\" class=\"form-control\" [(ngModel)]=\"employee.empPassword\" [readOnly]=\"true\">\n        </div>\n        <button *ngIf=\"mode==='update'\" type=\"button\" class=\"btn btn-outline-secondary  m-1 px-3\"\n            (click)=\"onRestPw()\">Reset\n            Password</button>\n\n\n    </div>\n    <div class=\"col-1\"></div>\n</div>\n<div class=\"  my-3\"></div>\n<div class=\"form-row\">\n    <div class=\"col-5\">\n        <!-- employe ID -->\n        <div class=\"input-group\">\n            <div class=\"input-group-prepend\">\n                <span class=\"input-group-text\">Employee ID</span>\n            </div>\n            <input type=\"text\" class=\"form-control\" [(ngModel)]=\"employee.empCode\" (blur)=\"onExitEmployeeId()\"\n                [readOnly]=\"mode ==='read' || mode=='update'\">\n        </div>\n\n    </div>\n    <div class=\"col-1\">\n        <div *ngIf=\"(mode ==='create' || mode ==='update')\">\n            <i *ngIf=\"validEmployeeCode\" class=\"material-icons pass my-2\">check_circle</i>\n            <i *ngIf=\"!validEmployeeCode\" class=\"material-icons error  my-2\">error</i>\n        </div>\n    </div>\n    <div class=\"col-6\"></div>\n    <div class=\"col-1\"></div>\n</div>\n<div class=\"  my-3\"></div>\n<div class=\"form-row\">\n    <div class=\"col-5\">\n\n        <!-- labour grade -->\n        <div class=\"input-group\">\n            <div class=\"input-group-prepend\">\n                <span class=\"input-group-text\">Labour Grade</span>\n            </div>\n            <input type=\"text\" class=\"form-control\" value=\"{{employee.labourGrade.labourGradeName}}\"\n                *ngIf=\"mode==='read'\" [readOnly]=\"true\">\n            <p-dropdown class=\"form-control\" [options]=\"greadeDropdown\" [(ngModel)]=\"selectedGrade\"\n                *ngIf=\"mode ==='create' || mode==='update'\"\n                placeholder=\"{{employee.labourGrade ? employee.labourGrade.labourGradeName : 'choose a Labour Grade'}}\"\n                optionLabel=\"label\" [style]=\"{'border-width':'0px','padding':'0px','width':'100%'}\"></p-dropdown>\n        </div>\n        <span *ngIf=\"alerts.labourGrade\" class=\"error my-2\"><small>{{alerts.labourGrade.msg}}</small></span>\n\n    </div>\n    <div class=\"col-1\"></div>\n    <div class=\"col-5\">\n\n        <!-- supervisor -->\n        <div class=\"input-group\">\n            <div class=\"input-group-prepend\">\n                <span class=\"input-group-text\">Supervisor</span>\n            </div>\n            <input type=\"text\" class=\"form-control\"\n                value=\"{{employee.supervisor.empFirstName}} {{employee.supervisor.empLastName}}\" *ngIf=\"mode==='read'\"\n                [readOnly]=\"true\">\n            <p-dropdown class=\"form-control\" [options]=\"employeeDropdown\" [(ngModel)]=\"selectedSupervisor\"\n                *ngIf=\"mode ==='create' || mode==='update'\"\n                placeholder=\"{{employee.supervisor ? employee.supervisor.empFirstName + ' ' + employee.supervisor.empLastName : 'choose a supervisor'}}\"\n                optionLabel=\"label\" [style]=\"{'border-width':'0px','padding':'0px','width':'100%'}\"></p-dropdown>\n        </div>\n        <span *ngIf=\"alerts.supervisor\" class=\"error my-2\"><small>{{alerts.supervisor.msg}}</small></span>\n\n\n    </div>\n    <div class=\"col-1\"></div>\n</div>\n<div class=\"  my-3\"></div>\n\n<div class=\"dropdown-divider  my-3\"></div>\n<h5 class=\"my-3\">Activation</h5>\n<div class=\"form-row\">\n    <div class=\"col-12\">\n\n        <!-- active/deactive -->\n        <div class=\"input-group\">\n            <!-- <div class=\"input-group-prepend\">\n                        <span class=\"input-group-text\">Activation</span>\n                    </div> -->\n            <div class=\"btn-group btn-group-toggle\" data-toggle=\"buttons\">\n                <label\n                    [className]=\"employee.isActivated ? 'btn btn-outline-secondary active' : 'btn btn-outline-secondary'\">\n                    <input type=\"radio\" name=\"activation\" id=\"active\" [value]=true [(ngModel)]=\"employee.isActivated\"\n                        [disabled]=\"mode==='read'\">\n                    Active\n                </label>\n                <label\n                    [className]=\"employee.isActivated ? 'btn btn-outline-secondary' : 'btn btn-outline-secondary active'\">\n                    <!--  [className]=\"employee.isActivated ? 'btn btn-outline-secondary' : 'btn btn-outline-secondary active'\" -->\n                    <input type=\"radio\" name=\"activation\" id=\"deactive\" [value]=false [(ngModel)]=\"employee.isActivated\"\n                        [disabled]=\"mode==='read'\"> Deactive\n                </label>\n            </div>\n        </div>\n\n    </div>\n</div>\n\n<div class=\" my-3\"></div>\n<div class=\"dropdown-divider  my-3\"></div>\n<h5 class=\"my-3\">Permissions</h5>\n<div class=\"form-row\">\n    <div class=\"col-12\">\n\n        <!-- permission -->\n        <div class=\"input-group\">\n            <!-- <div class=\"input-group-prepend\">\n                        <span class=\"input-group-text\">Permissions</span>\n                    </div> -->\n            <div class=\"btn-group btn-group-toggle\" data-toggle=\"buttons\">\n                <label\n                    [className]=\"employee.isAdmin ? 'btn btn-outline-secondary active' : 'btn btn-outline-secondary'\">\n                    <input type=\"checkbox\" autocomplete=\"off\" [value]=\"!employee.isAdmin\" [disabled]=\"mode==='read'\"\n                        [(ngModel)]=\"employee.isAdmin\">\n                    Administrator Permission\n                </label>\n                <label\n                    [className]=\"employee.isProjectManager ? 'btn btn-outline-secondary active' : 'btn btn-outline-secondary'\">\n                    <input type=\"checkbox\" autocomplete=\"off\" [value]=\"!employee.isProjectManager\"\n                        [disabled]=\"mode==='read'\" [(ngModel)]=\"employee.isProjectManager\"> PM/EM?? Manager\n                    Permission\n                </label>\n                <label\n                    [className]=\"employee.isHumanResources ? 'btn btn-outline-secondary active' : 'btn btn-outline-secondary'\">\n                    <input type=\"checkbox\" autocomplete=\"off\" [value]=\"!employee.isHumanResources \"\n                        [disabled]=\"mode==='read'\" [(ngModel)]=\"employee.isHumanResources\"> Humane Resource Permission\n                </label>\n            </div>\n\n        </div>\n    </div>\n</div>";
+    /***/
+  },
+
+  /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/employee/pages/employee-change-approver/employee-change-approver.component.html":
+  /*!***********************************************************************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/modules/employee/pages/employee-change-approver/employee-change-approver.component.html ***!
+    \***********************************************************************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppModulesEmployeePagesEmployeeChangeApproverEmployeeChangeApproverComponentHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "<div class=\"card mx-1\">\n    <div class=\"card-body\">\n        <h3 class=\"display-4\">Chanage Timesheet Approver</h3>\n        <div class=\"dropdown-divider \"></div>\n        <p class=\"lead\">The table below lists all your employees that you supervise.</p>\n\n        <p-table #dt [columns]=\"cols\" [value]=\"displayEmployee\" [paginator]=\"true\" [rows]=\"10\"\n            [style]=\"{'text-align':'center'}\">\n            <ng-template pTemplate=\"caption\">\n                <div>\n                    <i class=\"fa fa-search\" style=\"margin:4px 4px 0 0\"></i>\n                    <input type=\"text\" pInputText size=\"50\" placeholder=\"Global Filter\"\n                        (input)=\"dt.filterGlobal($event.target.value, 'contains')\" style=\"width:auto\">\n                </div>\n            </ng-template>\n            <ng-template pTemplate=\"header\" let-columns>\n                <tr>\n                    <th style=\"width: 120px;\">Employee ID</th>\n                    <th>Employee Name</th>\n                    <th>Approver</th>\n                    <th>Activation</th>\n                    <th style=\"width: 250px;\"></th>\n                </tr>\n                <tr>\n                    <th *ngFor=\"let col of columns\" [ngSwitch]=\"col.field\">\n                        <input *ngSwitchCase=\"'empCode'\" pInputText type=\"text\" style=\"margin-left:-6px;width: 100%;\"\n                            (input)=\"dt.filter($event.target.value, col.field, 'contains')\">\n                        <input *ngSwitchCase=\"'empName'\" pInputText type=\"text\" style=\"margin-left:-6px;width: 100%;\"\n                            (input)=\"dt.filter($event.target.value, col.field, 'contains')\">\n                        <input *ngSwitchCase=\"'empUsername'\" pInputText type=\"text\"\n                            style=\"margin-left:-6px;width: 100%;\"\n                            (input)=\"dt.filter($event.target.value, col.field, 'contains')\">\n                        <input *ngSwitchCase=\"'approverName'\" pInputText type=\"text\"\n                            style=\"margin-left:-6px;width: 100%;\"\n                            (input)=\"dt.filter($event.target.value, col.field, 'contains')\">\n                    </th>\n                </tr>\n            </ng-template>\n            <ng-template pTemplate=\"body\" let-rowData let-columns=\"columns\">\n                <tr [pSelectableRow]=\"rowData\">\n                    <td *ngFor=\"let col of columns\">\n                        <span *ngIf=\"col.field !=='activation' && col.field !=='button'\">{{rowData[col.field]}}</span>\n                        <h5 *ngIf=\"col.field ==='activation'\">\n                            <span class=\"badge badge-success\" *ngIf=\"rowData[col.field]\">Activated</span>\n                            <span class=\"badge badge-danger\" *ngIf=\"!rowData[col.field]\">Deactivated</span>\n                        </h5>\n                        <div *ngIf=\"col.field ==='button'\">\n                            <button type=\"button\" class=\"btn btn-link btn-sm\"\n                                (click)=\"openModal(rowData[employeeId],template)\">Change Timesheet Approver</button>\n                        </div>\n                    </td>\n                </tr>\n            </ng-template>\n        </p-table>\n    </div>\n</div>\n\n<!-- rest pw confirmation window -->\n<ng-template #template>\n    <div class=\"modal-header\">\n        <h4 class=\"modal-title pull-left\">Change Timesheet Approver</h4>\n        <button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"modalRef.hide()\">\n            <span aria-hidden=\"true\">&times;</span>\n        </button>\n    </div>\n    <div class=\"modal-body\">\n        <span class=\"lead\">Employee Information</span>\n        <table class=\"container\">\n            <tr class=\"row\">\n                <td class=\"col-6\"><strong>Employee Name:</strong>\n                    {{selectedEmp.empFirstName}} {{selectedEmp.empLastName}}</td>\n                <td class=\"col-6\"><strong>Employee Id:</strong>\n                    {{selectedEmp.employeeId}}</td>\n            </tr>\n        </table>\n        <div class=\"dropdown-divider \"></div>\n        <span class=\"lead\">New Timesheet Approver</span>\n        <p-dropdown [options]=\"employeeDropdown\" [(ngModel)]=\"selectedEmp.timesheetApprover\" filter=\"true\"\n            placeholder=\"{{selectedEmp.timesheetApprover ? (selectedEmp.timesheetApprover.empFirstName + ' ' + selectedEmp.timesheetApprover.empLastName) : 'choose an employee'}}\"\n            optionLabel=\"label\" [style]=\"{'padding':'0px','width':'100%'}\"></p-dropdown>\n    </div>\n\n    <!-- 'border-width':'0px', -->\n\n    <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary  m-1 px-3\" (click)=\"modalRef.hide()\">Cancel</button>\n        <button type=\"button\" class=\"btn btn-danger  m-1 px-3\" (click)=\"onSaveChange()\">Save Change</button>\n    </div>\n</ng-template>";
     /***/
   },
 
@@ -41,7 +61,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"card mx-1\">\r\n    <div class=\"card-body\">\r\n        <!-- Title -->\r\n        <h3 class=\"display-4\">Create Employee</h3>\r\n        <!-- alert -->\r\n        <shared-alertPromp [alerts]=\"alerts\"></shared-alertPromp>\r\n\r\n\r\n        <app-employee [employee]=\"employee\" [mode]=\"mode\" [validUsername]=\"validUsername\"\r\n            (changeEmpCode)=\"validateEmployeeCode()\" (changeUsername)=\"validateUserName()\"\r\n            [validEmployeeCode]=\"validEmployeeCode\" [alerts]=\"alerts\"></app-employee>\r\n\r\n        <!-- Action section-->\r\n        <div class=\"dropdown-divider my-3\"></div>\r\n        <div class=\"d-flex flex-row-reverse\">\r\n            <button type=\"button\" class=\"btn btn-primary  m-1 px-3\" (click)=\"onCreate($event)\">Create</button>\r\n            <button type=\"button\" class=\"btn btn-primary m-1 px-2\" (click)=\"onCancel($event)\">Cancel</button>\r\n        </div>\r\n        <div class=\"dropdown-divider my-3\"></div>\r\n    </div>\r\n\r\n\r\n</div>";
+    __webpack_exports__["default"] = "<div class=\"card mx-1\">\n    <div class=\"card-body\">\n        <!-- Title -->\n        <h3 class=\"display-4\">Create Employee</h3>\n        <!-- alert -->\n        <shared-alertPromp [alerts]=\"alerts\"></shared-alertPromp>\n\n\n        <app-employee [employee]=\"employee\" [mode]=\"mode\" [validUsername]=\"validUsername\"\n            (changeEmpCode)=\"validateEmployeeCode()\" (changeUsername)=\"validateUserName()\"\n            [validEmployeeCode]=\"validEmployeeCode\" [alerts]=\"alerts\"></app-employee>\n\n        <!-- Action section-->\n        <div class=\"dropdown-divider my-3\"></div>\n        <div class=\"d-flex flex-row-reverse\">\n            <button type=\"button\" class=\"btn btn-primary  m-1 px-3\" (click)=\"onCreate($event)\">Create</button>\n            <button type=\"button\" class=\"btn btn-primary m-1 px-2\" (click)=\"onCancel($event)\">Cancel</button>\n        </div>\n        <div class=\"dropdown-divider my-3\"></div>\n    </div>\n\n\n</div>";
     /***/
   },
 
@@ -61,7 +81,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"card mx-1\">\r\n    <div class=\"card-body\">\r\n        <!-- Title -->\r\n        <h3 class=\"display-4\">Employee Edit</h3>\r\n        <!-- alert -->\r\n        <shared-alertPromp [alerts]=\"alerts\"></shared-alertPromp>\r\n\r\n        <app-employee [employee]=\"employee\" [mode]=\"mode\" [alerts]=\"alerts\" *ngIf=\"employee\"\r\n            [validUsername]=\"validUsername\" [validEmployeeCode]=\"validEmployeeCode\" (restPw)=\"openModal(template)\">\r\n        </app-employee>\r\n\r\n\r\n        <!-- Action section-->\r\n        <div class=\"dropdown-divider my-3\"></div>\r\n        <div class=\"d-flex flex-row-reverse\">\r\n            <button type=\"button\" class=\"btn btn-primary  m-1 px-3\" (click)=\"onUpdate()\">Update</button>\r\n            <button type=\"button\" class=\"btn btn-primary m-1 px-2\" (click)=\"onCancel($event)\">Cancel</button>\r\n        </div>\r\n\r\n    </div>\r\n</div>\r\n\r\n<!-- rest pw confirmation window -->\r\n<ng-template #template>\r\n    <div class=\"modal-header\">\r\n        <h4 class=\"modal-title pull-left\">Reset {{employee.empFirstName}}'s Password</h4>\r\n        <button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"modalRef.hide()\">\r\n            <span aria-hidden=\"true\">&times;</span>\r\n        </button>\r\n    </div>\r\n    <div class=\"modal-body\">\r\n        Are you sure reset the password of <strong> {{employee.empFirstName}} {{employee.empLastName}} </strong> to\r\n        default?\r\n    </div>\r\n    <div class=\"modal-footer\">\r\n        <button type=\"button\" class=\"btn btn-secondary  m-1 px-3\" (click)=\"modalRef.hide()\">Cancel</button>\r\n        <button type=\"button\" class=\"btn btn-danger  m-1 px-3\" (click)=\"resetPw()\">Reset</button>\r\n    </div>\r\n</ng-template>";
+    __webpack_exports__["default"] = "<div class=\"card mx-1\">\n    <div class=\"card-body\">\n        <!-- Title -->\n        <h3 class=\"display-4\">Employee Edit</h3>\n        <!-- alert -->\n        <shared-alertPromp [alerts]=\"alerts\"></shared-alertPromp>\n\n        <app-employee [employee]=\"employee\" [mode]=\"mode\" [alerts]=\"alerts\" *ngIf=\"employee\"\n            [validUsername]=\"validUsername\" [validEmployeeCode]=\"validEmployeeCode\" (restPw)=\"openModal(template)\">\n        </app-employee>\n\n\n        <!-- Action section-->\n        <div class=\"dropdown-divider my-3\"></div>\n        <div class=\"d-flex flex-row-reverse\">\n            <button type=\"button\" class=\"btn btn-primary  m-1 px-3\" (click)=\"onUpdate()\">Update</button>\n            <button type=\"button\" class=\"btn btn-primary m-1 px-2\" (click)=\"onCancel($event)\">Cancel</button>\n        </div>\n\n    </div>\n</div>\n\n<!-- rest pw confirmation window -->\n<ng-template #template *ngIf=\"selectedEmp\">\n    <div class=\"modal-header\">\n        <h4 class=\"modal-title pull-left\">Reset {{employee.empFirstName}}'s Password</h4>\n        <button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"modalRef.hide()\">\n            <span aria-hidden=\"true\">&times;</span>\n        </button>\n    </div>\n    <div class=\"modal-body\">\n        Are you sure reset the password of <strong> {{employee.empFirstName}} {{employee.empLastName}} </strong> to\n        default?\n    </div>\n    <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary  m-1 px-3\" (click)=\"modalRef.hide()\">Cancel</button>\n        <button type=\"button\" class=\"btn btn-danger  m-1 px-3\" (click)=\"resetPw()\">Reset</button>\n    </div>\n</ng-template>";
     /***/
   },
 
@@ -81,7 +101,27 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"card mx-1\">\r\n    <div class=\"card-body\">\r\n        <h3 class=\"display-4\">Employee List</h3>\r\n        <div class=\"dropdown-divider \"></div>\r\n\r\n        <div class=\"d-flex flex-row-reverse\">\r\n            <button type=\"button\" class=\"btn btn-primary my-2\" routerLink=\"creation\">Create</button>\r\n        </div>\r\n\r\n        <p-table #dt [columns]=\"cols\" [value]=\"displayEmployee\" [paginator]=\"true\" [rows]=\"10\">\r\n            <ng-template pTemplate=\"caption\">\r\n                <div style=\"text-align: right\">\r\n                    <i class=\"fa fa-search\" style=\"margin:4px 4px 0 0\"></i>\r\n                    <input type=\"text\" pInputText size=\"50\" placeholder=\"Global Filter\"\r\n                        (input)=\"dt.filterGlobal($event.target.value, 'contains')\" style=\"width:auto\">\r\n                </div>\r\n            </ng-template>\r\n            <ng-template pTemplate=\"header\" let-columns>\r\n                <tr>\r\n                    <th *ngFor=\"let col of columns\">\r\n                        {{col.header}}\r\n                    </th>\r\n                </tr>\r\n                <tr>\r\n                    <th *ngFor=\"let col of columns\" [ngSwitch]=\"col.field\">\r\n                        <input *ngSwitchCase=\"'empCode'\" pInputText type=\"text\"\r\n                            (input)=\"dt.filter($event.target.value, col.field, 'contains')\">\r\n                        <input *ngSwitchCase=\"'empName'\" pInputText type=\"text\"\r\n                            (input)=\"dt.filter($event.target.value, col.field, 'contains')\">\r\n                        <input *ngSwitchCase=\"'empUsername'\" pInputText type=\"text\"\r\n                            (input)=\"dt.filter($event.target.value, col.field, 'contains')\">\r\n                        <input *ngSwitchCase=\"'supervisorName'\" pInputText type=\"text\"\r\n                            (input)=\"dt.filter($event.target.value, col.field, 'contains')\">\r\n                        <input *ngSwitchCase=\"'approverName'\" pInputText type=\"text\"\r\n                            (input)=\"dt.filter($event.target.value, col.field, 'contains')\">\r\n                    </th>\r\n                </tr>\r\n            </ng-template>\r\n            <ng-template pTemplate=\"body\" let-rowData let-columns=\"columns\">\r\n                <tr [pSelectableRow]=\"rowData\">\r\n                    <td *ngFor=\"let col of columns\">\r\n                        <span *ngIf=\"col.field !=='activation' && col.field !=='button'\">{{rowData[col.field]}}</span>\r\n                        <h5 *ngIf=\"col.field ==='activation'\">\r\n                            <span class=\"badge badge-success\" *ngIf=\"rowData[col.field]\">Activated</span>\r\n                            <span class=\"badge badge-danger\" *ngIf=\"!rowData[col.field]\">Deactivated</span>\r\n                        </h5>\r\n                        <div *ngIf=\"col.field ==='button'\">\r\n                            <button type=\"button\" class=\"btn btn-link btn-sm\"\r\n                                [routerLink]=\"['view', rowData.employeeId]\">View</button>\r\n                            <button type=\"button\" class=\"btn btn-link btn-sm\"\r\n                                [routerLink]=\"['edit', rowData.employeeId]\">Edit</button>\r\n                        </div>\r\n                    </td>\r\n                </tr>\r\n            </ng-template>\r\n        </p-table>\r\n    </div>\r\n</div>";
+    __webpack_exports__["default"] = "<div class=\"card mx-1\">\n    <div class=\"card-body\">\n        <h3 class=\"display-4\">Employee List</h3>\n        <div class=\"dropdown-divider \"></div>\n\n        <div class=\"d-flex flex-row-reverse\">\n            <button type=\"button\" class=\"btn btn-primary my-2\" routerLink=\"creation\">Create</button>\n        </div>\n\n        <p-table #dt [columns]=\"cols\" [value]=\"displayEmployee\" [paginator]=\"true\" [rows]=\"10\"\n            [style]=\"{'text-align':'center'}\">\n            <ng-template pTemplate=\"caption\">\n                <div style=\"text-align: right\">\n                    <i class=\"fa fa-search\" style=\"margin:4px 4px 0 0\"></i>\n                    <input type=\"text\" pInputText size=\"50\" placeholder=\"Global Filter\"\n                        (input)=\"dt.filterGlobal($event.target.value, 'contains')\" style=\"width:auto\">\n                </div>\n            </ng-template>\n            <ng-template pTemplate=\"header\" let-columns>\n                <tr>\n                    <th *ngFor=\"let col of columns\">\n                        {{col.header}}\n                    </th>\n                </tr>\n                <tr>\n                    <th *ngFor=\"let col of columns\" [ngSwitch]=\"col.field\">\n                        <input *ngSwitchCase=\"'empCode'\" pInputText type=\"text\" style=\"margin-left:-6px;width: 100%;\"\n                            (input)=\"dt.filter($event.target.value, col.field, 'contains')\">\n                        <input *ngSwitchCase=\"'empName'\" pInputText type=\"text\" style=\"margin-left:-6px;width: 100%;\"\n                            (input)=\"dt.filter($event.target.value, col.field, 'contains')\">\n                        <input *ngSwitchCase=\"'empUsername'\" pInputText type=\"text\"\n                            style=\"margin-left:-6px;width: 100%;\"\n                            (input)=\"dt.filter($event.target.value, col.field, 'contains')\">\n                        <input *ngSwitchCase=\"'supervisorName'\" pInputText type=\"text\"\n                            style=\"margin-left:-6px;width: 100%;\"\n                            (input)=\"dt.filter($event.target.value, col.field, 'contains')\">\n                        <input *ngSwitchCase=\"'approverName'\" pInputText type=\"text\"\n                            style=\"margin-left:-6px;width: 100%;\"\n                            (input)=\"dt.filter($event.target.value, col.field, 'contains')\">\n                    </th>\n                </tr>\n            </ng-template>\n            <ng-template pTemplate=\"body\" let-rowData let-columns=\"columns\">\n                <tr [pSelectableRow]=\"rowData\">\n                    <td *ngFor=\"let col of columns\">\n                        <span *ngIf=\"col.field !=='activation' && col.field !=='button'\">{{rowData[col.field]}}</span>\n                        <h5 *ngIf=\"col.field ==='activation'\">\n                            <span class=\"badge badge-success\" *ngIf=\"rowData[col.field]\">Activated</span>\n                            <span class=\"badge badge-danger\" *ngIf=\"!rowData[col.field]\">Deactivated</span>\n                        </h5>\n                        <div *ngIf=\"col.field ==='button'\">\n                            <button type=\"button\" class=\"btn btn-link btn-sm\"\n                                [routerLink]=\"['view', rowData.employeeId]\">View</button>\n                            <button type=\"button\" class=\"btn btn-link btn-sm\"\n                                [routerLink]=\"['edit', rowData.employeeId]\">Edit</button>\n                        </div>\n                    </td>\n                </tr>\n            </ng-template>\n        </p-table>\n    </div>\n</div>";
+    /***/
+  },
+
+  /***/
+  "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/employee/pages/employee-reset-pw/employee-reset-pw.component.html":
+  /*!*********************************************************************************************************************************!*\
+    !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/modules/employee/pages/employee-reset-pw/employee-reset-pw.component.html ***!
+    \*********************************************************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function node_modulesRawLoaderDistCjsJsSrcAppModulesEmployeePagesEmployeeResetPwEmployeeResetPwComponentHtml(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "<div class=\"d-flex justify-content-center align-items-center height70vh\">\n    <div class=\"card\" style=\"width:400px\">\n        <h4 class=\"card-header\">Change Your Password</h4>\n        <div class=\"card-body\">\n            <form [formGroup]=\"changPwForm\" (ngSubmit)=\"onSubmit()\">\n                <div class=\"form-group\">\n                    <label for=\"username\">Username</label>\n                    <input type=\"text\" formControlName=\"username\" class=\"form-control\"\n                        [ngClass]=\"{ 'is-invalid': submitted && f.username.errors }\" readonly />\n                    <div *ngIf=\"submitted && f.username.errors\" class=\"invalid-feedback\">\n                        <div *ngIf=\"f.username.errors.required\">Username is required</div>\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <label for=\"password\">Old Password</label>\n                    <input type=\"password\" formControlName=\"password\" class=\"form-control\"\n                        [ngClass]=\"{ 'is-invalid': submitted && f.password.errors }\" />\n                    <div *ngIf=\"submitted && f.password.errors\" class=\"invalid-feedback\">\n                        <div *ngIf=\"f.password.errors.required\">Old Password is required</div>\n                        <div *ngIf=\"f.password.errors.minLength\">minLength Password is required</div>\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <label for=\"passwordNew\">New Password</label>\n                    <input type=\"password\" formControlName=\"passwordNew\" class=\"form-control\"\n                        [ngClass]=\"{ 'is-invalid': submitted && f.passwordNew.errors }\" />\n                    <div *ngIf=\"submitted && f.passwordNew.errors\" class=\"invalid-feedback\">\n                        <div *ngIf=\"f.passwordNew.errors.required\">New Password is required</div>\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <label for=\"passwordNewRe\">Confirm New Password</label>\n                    <input type=\"password\" formControlName=\"passwordNewRe\" class=\"form-control\"\n                        [ngClass]=\"{ 'is-invalid': submitted && f.passwordNewRe.errors }\" />\n                    <div *ngIf=\"submitted && f.passwordNewRe.errors\" class=\"invalid-feedback\">\n                        <div *ngIf=\"f.passwordNewRe.errors.required\">Confirm Password is required</div>\n                    </div>\n                </div>\n                <div *ngIf=\"changPwForm.errors?.passwordMatch && (changPwForm.touched || changPwForm.dirty)\"\n                    class=\"cross-validation-error-message alert alert-danger\">\n                    New Password is not matched.\n                </div>\n\n                <button type=\"button\" class=\"btn btn-secondary  m-1 px-3\"\n                    routerLink=\"/content/dashboard\">Cancel</button>\n                <button [disabled]=\"loading\" class=\"btn btn-primary\">\n                    <span *ngIf=\"loading\" class=\"spinner-border spinner-border-sm mr-1\"></span>\n                    Submit\n                </button>\n                <div *ngIf=\"error\" class=\"alert alert-danger mt-3 mb-0\">{{error.message}}</div>\n            </form>\n        </div>\n    </div>\n</div>";
     /***/
   },
 
@@ -101,7 +141,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"card mx-1\">\r\n    <div class=\"card-body\">\r\n        <!-- Title -->\r\n        <h3 class=\"display-4\">Employee</h3>\r\n\r\n        <app-employee [employee]=\"employee\" [mode]=\"mode\" [alerts]=\"alerts\" *ngIf=\"employee\"></app-employee>\r\n\r\n        <!-- Action section-->\r\n        <div class=\"dropdown-divider my-3\"></div>\r\n\r\n    </div>\r\n\r\n\r\n</div>";
+    __webpack_exports__["default"] = "<div class=\"card mx-1\">\n    <div class=\"card-body\">\n        <!-- Title -->\n        <h3 class=\"display-4\">Employee</h3>\n\n        <app-employee [employee]=\"employee\" [mode]=\"mode\" [alerts]=\"alerts\" *ngIf=\"employee\"></app-employee>\n\n        <!-- Action section-->\n        <div class=\"dropdown-divider my-3\"></div>\n\n    </div>\n\n\n</div>";
     /***/
   },
 
@@ -121,7 +161,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = ".pass{\r\n    color:green;\r\n    font-style: normal;\r\n}\r\n.error{\r\n    color:red;\r\n    font-style: normal;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9lbXBsb3llZS9jb21wb25lbnQvZW1wbG95ZWUvZW1wbG95ZWUuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLFdBQVc7SUFDWCxrQkFBa0I7QUFDdEI7QUFDQTtJQUNJLFNBQVM7SUFDVCxrQkFBa0I7QUFDdEIiLCJmaWxlIjoic3JjL2FwcC9tb2R1bGVzL2VtcGxveWVlL2NvbXBvbmVudC9lbXBsb3llZS9lbXBsb3llZS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnBhc3N7XHJcbiAgICBjb2xvcjpncmVlbjtcclxuICAgIGZvbnQtc3R5bGU6IG5vcm1hbDtcclxufVxyXG4uZXJyb3J7XHJcbiAgICBjb2xvcjpyZWQ7XHJcbiAgICBmb250LXN0eWxlOiBub3JtYWw7XHJcbn0iXX0= */";
+    __webpack_exports__["default"] = ".pass{\n    color:green;\n    font-style: normal;\n}\n.error{\n    color:red;\n    font-style: normal;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9lbXBsb3llZS9jb21wb25lbnQvZW1wbG95ZWUvZW1wbG95ZWUuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLFdBQVc7SUFDWCxrQkFBa0I7QUFDdEI7QUFDQTtJQUNJLFNBQVM7SUFDVCxrQkFBa0I7QUFDdEIiLCJmaWxlIjoic3JjL2FwcC9tb2R1bGVzL2VtcGxveWVlL2NvbXBvbmVudC9lbXBsb3llZS9lbXBsb3llZS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnBhc3N7XG4gICAgY29sb3I6Z3JlZW47XG4gICAgZm9udC1zdHlsZTogbm9ybWFsO1xufVxuLmVycm9ye1xuICAgIGNvbG9yOnJlZDtcbiAgICBmb250LXN0eWxlOiBub3JtYWw7XG59Il19 */";
     /***/
   },
 
@@ -337,12 +377,36 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var _pages_employee_edit_employee_edit_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
     /*! ./pages/employee-edit/employee-edit.component */
     "./src/app/modules/employee/pages/employee-edit/employee-edit.component.ts");
+    /* harmony import */
+
+
+    var _pages_employee_change_approver_employee_change_approver_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    /*! ./pages/employee-change-approver/employee-change-approver.component */
+    "./src/app/modules/employee/pages/employee-change-approver/employee-change-approver.component.ts");
+    /* harmony import */
+
+
+    var _pages_employee_reset_pw_employee_reset_pw_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+    /*! ./pages/employee-reset-pw/employee-reset-pw.component */
+    "./src/app/modules/employee/pages/employee-reset-pw/employee-reset-pw.component.ts");
 
     var routes = [{
       path: '',
       component: _pages_employee_list_employee_list_component__WEBPACK_IMPORTED_MODULE_4__["EmployeeListComponent"],
       data: {
         breadcrumb: null
+      }
+    }, {
+      path: 'changePassword',
+      component: _pages_employee_reset_pw_employee_reset_pw_component__WEBPACK_IMPORTED_MODULE_8__["EmployeeResetPWComponent"],
+      data: {
+        breadcrumb: 'Change Password'
+      }
+    }, {
+      path: 'supervisor/changeTimesheetApprover',
+      component: _pages_employee_change_approver_employee_change_approver_component__WEBPACK_IMPORTED_MODULE_7__["EmployeeChangeApproverComponent"],
+      data: {
+        breadcrumb: 'Change Timesheet Approver'
       }
     }, {
       path: 'view/:empId',
@@ -496,18 +560,272 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var primeng_table__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(
     /*! primeng/table */
     "./node_modules/primeng/fesm2015/primeng-table.js");
+    /* harmony import */
+
+
+    var primeng_inputtext__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(
+    /*! primeng/inputtext */
+    "./node_modules/primeng/fesm2015/primeng-inputtext.js");
+    /* harmony import */
+
+
+    var primeng_button__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(
+    /*! primeng/button */
+    "./node_modules/primeng/fesm2015/primeng-button.js");
+    /* harmony import */
+
+
+    var primeng_dialog__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(
+    /*! primeng/dialog */
+    "./node_modules/primeng/fesm2015/primeng-dialog.js");
+    /* harmony import */
+
+
+    var primeng_toast__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(
+    /*! primeng/toast */
+    "./node_modules/primeng/fesm2015/primeng-toast.js");
+    /* harmony import */
+
+
+    var primeng_messages__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(
+    /*! primeng/messages */
+    "./node_modules/primeng/fesm2015/primeng-messages.js");
+    /* harmony import */
+
+
+    var primeng_message__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(
+    /*! primeng/message */
+    "./node_modules/primeng/fesm2015/primeng-message.js");
+    /* harmony import */
+
+
+    var _pages_employee_change_approver_employee_change_approver_component__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(
+    /*! ./pages/employee-change-approver/employee-change-approver.component */
+    "./src/app/modules/employee/pages/employee-change-approver/employee-change-approver.component.ts");
+    /* harmony import */
+
+
+    var _pages_employee_reset_pw_employee_reset_pw_component__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(
+    /*! ./pages/employee-reset-pw/employee-reset-pw.component */
+    "./src/app/modules/employee/pages/employee-reset-pw/employee-reset-pw.component.ts");
 
     var EmployeeModule = function EmployeeModule() {
       _classCallCheck(this, EmployeeModule);
     };
 
     EmployeeModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-      declarations: [_component_employee_employee_component__WEBPACK_IMPORTED_MODULE_9__["EmployeeComponent"], _pages_employee_creation_employee_creation_component__WEBPACK_IMPORTED_MODULE_4__["EmployeeCreationComponent"], _pages_employee_list_employee_list_component__WEBPACK_IMPORTED_MODULE_10__["EmployeeListComponent"], _pages_employee_view_employee_view_component__WEBPACK_IMPORTED_MODULE_12__["EmployeeViewComponent"], _pages_employee_edit_employee_edit_component__WEBPACK_IMPORTED_MODULE_13__["EmployeeEditComponent"]],
-      imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _employee_routing_module__WEBPACK_IMPORTED_MODULE_3__["EmployeeRoutingModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormsModule"], src_app_shared_shared_module__WEBPACK_IMPORTED_MODULE_11__["SharedModule"], //material
+      declarations: [_component_employee_employee_component__WEBPACK_IMPORTED_MODULE_9__["EmployeeComponent"], _pages_employee_creation_employee_creation_component__WEBPACK_IMPORTED_MODULE_4__["EmployeeCreationComponent"], _pages_employee_list_employee_list_component__WEBPACK_IMPORTED_MODULE_10__["EmployeeListComponent"], _pages_employee_view_employee_view_component__WEBPACK_IMPORTED_MODULE_12__["EmployeeViewComponent"], _pages_employee_edit_employee_edit_component__WEBPACK_IMPORTED_MODULE_13__["EmployeeEditComponent"], _pages_employee_change_approver_employee_change_approver_component__WEBPACK_IMPORTED_MODULE_23__["EmployeeChangeApproverComponent"], _pages_employee_reset_pw_employee_reset_pw_component__WEBPACK_IMPORTED_MODULE_24__["EmployeeResetPWComponent"]],
+      imports: [_angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _employee_routing_module__WEBPACK_IMPORTED_MODULE_3__["EmployeeRoutingModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormsModule"], src_app_shared_shared_module__WEBPACK_IMPORTED_MODULE_11__["SharedModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_6__["ReactiveFormsModule"], //material
       _angular_material_button_toggle__WEBPACK_IMPORTED_MODULE_7__["MatButtonToggleModule"], //primeng
-      primeng_dropdown__WEBPACK_IMPORTED_MODULE_5__["DropdownModule"], primeng_table__WEBPACK_IMPORTED_MODULE_16__["TableModule"], // bootstrap
+      primeng_dropdown__WEBPACK_IMPORTED_MODULE_5__["DropdownModule"], primeng_table__WEBPACK_IMPORTED_MODULE_16__["TableModule"], primeng_inputtext__WEBPACK_IMPORTED_MODULE_17__["InputTextModule"], primeng_dialog__WEBPACK_IMPORTED_MODULE_19__["DialogModule"], primeng_button__WEBPACK_IMPORTED_MODULE_18__["ButtonModule"], primeng_toast__WEBPACK_IMPORTED_MODULE_20__["ToastModule"], primeng_messages__WEBPACK_IMPORTED_MODULE_21__["MessagesModule"], primeng_message__WEBPACK_IMPORTED_MODULE_22__["MessageModule"], // bootstrap
       ngx_bootstrap__WEBPACK_IMPORTED_MODULE_8__["AlertModule"].forRoot(), ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_14__["ModalModule"].forRoot(), _ng_bootstrap_ng_bootstrap__WEBPACK_IMPORTED_MODULE_15__["NgbModule"]]
     })], EmployeeModule);
+    /***/
+  },
+
+  /***/
+  "./src/app/modules/employee/pages/employee-change-approver/employee-change-approver.component.css":
+  /*!********************************************************************************************************!*\
+    !*** ./src/app/modules/employee/pages/employee-change-approver/employee-change-approver.component.css ***!
+    \********************************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppModulesEmployeePagesEmployeeChangeApproverEmployeeChangeApproverComponentCss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21vZHVsZXMvZW1wbG95ZWUvcGFnZXMvZW1wbG95ZWUtY2hhbmdlLWFwcHJvdmVyL2VtcGxveWVlLWNoYW5nZS1hcHByb3Zlci5jb21wb25lbnQuY3NzIn0= */";
+    /***/
+  },
+
+  /***/
+  "./src/app/modules/employee/pages/employee-change-approver/employee-change-approver.component.ts":
+  /*!*******************************************************************************************************!*\
+    !*** ./src/app/modules/employee/pages/employee-change-approver/employee-change-approver.component.ts ***!
+    \*******************************************************************************************************/
+
+  /*! exports provided: EmployeeChangeApproverComponent */
+
+  /***/
+  function srcAppModulesEmployeePagesEmployeeChangeApproverEmployeeChangeApproverComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "EmployeeChangeApproverComponent", function () {
+      return EmployeeChangeApproverComponent;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var src_app_core_service_employee_employee_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! src/app/core/service/employee/employee.service */
+    "./src/app/core/service/employee/employee.service.ts");
+    /* harmony import */
+
+
+    var src_app_core_service_authentication_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! src/app/core/service/authentication.service */
+    "./src/app/core/service/authentication.service.ts");
+    /* harmony import */
+
+
+    var ngx_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! ngx-bootstrap */
+    "./node_modules/ngx-bootstrap/esm5/ngx-bootstrap.js");
+    /* harmony import */
+
+
+    var src_app_core_service_my_toast_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    /*! src/app/core/service/my-toast.service */
+    "./src/app/core/service/my-toast.service.ts");
+
+    var EmployeeChangeApproverComponent =
+    /*#__PURE__*/
+    function () {
+      function EmployeeChangeApproverComponent(employeeService, modalService, myToastService, authService) {
+        _classCallCheck(this, EmployeeChangeApproverComponent);
+
+        this.employeeService = employeeService;
+        this.modalService = modalService;
+        this.myToastService = myToastService;
+        this.authService = authService;
+        this.displayEmployee = [];
+        this.selectedEmp = null;
+        this.employeeDropdown = null;
+      }
+
+      _createClass(EmployeeChangeApproverComponent, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {
+          this.initEmployees();
+          this.initCols();
+          this.populateEmployeeDropdown();
+        }
+      }, {
+        key: "initEmployees",
+        value: function initEmployees() {
+          var _this3 = this;
+
+          this.employeeService.getAllChildrenEmployees(this.authService.currentUserValue.employeeId).subscribe(function (res) {
+            console.log(res);
+            res.forEach(function (i) {
+              console.log(i);
+
+              _this3.displayEmployee.push({
+                "employeeId": i.employeeId,
+                "empCode": i.empCode,
+                "empName": "".concat(i.empFirstName, " ").concat(i.empLastName),
+                'approverName': "".concat(i.timesheetApprover.empFirstName, " ").concat(i.timesheetApprover.empLastName),
+                'activation': i.isActivated
+              });
+            });
+            console.log(_this3.displayEmployee);
+          });
+        }
+      }, {
+        key: "initCols",
+        value: function initCols() {
+          this.cols = [{
+            field: 'empCode',
+            header: 'Employee ID'
+          }, {
+            field: 'empName',
+            header: 'Employee Name'
+          }, {
+            field: 'approverName',
+            header: 'Approver'
+          }, {
+            field: 'activation',
+            header: 'Activation'
+          }, {
+            field: 'button',
+            header: ''
+          }];
+        }
+      }, {
+        key: "populateEmployeeDropdown",
+        value: function populateEmployeeDropdown() {
+          var _this4 = this;
+
+          this.employeeService.getEmployees().subscribe(function (employees) {
+            _this4.employeeDropdown = []; // this.employeeDropdown.push({ label: `-----`, value: null });
+
+            employees.forEach(function (e) {
+              _this4.employeeDropdown.push({
+                label: "".concat(e.empFirstName, " ").concat(e.empLastName),
+                value: e
+              });
+            });
+            console.log(_this4.employeeDropdown);
+          });
+        }
+      }, {
+        key: "openModal",
+        value: function openModal(id, template) {
+          var _this5 = this;
+
+          this.employeeService.getEmployee(id).subscribe(function (emp) {
+            _this5.selectedEmp = emp;
+            _this5.modalRef = _this5.modalService.show(template);
+          });
+        }
+      }, {
+        key: "onSaveChange",
+        value: function onSaveChange() {
+          var _this6 = this;
+
+          this.employeeService.putEmployee(this.selectedEmp).subscribe(function (_) {
+            _this6.modalRef.hide();
+
+            _this6.myToastService.addSuccess('Successfully changed Timesheet Approver', "".concat(new Date().toLocaleString()));
+          });
+        }
+      }]);
+
+      return EmployeeChangeApproverComponent;
+    }();
+
+    EmployeeChangeApproverComponent.ctorParameters = function () {
+      return [{
+        type: src_app_core_service_employee_employee_service__WEBPACK_IMPORTED_MODULE_2__["EmployeeService"]
+      }, {
+        type: ngx_bootstrap__WEBPACK_IMPORTED_MODULE_4__["BsModalService"]
+      }, {
+        type: src_app_core_service_my_toast_service__WEBPACK_IMPORTED_MODULE_5__["MyToastService"]
+      }, {
+        type: src_app_core_service_authentication_service__WEBPACK_IMPORTED_MODULE_3__["AuthenticationService"]
+      }];
+    };
+
+    EmployeeChangeApproverComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: 'app-employee-change-approver',
+      template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! raw-loader!./employee-change-approver.component.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/employee/pages/employee-change-approver/employee-change-approver.component.html")).default,
+      styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! ./employee-change-approver.component.css */
+      "./src/app/modules/employee/pages/employee-change-approver/employee-change-approver.component.css")).default]
+    })], EmployeeChangeApproverComponent);
     /***/
   },
 
@@ -659,22 +977,22 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "validateEmployeeCode",
         value: function validateEmployeeCode() {
-          var _this3 = this;
+          var _this7 = this;
 
           this.employeeService.checkUserEmployeeCodeOK(this.employee.empCode).subscribe(function (response) {
             console.log(response);
-            _this3.validEmployeeCode = response;
+            _this7.validEmployeeCode = response;
           });
         } // exit event of user name
 
       }, {
         key: "validateUserName",
         value: function validateUserName() {
-          var _this4 = this;
+          var _this8 = this;
 
           this.employeeService.checkUserNameOK(this.employee.empUsername).subscribe(function (response) {
             console.log(response);
-            _this4.validUsername = response;
+            _this8.validUsername = response;
           });
         }
       }]);
@@ -781,16 +1099,24 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var src_app_shared_model_Alert__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
     /*! src/app/shared/model/Alert */
     "./src/app/shared/model/Alert.ts");
+    /* harmony import */
+
+
+    var src_app_core_service_my_toast_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    /*! src/app/core/service/my-toast.service */
+    "./src/app/core/service/my-toast.service.ts");
 
     var EmployeeEditComponent =
     /*#__PURE__*/
     function () {
-      function EmployeeEditComponent(route, employeeService, modalService) {
+      function EmployeeEditComponent(route, router, employeeService, modalService, myToastService) {
         _classCallCheck(this, EmployeeEditComponent);
 
         this.route = route;
+        this.router = router;
         this.employeeService = employeeService;
         this.modalService = modalService;
+        this.myToastService = myToastService;
         this.mode = src_app_shared_model_MODE__WEBPACK_IMPORTED_MODULE_2__["MODE"].Update;
         this.alerts = {};
         this.validUsername = true;
@@ -800,13 +1126,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(EmployeeEditComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this5 = this;
+          var _this9 = this;
 
           this.route.paramMap.subscribe(function (params) {
             var id = params.get('empId');
 
-            _this5.employeeService.getEmployee(id).subscribe(function (e) {
-              return _this5.employee = e;
+            _this9.employeeService.getEmployee(id).subscribe(function (e) {
+              return _this9.employee = e;
             });
           });
         }
@@ -820,21 +1146,40 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "resetPw",
         value: function resetPw() {
+          var _this10 = this;
+
           this.employee.empPassword = '01234';
+          this.employeeService.getEmployee(this.employee.employeeId).subscribe(function (emp) {
+            emp.empPassword = '01234';
+
+            _this10.employeeService.putEmployee(emp);
+
+            _this10.modalRef.hide();
+
+            _this10.myToastService.addSuccess('Password Changed', 'Reset to defaul password.');
+          }); //TODO: SHOW MESSAGE.
         } // btn click event of creation
 
       }, {
         key: "onUpdate",
         value: function onUpdate() {
+          var _this11 = this;
+
           if (!this.validatePage()) return;
           console.log("POST employee");
           console.log(JSON.stringify(this.employee));
-          this.employeeService.postEmployee(this.employee).subscribe();
+          this.employeeService.postEmployee(this.employee).subscribe(function (_) {
+            _this11.myToastService.addSuccess('Update successfully', "".concat(_this11.employee.empFirstName + ' ' + _this11.employee.empLastName, " is updated."));
+
+            _this11.router.navigate(["/content/employees/view/".concat(_this11.employee.employeeId)]);
+          });
         } // btn click event of cancel
 
       }, {
         key: "onCancel",
-        value: function onCancel(e) {}
+        value: function onCancel(e) {
+          this.router.navigate(["/content/employees"]);
+        }
       }, {
         key: "validatePage",
         value: function validatePage() {
@@ -871,9 +1216,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       return [{
         type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"]
       }, {
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]
+      }, {
         type: src_app_core_service_employee_employee_service__WEBPACK_IMPORTED_MODULE_4__["EmployeeService"]
       }, {
         type: ngx_bootstrap_modal__WEBPACK_IMPORTED_MODULE_5__["BsModalService"]
+      }, {
+        type: src_app_core_service_my_toast_service__WEBPACK_IMPORTED_MODULE_7__["MyToastService"]
       }];
     };
 
@@ -966,14 +1315,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "initEmployees",
         value: function initEmployees() {
-          var _this6 = this;
+          var _this12 = this;
 
           this.employeeService.getEmployees().subscribe(function (res) {
             console.log(res);
             res.forEach(function (i) {
               console.log(i);
 
-              _this6.displayEmployee.push({
+              _this12.displayEmployee.push({
                 "employeeId": i.employeeId,
                 "empCode": i.empCode,
                 "empName": "".concat(i.empFirstName, " ").concat(i.empLastName),
@@ -983,7 +1332,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
                 'activation': i.isActivated
               });
             });
-            console.log(_this6.displayEmployee);
+            console.log(_this12.displayEmployee);
           });
         }
       }, {
@@ -1033,6 +1382,187 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       "./src/app/modules/employee/pages/employee-list/employee-list.component.css")).default]
     })], EmployeeListComponent);
     /***/
+  },
+
+  /***/
+  "./src/app/modules/employee/pages/employee-reset-pw/employee-reset-pw.component.css":
+  /*!******************************************************************************************!*\
+    !*** ./src/app/modules/employee/pages/employee-reset-pw/employee-reset-pw.component.css ***!
+    \******************************************************************************************/
+
+  /*! exports provided: default */
+
+  /***/
+  function srcAppModulesEmployeePagesEmployeeResetPwEmployeeResetPwComponentCss(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony default export */
+
+
+    __webpack_exports__["default"] = ".height70vh{\n    height: 70vh;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy9lbXBsb3llZS9wYWdlcy9lbXBsb3llZS1yZXNldC1wdy9lbXBsb3llZS1yZXNldC1wdy5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksWUFBWTtBQUNoQiIsImZpbGUiOiJzcmMvYXBwL21vZHVsZXMvZW1wbG95ZWUvcGFnZXMvZW1wbG95ZWUtcmVzZXQtcHcvZW1wbG95ZWUtcmVzZXQtcHcuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5oZWlnaHQ3MHZoe1xuICAgIGhlaWdodDogNzB2aDtcbn0iXX0= */";
+    /***/
+  },
+
+  /***/
+  "./src/app/modules/employee/pages/employee-reset-pw/employee-reset-pw.component.ts":
+  /*!*****************************************************************************************!*\
+    !*** ./src/app/modules/employee/pages/employee-reset-pw/employee-reset-pw.component.ts ***!
+    \*****************************************************************************************/
+
+  /*! exports provided: EmployeeResetPWComponent, passwordMatch */
+
+  /***/
+  function srcAppModulesEmployeePagesEmployeeResetPwEmployeeResetPwComponentTs(module, __webpack_exports__, __webpack_require__) {
+    "use strict";
+
+    __webpack_require__.r(__webpack_exports__);
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "EmployeeResetPWComponent", function () {
+      return EmployeeResetPWComponent;
+    });
+    /* harmony export (binding) */
+
+
+    __webpack_require__.d(__webpack_exports__, "passwordMatch", function () {
+      return passwordMatch;
+    });
+    /* harmony import */
+
+
+    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
+    /*! tslib */
+    "./node_modules/tslib/tslib.es6.js");
+    /* harmony import */
+
+
+    var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
+    /*! @angular/core */
+    "./node_modules/@angular/core/fesm2015/core.js");
+    /* harmony import */
+
+
+    var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
+    /*! @angular/forms */
+    "./node_modules/@angular/forms/fesm2015/forms.js");
+    /* harmony import */
+
+
+    var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! @angular/router */
+    "./node_modules/@angular/router/fesm2015/router.js");
+    /* harmony import */
+
+
+    var src_app_core_service_authentication_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    /*! src/app/core/service/authentication.service */
+    "./src/app/core/service/authentication.service.ts");
+
+    var EmployeeResetPWComponent =
+    /*#__PURE__*/
+    function () {
+      function EmployeeResetPWComponent(formBuilder, route, router, authenticationService) {
+        _classCallCheck(this, EmployeeResetPWComponent);
+
+        this.formBuilder = formBuilder;
+        this.route = route;
+        this.router = router;
+        this.authenticationService = authenticationService;
+        this.loading = false;
+        this.submitted = false;
+        this.error = null;
+        this.currentUserId = '';
+      }
+
+      _createClass(EmployeeResetPWComponent, [{
+        key: "ngOnInit",
+        value: function ngOnInit() {
+          this.changPwForm = this.formBuilder.group({
+            username: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+            password: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+            passwordNew: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+            passwordNewRe: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required]
+          }, {
+            validator: passwordMatch
+          });
+          this.currentUserId = this.authenticationService.currentUserValue.credentialId;
+          this.f.username.setValue(this.currentUserId);
+        } // convenience getter for easy access to form fields
+
+      }, {
+        key: "onSubmit",
+        value: function onSubmit() {
+          var _this13 = this;
+
+          this.submitted = true; // stop here if form is invalid
+
+          if (this.changPwForm.invalid) {
+            return;
+          }
+
+          this.loading = true;
+          this.authenticationService.changePW(this.currentUserId, this.f.password.value, this.f.passwordNew.value).subscribe(function (result) {
+            if (result) {
+              _this13.authenticationService.logout();
+            }
+
+            if (!result) {
+              _this13.error = 'We cannot change your Password. Please Make sure your old password is correct.';
+            }
+          }, function (error) {
+            console.log(error);
+            _this13.error = error.error;
+            _this13.loading = false;
+          });
+        }
+      }, {
+        key: "f",
+        get: function get() {
+          return this.changPwForm.controls;
+        }
+      }]);
+
+      return EmployeeResetPWComponent;
+    }();
+
+    EmployeeResetPWComponent.ctorParameters = function () {
+      return [{
+        type: _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"]
+      }, {
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"]
+      }, {
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]
+      }, {
+        type: src_app_core_service_authentication_service__WEBPACK_IMPORTED_MODULE_4__["AuthenticationService"]
+      }];
+    };
+
+    EmployeeResetPWComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+      selector: 'app-employee-reset-pw',
+      template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! raw-loader!./employee-reset-pw.component.html */
+      "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/employee/pages/employee-reset-pw/employee-reset-pw.component.html")).default,
+      styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
+      /*! ./employee-reset-pw.component.css */
+      "./src/app/modules/employee/pages/employee-reset-pw/employee-reset-pw.component.css")).default]
+    })], EmployeeResetPWComponent); // export function passwordMatch(newPw:string): ValidatorFn {
+    //   return (control: AbstractControl): {[key: string]: any} | null => {
+    //     const result = (newPw===control.value);
+    //     return result ? {'passwordMatch': {value: control.value}} : null;
+    //   };
+    // }
+
+    var passwordMatch = function passwordMatch(control) {
+      var pw = control.get('passwordNew');
+      var pwRe = control.get('passwordNewRe');
+      return pw && pwRe && pw.value === pwRe.value ? null : {
+        'passwordMatch': true
+      };
+    };
+    /***/
+
   },
 
   /***/
@@ -1120,13 +1650,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(EmployeeViewComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this7 = this;
+          var _this14 = this;
 
           this.route.paramMap.subscribe(function (params) {
             var id = params.get('empId');
 
-            _this7.employeeService.getEmployee(id).subscribe(function (e) {
-              return _this7.employee = e;
+            _this14.employeeService.getEmployee(id).subscribe(function (e) {
+              return _this14.employee = e;
             });
           });
         }
@@ -1153,135 +1683,6 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       "./src/app/modules/employee/pages/employee-view/employee-view.component.css")).default]
     })], EmployeeViewComponent);
     /***/
-  },
-
-  /***/
-  "./src/app/shared/model/Alert.ts":
-  /*!***************************************!*\
-    !*** ./src/app/shared/model/Alert.ts ***!
-    \***************************************/
-
-  /*! exports provided: Alert */
-
-  /***/
-  function srcAppSharedModelAlertTs(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "Alert", function () {
-      return Alert;
-    });
-    /* harmony import */
-
-
-    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! tslib */
-    "./node_modules/tslib/tslib.es6.js");
-
-    var Alert = function Alert(type, time, msg) {
-      _classCallCheck(this, Alert);
-
-      this.type = type;
-      this.timeout = time;
-      this.msg = msg;
-    };
-    /***/
-
-  },
-
-  /***/
-  "./src/app/shared/model/Employee.ts":
-  /*!******************************************!*\
-    !*** ./src/app/shared/model/Employee.ts ***!
-    \******************************************/
-
-  /*! exports provided: Employee */
-
-  /***/
-  function srcAppSharedModelEmployeeTs(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "Employee", function () {
-      return Employee;
-    });
-    /* harmony import */
-
-
-    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! tslib */
-    "./node_modules/tslib/tslib.es6.js");
-    /* harmony import */
-
-
-    var _LabourGrade__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(
-    /*! ./LabourGrade */
-    "./src/app/shared/model/LabourGrade.ts");
-
-    var Employee = function Employee() {
-      _classCallCheck(this, Employee);
-
-      this.employeeId = null;
-      this.empUsername = "";
-      this.empPassword = "";
-      this.empCode = 1;
-      this.labourGrade = new _LabourGrade__WEBPACK_IMPORTED_MODULE_1__["LabourGrade"]();
-      this.empFirstName = "";
-      this.empLastName = "";
-      this.timesheetApproverId = 1;
-      this.supervisorId = 1;
-      this.isProjectManager = false;
-      this.isAdmin = false;
-      this.isHumanResources = false;
-      this.isActivated = true;
-      this.timesheetApprover = null;
-      this.supervisor = null;
-      this.jobTitleId = 1;
-    };
-    /***/
-
-  },
-
-  /***/
-  "./src/app/shared/model/LabourGrade.ts":
-  /*!*********************************************!*\
-    !*** ./src/app/shared/model/LabourGrade.ts ***!
-    \*********************************************/
-
-  /*! exports provided: LabourGrade */
-
-  /***/
-  function srcAppSharedModelLabourGradeTs(module, __webpack_exports__, __webpack_require__) {
-    "use strict";
-
-    __webpack_require__.r(__webpack_exports__);
-    /* harmony export (binding) */
-
-
-    __webpack_require__.d(__webpack_exports__, "LabourGrade", function () {
-      return LabourGrade;
-    });
-    /* harmony import */
-
-
-    var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(
-    /*! tslib */
-    "./node_modules/tslib/tslib.es6.js");
-
-    var LabourGrade = function LabourGrade() {
-      _classCallCheck(this, LabourGrade);
-
-      this.labourGradeId = 0;
-      this.labourGradeName = '';
-    };
-    /***/
-
   }
 }]);
 //# sourceMappingURL=modules-employee-employee-module-es5.js.map

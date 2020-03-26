@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"card mx-1\">\r\n    <div class=\"card-body\">\r\n        <h3 class=\"display-4\">Pending Timesheet List</h3>\r\n\r\n        <p-table #dt [columns]=\"cols\" [value]=\"displayTimesheet\" [paginator]=\"true\" [rows]=\"10\">\r\n            <ng-template pTemplate=\"caption\">\r\n                <div style=\"text-align: right\">\r\n                    <i class=\"fa fa-search\" style=\"margin:4px 4px 0 0\"></i>\r\n                    <input type=\"text\" pInputText size=\"50\" placeholder=\"Global Filter\"\r\n                        (input)=\"dt.filterGlobal($event.target.value, 'contains')\" style=\"width:auto\">\r\n                </div>\r\n            </ng-template>\r\n            <ng-template pTemplate=\"header\" let-columns>\r\n                <tr>\r\n                    <th *ngFor=\"let col of columns\">\r\n                        {{col.header}}\r\n                    </th>\r\n                    <th></th>\r\n                </tr>\r\n                <tr>\r\n                    <th *ngFor=\"let col of columns\" [ngSwitch]=\"col.field\">\r\n                        <input *ngSwitchCase=\"'empName'\" pInputText type=\"text\"\r\n                            (input)=\"dt.filter($event.target.value, col.field, 'contains')\">\r\n                        <input *ngSwitchCase=\"'supervisor'\" pInputText type=\"text\"\r\n                            (input)=\"dt.filter($event.target.value, col.field, 'contains')\">\r\n                        <input *ngSwitchCase=\"'approver'\" pInputText type=\"text\"\r\n                            (input)=\"dt.filter($event.target.value, col.field, 'contains')\">\r\n                        <input *ngSwitchCase=\"'weekNumber'\" pInputText type=\"text\"\r\n                            (input)=\"dt.filter($event.target.value, col.field, 'contains')\">\r\n                        <input *ngSwitchCase=\"'versionNumber'\" pInputText type=\"text\"\r\n                            (input)=\"dt.filter($event.target.value, col.field, 'contains')\">\r\n                        <input *ngSwitchCase=\"'weekEnding'\" pInputText type=\"text\"\r\n                            (input)=\"dt.filter($event.target.value, col.field, 'contains')\">\r\n                        <input *ngSwitchCase=\"'status'\" pInputText type=\"text\"\r\n                            (input)=\"dt.filter($event.target.value, col.field, 'contains')\">\r\n                    </th>\r\n                    <th></th>\r\n                </tr>\r\n            </ng-template>\r\n            <ng-template pTemplate=\"body\" let-rowData let-columns=\"columns\">\r\n                <tr [pSelectableRow]=\"rowData\">\r\n                    <td *ngFor=\"let col of columns\">\r\n                        <span *ngIf=\"col.field !=='status'\">{{rowData[col.field]}}</span>\r\n                        <h5 *ngIf=\"col.field ==='status'\">\r\n                            <span [className]=\"colorStatus(rowData[col.field])\">{{rowData.status}}</span>\r\n                        </h5>\r\n                    </td>\r\n                    <td>\r\n                        <button type=\"button\" class=\"btn btn-link btn-sm\"\r\n                            [routerLink]=\"['/content/timesheets/approver/view/', rowData.timesheetId]\">View</button>\r\n                    </td>\r\n                </tr>\r\n            </ng-template>\r\n        </p-table>\r\n    </div>\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"card mx-1\">\n    <div class=\"card-body\">\n        <h3 class=\"display-4\">Pending Timesheet List</h3>\n        <div class=\"dropdown-divider \"></div>\n        <h3 class=\"lead\">The table below lists all pending timesheet that waiting your approval.</h3>\n\n        <p-table #dt [columns]=\"cols\" [value]=\"displayTimesheet\" [paginator]=\"true\" [rows]=\"10\"\n            [style]=\"{'text-align':'center'}\">\n            <ng-template pTemplate=\"caption\">\n                <div style=\"text-align: right\">\n                    <i class=\"fa fa-search\" style=\"margin:4px 4px 0 0\"></i>\n                    <input type=\"text\" pInputText size=\"50\" placeholder=\"Global Filter\"\n                        (input)=\"dt.filterGlobal($event.target.value, 'contains')\" style=\"width:auto\">\n                </div>\n            </ng-template>\n            <ng-template pTemplate=\"header\" let-columns>\n                <tr>\n                    <th *ngFor=\"let col of columns\">\n                        {{col.header}}\n                    </th>\n                    <th></th>\n                </tr>\n                <tr>\n                    <th *ngFor=\"let col of columns\" [ngSwitch]=\"col.field\">\n                        <input *ngSwitchCase=\"'empName'\" pInputText type=\"text\" class=\"ui-column-filter\"\n                            style=\"width: 100%;\" (input)=\"dt.filter($event.target.value, col.field, 'contains')\">\n                        <input *ngSwitchCase=\"'supervisor'\" pInputText type=\"text\" class=\"ui-column-filter\"\n                            style=\"width: 100%;\" (input)=\"dt.filter($event.target.value, col.field, 'contains')\">\n                        <input *ngSwitchCase=\"'approver'\" pInputText type=\"text\" class=\"ui-column-filter\"\n                            style=\"width: 100%;\" (input)=\"dt.filter($event.target.value, col.field, 'contains')\">\n                        <input *ngSwitchCase=\"'weekNumber'\" pInputText type=\"text\" class=\"ui-column-filter\"\n                            style=\"width: 100%;\" (input)=\"dt.filter($event.target.value, col.field, 'contains')\">\n                        <input *ngSwitchCase=\"'versionNumber'\" pInputText type=\"text\" class=\"ui-column-filter\"\n                            style=\"width: 100%;\" (input)=\"dt.filter($event.target.value, col.field, 'contains')\">\n                        <input *ngSwitchCase=\"'weekEndingIn'\" pInputText type=\"text\" class=\"ui-column-filter\"\n                            style=\"width: 100%;\" (input)=\"dt.filter($event.target.value, col.field, 'contains')\">\n                        <input *ngSwitchCase=\"'status'\" pInputText type=\"text\" class=\"ui-column-filter\"\n                            style=\"width: 100%;\" (input)=\"dt.filter($event.target.value, col.field, 'contains')\">\n                    </th>\n                    <th></th>\n                </tr>\n            </ng-template>\n            <ng-template pTemplate=\"body\" let-rowData let-columns=\"columns\">\n                <tr [pSelectableRow]=\"rowData\">\n                    <td *ngFor=\"let col of columns\">\n                        <span *ngIf=\"col.field !=='status'\">{{rowData[col.field]}}</span>\n                        <h5 *ngIf=\"col.field ==='status'\">\n                            <span [className]=\"colorStatus(rowData[col.field])\">{{rowData.status}}</span>\n                        </h5>\n                    </td>\n                    <td>\n                        <button type=\"button\" class=\"btn btn-link btn-sm\"\n                            [routerLink]=\"['/content/timesheets/approver/view/', rowData.timesheetId]\">View</button>\n                    </td>\n                </tr>\n            </ng-template>\n        </p-table>\n    </div>\n</div>");
 
 /***/ }),
 
@@ -22,7 +22,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"card mx-1\">\r\n    <div class=\"card-body\">\r\n        <h3>\r\n            <span class=\"display-4 mb-3 mr-3\">Pending Detail</span>\r\n            <span *ngIf=\"timesheet\" [className]=\"colorStatus(timesheet.status)\">{{timesheet.status}}</span>\r\n        </h3>\r\n\r\n        <div class=\"dropdown-divider \"></div>\r\n\r\n        <shared-timesheet *ngIf=\"timesheet\" [mode]=\"mode\" [timesheet]=\"timesheet\">\r\n        </shared-timesheet>\r\n\r\n        <div class=\"dropdown-divider my-3\"></div>\r\n        <h5 class=\"my-3\">Approver View</h5>\r\n\r\n        <div class=\"input-group\">\r\n            <div class=\"input-group-prepend\">\r\n                <span class=\"input-group-text\">Comment</span>\r\n            </div>\r\n            <textarea class=\"form-control\" aria-label=\"With textarea\" (change)=\"onTextareaChange($event)\"\r\n                *ngIf=\"timesheet\">{{timesheet.comment}}</textarea>\r\n            <!-- <input type=\"textarea\" class=\"form-control\" [(ngModel)]=\"timesheet.comment\" (blur)=\"onExitEmployeeId()\"> -->\r\n\r\n        </div>\r\n        <div class=\"d-flex flex-row-reverse\">\r\n            <button type=\"button\" class=\"btn btn-outline-success  m-1 px-3\" (click)=\"onApprove($event)\">Approve</button>\r\n            <button type=\"button\" class=\"btn btn-outline-danger m-1 px-2\" (click)=\"onReject($event)\">Reject</button>\r\n            <button type=\"button\" class=\"btn btn-primary m-1 px-2\">Cancel</button>\r\n        </div>\r\n\r\n    </div>\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"card mx-1\">\n    <div class=\"card-body\">\n        <h3>\n            <span class=\"display-4 mb-3 mr-3\">Pending Detail</span>\n            <span *ngIf=\"timesheet\" [className]=\"colorStatus(timesheet.status)\">{{timesheet.status}}</span>\n        </h3>\n\n        <div class=\"dropdown-divider \"></div>\n\n        <shared-timesheet *ngIf=\"timesheet\" [mode]=\"mode\" [timesheet]=\"timesheet\">\n        </shared-timesheet>\n\n        <div class=\"dropdown-divider my-3\"></div>\n        <h5 class=\"my-3\">Approver View</h5>\n\n        <div class=\"input-group\">\n            <div class=\"input-group-prepend\">\n                <span class=\"input-group-text\">Comment</span>\n            </div>\n            <textarea class=\"form-control\" aria-label=\"With textarea\" (change)=\"onTextareaChange($event)\"\n                *ngIf=\"timesheet\">{{timesheet.comment}}</textarea>\n            <!-- <input type=\"textarea\" class=\"form-control\" [(ngModel)]=\"timesheet.comment\" (blur)=\"onExitEmployeeId()\"> -->\n\n        </div>\n        <div class=\"d-flex flex-row-reverse\">\n            <button type=\"button\" class=\"btn btn-outline-success  m-1 px-3\" (click)=\"onApprove($event)\">Approve</button>\n            <button type=\"button\" class=\"btn btn-outline-danger m-1 px-2\" (click)=\"onReject($event)\">Reject</button>\n            <button type=\"button\" class=\"btn btn-primary m-1 px-2\">Cancel</button>\n        </div>\n\n    </div>\n</div>");
 
 /***/ }),
 
@@ -35,7 +35,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"card mx-1\" *ngIf=\"dataReady\">\r\n    <div class=\"card-body\">\r\n        <h3 class=\"display-4 mb-3\">Create Timesheet</h3>\r\n\r\n        <div class=\"dropdown-divider \"></div>\r\n\r\n        <shared-timesheet [mode]=\"mode\" [timesheet]=\"timesheet\" [projectWp]=\"projectWp\"> </shared-timesheet>\r\n\r\n        <div class=\"dropdown-divider my-3\"></div>\r\n\r\n        <div class=\"d-flex flex-row-reverse\">\r\n            <button type=\"button\" class=\"btn btn-primary  m-1 px-3\" (click)=\"onSave($event)\">Save</button>\r\n            <button type=\"button\" class=\"btn btn-primary m-1 px-2\" (click)=\"onSubmit($event)\">Submit</button>\r\n        </div>\r\n    </div>\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"card mx-1\" *ngIf=\"dataReady\">\n    <div class=\"card-body\">\n        <h3 class=\"display-4 mb-3\">Create Timesheet</h3>\n\n        <div class=\"dropdown-divider \"></div>\n\n        <shared-timesheet [mode]=\"mode\" [timesheet]=\"timesheet\" [projectWp]=\"projectWp\"> </shared-timesheet>\n\n        <div class=\"dropdown-divider my-3\"></div>\n\n        <div class=\"d-flex flex-row-reverse\">\n            <button type=\"button\" class=\"btn btn-primary  m-1 px-3\" (click)=\"onSave($event)\">Save</button>\n            <button type=\"button\" class=\"btn btn-danger m-1 px-2\" (click)=\"onSubmit($event,template)\">Submit</button>\n        </div>\n    </div>\n</div>\n\n\n\n<!-- confirmation window -->\n<ng-template #template>\n    <div class=\"modal-header\">\n        <h4 class=\"modal-title pull-left\">Submit Timsheet</h4>\n        <button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"modalRef.hide()\">\n            <span aria-hidden=\"true\">&times;</span>\n        </button>\n    </div>\n    <div class=\"modal-body\">\n        <strong class=\"text-warning\">This action cannot be undo.</strong><br>\n        <strong class=\"h5\">Are you sure to submit this timesheet to your supervisor?</strong><br>\n        After submission, this timesheet will not be editable anymore and this timesheet will be in pending state.<br>\n    </div>\n    <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary  m-1 px-3\" (click)=\"modalRef.hide()\">Cancel</button>\n        <button type=\"button\" class=\"btn btn-danger  m-1 px-3\" (click)=\"onSubmitConfrimed()\">Submit</button>\n    </div>\n</ng-template>");
 
 /***/ }),
 
@@ -48,7 +48,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"card mx-1\" *ngIf=\"timesheet\">\r\n    <div class=\"card-body\">\r\n        <h3>\r\n            <span class=\"display-4 mb-3 mr-3\">Edit Rejected Timesheet</span>\r\n            <span *ngIf=\"timesheet\" [className]=\"colorStatus(timesheet.status)\">{{timesheet.status}}</span>\r\n        </h3>\r\n        <p>Submiting or saving this edited timesheet will creation this timesheet as a new version.</p>\r\n\r\n        <div class=\"dropdown-divider \"></div>\r\n\r\n        <shared-timesheet [mode]=\"mode\" [timesheet]=\"timesheet\" [projectWp]=\"projectWp\"> </shared-timesheet>\r\n\r\n        <div class=\"dropdown-divider my-3\"></div>\r\n\r\n        <div class=\"d-flex flex-row-reverse\">\r\n            <button type=\"button\" class=\"btn btn-primary  m-1 px-3\" (click)=\"onSave($event)\">Save</button>\r\n            <button type=\"button\" class=\"btn btn-primary m-1 px-2\" (click)=\"onSubmit($event)\">Submit</button>\r\n        </div>\r\n    </div>\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"card mx-1\" *ngIf=\"timesheet\">\n    <div class=\"card-body\">\n        <h3>\n            <span class=\"display-4 mb-3 mr-3\">Edit Rejected Timesheet</span>\n            <span *ngIf=\"timesheet\" [className]=\"colorStatus(timesheet.status)\">{{timesheet.status}}</span>\n        </h3>\n        <p class=\"text-warning\">Submiting or saving this edited timesheet will creation this timesheet as a new version.\n        </p>\n\n        <div class=\"dropdown-divider \"></div>\n\n        <shared-timesheet [mode]=\"mode\" [timesheet]=\"timesheet\" [projectWp]=\"projectWp\"> </shared-timesheet>\n\n        <div class=\"dropdown-divider my-3\"></div>\n\n        <div class=\"d-flex flex-row-reverse\">\n            <button type=\"button\" class=\"btn btn-danger m-1 px-2\" (click)=\"onSubmit($event,template)\">Submit</button>\n            <button type=\"button\" class=\"btn btn-primary  m-1 px-3\" (click)=\"onSave($event)\">Save</button>\n            <button type=\"button\" class=\"btn btn-secondary  m-1 px-3\" (click)=\"onCancel($event)\">Cancel</button>\n        </div>\n    </div>\n</div>\n\n\n<!-- confirmation window -->\n<ng-template #template>\n    <div class=\"modal-header\">\n        <h4 class=\"modal-title pull-left\">Submit Timsheet</h4>\n        <button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"modalRef.hide()\">\n            <span aria-hidden=\"true\">&times;</span>\n        </button>\n    </div>\n    <div class=\"modal-body\">\n        <strong class=\"text-warning\">This action cannot be undo.</strong><br>\n        <strong class=\"h5\">Are you sure to submit this timesheet to your supervisor?</strong><br>\n        After submission, this timesheet will not be editable anymore and this timesheet will be in pending state.<br>\n    </div>\n    <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary  m-1 px-3\" (click)=\"modalRef.hide()\">Cancel</button>\n        <button type=\"button\" class=\"btn btn-danger  m-1 px-3\" (click)=\"onSubmitConfrimed()\">Submit</button>\n    </div>\n</ng-template>");
 
 /***/ }),
 
@@ -61,7 +61,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"card mx-1\" *ngIf=\"timesheet\">\r\n    <div class=\"card-body\">\r\n        <h3>\r\n            <span class=\"display-4 mb-3 mr-3\">Edit Timesheet</span>\r\n            <span *ngIf=\"timesheet\" [className]=\"colorStatus(timesheet.status)\">{{timesheet.status}}</span>\r\n        </h3>\r\n\r\n        <div class=\"dropdown-divider \"></div>\r\n\r\n        <shared-timesheet [mode]=\"mode\" [timesheet]=\"timesheet\" [projectWp]=\"projectWp\"> </shared-timesheet>\r\n\r\n        <div class=\"dropdown-divider my-3\"></div>\r\n\r\n        <div class=\"d-flex flex-row-reverse\">\r\n            <button type=\"button\" class=\"btn btn-primary  m-1 px-3\" (click)=\"onSave($event)\">Save</button>\r\n            <button type=\"button\" class=\"btn btn-primary m-1 px-2\" (click)=\"onSubmit($event)\">Submit</button>\r\n        </div>\r\n    </div>\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"card mx-1\" *ngIf=\"timesheet\">\n    <div class=\"card-body\">\n        <h3>\n            <span class=\"display-4 mb-3 mr-3\">Edit Timesheet</span>\n            <span *ngIf=\"timesheet\" [className]=\"colorStatus(timesheet.status)\">{{timesheet.status}}</span>\n        </h3>\n\n        <div class=\"dropdown-divider \"></div>\n\n        <shared-timesheet [mode]=\"mode\" [timesheet]=\"timesheet\" [projectWp]=\"projectWp\"> </shared-timesheet>\n\n        <div class=\"dropdown-divider my-3\"></div>\n\n        <div class=\"d-flex flex-row-reverse\">\n            <button type=\"button\" class=\"btn btn-danger m-1 px-2\" (click)=\"onSubmit($event,template)\">Submit</button>\n            <button type=\"button\" class=\"btn btn-primary  m-1 px-3\" (click)=\"onSave($event)\">Save</button>\n            <button type=\"button\" class=\"btn btn-secondary  m-1 px-3\" (click)=\"onCancel($event)\">Cancel</button>\n        </div>\n    </div>\n</div>\n\n\n<!-- confirmation window -->\n<ng-template #template>\n    <div class=\"modal-header\">\n        <h4 class=\"modal-title pull-left\">Submit Timsheet</h4>\n        <button type=\"button\" class=\"close pull-right\" aria-label=\"Close\" (click)=\"modalRef.hide()\">\n            <span aria-hidden=\"true\">&times;</span>\n        </button>\n    </div>\n    <div class=\"modal-body\">\n        <strong class=\"text-warning\">This action cannot be undo.</strong><br>\n        <strong class=\"h5\">Are you sure to submit this timesheet to your supervisor?</strong><br>\n        After submission, this timesheet will not be editable anymore and this timesheet will be in pending state.<br>\n\n    </div>\n    <div class=\"modal-footer\">\n        <button type=\"button\" class=\"btn btn-secondary  m-1 px-3\" (click)=\"modalRef.hide()\">Cancel</button>\n        <button type=\"button\" class=\"btn btn-danger  m-1 px-3\" (click)=\"onSubmitConfrimed()\">Submit</button>\n    </div>\n</ng-template>");
 
 /***/ }),
 
@@ -74,7 +74,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"card mx-1\">\r\n    <div class=\"card-body\">\r\n        <h3 class=\"display-4 mb-3\">Timesheet List</h3>\r\n        <div class=\"dropdown-divider \"></div>\r\n\r\n        <div class=\"d-flex flex-row-reverse\">\r\n            <button type=\"button\" class=\"btn btn-primary my-2\" routerLink=\"creation\">Create</button>\r\n        </div>\r\n\r\n        <!-- Table goes here -->\r\n        <p-table [columns]=\"cols\" [value]=\"timesheets\">\r\n            <ng-template pTemplate=\"header\" let-columns>\r\n                <tr>\r\n                    <th *ngFor=\"let col of columns\" [pSortableColumn]=\"col.field\">\r\n                        {{col.header}}\r\n                        <p-sortIcon [field]=\"col.field\" ariaLabel=\"Activate to sort\"\r\n                            ariaLabelDesc=\"Activate to sort in descending order\"\r\n                            ariaLabelAsc=\"Activate to sort in ascending order\"></p-sortIcon>\r\n                    </th>\r\n                    <th>\r\n\r\n                    </th>\r\n                </tr>\r\n            </ng-template>\r\n            <ng-template pTemplate=\"body\" let-rowData let-columns=\"columns\">\r\n                <tr>\r\n                    <td>\r\n                        {{rowData.weekNumber}}\r\n                    </td>\r\n                    <td>\r\n                        {{rowData.versionNumber}}\r\n                    </td>\r\n                    <td>\r\n                        {{rowData.weekEndingIn | date:'yyyy-MM-dd' }}\r\n                    </td>\r\n                    <td>\r\n                        <h5><span [className]=\"colorStatus(rowData.status)\">{{rowData.status}}</span></h5>\r\n                    </td>\r\n\r\n                    <td>\r\n                        <button type=\"button\" class=\"btn btn-link btn-sm\"\r\n                            [routerLink]=\"['view', rowData.timesheetId]\">View</button>\r\n                        <button *ngIf=\"rowData.status==='Inprogress'\" type=\"button\" class=\"btn btn-link btn-sm\"\r\n                            [routerLink]=\"['edit', rowData.timesheetId]\">Edit</button>\r\n                    </td>\r\n                </tr>\r\n            </ng-template>\r\n        </p-table>\r\n\r\n\r\n    </div>\r\n\r\n\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"card mx-1\">\n    <div class=\"card-body\">\n        <h3 class=\"display-4 mb-3\">Timesheet List</h3>\n        <div class=\"dropdown-divider \"></div>\n\n        <div class=\"d-flex flex-row-reverse\">\n            <button type=\"button\" class=\"btn btn-primary my-2\" routerLink=\"creation\">Create</button>\n        </div>\n\n        <!-- Table goes here -->\n        <p-table [columns]=\"cols\" [value]=\"timesheets\">\n            <ng-template pTemplate=\"header\" let-columns>\n                <tr>\n                    <th *ngFor=\"let col of columns\" [pSortableColumn]=\"col.field\">\n                        {{col.header}}\n                        <p-sortIcon [field]=\"col.field\" ariaLabel=\"Activate to sort\"\n                            ariaLabelDesc=\"Activate to sort in descending order\"\n                            ariaLabelAsc=\"Activate to sort in ascending order\"></p-sortIcon>\n                    </th>\n                    <th>\n\n                    </th>\n                </tr>\n            </ng-template>\n            <ng-template pTemplate=\"body\" let-rowData let-columns=\"columns\">\n                <tr>\n                    <td>\n                        {{rowData.weekNumber}}\n                    </td>\n                    <td>\n                        {{rowData.versionNumber}}\n                    </td>\n                    <td>\n                        {{rowData.weekEndingIn | date:'yyyy-MM-dd' }}\n                    </td>\n                    <td>\n                        <h5><span [className]=\"colorStatus(rowData.status)\">{{rowData.status}}</span></h5>\n                    </td>\n\n                    <td>\n                        <button type=\"button\" class=\"btn btn-link btn-sm\"\n                            [routerLink]=\"['view', rowData.timesheetId]\">View</button>\n                        <button *ngIf=\"rowData.status==='Inprogress'\" type=\"button\" class=\"btn btn-link btn-sm\"\n                            [routerLink]=\"['edit', rowData.timesheetId]\">Edit</button>\n                    </td>\n                </tr>\n            </ng-template>\n        </p-table>\n\n\n    </div>\n\n\n</div>");
 
 /***/ }),
 
@@ -87,7 +87,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"card mx-1\">\r\n    <div class=\"card-body\" *ngIf=\"timesheet\">\r\n        <h3>\r\n            <span class=\"display-4 mb-3 mr-3\">Timesheet Detail</span>\r\n            <span *ngIf=\"timesheet\" [className]=\"colorStatus(timesheet.status)\">{{timesheet.status}}</span>\r\n        </h3>\r\n        <!-- alert content -->\r\n        <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\" *ngIf=\"timesheet.status == 'Rejected'\">\r\n            <h4 class=\"alert-heading\">Rejected!</h4>\r\n            <p>This timesheet is rejected based on the following reason. Please click Edit button to modifty this\r\n                timesheet.</p>\r\n            <hr>\r\n            <p class=\"mb-0\">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>\r\n        </div>\r\n\r\n        <div class=\"dropdown-divider \"></div>\r\n\r\n        <shared-timesheet *ngIf=\"timesheet\" [mode]=\"mode\" [timesheet]=\"timesheet\">\r\n        </shared-timesheet>\r\n\r\n        <div class=\"dropdown-divider my-3\"></div>\r\n\r\n        <div class=\"d-flex flex-row-reverse\">\r\n            <button type=\"button\" class=\"btn btn-primary m-1 px-2\" *ngIf=\"timesheet.status == 'Rejected'\"\r\n                [routerLink]=\"['/content/timesheets/editRejectedTimesheet', timesheet.timesheetId]\">\r\n                Create New Version</button>\r\n            <button type=\"button\" class=\"btn btn-secondary  m-1 px-3\" routerLink=\"/content/timesheets\">Cancel</button>\r\n        </div>\r\n    </div>\r\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"card mx-1\">\n    <div class=\"card-body\" *ngIf=\"timesheet\">\n        <h3>\n            <span class=\"display-4 mb-3 mr-3\">Timesheet Detail</span>\n            <span *ngIf=\"timesheet\" [className]=\"colorStatus(timesheet.status)\">{{timesheet.status}}</span>\n        </h3>\n        <!-- alert content -->\n        <div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\" *ngIf=\"timesheet.status == 'Rejected'\">\n            <h4 class=\"alert-heading\">Rejected!</h4>\n            <p>This timesheet is rejected based on the following reason. Please click Edit button to modifty this\n                timesheet.</p>\n            <hr>\n            <p class=\"mb-0\">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>\n        </div>\n\n        <div class=\"dropdown-divider \"></div>\n\n        <shared-timesheet *ngIf=\"timesheet\" [mode]=\"mode\" [timesheet]=\"timesheet\">\n        </shared-timesheet>\n\n        <div class=\"dropdown-divider my-3\"></div>\n\n        <div class=\"d-flex flex-row-reverse\">\n            <button type=\"button\" class=\"btn btn-primary m-1 px-2\" *ngIf=\"timesheet.status == 'Rejected'\"\n                [routerLink]=\"['/content/timesheets/editRejectedTimesheet', timesheet.timesheetId]\">\n                Create New Version</button>\n            <button type=\"button\" class=\"btn btn-secondary  m-1 px-3\" routerLink=\"/content/timesheets\">Cancel</button>\n        </div>\n    </div>\n</div>");
 
 /***/ }),
 
@@ -140,6 +140,8 @@ let TimesheetService = class TimesheetService {
     }
     postTimesheet(ts) {
         let url = this.baseUrl + `api/timesheets`;
+        console.log('postTimesheet');
+        console.log(JSON.stringify(ts));
         return this.http
             .post(url, ts, this.httpOptions)
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_5__["catchError"])(this.handleError("postProject", ts)));
@@ -160,7 +162,7 @@ let TimesheetService = class TimesheetService {
             .get(url, this.httpOptions).pipe();
     }
     getPendingTimesheets(aprId) {
-        let url = this.baseUrl + `api/timesheets/getAllPendingTimesheet/${aprId}`;
+        let url = this.baseUrl + `api/Timesheets/GetTimesheetsByApproverId/${aprId}`;
         return this.http
             .get(url, this.httpOptions).pipe();
     }
@@ -211,7 +213,7 @@ TimesheetService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21vZHVsZXMvdGltZXNoZWV0cy9wYWdlcy90aW1lc2hlZXQtYXBwcm92ZXItdmlldy1saXN0L3RpbWVzaGVldC1hcHByb3Zlci12aWV3LWxpc3QuY29tcG9uZW50LmNzcyJ9 */");
+/* harmony default export */ __webpack_exports__["default"] = (".ui-table.ui-table-cars .ui-table-caption.ui-widget-header {\n    border: 0 none;\n    padding: 12px;\n    text-align: left;\n    font-size: 20px;\n}\n\n.ui-column-filter {\n    margin-top: 1em;\n}\n\n.ui-column-filter .ui-multiselect-label {\n    font-weight: 500;\n}\n\n.ui-table.ui-table-cars .ui-table-thead > tr > th {\n    border: 0 none;\n    text-align: left;\n}\n\n.ui-table-globalfilter-container {\n    float: right;\n    display: inline;\n}\n\n.ui-table.ui-table-cars .ui-table-tbody > tr > td {\n    border: 0 none;\n}\n\n.ui-table.ui-table-cars .ui-table-tbody .ui-column-title {\n    font-size: 16px;\n}\n\n.ui-table.ui-table-cars .ui-paginator {\n    border: 0 none;\n    padding: 1em;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvbW9kdWxlcy90aW1lc2hlZXRzL3BhZ2VzL3RpbWVzaGVldC1hcHByb3Zlci12aWV3LWxpc3QvdGltZXNoZWV0LWFwcHJvdmVyLXZpZXctbGlzdC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksY0FBYztJQUNkLGFBQWE7SUFDYixnQkFBZ0I7SUFDaEIsZUFBZTtBQUNuQjs7QUFFQTtJQUNJLGVBQWU7QUFDbkI7O0FBRUE7SUFDSSxnQkFBZ0I7QUFDcEI7O0FBRUE7SUFDSSxjQUFjO0lBQ2QsZ0JBQWdCO0FBQ3BCOztBQUVBO0lBQ0ksWUFBWTtJQUNaLGVBQWU7QUFDbkI7O0FBRUE7SUFDSSxjQUFjO0FBQ2xCOztBQUVBO0lBQ0ksZUFBZTtBQUNuQjs7QUFFQTtJQUNJLGNBQWM7SUFDZCxZQUFZO0FBQ2hCIiwiZmlsZSI6InNyYy9hcHAvbW9kdWxlcy90aW1lc2hlZXRzL3BhZ2VzL3RpbWVzaGVldC1hcHByb3Zlci12aWV3LWxpc3QvdGltZXNoZWV0LWFwcHJvdmVyLXZpZXctbGlzdC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnVpLXRhYmxlLnVpLXRhYmxlLWNhcnMgLnVpLXRhYmxlLWNhcHRpb24udWktd2lkZ2V0LWhlYWRlciB7XG4gICAgYm9yZGVyOiAwIG5vbmU7XG4gICAgcGFkZGluZzogMTJweDtcbiAgICB0ZXh0LWFsaWduOiBsZWZ0O1xuICAgIGZvbnQtc2l6ZTogMjBweDtcbn1cblxuLnVpLWNvbHVtbi1maWx0ZXIge1xuICAgIG1hcmdpbi10b3A6IDFlbTtcbn1cblxuLnVpLWNvbHVtbi1maWx0ZXIgLnVpLW11bHRpc2VsZWN0LWxhYmVsIHtcbiAgICBmb250LXdlaWdodDogNTAwO1xufVxuXG4udWktdGFibGUudWktdGFibGUtY2FycyAudWktdGFibGUtdGhlYWQgPiB0ciA+IHRoIHtcbiAgICBib3JkZXI6IDAgbm9uZTtcbiAgICB0ZXh0LWFsaWduOiBsZWZ0O1xufVxuXG4udWktdGFibGUtZ2xvYmFsZmlsdGVyLWNvbnRhaW5lciB7XG4gICAgZmxvYXQ6IHJpZ2h0O1xuICAgIGRpc3BsYXk6IGlubGluZTtcbn1cblxuLnVpLXRhYmxlLnVpLXRhYmxlLWNhcnMgLnVpLXRhYmxlLXRib2R5ID4gdHIgPiB0ZCB7XG4gICAgYm9yZGVyOiAwIG5vbmU7XG59XG5cbi51aS10YWJsZS51aS10YWJsZS1jYXJzIC51aS10YWJsZS10Ym9keSAudWktY29sdW1uLXRpdGxlIHtcbiAgICBmb250LXNpemU6IDE2cHg7XG59XG5cbi51aS10YWJsZS51aS10YWJsZS1jYXJzIC51aS1wYWdpbmF0b3Ige1xuICAgIGJvcmRlcjogMCBub25lO1xuICAgIHBhZGRpbmc6IDFlbTtcbn0iXX0= */");
 
 /***/ }),
 
@@ -246,7 +248,7 @@ let TimesheetApproverViewListComponent = class TimesheetApproverViewListComponen
             { field: 'approver', header: 'Approver' },
             { field: 'weekNumber', header: 'Week' },
             { field: 'versionNumber', header: 'Version' },
-            { field: 'weekEnding', header: 'week Ending' },
+            { field: 'weekEndingIn', header: 'Week Ending' },
             { field: 'status', header: 'Status' }
         ];
         this.populateTimesheets();
@@ -262,7 +264,7 @@ let TimesheetApproverViewListComponent = class TimesheetApproverViewListComponen
                     'supervisor': `${ts.owner.supervisor.empFirstName} ${ts.owner.supervisor.empLastName}`,
                     'weekNumber': ts.weekNumber,
                     'versionNumber': ts.versionNumber,
-                    'weekEnding': ts.weekEnding,
+                    'weekEndingIn': this.toDate(ts.weekEndingIn),
                     'status': ts.status,
                     'timesheetId': ts.timesheetId
                 });
@@ -277,6 +279,10 @@ let TimesheetApproverViewListComponent = class TimesheetApproverViewListComponen
             case 'Pending': return 'badge badge-warning';
             case 'Inprogress': return 'badge badge-info';
         }
+    }
+    toDate(str) {
+        let date = new Date(str);
+        return date.toLocaleDateString();
     }
 };
 TimesheetApproverViewListComponent.ctorParameters = () => [
@@ -419,6 +425,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_core_service_authentication_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/core/service/authentication.service */ "./src/app/core/service/authentication.service.ts");
 /* harmony import */ var src_app_core_service_project_project_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/core/service/project/project.service */ "./src/app/core/service/project/project.service.ts");
 /* harmony import */ var src_app_shared_model_MODE__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/shared/model/MODE */ "./src/app/shared/model/MODE.ts");
+/* harmony import */ var ngx_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ngx-bootstrap */ "./node_modules/ngx-bootstrap/esm5/ngx-bootstrap.js");
+/* harmony import */ var src_app_core_service_my_toast_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/app/core/service/my-toast.service */ "./src/app/core/service/my-toast.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+
+
+
 
 
 
@@ -429,9 +441,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let TimesheetCreationComponent = class TimesheetCreationComponent {
-    constructor(timesheetService, projectService, authenticationService) {
+    constructor(timesheetService, projectService, modalService, myToastService, router, authenticationService) {
         this.timesheetService = timesheetService;
         this.projectService = projectService;
+        this.modalService = modalService;
+        this.myToastService = myToastService;
+        this.router = router;
         this.authenticationService = authenticationService;
         this.dataReady = false;
         this.mode = src_app_shared_model_MODE__WEBPACK_IMPORTED_MODULE_8__["MODE"].Create;
@@ -442,25 +457,35 @@ let TimesheetCreationComponent = class TimesheetCreationComponent {
         this.setEmptyTimesheetData();
         this.prepareprojectWp();
     }
-    onSubmit(e) {
+    onSubmitConfrimed() {
         this.timesheet.status = src_app_shared_model_TimesheetStatus__WEBPACK_IMPORTED_MODULE_4__["TimesheetStatus"].pending;
-        this.timesheetService.postTimesheet(this.timesheet).subscribe();
+        this.timesheetService.postTimesheet(this.timesheet).subscribe(_ => {
+            this.modalRef.hide();
+            this.myToastService.addSuccess('Timesheet Sumitted Successfully', `Timesheet of week ${this.timesheet.weekEndingIn} is sumitted to your supervisor.`);
+            this.router.navigate([`/content/timesheets`]);
+        });
+    }
+    onSubmit(e, template) {
+        this.modalRef = this.modalService.show(template);
     }
     onSave(e) {
         console.log(`post timesheet:`);
         console.log(JSON.stringify(this.timesheet));
-        this.timesheetService.postTimesheet(this.timesheet).subscribe();
+        this.timesheetService.postTimesheet(this.timesheet).subscribe(_ => {
+            this.myToastService.addInfo(`Timesheet Updated`, `Timesheet of week ${this.timesheet.weekEndingIn} saved on ${new Date().toLocaleString()}`);
+            this.router.navigate([`/content/timesheets`]);
+        });
     }
     setEmptyTimesheetData() {
         this.timesheetService
             .getAvaliableTimesheetId()
             .subscribe(result => {
             var newTimesheet = new src_app_shared_model_Timesheet__WEBPACK_IMPORTED_MODULE_2__["Timesheet"]();
-            var weekending = new Date();
-            var shit = 5 - weekending.getDay();
-            weekending.setDate(weekending.getDate() + shit);
-            newTimesheet.weekEnding = this.dateFormater(weekending);
-            newTimesheet.weekNumber = this.getWeek(weekending);
+            var weekEndingIn = new Date();
+            var shit = 5 - weekEndingIn.getDay();
+            weekEndingIn.setDate(weekEndingIn.getDate() + shit);
+            newTimesheet.weekEndingIn = this.dateFormater(weekEndingIn);
+            newTimesheet.weekNumber = this.getWeek(weekEndingIn);
             console.log(result);
             // init attirbutes
             newTimesheet.timesheetId = result.id;
@@ -510,6 +535,9 @@ let TimesheetCreationComponent = class TimesheetCreationComponent {
 TimesheetCreationComponent.ctorParameters = () => [
     { type: src_app_core_service_timesheet_timesheet_service__WEBPACK_IMPORTED_MODULE_5__["TimesheetService"] },
     { type: src_app_core_service_project_project_service__WEBPACK_IMPORTED_MODULE_7__["ProjectService"] },
+    { type: ngx_bootstrap__WEBPACK_IMPORTED_MODULE_9__["BsModalService"] },
+    { type: src_app_core_service_my_toast_service__WEBPACK_IMPORTED_MODULE_10__["MyToastService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_11__["Router"] },
     { type: src_app_core_service_authentication_service__WEBPACK_IMPORTED_MODULE_6__["AuthenticationService"] }
 ];
 TimesheetCreationComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -555,6 +583,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_core_service_authentication_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/core/service/authentication.service */ "./src/app/core/service/authentication.service.ts");
 /* harmony import */ var src_app_shared_model_MODE__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/shared/model/MODE */ "./src/app/shared/model/MODE.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var ngx_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ngx-bootstrap */ "./node_modules/ngx-bootstrap/esm5/ngx-bootstrap.js");
+/* harmony import */ var src_app_core_service_my_toast_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/core/service/my-toast.service */ "./src/app/core/service/my-toast.service.ts");
+
+
 
 
 
@@ -564,10 +596,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let TimesheetEditVersionComponent = class TimesheetEditVersionComponent {
-    constructor(route, timesheetService, projectService, authenticationService) {
+    constructor(route, timesheetService, projectService, modalService, myToastService, router, authenticationService) {
         this.route = route;
         this.timesheetService = timesheetService;
         this.projectService = projectService;
+        this.modalService = modalService;
+        this.myToastService = myToastService;
+        this.router = router;
         this.authenticationService = authenticationService;
         this.mode = src_app_shared_model_MODE__WEBPACK_IMPORTED_MODULE_6__["MODE"].Update;
         this.timesheet = null;
@@ -583,22 +618,49 @@ let TimesheetEditVersionComponent = class TimesheetEditVersionComponent {
         });
         this.prepareprojectWp();
     }
-    onSubmit(e) {
+    // onSubmit(e: any) {
+    //   // increment the version. since it is using the old timesheet to create a new one
+    //   this.timesheet.versionNumber += 1;
+    //   this.timesheet.status = TimesheetStatus.pending;
+    //   this.timesheetService.putTimesheet(this.timesheet).subscribe(_ => {
+    //     // TODO : nagvigate to this page "/content/timesheets"
+    //   });
+    // }
+    // onSave(e: any) {
+    //   // increment the version. since it is using the old timesheet to create a new one
+    //   this.timesheet.versionNumber += 1;
+    //   this.timesheet.status = TimesheetStatus.inProgress;
+    //   console.log(`post timesheet new version:`);
+    //   console.log(JSON.stringify(this.timesheet));
+    //   this.timesheetService.putTimesheet(this.timesheet).subscribe(_ => {
+    //     // TODO : nagvigate to this page "/content/timesheets"
+    //   });
+    // }
+    onSubmitConfrimed() {
         // increment the version. since it is using the old timesheet to create a new one
         this.timesheet.versionNumber += 1;
         this.timesheet.status = src_app_shared_model_TimesheetStatus__WEBPACK_IMPORTED_MODULE_2__["TimesheetStatus"].pending;
-        this.timesheetService.putTimesheet(this.timesheet).subscribe(_ => {
-            // TODO : nagvigate to this page "/content/timesheets"
+        this.timesheetService.postTimesheet(this.timesheet).subscribe(_ => {
+            this.modalRef.hide();
+            this.myToastService.addSuccess('Timesheet Sumitted Successfully', `Timesheet of week ${this.timesheet.weekEndingIn} Version: ${this.timesheet.versionNumber} is sumitted to your supervisor.`);
+            this.router.navigate([`/content/timesheets`]);
         });
+    }
+    onSubmit(e, template) {
+        this.modalRef = this.modalService.show(template);
+    }
+    onCancel(e) {
+        this.router.navigate([`/content/timesheets`]);
     }
     onSave(e) {
         // increment the version. since it is using the old timesheet to create a new one
         this.timesheet.versionNumber += 1;
         this.timesheet.status = src_app_shared_model_TimesheetStatus__WEBPACK_IMPORTED_MODULE_2__["TimesheetStatus"].inProgress;
-        console.log(`post timesheet:`);
+        console.log(`post timesheet new version:`);
         console.log(JSON.stringify(this.timesheet));
-        this.timesheetService.putTimesheet(this.timesheet).subscribe(_ => {
-            // TODO : nagvigate to this page "/content/timesheets"
+        this.timesheetService.postTimesheet(this.timesheet).subscribe(_ => {
+            this.myToastService.addInfo(`Timesheet Updated in Version ${this.timesheet.versionNumber}`, `Timesheet of week ${this.timesheet.weekEndingIn} saved on ${new Date().toLocaleString()}`);
+            this.router.navigate([`/content/timesheets`]);
         });
     }
     prepareprojectWp() {
@@ -647,6 +709,9 @@ TimesheetEditVersionComponent.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_7__["ActivatedRoute"] },
     { type: src_app_core_service_timesheet_timesheet_service__WEBPACK_IMPORTED_MODULE_3__["TimesheetService"] },
     { type: src_app_core_service_project_project_service__WEBPACK_IMPORTED_MODULE_4__["ProjectService"] },
+    { type: ngx_bootstrap__WEBPACK_IMPORTED_MODULE_8__["BsModalService"] },
+    { type: src_app_core_service_my_toast_service__WEBPACK_IMPORTED_MODULE_9__["MyToastService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_7__["Router"] },
     { type: src_app_core_service_authentication_service__WEBPACK_IMPORTED_MODULE_5__["AuthenticationService"] }
 ];
 TimesheetEditVersionComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -692,6 +757,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_app_core_service_authentication_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/core/service/authentication.service */ "./src/app/core/service/authentication.service.ts");
 /* harmony import */ var src_app_shared_model_MODE__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/shared/model/MODE */ "./src/app/shared/model/MODE.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var src_app_core_service_my_toast_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/core/service/my-toast.service */ "./src/app/core/service/my-toast.service.ts");
+/* harmony import */ var ngx_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ngx-bootstrap */ "./node_modules/ngx-bootstrap/esm5/ngx-bootstrap.js");
+
+
 
 
 
@@ -701,10 +770,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let TimesheetEditComponent = class TimesheetEditComponent {
-    constructor(route, timesheetService, projectService, authenticationService) {
+    constructor(route, timesheetService, projectService, modalService, myToastService, router, authenticationService) {
         this.route = route;
         this.timesheetService = timesheetService;
         this.projectService = projectService;
+        this.modalService = modalService;
+        this.myToastService = myToastService;
+        this.router = router;
         this.authenticationService = authenticationService;
         this.mode = src_app_shared_model_MODE__WEBPACK_IMPORTED_MODULE_6__["MODE"].Update;
         this.timesheet = null;
@@ -720,14 +792,27 @@ let TimesheetEditComponent = class TimesheetEditComponent {
         });
         this.prepareprojectWp();
     }
-    onSubmit(e) {
+    onSubmitConfrimed() {
         this.timesheet.status = src_app_shared_model_TimesheetStatus__WEBPACK_IMPORTED_MODULE_2__["TimesheetStatus"].pending;
-        this.timesheetService.postTimesheet(this.timesheet).subscribe();
+        this.timesheetService.postTimesheet(this.timesheet).subscribe(_ => {
+            this.modalRef.hide();
+            this.myToastService.addSuccess('Timesheet Sumitted Successfully', `Timesheet of week ${this.timesheet.weekEndingIn} is sumitted to your supervisor.`);
+            this.router.navigate([`/content/timesheets`]);
+        });
+    }
+    onSubmit(e, template) {
+        this.modalRef = this.modalService.show(template);
+    }
+    onCancel(e) {
+        this.router.navigate([`/content/timesheets`]);
     }
     onSave(e) {
         console.log(`post timesheet:`);
         console.log(JSON.stringify(this.timesheet));
-        this.timesheetService.postTimesheet(this.timesheet).subscribe();
+        this.timesheetService.postTimesheet(this.timesheet).subscribe(_ => {
+            this.myToastService.addInfo(`Timesheet Updated`, `Timesheet of week ${this.timesheet.weekEndingIn} saved on ${new Date().toLocaleString()}`);
+            this.router.navigate([`/content/timesheets`]);
+        });
     }
     prepareprojectWp() {
         this.projectService.getProjectWpDropdown(this.currentUser.employeeId).subscribe(result => {
@@ -775,6 +860,9 @@ TimesheetEditComponent.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_7__["ActivatedRoute"] },
     { type: src_app_core_service_timesheet_timesheet_service__WEBPACK_IMPORTED_MODULE_3__["TimesheetService"] },
     { type: src_app_core_service_project_project_service__WEBPACK_IMPORTED_MODULE_4__["ProjectService"] },
+    { type: ngx_bootstrap__WEBPACK_IMPORTED_MODULE_9__["BsModalService"] },
+    { type: src_app_core_service_my_toast_service__WEBPACK_IMPORTED_MODULE_8__["MyToastService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_7__["Router"] },
     { type: src_app_core_service_authentication_service__WEBPACK_IMPORTED_MODULE_5__["AuthenticationService"] }
 ];
 TimesheetEditComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -1066,6 +1154,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_timesheet_approver_view_list_timesheet_approver_view_list_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./pages/timesheet-approver-view-list/timesheet-approver-view-list.component */ "./src/app/modules/timesheets/pages/timesheet-approver-view-list/timesheet-approver-view-list.component.ts");
 /* harmony import */ var _pages_timesheet_approver_view_timesheet_approver_view_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./pages/timesheet-approver-view/timesheet-approver-view.component */ "./src/app/modules/timesheets/pages/timesheet-approver-view/timesheet-approver-view.component.ts");
 /* harmony import */ var _pages_timesheet_edit_version_timesheet_edit_version_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./pages/timesheet-edit-version/timesheet-edit-version.component */ "./src/app/modules/timesheets/pages/timesheet-edit-version/timesheet-edit-version.component.ts");
+/* harmony import */ var primeng_inputtext__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! primeng/inputtext */ "./node_modules/primeng/fesm2015/primeng-inputtext.js");
+/* harmony import */ var primeng_button__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! primeng/button */ "./node_modules/primeng/fesm2015/primeng-button.js");
+/* harmony import */ var primeng_dialog__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! primeng/dialog */ "./node_modules/primeng/fesm2015/primeng-dialog.js");
+/* harmony import */ var ngx_bootstrap__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ngx-bootstrap */ "./node_modules/ngx-bootstrap/esm5/ngx-bootstrap.js");
+
+
+
+
 
 
 
@@ -1100,32 +1196,15 @@ TimesheetsModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _timesheets_routing_module__WEBPACK_IMPORTED_MODULE_3__["TimesheetsRoutingModule"],
             // primeng
             primeng_table__WEBPACK_IMPORTED_MODULE_8__["TableModule"],
+            primeng_inputtext__WEBPACK_IMPORTED_MODULE_14__["InputTextModule"],
+            primeng_dialog__WEBPACK_IMPORTED_MODULE_16__["DialogModule"],
+            primeng_button__WEBPACK_IMPORTED_MODULE_15__["ButtonModule"],
+            // bootstrap
+            ngx_bootstrap__WEBPACK_IMPORTED_MODULE_17__["ModalModule"].forRoot(),
         ]
     })
 ], TimesheetsModule);
 
-
-
-/***/ }),
-
-/***/ "./src/app/shared/model/MODE.ts":
-/*!**************************************!*\
-  !*** ./src/app/shared/model/MODE.ts ***!
-  \**************************************/
-/*! exports provided: MODE */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MODE", function() { return MODE; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-
-var MODE;
-(function (MODE) {
-    MODE["Read"] = "read";
-    MODE["Create"] = "create";
-    MODE["Update"] = "update";
-})(MODE || (MODE = {}));
 
 
 /***/ }),
@@ -1148,6 +1227,8 @@ class Timesheet {
         this.timesheetRows = [];
         this.signature = null;
         this.comment = '';
+        this.flexTime = 0;
+        this.overTime = 0;
     }
 }
 
