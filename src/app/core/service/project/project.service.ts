@@ -98,11 +98,13 @@ export class ProjectService {
       .pipe(catchError(this.handleError("postProject", body)));
   }
 
-  getProjects(empId: any): Observable<Project[]> {
-    let url = this.baseUrl + `api/projects/getAllProjectsByEmployeeId/${empId}`;
+  getProjects(empId: any): Observable<any> {
+    let url = this.baseUrl + `api/projects/getProjectsByEmpId/${empId}`;
     return this.http
-      .get<Project[]>(url)
-      .pipe()
+      .get<any>(url)
+      .pipe(
+        map(res => res.projectList)
+      )
   }
 
   getProject(id): Observable<Project> {
