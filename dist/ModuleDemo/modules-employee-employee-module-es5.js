@@ -784,6 +784,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         value: function openModal(id, template) {
           var _this5 = this;
 
+          console.log(id);
           this.employeeService.getEmployee(id).subscribe(function (emp) {
             _this5.selectedEmp = emp;
             _this5.modalRef = _this5.modalService.show(template);

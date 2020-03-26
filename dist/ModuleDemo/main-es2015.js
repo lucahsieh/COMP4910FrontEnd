@@ -110,7 +110,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<nav class=\"navbar navbar-dark bg-theme\">\n    <div>\n        <span class=\"navbar-brand mb-0 h1 title\">\n            Gerg's Beans\n        </span>\n        <span class=\"navbar-text\" *ngIf=\"currentUser\">\n            {{currentUser.credentialId}}\n        </span>\n    </div>\n    <div *ngIf=\"currentUser\">\n        <form class=\"form-inline\">\n            <i class=\"material-icons navbar-brand\" (click)=\"goToEmployeePage()\">\n                account_circle\n            </i>\n            <h4 class=\"navbar-brand  mb-0 h4\">\n                {{currentUser.firstName}} {{currentUser.lastName}}\n            </h4>\n            <button class=\"btn btn-outline-light\" type=\"button\" (click)=\"logout()\">Logout</button>\n        </form>\n    </div>\n</nav>");
+/* harmony default export */ __webpack_exports__["default"] = ("<nav class=\"navbar navbar-dark bg-theme\">\n    <div>\n        <span class=\"navbar-brand mb-0 h1 title\">\n            Gerg's Beans\n        </span>\n        <span class=\"navbar-text\" *ngIf=\"currentUser\">\n            {{currentUser.credentialId}}\n        </span>\n        <span class=\"navbar-text\">\n            fix version v1.0.1\n        </span>\n\n    </div>\n    <div *ngIf=\"currentUser\">\n        <form class=\"form-inline\">\n            <i class=\"material-icons navbar-brand\" (click)=\"goToEmployeePage()\">\n                account_circle\n            </i>\n            <h4 class=\"navbar-brand  mb-0 h4\">\n                {{currentUser.firstName}} {{currentUser.lastName}}\n            </h4>\n            <button class=\"btn btn-outline-light\" type=\"button\" (click)=\"logout()\">Logout</button>\n        </form>\n    </div>\n</nav>");
 
 /***/ }),
 
@@ -2255,10 +2255,10 @@ let ProjectService = class ProjectService {
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["catchError"])(this.handleError("postProject", body)));
     }
     getProjects(empId) {
-        let url = this.baseUrl + `api/projects/getAllProjectsByEmployeeId/${empId}`;
+        let url = this.baseUrl + `api/projects/getProjectsByEmpId/${empId}`;
         return this.http
             .get(url)
-            .pipe();
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(res => res.projectList));
     }
     getProject(id) {
         let url = this.baseUrl + `api/projects/${id}`;

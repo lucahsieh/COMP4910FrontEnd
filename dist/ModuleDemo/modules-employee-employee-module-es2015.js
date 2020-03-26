@@ -454,6 +454,7 @@ let EmployeeChangeApproverComponent = class EmployeeChangeApproverComponent {
         });
     }
     openModal(id, template) {
+        console.log(id);
         this.employeeService.getEmployee(id).subscribe(emp => {
             this.selectedEmp = emp;
             this.modalRef = this.modalService.show(template);
