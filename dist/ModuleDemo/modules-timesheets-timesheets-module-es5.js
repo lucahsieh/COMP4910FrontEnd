@@ -121,7 +121,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<div class=\"card mx-1\">\n    <div class=\"card-body\">\n        <h3 class=\"display-4 mb-3\">Timesheet List</h3>\n        <div class=\"dropdown-divider \"></div>\n\n        <div class=\"d-flex flex-row-reverse\">\n            <button type=\"button\" class=\"btn btn-primary my-2\" routerLink=\"creation\">Create</button>\n        </div>\n\n        <!-- Table goes here -->\n        <p-table [columns]=\"cols\" [value]=\"timesheets\">\n            <ng-template pTemplate=\"header\" let-columns>\n                <tr>\n                    <th *ngFor=\"let col of columns\" [pSortableColumn]=\"col.field\">\n                        {{col.header}}\n                        <p-sortIcon [field]=\"col.field\" ariaLabel=\"Activate to sort\"\n                            ariaLabelDesc=\"Activate to sort in descending order\"\n                            ariaLabelAsc=\"Activate to sort in ascending order\"></p-sortIcon>\n                    </th>\n                    <th>\n\n                    </th>\n                </tr>\n            </ng-template>\n            <ng-template pTemplate=\"body\" let-rowData let-columns=\"columns\">\n                <tr>\n                    <td>\n                        {{rowData.weekNumber}}\n                    </td>\n                    <td>\n                        {{rowData.versionNumber}}\n                    </td>\n                    <td>\n                        {{rowData.weekEndingIn | date:'yyyy-MM-dd' }}\n                    </td>\n                    <td>\n                        <h5><span [className]=\"colorStatus(rowData.status)\">{{rowData.status}}</span></h5>\n                    </td>\n\n                    <td>\n                        <button type=\"button\" class=\"btn btn-link btn-sm\"\n                            [routerLink]=\"['view', rowData.timesheetId]\">View</button>\n                        <button *ngIf=\"rowData.status==='Inprogress'\" type=\"button\" class=\"btn btn-link btn-sm\"\n                            [routerLink]=\"['edit', rowData.timesheetId]\">Edit</button>\n                    </td>\n                </tr>\n            </ng-template>\n        </p-table>\n\n\n    </div>\n\n\n</div>";
+    __webpack_exports__["default"] = "<div class=\"card mx-1\">\n    <div class=\"card-body\">\n        <h3 class=\"display-4 mb-3\">Timesheet List</h3>\n        <div class=\"dropdown-divider \"></div>\n\n        <div class=\"d-flex flex-row-reverse\">\n            <button type=\"button\" class=\"btn btn-primary my-2\" routerLink=\"creation\">Create</button>\n        </div>\n\n        <!-- Table goes here -->\n        <p-table [columns]=\"cols\" [value]=\"timesheets\">\n            <ng-template pTemplate=\"header\" let-columns>\n                <tr>\n                    <th *ngFor=\"let col of columns\" [pSortableColumn]=\"col.field\">\n                        {{col.header}}\n                        <p-sortIcon [field]=\"col.field\" ariaLabel=\"Activate to sort\"\n                            ariaLabelDesc=\"Activate to sort in descending order\"\n                            ariaLabelAsc=\"Activate to sort in ascending order\"></p-sortIcon>\n                    </th>\n                    <th>\n\n                    </th>\n                </tr>\n            </ng-template>\n            <ng-template pTemplate=\"body\" let-rowData let-columns=\"columns\">\n                <tr>\n                    <td>\n                        {{rowData.weekNumber}}\n                    </td>\n                    <td>\n                        {{rowData.versionNumber}}\n                    </td>\n                    <td>\n                        {{rowData.weekEndingIn | date:'yyyy-MM-dd' }}\n                    </td>\n                    <td>\n                        <h5><span [className]=\"colorStatus(rowData.status)\">{{rowData.status}}</span></h5>\n                    </td>\n\n                    <td>\n                        <button type=\"button\" class=\"btn btn-link btn-sm\"\n                            [routerLink]=\"['view', rowData.timesheetId]\">View</button>\n                        <button *ngIf=\"rowData.status==='inprogress'\" type=\"button\" class=\"btn btn-link btn-sm\"\n                            [routerLink]=\"['edit', rowData.timesheetId]\">Edit</button>\n                    </td>\n                </tr>\n            </ng-template>\n        </p-table>\n\n\n    </div>\n\n\n</div>";
     /***/
   },
 
@@ -456,17 +456,17 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "colorStatus",
         value: function colorStatus(status) {
-          switch (status) {
-            case 'Approved':
+          switch (status.toLowerCase()) {
+            case 'approved':
               return 'badge badge-success';
 
-            case 'Rejected':
+            case 'rejected':
               return 'badge badge-danger';
 
-            case 'Pending':
+            case 'pending':
               return 'badge badge-warning';
 
-            case 'Inprogress':
+            case 'inprogress':
               return 'badge badge-info';
           }
         }
@@ -790,6 +790,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var _angular_router__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(
     /*! @angular/router */
     "./node_modules/@angular/router/fesm2015/router.js");
+    /* harmony import */
+
+
+    var src_app_shared_components_timesheet_timesheet_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(
+    /*! src/app/shared/components/timesheet/timesheet.component */
+    "./src/app/shared/components/timesheet/timesheet.component.ts");
 
     var TimesheetCreationComponent =
     /*#__PURE__*/
@@ -832,37 +838,47 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "onSubmit",
         value: function onSubmit(e, template) {
+          this.timesheetCmp.validatePage();
+
+          if (!this.timesheetCmp.validatePage()) {
+            console.log('not pass');
+            return;
+          }
+
           this.modalRef = this.modalService.show(template);
         }
       }, {
         key: "onSave",
         value: function onSave(e) {
-          var _this7 = this;
+          this.timesheetCmp.validatePage();
+
+          if (!this.timesheetCmp.validatePage()) {
+            console.log('not pass');
+            return;
+          }
 
           console.log("post timesheet:");
-          console.log(JSON.stringify(this.timesheet));
-          this.timesheetService.postTimesheet(this.timesheet).subscribe(function (_) {
-            _this7.myToastService.addInfo("Timesheet Updated", "Timesheet of week ".concat(_this7.timesheet.weekEndingIn, " saved on ").concat(new Date().toLocaleString()));
-
-            _this7.router.navigate(["/content/timesheets"]);
-          });
+          console.log(JSON.stringify(this.timesheet)); // this.timesheetService.postTimesheet(this.timesheet).subscribe(_ => {
+          //   this.myToastService.addInfo(`Timesheet Updated`, `Timesheet of week ${this.timesheet.weekEndingIn} saved on ${new Date().toLocaleString()}`);
+          //   this.router.navigate([`/content/timesheets`]);
+          // });
         }
       }, {
         key: "setEmptyTimesheetData",
         value: function setEmptyTimesheetData() {
-          var _this8 = this;
+          var _this7 = this;
 
           this.timesheetService.getAvaliableTimesheetId().subscribe(function (result) {
             var newTimesheet = new src_app_shared_model_Timesheet__WEBPACK_IMPORTED_MODULE_2__["Timesheet"]();
             var weekEndingIn = new Date();
             var shit = 5 - weekEndingIn.getDay();
             weekEndingIn.setDate(weekEndingIn.getDate() + shit);
-            newTimesheet.weekEndingIn = _this8.dateFormater(weekEndingIn);
-            newTimesheet.weekNumber = _this8.getWeek(weekEndingIn);
+            newTimesheet.weekEndingIn = _this7.dateFormater(weekEndingIn);
+            newTimesheet.weekNumber = _this7.getWeek(weekEndingIn);
             console.log(result); // init attirbutes
 
             newTimesheet.timesheetId = result.id;
-            newTimesheet.employeeId = _this8.currentUser.employeeId;
+            newTimesheet.employeeId = _this7.currentUser.employeeId;
             newTimesheet.versionNumber = 1;
             newTimesheet.status = src_app_shared_model_TimesheetStatus__WEBPACK_IMPORTED_MODULE_4__["TimesheetStatus"].inProgress; // Create 5 empty rows at page load.
 
@@ -870,20 +886,21 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
               newTimesheet.timesheetRows.push(new src_app_shared_model_TimesheetRow__WEBPACK_IMPORTED_MODULE_3__["TimesheetRow"](newTimesheet.timesheetId, newTimesheet.versionNumber, 0, 0));
             }
 
-            _this8.timesheet = newTimesheet;
-            _this8.dataReady = true;
+            _this7.timesheet = newTimesheet;
+            _this7.dataReady = true;
           });
         }
       }, {
         key: "prepareprojectWp",
         value: function prepareprojectWp() {
-          var _this9 = this;
+          var _this8 = this;
 
           this.projectService.getProjectWpDropdown(this.currentUser.employeeId).subscribe(function (result) {
-            _this9.projectWp = [];
+            _this8.projectWp = [];
+            console.log(result);
             result.forEach(function (p) {
-              p.workPackages.forEach(function (wp) {
-                _this9.projectWp.push({
+              if (p.workPackages) p.workPackages.forEach(function (wp) {
+                _this8.projectWp.push({
                   'projectId': p.projectId,
                   'projectName': p.projectName,
                   'wpId': wp.workPackageId,
@@ -943,6 +960,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }];
     };
 
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])(src_app_shared_components_timesheet_timesheet_component__WEBPACK_IMPORTED_MODULE_12__["TimesheetComponent"], {
+      static: false
+    })], TimesheetCreationComponent.prototype, "timesheetCmp", void 0);
     TimesheetCreationComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-timesheet-creation',
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
@@ -1054,6 +1074,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var src_app_core_service_my_toast_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
     /*! src/app/core/service/my-toast.service */
     "./src/app/core/service/my-toast.service.ts");
+    /* harmony import */
+
+
+    var src_app_shared_components_timesheet_timesheet_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+    /*! src/app/shared/components/timesheet/timesheet.component */
+    "./src/app/shared/components/timesheet/timesheet.component.ts");
 
     var TimesheetEditVersionComponent =
     /*#__PURE__*/
@@ -1078,14 +1104,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(TimesheetEditVersionComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this10 = this;
+          var _this9 = this;
 
           this.route.paramMap.subscribe(function (params) {
             var id = params.get('timesheetId');
             console.log("current timesheet id is  ".concat(id));
 
-            _this10.timesheetService.getTimesheet(id).subscribe(function (ts) {
-              return _this10.timesheet = ts;
+            _this9.timesheetService.getTimesheet(id).subscribe(function (ts) {
+              return _this9.timesheet = ts;
             });
           });
           this.prepareprojectWp();
@@ -1111,22 +1137,29 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "onSubmitConfrimed",
         value: function onSubmitConfrimed() {
-          var _this11 = this;
+          var _this10 = this;
 
           // increment the version. since it is using the old timesheet to create a new one
           this.timesheet.versionNumber += 1;
           this.timesheet.status = src_app_shared_model_TimesheetStatus__WEBPACK_IMPORTED_MODULE_2__["TimesheetStatus"].pending;
           this.timesheetService.postTimesheet(this.timesheet).subscribe(function (_) {
-            _this11.modalRef.hide();
+            _this10.modalRef.hide();
 
-            _this11.myToastService.addSuccess('Timesheet Sumitted Successfully', "Timesheet of week ".concat(_this11.timesheet.weekEndingIn, " Version: ").concat(_this11.timesheet.versionNumber, " is sumitted to your supervisor."));
+            _this10.myToastService.addSuccess('Timesheet Sumitted Successfully', "Timesheet of week ".concat(_this10.timesheet.weekEndingIn, " Version: ").concat(_this10.timesheet.versionNumber, " is sumitted to your supervisor."));
 
-            _this11.router.navigate(["/content/timesheets"]);
+            _this10.router.navigate(["/content/timesheets"]);
           });
         }
       }, {
         key: "onSubmit",
         value: function onSubmit(e, template) {
+          this.timesheetCmp.validatePage();
+
+          if (!this.timesheetCmp.validatePage()) {
+            console.log('not pass');
+            return;
+          }
+
           this.modalRef = this.modalService.show(template);
         }
       }, {
@@ -1137,29 +1170,36 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "onSave",
         value: function onSave(e) {
-          var _this12 = this;
+          var _this11 = this;
 
-          // increment the version. since it is using the old timesheet to create a new one
+          this.timesheetCmp.validatePage();
+
+          if (!this.timesheetCmp.validatePage()) {
+            console.log('not pass');
+            return;
+          } // increment the version. since it is using the old timesheet to create a new one
+
+
           this.timesheet.versionNumber += 1;
           this.timesheet.status = src_app_shared_model_TimesheetStatus__WEBPACK_IMPORTED_MODULE_2__["TimesheetStatus"].inProgress;
           console.log("post timesheet new version:");
           console.log(JSON.stringify(this.timesheet));
           this.timesheetService.postTimesheet(this.timesheet).subscribe(function (_) {
-            _this12.myToastService.addInfo("Timesheet Updated in Version ".concat(_this12.timesheet.versionNumber), "Timesheet of week ".concat(_this12.timesheet.weekEndingIn, " saved on ").concat(new Date().toLocaleString()));
+            _this11.myToastService.addInfo("Timesheet Updated in Version ".concat(_this11.timesheet.versionNumber), "Timesheet of week ".concat(_this11.timesheet.weekEndingIn, " saved on ").concat(new Date().toLocaleString()));
 
-            _this12.router.navigate(["/content/timesheets"]);
+            _this11.router.navigate(["/content/timesheets"]);
           });
         }
       }, {
         key: "prepareprojectWp",
         value: function prepareprojectWp() {
-          var _this13 = this;
+          var _this12 = this;
 
           this.projectService.getProjectWpDropdown(this.currentUser.employeeId).subscribe(function (result) {
-            _this13.projectWp = [];
+            _this12.projectWp = [];
             result.forEach(function (p) {
               p.workPackages.forEach(function (wp) {
-                _this13.projectWp.push({
+                _this12.projectWp.push({
                   'projectId': p.projectId,
                   'projectName': p.projectName,
                   'wpId': wp.workPackageId,
@@ -1241,6 +1281,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }];
     };
 
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])(src_app_shared_components_timesheet_timesheet_component__WEBPACK_IMPORTED_MODULE_10__["TimesheetComponent"], {
+      static: false
+    })], TimesheetEditVersionComponent.prototype, "timesheetCmp", void 0);
     TimesheetEditVersionComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-timesheet-edit-version',
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
@@ -1352,6 +1395,12 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var ngx_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
     /*! ngx-bootstrap */
     "./node_modules/ngx-bootstrap/esm5/ngx-bootstrap.js");
+    /* harmony import */
+
+
+    var src_app_shared_components_timesheet_timesheet_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+    /*! src/app/shared/components/timesheet/timesheet.component */
+    "./src/app/shared/components/timesheet/timesheet.component.ts");
 
     var TimesheetEditComponent =
     /*#__PURE__*/
@@ -1376,14 +1425,14 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(TimesheetEditComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this14 = this;
+          var _this13 = this;
 
           this.route.paramMap.subscribe(function (params) {
             var id = params.get('timesheetId');
             console.log("current timesheet id is  ".concat(id));
 
-            _this14.timesheetService.getTimesheet(id).subscribe(function (ts) {
-              return _this14.timesheet = ts;
+            _this13.timesheetService.getTimesheet(id).subscribe(function (ts) {
+              return _this13.timesheet = ts;
             });
           });
           this.prepareprojectWp();
@@ -1391,20 +1440,27 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "onSubmitConfrimed",
         value: function onSubmitConfrimed() {
-          var _this15 = this;
+          var _this14 = this;
 
           this.timesheet.status = src_app_shared_model_TimesheetStatus__WEBPACK_IMPORTED_MODULE_2__["TimesheetStatus"].pending;
           this.timesheetService.postTimesheet(this.timesheet).subscribe(function (_) {
-            _this15.modalRef.hide();
+            _this14.modalRef.hide();
 
-            _this15.myToastService.addSuccess('Timesheet Sumitted Successfully', "Timesheet of week ".concat(_this15.timesheet.weekEndingIn, " is sumitted to your supervisor."));
+            _this14.myToastService.addSuccess('Timesheet Sumitted Successfully', "Timesheet of week ".concat(_this14.timesheet.weekEndingIn, " is sumitted to your supervisor."));
 
-            _this15.router.navigate(["/content/timesheets"]);
+            _this14.router.navigate(["/content/timesheets"]);
           });
         }
       }, {
         key: "onSubmit",
         value: function onSubmit(e, template) {
+          this.timesheetCmp.validatePage();
+
+          if (!this.timesheetCmp.validatePage()) {
+            console.log('not pass');
+            return;
+          }
+
           this.modalRef = this.modalService.show(template);
         }
       }, {
@@ -1415,26 +1471,33 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "onSave",
         value: function onSave(e) {
-          var _this16 = this;
+          var _this15 = this;
+
+          this.timesheetCmp.validatePage();
+
+          if (!this.timesheetCmp.validatePage()) {
+            console.log('not pass');
+            return;
+          }
 
           console.log("post timesheet:");
           console.log(JSON.stringify(this.timesheet));
           this.timesheetService.postTimesheet(this.timesheet).subscribe(function (_) {
-            _this16.myToastService.addInfo("Timesheet Updated", "Timesheet of week ".concat(_this16.timesheet.weekEndingIn, " saved on ").concat(new Date().toLocaleString()));
+            _this15.myToastService.addInfo("Timesheet Updated", "Timesheet of week ".concat(_this15.timesheet.weekEndingIn, " saved on ").concat(new Date().toLocaleString()));
 
-            _this16.router.navigate(["/content/timesheets"]);
+            _this15.router.navigate(["/content/timesheets"]);
           });
         }
       }, {
         key: "prepareprojectWp",
         value: function prepareprojectWp() {
-          var _this17 = this;
+          var _this16 = this;
 
           this.projectService.getProjectWpDropdown(this.currentUser.employeeId).subscribe(function (result) {
-            _this17.projectWp = [];
+            _this16.projectWp = [];
             result.forEach(function (p) {
               p.workPackages.forEach(function (wp) {
-                _this17.projectWp.push({
+                _this16.projectWp.push({
                   'projectId': p.projectId,
                   'projectName': p.projectName,
                   'wpId': wp.workPackageId,
@@ -1447,17 +1510,17 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "colorStatus",
         value: function colorStatus(status) {
-          switch (status) {
-            case 'Approved':
+          switch (status.toLowerCase()) {
+            case 'approved':
               return 'badge badge-pill badge-success';
 
-            case 'Rejected':
+            case 'rejected':
               return 'badge badge-pill badge-danger';
 
-            case 'Pending':
+            case 'pending':
               return 'badge badge-pill badge-warning';
 
-            case 'Inprogress':
+            case 'inprogress':
               return 'badge badge-pill badge-info';
 
             default:
@@ -1516,6 +1579,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }];
     };
 
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])(src_app_shared_components_timesheet_timesheet_component__WEBPACK_IMPORTED_MODULE_10__["TimesheetComponent"], {
+      static: false
+    })], TimesheetEditComponent.prototype, "timesheetCmp", void 0);
     TimesheetEditComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
       selector: 'app-timesheet-edit',
       template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
@@ -1624,11 +1690,11 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "populateTimesheets",
         value: function populateTimesheets() {
-          var _this18 = this;
+          var _this17 = this;
 
           var userId = this.authenticationService.currentUserValue.employeeId;
           this.timesheetService.getAllTimesheet(userId).subscribe(function (res) {
-            _this18.timesheets = res;
+            _this17.timesheets = res;
             console.log(res);
           });
         }
@@ -1641,17 +1707,17 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       }, {
         key: "colorStatus",
         value: function colorStatus(status) {
-          switch (status) {
-            case 'Approved':
+          switch (status.toLowerCase()) {
+            case 'approved':
               return 'badge badge-success';
 
-            case 'Rejected':
+            case 'rejected':
               return 'badge badge-danger';
 
-            case 'Pending':
+            case 'pending':
               return 'badge badge-warning';
 
-            case 'Inprogress':
+            case 'inprogress':
               return 'badge badge-info';
           }
         }
@@ -1764,31 +1830,31 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
       _createClass(TimesheetViewComponent, [{
         key: "ngOnInit",
         value: function ngOnInit() {
-          var _this19 = this;
+          var _this18 = this;
 
           this.route.paramMap.subscribe(function (params) {
             var id = params.get('timesheetId');
             console.log("current timesheet id is  ".concat(id));
 
-            _this19.timesheetService.getTimesheet(id).subscribe(function (ts) {
-              return _this19.timesheet = ts;
+            _this18.timesheetService.getTimesheet(id).subscribe(function (ts) {
+              return _this18.timesheet = ts;
             });
           });
         }
       }, {
         key: "colorStatus",
         value: function colorStatus(status) {
-          switch (status) {
-            case 'Approved':
+          switch (status.toLowerCase()) {
+            case 'approved':
               return 'badge badge-pill badge-success';
 
-            case 'Rejected':
+            case 'rejected':
               return 'badge badge-pill badge-danger';
 
-            case 'Pending':
+            case 'pending':
               return 'badge badge-pill badge-warning';
 
-            case 'Inprogress':
+            case 'inprogress':
               return 'badge badge-pill badge-info';
 
             default:
@@ -2253,9 +2319,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     var TimesheetStatus;
 
     (function (TimesheetStatus) {
-      TimesheetStatus["approved"] = "Approved";
-      TimesheetStatus["rejected"] = "Rejected";
-      TimesheetStatus["pending"] = "Pending";
+      TimesheetStatus["approved"] = "approved";
+      TimesheetStatus["rejected"] = "rejected";
+      TimesheetStatus["pending"] = "pending";
       TimesheetStatus["inProgress"] = "inprogress";
     })(TimesheetStatus || (TimesheetStatus = {}));
     /***/

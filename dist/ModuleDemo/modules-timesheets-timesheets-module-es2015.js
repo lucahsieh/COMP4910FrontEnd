@@ -74,7 +74,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"card mx-1\">\n    <div class=\"card-body\">\n        <h3 class=\"display-4 mb-3\">Timesheet List</h3>\n        <div class=\"dropdown-divider \"></div>\n\n        <div class=\"d-flex flex-row-reverse\">\n            <button type=\"button\" class=\"btn btn-primary my-2\" routerLink=\"creation\">Create</button>\n        </div>\n\n        <!-- Table goes here -->\n        <p-table [columns]=\"cols\" [value]=\"timesheets\">\n            <ng-template pTemplate=\"header\" let-columns>\n                <tr>\n                    <th *ngFor=\"let col of columns\" [pSortableColumn]=\"col.field\">\n                        {{col.header}}\n                        <p-sortIcon [field]=\"col.field\" ariaLabel=\"Activate to sort\"\n                            ariaLabelDesc=\"Activate to sort in descending order\"\n                            ariaLabelAsc=\"Activate to sort in ascending order\"></p-sortIcon>\n                    </th>\n                    <th>\n\n                    </th>\n                </tr>\n            </ng-template>\n            <ng-template pTemplate=\"body\" let-rowData let-columns=\"columns\">\n                <tr>\n                    <td>\n                        {{rowData.weekNumber}}\n                    </td>\n                    <td>\n                        {{rowData.versionNumber}}\n                    </td>\n                    <td>\n                        {{rowData.weekEndingIn | date:'yyyy-MM-dd' }}\n                    </td>\n                    <td>\n                        <h5><span [className]=\"colorStatus(rowData.status)\">{{rowData.status}}</span></h5>\n                    </td>\n\n                    <td>\n                        <button type=\"button\" class=\"btn btn-link btn-sm\"\n                            [routerLink]=\"['view', rowData.timesheetId]\">View</button>\n                        <button *ngIf=\"rowData.status==='Inprogress'\" type=\"button\" class=\"btn btn-link btn-sm\"\n                            [routerLink]=\"['edit', rowData.timesheetId]\">Edit</button>\n                    </td>\n                </tr>\n            </ng-template>\n        </p-table>\n\n\n    </div>\n\n\n</div>");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"card mx-1\">\n    <div class=\"card-body\">\n        <h3 class=\"display-4 mb-3\">Timesheet List</h3>\n        <div class=\"dropdown-divider \"></div>\n\n        <div class=\"d-flex flex-row-reverse\">\n            <button type=\"button\" class=\"btn btn-primary my-2\" routerLink=\"creation\">Create</button>\n        </div>\n\n        <!-- Table goes here -->\n        <p-table [columns]=\"cols\" [value]=\"timesheets\">\n            <ng-template pTemplate=\"header\" let-columns>\n                <tr>\n                    <th *ngFor=\"let col of columns\" [pSortableColumn]=\"col.field\">\n                        {{col.header}}\n                        <p-sortIcon [field]=\"col.field\" ariaLabel=\"Activate to sort\"\n                            ariaLabelDesc=\"Activate to sort in descending order\"\n                            ariaLabelAsc=\"Activate to sort in ascending order\"></p-sortIcon>\n                    </th>\n                    <th>\n\n                    </th>\n                </tr>\n            </ng-template>\n            <ng-template pTemplate=\"body\" let-rowData let-columns=\"columns\">\n                <tr>\n                    <td>\n                        {{rowData.weekNumber}}\n                    </td>\n                    <td>\n                        {{rowData.versionNumber}}\n                    </td>\n                    <td>\n                        {{rowData.weekEndingIn | date:'yyyy-MM-dd' }}\n                    </td>\n                    <td>\n                        <h5><span [className]=\"colorStatus(rowData.status)\">{{rowData.status}}</span></h5>\n                    </td>\n\n                    <td>\n                        <button type=\"button\" class=\"btn btn-link btn-sm\"\n                            [routerLink]=\"['view', rowData.timesheetId]\">View</button>\n                        <button *ngIf=\"rowData.status==='inprogress'\" type=\"button\" class=\"btn btn-link btn-sm\"\n                            [routerLink]=\"['edit', rowData.timesheetId]\">Edit</button>\n                    </td>\n                </tr>\n            </ng-template>\n        </p-table>\n\n\n    </div>\n\n\n</div>");
 
 /***/ }),
 
@@ -273,11 +273,11 @@ let TimesheetApproverViewListComponent = class TimesheetApproverViewListComponen
         });
     }
     colorStatus(status) {
-        switch (status) {
-            case 'Approved': return 'badge badge-success';
-            case 'Rejected': return 'badge badge-danger';
-            case 'Pending': return 'badge badge-warning';
-            case 'Inprogress': return 'badge badge-info';
+        switch (status.toLowerCase()) {
+            case 'approved': return 'badge badge-success';
+            case 'rejected': return 'badge badge-danger';
+            case 'pending': return 'badge badge-warning';
+            case 'inprogress': return 'badge badge-info';
         }
     }
     toDate(str) {
@@ -428,6 +428,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var ngx_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ngx-bootstrap */ "./node_modules/ngx-bootstrap/esm5/ngx-bootstrap.js");
 /* harmony import */ var src_app_core_service_my_toast_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/app/core/service/my-toast.service */ "./src/app/core/service/my-toast.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+/* harmony import */ var src_app_shared_components_timesheet_timesheet_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! src/app/shared/components/timesheet/timesheet.component */ "./src/app/shared/components/timesheet/timesheet.component.ts");
+
 
 
 
@@ -466,15 +468,25 @@ let TimesheetCreationComponent = class TimesheetCreationComponent {
         });
     }
     onSubmit(e, template) {
+        this.timesheetCmp.validatePage();
+        if (!this.timesheetCmp.validatePage()) {
+            console.log('not pass');
+            return;
+        }
         this.modalRef = this.modalService.show(template);
     }
     onSave(e) {
+        this.timesheetCmp.validatePage();
+        if (!this.timesheetCmp.validatePage()) {
+            console.log('not pass');
+            return;
+        }
         console.log(`post timesheet:`);
         console.log(JSON.stringify(this.timesheet));
-        this.timesheetService.postTimesheet(this.timesheet).subscribe(_ => {
-            this.myToastService.addInfo(`Timesheet Updated`, `Timesheet of week ${this.timesheet.weekEndingIn} saved on ${new Date().toLocaleString()}`);
-            this.router.navigate([`/content/timesheets`]);
-        });
+        // this.timesheetService.postTimesheet(this.timesheet).subscribe(_ => {
+        //   this.myToastService.addInfo(`Timesheet Updated`, `Timesheet of week ${this.timesheet.weekEndingIn} saved on ${new Date().toLocaleString()}`);
+        //   this.router.navigate([`/content/timesheets`]);
+        // });
     }
     setEmptyTimesheetData() {
         this.timesheetService
@@ -502,10 +514,12 @@ let TimesheetCreationComponent = class TimesheetCreationComponent {
     prepareprojectWp() {
         this.projectService.getProjectWpDropdown(this.currentUser.employeeId).subscribe(result => {
             this.projectWp = [];
+            console.log(result);
             result.forEach(p => {
-                p.workPackages.forEach(wp => {
-                    this.projectWp.push({ 'projectId': p.projectId, 'projectName': p.projectName, 'wpId': wp.workPackageId, 'wpCode': wp.workPackageCode });
-                });
+                if (p.workPackages)
+                    p.workPackages.forEach(wp => {
+                        this.projectWp.push({ 'projectId': p.projectId, 'projectName': p.projectName, 'wpId': wp.workPackageId, 'wpCode': wp.workPackageCode });
+                    });
             });
         });
     }
@@ -540,6 +554,9 @@ TimesheetCreationComponent.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_11__["Router"] },
     { type: src_app_core_service_authentication_service__WEBPACK_IMPORTED_MODULE_6__["AuthenticationService"] }
 ];
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])(src_app_shared_components_timesheet_timesheet_component__WEBPACK_IMPORTED_MODULE_12__["TimesheetComponent"], { static: false })
+], TimesheetCreationComponent.prototype, "timesheetCmp", void 0);
 TimesheetCreationComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-timesheet-creation',
@@ -585,6 +602,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 /* harmony import */ var ngx_bootstrap__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ngx-bootstrap */ "./node_modules/ngx-bootstrap/esm5/ngx-bootstrap.js");
 /* harmony import */ var src_app_core_service_my_toast_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/core/service/my-toast.service */ "./src/app/core/service/my-toast.service.ts");
+/* harmony import */ var src_app_shared_components_timesheet_timesheet_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/app/shared/components/timesheet/timesheet.component */ "./src/app/shared/components/timesheet/timesheet.component.ts");
+
 
 
 
@@ -647,12 +666,22 @@ let TimesheetEditVersionComponent = class TimesheetEditVersionComponent {
         });
     }
     onSubmit(e, template) {
+        this.timesheetCmp.validatePage();
+        if (!this.timesheetCmp.validatePage()) {
+            console.log('not pass');
+            return;
+        }
         this.modalRef = this.modalService.show(template);
     }
     onCancel(e) {
         this.router.navigate([`/content/timesheets`]);
     }
     onSave(e) {
+        this.timesheetCmp.validatePage();
+        if (!this.timesheetCmp.validatePage()) {
+            console.log('not pass');
+            return;
+        }
         // increment the version. since it is using the old timesheet to create a new one
         this.timesheet.versionNumber += 1;
         this.timesheet.status = src_app_shared_model_TimesheetStatus__WEBPACK_IMPORTED_MODULE_2__["TimesheetStatus"].inProgress;
@@ -714,6 +743,9 @@ TimesheetEditVersionComponent.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_7__["Router"] },
     { type: src_app_core_service_authentication_service__WEBPACK_IMPORTED_MODULE_5__["AuthenticationService"] }
 ];
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])(src_app_shared_components_timesheet_timesheet_component__WEBPACK_IMPORTED_MODULE_10__["TimesheetComponent"], { static: false })
+], TimesheetEditVersionComponent.prototype, "timesheetCmp", void 0);
 TimesheetEditVersionComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-timesheet-edit-version',
@@ -759,6 +791,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 /* harmony import */ var src_app_core_service_my_toast_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/app/core/service/my-toast.service */ "./src/app/core/service/my-toast.service.ts");
 /* harmony import */ var ngx_bootstrap__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ngx-bootstrap */ "./node_modules/ngx-bootstrap/esm5/ngx-bootstrap.js");
+/* harmony import */ var src_app_shared_components_timesheet_timesheet_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/app/shared/components/timesheet/timesheet.component */ "./src/app/shared/components/timesheet/timesheet.component.ts");
+
 
 
 
@@ -801,12 +835,22 @@ let TimesheetEditComponent = class TimesheetEditComponent {
         });
     }
     onSubmit(e, template) {
+        this.timesheetCmp.validatePage();
+        if (!this.timesheetCmp.validatePage()) {
+            console.log('not pass');
+            return;
+        }
         this.modalRef = this.modalService.show(template);
     }
     onCancel(e) {
         this.router.navigate([`/content/timesheets`]);
     }
     onSave(e) {
+        this.timesheetCmp.validatePage();
+        if (!this.timesheetCmp.validatePage()) {
+            console.log('not pass');
+            return;
+        }
         console.log(`post timesheet:`);
         console.log(JSON.stringify(this.timesheet));
         this.timesheetService.postTimesheet(this.timesheet).subscribe(_ => {
@@ -825,11 +869,11 @@ let TimesheetEditComponent = class TimesheetEditComponent {
         });
     }
     colorStatus(status) {
-        switch (status) {
-            case 'Approved': return 'badge badge-pill badge-success';
-            case 'Rejected': return 'badge badge-pill badge-danger';
-            case 'Pending': return 'badge badge-pill badge-warning';
-            case 'Inprogress': return 'badge badge-pill badge-info';
+        switch (status.toLowerCase()) {
+            case 'approved': return 'badge badge-pill badge-success';
+            case 'rejected': return 'badge badge-pill badge-danger';
+            case 'pending': return 'badge badge-pill badge-warning';
+            case 'inprogress': return 'badge badge-pill badge-info';
             default: return 'badge badge-pill badge-dark';
         }
     }
@@ -865,6 +909,9 @@ TimesheetEditComponent.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_7__["Router"] },
     { type: src_app_core_service_authentication_service__WEBPACK_IMPORTED_MODULE_5__["AuthenticationService"] }
 ];
+tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ViewChild"])(src_app_shared_components_timesheet_timesheet_component__WEBPACK_IMPORTED_MODULE_10__["TimesheetComponent"], { static: false })
+], TimesheetEditComponent.prototype, "timesheetCmp", void 0);
 TimesheetEditComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-timesheet-edit',
@@ -933,11 +980,11 @@ let TimesheetListComponent = class TimesheetListComponent {
         return false;
     }
     colorStatus(status) {
-        switch (status) {
-            case 'Approved': return 'badge badge-success';
-            case 'Rejected': return 'badge badge-danger';
-            case 'Pending': return 'badge badge-warning';
-            case 'Inprogress': return 'badge badge-info';
+        switch (status.toLowerCase()) {
+            case 'approved': return 'badge badge-success';
+            case 'rejected': return 'badge badge-danger';
+            case 'pending': return 'badge badge-warning';
+            case 'inprogress': return 'badge badge-info';
         }
     }
 };
@@ -1004,11 +1051,11 @@ let TimesheetViewComponent = class TimesheetViewComponent {
         });
     }
     colorStatus(status) {
-        switch (status) {
-            case 'Approved': return 'badge badge-pill badge-success';
-            case 'Rejected': return 'badge badge-pill badge-danger';
-            case 'Pending': return 'badge badge-pill badge-warning';
-            case 'Inprogress': return 'badge badge-pill badge-info';
+        switch (status.toLowerCase()) {
+            case 'approved': return 'badge badge-pill badge-success';
+            case 'rejected': return 'badge badge-pill badge-danger';
+            case 'pending': return 'badge badge-pill badge-warning';
+            case 'inprogress': return 'badge badge-pill badge-info';
             default: return 'badge badge-pill badge-dark';
         }
     }
@@ -1250,9 +1297,9 @@ __webpack_require__.r(__webpack_exports__);
 /** this represents timesheet status */
 var TimesheetStatus;
 (function (TimesheetStatus) {
-    TimesheetStatus["approved"] = "Approved";
-    TimesheetStatus["rejected"] = "Rejected";
-    TimesheetStatus["pending"] = "Pending";
+    TimesheetStatus["approved"] = "approved";
+    TimesheetStatus["rejected"] = "rejected";
+    TimesheetStatus["pending"] = "pending";
     TimesheetStatus["inProgress"] = "inprogress";
 })(TimesheetStatus || (TimesheetStatus = {}));
 

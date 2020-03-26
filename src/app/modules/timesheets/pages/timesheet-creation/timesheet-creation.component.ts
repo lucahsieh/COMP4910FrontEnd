@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild, AfterViewInit } from '@angular/core';
 import { Timesheet } from 'src/app/shared/model/Timesheet';
 import { SelectItem } from 'primeng/api/selectitem';
 import { TimesheetRow } from 'src/app/shared/model/TimesheetRow';
@@ -12,6 +12,7 @@ import { MODE } from 'src/app/shared/model/MODE';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { MyToastService } from 'src/app/core/service/my-toast.service';
 import { Router } from '@angular/router';
+import { TimesheetComponent } from 'src/app/shared/components/timesheet/timesheet.component';
 
 @Component({
   selector: 'app-timesheet-creation',
@@ -27,6 +28,9 @@ export class TimesheetCreationComponent implements OnInit {
 
   modalRef: BsModalRef;
   currentUser: User = this.authenticationService.currentUserValue;
+
+  @ViewChild(TimesheetComponent, { static: false })
+  private timesheetCmp: TimesheetComponent;
 
   constructor(
     private timesheetService: TimesheetService,
@@ -53,16 +57,26 @@ export class TimesheetCreationComponent implements OnInit {
   }
 
   onSubmit(e: any, template: TemplateRef<any>) {
+    this.timesheetCmp.validatePage()
+    if (!this.timesheetCmp.validatePage()) {
+      console.log('not pass')
+      return;
+    }
     this.modalRef = this.modalService.show(template);
   }
 
   onSave(e: any) {
+    this.timesheetCmp.validatePage()
+    if (!this.timesheetCmp.validatePage()) {
+      console.log('not pass')
+      return;
+    }
     console.log(`post timesheet:`);
     console.log(JSON.stringify(this.timesheet));
-    this.timesheetService.postTimesheet(this.timesheet).subscribe(_ => {
-      this.myToastService.addInfo(`Timesheet Updated`, `Timesheet of week ${this.timesheet.weekEndingIn} saved on ${new Date().toLocaleString()}`);
-      this.router.navigate([`/content/timesheets`]);
-    });
+    // this.timesheetService.postTimesheet(this.timesheet).subscribe(_ => {
+    //   this.myToastService.addInfo(`Timesheet Updated`, `Timesheet of week ${this.timesheet.weekEndingIn} saved on ${new Date().toLocaleString()}`);
+    //   this.router.navigate([`/content/timesheets`]);
+    // });
   }
 
 
@@ -97,10 +111,12 @@ export class TimesheetCreationComponent implements OnInit {
   prepareprojectWp() {
     this.projectService.getProjectWpDropdown(this.currentUser.employeeId).subscribe(result => {
       this.projectWp = [];
+      console.log(result)
       result.forEach(p => {
-        p.workPackages.forEach(wp => {
-          this.projectWp.push({ 'projectId': p.projectId, 'projectName': p.projectName, 'wpId': wp.workPackageId, 'wpCode': wp.workPackageCode })
-        });
+        if (p.workPackages)
+          p.workPackages.forEach(wp => {
+            this.projectWp.push({ 'projectId': p.projectId, 'projectName': p.projectName, 'wpId': wp.workPackageId, 'wpCode': wp.workPackageCode })
+          });
       });
     });
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Timesheet } from 'src/app/shared/model/Timesheet';
 import { TimesheetStatus } from 'src/app/shared/model/TimesheetStatus';
 import { User } from 'src/app/shared/model/User';
@@ -10,6 +10,7 @@ import { MODE } from 'src/app/shared/model/MODE';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { MyToastService } from 'src/app/core/service/my-toast.service';
+import { TimesheetComponent } from 'src/app/shared/components/timesheet/timesheet.component';
 
 @Component({
   selector: 'app-timesheet-edit-version',
@@ -27,6 +28,10 @@ export class TimesheetEditVersionComponent implements OnInit {
 
   modalRef: BsModalRef;
   currentUser: User = this.authenticationService.currentUserValue;
+
+
+  @ViewChild(TimesheetComponent, { static: false })
+  private timesheetCmp: TimesheetComponent;
 
   constructor(
     private route: ActivatedRoute,
@@ -78,6 +83,11 @@ export class TimesheetEditVersionComponent implements OnInit {
   }
 
   onSubmit(e: any, template: TemplateRef<any>) {
+    this.timesheetCmp.validatePage()
+    if (!this.timesheetCmp.validatePage()) {
+      console.log('not pass')
+      return;
+    }
     this.modalRef = this.modalService.show(template);
   }
   onCancel(e: any) {
@@ -85,6 +95,11 @@ export class TimesheetEditVersionComponent implements OnInit {
   }
 
   onSave(e: any) {
+    this.timesheetCmp.validatePage()
+    if (!this.timesheetCmp.validatePage()) {
+      console.log('not pass')
+      return;
+    }
     // increment the version. since it is using the old timesheet to create a new one
     this.timesheet.versionNumber += 1;
     this.timesheet.status = TimesheetStatus.inProgress;

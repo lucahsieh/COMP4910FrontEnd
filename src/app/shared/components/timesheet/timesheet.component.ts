@@ -3,6 +3,7 @@ import { SelectItem } from 'primeng/api/selectitem';
 import { Timesheet } from '../../model/Timesheet';
 import { TimesheetRow } from '../../model/TimesheetRow';
 import { MODE } from '../../model/MODE';
+import * as uuid from 'uuid';
 
 @Component({
   selector: 'shared-timesheet',
@@ -12,7 +13,7 @@ import { MODE } from '../../model/MODE';
 export class TimesheetComponent implements OnInit {
 
   apiReady: boolean = false;
-  validationError: boolean = false;
+  validationError: any[] = [];
   dataReady: boolean = false;
 
   @Input() mode: MODE;
@@ -40,20 +41,26 @@ export class TimesheetComponent implements OnInit {
   }
 
   /** Validate hrs entered */
-  validate(hr: number): boolean {
+  /** false means passed */
+  invalidHr(hr: number): boolean {
+    var result = false;
     if (hr < 0 || hr >= 24) {
-      this.validationError = true;
-      return true;
+      this.validationError['hr'] = { msgs: 'Hour should be between 0 and 24', type: 'danger' };
+      result = true;
     }
-    if (hr % 0.25 != 0) {
-      this.validationError = true;
-      return true;
-    }
-    return false;
+    // if (hr % 0.25 != 0 ) {
+    //   this.validationError['hr'] = { msgs: 'Hour should in 0.25 unit', type: 'danger' };
+    // }
+    return result;
   }
   rowTotal(d: any) {
     let sum: number = 0;
-    this.days.forEach(day => sum += +d[day.value])
+    this.days.forEach(day => {
+      if (d[day.value] === null) {
+        d[day.value] = 0;
+      }
+      sum += +d[day.value];
+    })
     return sum;
   }
 
@@ -89,13 +96,17 @@ export class TimesheetComponent implements OnInit {
     );
   }
 
-  deleteRow(p) {
-    console.log(p);
-    var temp = this.timesheet.timesheetRows
-    this.timesheet.timesheetRows = temp.filter(r => {
-      if (r.workPackageId != p.workPackageId && r.projectId != p.projectId)
-        return r;
-    })
+  deleteRow(p, index) {
+    // console.log(p);
+    // var temp = this.timesheet.timesheetRows
+    // this.timesheet.timesheetRows = temp.filter(r => {
+    //   if (r.workPackageId != p.workPackageId && r.projectId != p.projectId)
+    //     return r;
+    // })
+    console.log(index)
+    if (this.timesheet.timesheetRows.length > index) {
+      this.timesheet.timesheetRows.splice(index, 1);
+    }
   }
 
   populateProject() {
@@ -145,6 +156,14 @@ export class TimesheetComponent implements OnInit {
     return date;
   }
 
+  // onChangeInputDays(e){
+  //   this.timesheet.timesheetRows.forEach(row=>{
+  //     this.days.forEach(day=>{
+  //       row
+  //     })
+  //   })
+  // }
+
 
   onValueChange(value: Date): void {
     console.log(value);
@@ -158,5 +177,47 @@ export class TimesheetComponent implements OnInit {
   //     return total - 40;
   //   return 0;
   // }
+
+  /** return true if pass */
+  validatePage(): boolean {
+    this.validationError = [];
+    if (this.timesheet.weekEndingIn === null) {
+      this.validationError['weekEndingIn'] = { msgs: 'Timesheet week cannot be empty', type: 'danger' };
+    }
+    // when timesheet over 40 hours
+    let totalhrs = this.timesheetTotal()
+    if (totalhrs > 40) {
+      let flex = this.timesheet.flexTime
+      let overtime = this.timesheet.overTime
+      if ((40 - flex - overtime) !== 0) {
+        this.validationError['flexTime'] = { msgs: 'You must allocate hours into flex or overtime', type: 'danger' };
+      }
+    }
+    // not timesheet rows
+    if (this.timesheet.timesheetRows.length == 0) {
+      this.validationError['row'] = { msgs: 'You must have at least one timesheet row', type: 'danger' };
+      return Object.keys(this.validationError).length == 0;
+    }
+
+    // row validation
+    this.timesheet.timesheetRows.forEach(row => {
+      if (row.projectId == 0) {
+        this.validationError['projectId'] = { msgs: 'You must selected project', type: 'danger' };
+      }
+      if (row.workPackageId == 0) {
+        this.validationError['workPackageId'] = { msgs: 'You must selected work page', type: 'danger' };
+      }
+      this.days.forEach(day => {
+        this.invalidHr(row[day]);
+      });
+    });
+    console.log(this.validationError)
+    return Object.keys(this.validationError).length == 0;
+  }
+
+  dispalyError() {
+    console.log(this.validationError)
+    return Object.keys(this.validationError).length != 0;
+  }
 
 }

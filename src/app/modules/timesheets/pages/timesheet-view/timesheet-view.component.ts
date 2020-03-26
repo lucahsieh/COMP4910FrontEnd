@@ -29,11 +29,11 @@ export class TimesheetViewComponent implements OnInit {
   }
 
   colorStatus(status: string) {
-    switch (status) {
-      case 'Approved': return 'badge badge-pill badge-success';
-      case 'Rejected': return 'badge badge-pill badge-danger';
-      case 'Pending': return 'badge badge-pill badge-warning';
-      case 'Inprogress': return 'badge badge-pill badge-info';
+    switch (status.toLowerCase()) {
+      case 'approved': return 'badge badge-pill badge-success';
+      case 'rejected': return 'badge badge-pill badge-danger';
+      case 'pending': return 'badge badge-pill badge-warning';
+      case 'inprogress': return 'badge badge-pill badge-info';
       default: return 'badge badge-pill badge-dark';
     }
   }

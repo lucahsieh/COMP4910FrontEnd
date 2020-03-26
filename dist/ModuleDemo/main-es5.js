@@ -171,7 +171,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<nav class=\"navbar navbar-dark bg-theme\">\n    <div>\n        <span class=\"navbar-brand mb-0 h1 title\">\n            Gerg's Beans\n        </span>\n        <span class=\"navbar-text\" *ngIf=\"currentUser\">\n            {{currentUser.credentialId}}\n        </span>\n        <span class=\"navbar-text\">\n            fix version v1.0.2\n        </span>\n\n    </div>\n    <div *ngIf=\"currentUser\">\n        <form class=\"form-inline\">\n            <i class=\"material-icons navbar-brand\" (click)=\"goToEmployeePage()\">\n                account_circle\n            </i>\n            <h4 class=\"navbar-brand  mb-0 h4\">\n                {{currentUser.firstName}} {{currentUser.lastName}}\n            </h4>\n            <button class=\"btn btn-outline-light\" type=\"button\" (click)=\"logout()\">Logout</button>\n        </form>\n    </div>\n</nav>";
+    __webpack_exports__["default"] = "<nav class=\"navbar navbar-dark bg-theme\">\n    <div>\n        <span class=\"navbar-brand mb-0 h1 title\">\n            Gerg's Beans\n        </span>\n        <span class=\"navbar-text\" *ngIf=\"currentUser\">\n            {{currentUser.credentialId}}\n        </span>\n        <span class=\"navbar-text\">\n            version v1.0.3\n        </span>\n\n    </div>\n    <div *ngIf=\"currentUser\">\n        <form class=\"form-inline\">\n            <i class=\"material-icons navbar-brand\" (click)=\"goToEmployeePage()\">\n                account_circle\n            </i>\n            <h4 class=\"navbar-brand  mb-0 h4\">\n                {{currentUser.firstName}} {{currentUser.lastName}}\n            </h4>\n            <button class=\"btn btn-outline-light\" type=\"button\" (click)=\"logout()\">Logout</button>\n        </form>\n    </div>\n</nav>";
     /***/
   },
 
@@ -791,7 +791,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<form>\n    <div class=\"form-row\">\n\n        <div class=\"col-2\">\n            <div class=\"input-group mb-3\">\n                <div class=\"input-group-prepend\">\n                    <span class=\"input-group-text\" id=\"basic-addon1\">Version</span>\n                </div>\n                <input type=\"text\" id=\"weekNum\" class=\"form-control\" [value]=\"timesheet.versionNumber\"\n                    [readonly]=\"true\">\n            </div>\n        </div>\n\n\n        <div class=\"col-2\">\n            <div class=\"input-group mb-3\">\n                <div class=\"input-group-prepend\">\n                    <span class=\"input-group-text\" id=\"basic-addon1\">Week No.</span>\n                </div>\n                <input type=\"text\" id=\"weekNum\" class=\"form-control\" [value]=\"timesheet.weekNumber\" [readonly]=\"true\">\n            </div>\n        </div>\n\n        <div class=\"col-6\">\n            <div class=\"input-group mb-3\">\n                <div class=\"input-group-prepend\">\n                    <span class=\"input-group-text\" id=\"basic-addon1\">Week Ending</span>\n                </div>\n                <input id=\"weekEnd\" type=\"text\" placeholder=\"Datepicker\" class=\"form-control\" bsDatepicker\n                    [daysDisabled]=\"[6,2,4,3,1,0]\" [outsideClick]=\"true\"\n                    [bsConfig]=\"{selectWeek: true, dateInputFormat: 'YYYY-MM-DD' }\"\n                    (bsValueChange)=\"onValueChange($event)\" value=\"{{ timesheet.weekEndingIn | date:'yyyy-MM-dd' }}\"\n                    [readonly]=\"(mode == 'read' || mode =='update')\"\n                    [isDisabled]=\"(mode == 'read' || mode =='update')\" />\n            </div>\n        </div>\n        <div class=\"col-2\" *ngIf=\"mode == 'create'|| mode =='update'\">\n            <button type=\"button\" class=\"btn btn-outline-primary\" (click)=\"addRow($event)\">Add Row</button>\n        </div>\n    </div>\n</form>\n<div class=\"dropdown-divider \"></div>\n\n<!-- This is editable -->\n<div class=\"my-3\">\n    <p-table [value]=\"timesheet.timesheetRows\" (onEditComplete)=\"onEditComplete($event)\"\n        [style]=\"{'text-align':'center'}\">\n        <ng-template pTemplate=\"header\">\n            <tr>\n                <th style=\"width:20%\">Project Name</th>\n                <th style=\"width:17%\">W.P. Code</th>\n                <th>Total</th>\n\n                <th *ngFor=\"let day of days\">{{day.header}}</th>\n                <th></th>\n            </tr>\n        </ng-template>\n        <ng-template pTemplate=\"body\" let-rowData>\n            <tr>\n                <!-- <td [attr.pEditableColumn]=\"mode == 'create'|| mode == 'update' ? '' : null\">\n                    <p-cellEditor>\n                        <ng-template pTemplate=\"input\">\n\n                            <p-dropdown [options]=\"projectDropdown\" [(ngModel)]=\"rowData.projectId\"\n                                [style]=\"{'width':'170px'}\">\n                            </p-dropdown>\n\n                        </ng-template>\n                        <ng-template pTemplate=\"output\">\n                            \n                            {{rowData.projectName}}\n                        </ng-template>\n                    </p-cellEditor>\n                </td> -->\n                <td>\n                    <p-dropdown [options]=\"populateProject()\" [(ngModel)]=\"rowData.projectId\" [style]=\"{'width':'100%'}\"\n                        *ngIf=\"(mode == 'create'|| mode == 'update')\">\n                    </p-dropdown>\n                    <span *ngIf=\"mode == 'read'\">{{rowData.projectId}}</span>\n                </td>\n                <!-- <td [attr.pEditableColumn]=\"mode == 'create'|| mode == 'update'? '' : null\">\n                    <p-cellEditor>\n                        <ng-template pTemplate=\"input\">\n\n                            <p-dropdown [options]=\"populateWP(rowData.projectId)\" [(ngModel)]=\"rowData.workPackageId\"\n                                [style]=\"{'width':'170px'}\">\n                            </p-dropdown>\n\n                        </ng-template>\n                        <ng-template pTemplate=\"output\">\n                            {{rowData.pwName}}\n                        </ng-template>\n                    </p-cellEditor>\n                </td> -->\n                <td>\n                    <p-dropdown [options]=\"populateWps(rowData.projectId)\" [(ngModel)]=\"rowData.workPackageId\"\n                        [style]=\"{'width':'100%'}\" *ngIf=\"(mode == 'create'|| mode == 'update')\">\n                    </p-dropdown>\n                    <span *ngIf=\"mode == 'read'\">{{rowData.workPackageId}}</span>\n                </td>\n                <td>\n                    <p-cellEditor>\n                        <ng-template pTemplate=\"output\">\n                            <span><strong>{{rowTotal(rowData) | number}}</strong></span>\n                        </ng-template>\n                    </p-cellEditor>\n                </td>\n\n                <td [pEditableColumn]=\"mode == 'create'|| mode == 'update'? '' : null\" *ngFor=\"let day of days\">\n                    <p-cellEditor>\n                        <ng-template pTemplate=\"input\">\n\n                            <input pInputText type=\"number\" [(ngModel)]=\"rowData[day.value]\" style=\"text-align:center\"\n                                [disabled]=\"mode != 'create'&& mode != 'update'\">\n\n                        </ng-template>\n                        <ng-template pTemplate=\"output\">\n                            <span *ngIf=\"validate(rowData[day.value])\" class=\"error\">{{rowData[day.value]}}</span>\n                            <span *ngIf=\"!validate(rowData[day.value])\" class=\"pass\">{{rowData[day.value]}}</span>\n                        </ng-template>\n                    </p-cellEditor>\n                </td>\n\n                <td class=\"p-1\">\n                    <button *ngIf=\"mode == 'create'|| mode == 'update'\" type=\"button\" class=\"btn-link-normal\"\n                        (click)=\"deleteRow(rowData)\">\n                        <i class=\"material-icons text-danger\">remove_circle_outline</i>\n                    </button>\n                </td>\n            </tr>\n        </ng-template>\n        <ng-template pTemplate=\"footer\">\n            <tr>\n                <td colspan=\"2\">\n                    <div class=\"form-row\">\n                        <div class=\"col\">\n                            <div class=\"input-group \">\n                                <div class=\"input-group-prepend\">\n                                    <span class=\"input-group-text\" id=\"basic-addon1\">Flex</span>\n                                </div>\n                                <input type=\"text\" id=\"flex\" class=\"form-control\" [(ngModel)]=\"timesheet.flexTime\"\n                                    style=\"text-align:center\" [disabled]=\"mode != 'create'&& mode != 'update'\">\n                            </div>\n                        </div>\n                        <div class=\"col\">\n                            <div class=\"input-group \">\n                                <div class=\"input-group-prepend\">\n                                    <span class=\"input-group-text\" id=\"basic-addon1\">Overtime</span>\n                                </div>\n                                <input type=\"text\" id=\"over\" class=\"form-control\" [(ngModel)]=\"timesheet.overTime\"\n                                    style=\"text-align:center\" [disabled]=\"mode != 'create'&& mode != 'update'\">\n                            </div>\n                        </div>\n                    </div>\n                </td>\n                <!-- <td>Total</td> -->\n                <td>{{timesheetTotal()}}</td>\n\n                <td *ngFor=\"let day of days\">{{colTotal(day.value)}}</td>\n\n                <td></td>\n            </tr>\n        </ng-template>\n    </p-table>\n</div>";
+    __webpack_exports__["default"] = "<form>\n    <div class=\"form-row\">\n\n        <div class=\"col-2\">\n            <div class=\"input-group mb-3\">\n                <div class=\"input-group-prepend\">\n                    <span class=\"input-group-text\" id=\"basic-addon1\">Version</span>\n                </div>\n                <input type=\"text\" id=\"weekNum\" class=\"form-control\" [value]=\"timesheet.versionNumber\"\n                    [readonly]=\"true\">\n            </div>\n        </div>\n\n\n        <div class=\"col-2\">\n            <div class=\"input-group mb-3\">\n                <div class=\"input-group-prepend\">\n                    <span class=\"input-group-text\" id=\"basic-addon1\">Week No.</span>\n                </div>\n                <input type=\"text\" id=\"weekNum\" class=\"form-control\" [value]=\"timesheet.weekNumber\" [readonly]=\"true\">\n            </div>\n        </div>\n\n        <div class=\"col-6\">\n            <div class=\"input-group mb-3\">\n                <div class=\"input-group-prepend\">\n                    <span class=\"input-group-text\" id=\"basic-addon1\">Week Ending</span>\n                </div>\n                <input id=\"weekEnd\" type=\"text\" placeholder=\"Datepicker\" class=\"form-control\" bsDatepicker\n                    [daysDisabled]=\"[6,2,4,3,1,0]\" [outsideClick]=\"true\"\n                    [bsConfig]=\"{selectWeek: true, dateInputFormat: 'YYYY-MM-DD' }\"\n                    (bsValueChange)=\"onValueChange($event)\" value=\"{{ timesheet.weekEndingIn | date:'yyyy-MM-dd' }}\"\n                    [readonly]=\"(mode == 'read' || mode =='update')\"\n                    [isDisabled]=\"(mode == 'read' || mode =='update')\" />\n            </div>\n        </div>\n        <div class=\"col-2\" *ngIf=\"mode == 'create'|| mode =='update'\">\n            <button type=\"button\" class=\"btn btn-outline-primary\" (click)=\"addRow($event)\">Add Row</button>\n        </div>\n    </div>\n</form>\n<div class=\"dropdown-divider \"></div>\n\n<!-- This is editable -->\n<div class=\"my-3\">\n    <p-table [value]=\"timesheet.timesheetRows\" (onEditComplete)=\"onEditComplete($event)\"\n        [style]=\"{'text-align':'center'}\">\n        <ng-template pTemplate=\"header\">\n            <tr>\n                <th style=\"width:20%\">Project Name</th>\n                <th style=\"width:17%\">W.P. Code</th>\n                <th>Total</th>\n\n                <th *ngFor=\"let day of days\">{{day.header}}</th>\n                <th></th>\n            </tr>\n        </ng-template>\n        <ng-template pTemplate=\"body\" let-rowData let-i=\"rowIndex\">\n            <tr>\n                <!-- <td [attr.pEditableColumn]=\"mode == 'create'|| mode == 'update' ? '' : null\">\n                    <p-cellEditor>\n                        <ng-template pTemplate=\"input\">\n\n                            <p-dropdown [options]=\"projectDropdown\" [(ngModel)]=\"rowData.projectId\"\n                                [style]=\"{'width':'170px'}\">\n                            </p-dropdown>\n\n                        </ng-template>\n                        <ng-template pTemplate=\"output\">\n                            \n                            {{rowData.projectName}}\n                        </ng-template>\n                    </p-cellEditor>\n                </td> -->\n                <td>\n                    <p-dropdown [options]=\"populateProject()\" [(ngModel)]=\"rowData.projectId\" [style]=\"{'width':'100%'}\"\n                        *ngIf=\"(mode == 'create'|| mode == 'update')\">\n                    </p-dropdown>\n                    <span *ngIf=\"mode == 'read'\">{{rowData.projectId}}</span>\n                </td>\n                <!-- <td [attr.pEditableColumn]=\"mode == 'create'|| mode == 'update'? '' : null\">\n                    <p-cellEditor>\n                        <ng-template pTemplate=\"input\">\n\n                            <p-dropdown [options]=\"populateWP(rowData.projectId)\" [(ngModel)]=\"rowData.workPackageId\"\n                                [style]=\"{'width':'170px'}\">\n                            </p-dropdown>\n\n                        </ng-template>\n                        <ng-template pTemplate=\"output\">\n                            {{rowData.pwName}}\n                        </ng-template>\n                    </p-cellEditor>\n                </td> -->\n                <td>\n                    <p-dropdown [options]=\"populateWps(rowData.projectId)\" [(ngModel)]=\"rowData.workPackageId\"\n                        [style]=\"{'width':'100%'}\" *ngIf=\"(mode == 'create'|| mode == 'update')\">\n                    </p-dropdown>\n                    <span *ngIf=\"mode == 'read'\">{{rowData.workPackageId}}</span>\n                </td>\n                <td>\n                    <p-cellEditor>\n                        <ng-template pTemplate=\"output\">\n                            <span><strong>{{rowTotal(rowData) | number}}</strong></span>\n                        </ng-template>\n                    </p-cellEditor>\n                </td>\n\n                <td [pEditableColumn]=\"mode == 'create'|| mode == 'update'? '' : null\" *ngFor=\"let day of days\">\n                    <p-cellEditor>\n                        <ng-template pTemplate=\"input\">\n\n                            <input pInputText type=\"number\" [(ngModel)]=\"rowData[day.value]\" style=\"text-align:center\"\n                                [disabled]=\"mode != 'create'&& mode != 'update'\">\n\n                        </ng-template>\n                        <ng-template pTemplate=\"output\">\n                            <span *ngIf=\"invalidHr(rowData[day.value])\" class=\"error\">{{rowData[day.value]}}</span>\n                            <span *ngIf=\"!invalidHr(rowData[day.value])\" class=\"pass\">{{rowData[day.value]}}</span>\n                        </ng-template>\n                    </p-cellEditor>\n                </td>\n\n                <td class=\"p-1\">\n                    <button *ngIf=\"mode == 'create'|| mode == 'update'\" type=\"button\" class=\"btn-link-normal\"\n                        (click)=\"deleteRow(rowData,i)\">\n                        <i class=\"material-icons text-danger\">remove_circle_outline</i>\n                    </button>\n                </td>\n            </tr>\n        </ng-template>\n        <ng-template pTemplate=\"footer\">\n            <tr>\n                <td colspan=\"2\">\n                    <div class=\"form-row\">\n                        <div class=\"col\">\n                            <div class=\"input-group \">\n                                <div class=\"input-group-prepend\">\n                                    <span class=\"input-group-text\" id=\"basic-addon1\">Flex</span>\n                                </div>\n                                <input type=\"text\" id=\"flex\" class=\"form-control\" [(ngModel)]=\"timesheet.flexTime\"\n                                    style=\"text-align:center\" [disabled]=\"mode != 'create'&& mode != 'update'\">\n                            </div>\n                        </div>\n                        <div class=\"col\">\n                            <div class=\"input-group \">\n                                <div class=\"input-group-prepend\">\n                                    <span class=\"input-group-text\" id=\"basic-addon1\">Overtime</span>\n                                </div>\n                                <input type=\"text\" id=\"over\" class=\"form-control\" [(ngModel)]=\"timesheet.overTime\"\n                                    style=\"text-align:center\" [disabled]=\"mode != 'create'&& mode != 'update'\">\n                            </div>\n                        </div>\n                    </div>\n                </td>\n                <!-- <td>Total</td> -->\n                <td>{{timesheetTotal()}}</td>\n\n                <td *ngFor=\"let day of days\">{{colTotal(day.value)}}</td>\n                <td></td>\n            </tr>\n        </ng-template>\n    </p-table>\n    <div class=\"alert alert-danger my-3\" role=\"alert\" *ngIf=\"dispalyError()\">\n        <h4 class=\"alert-heading\">Validation Error</h4>\n        <ul>\n\n            <li *ngIf=\"validationError['flexTime']\">{{validationError['flexTime'].msgs}}</li>\n            <li *ngIf=\"validationError['projectId']\">{{validationError['projectId'].msgs}}</li>\n            <li *ngIf=\"validationError['hr']\">{{validationError['hr'].msgs}}</li>\n            <li *ngIf=\"validationError['workPackageId']\">{{validationError['workPackageId'].msgs}}</li>\n            <li *ngIf=\"validationError['weekEndingIn']\">{{validationError['weekEndingIn'].msgs}}</li>\n            <li *ngIf=\"validationError['row']\">{{validationError['row'].msgs}}</li>\n        </ul>\n        <hr>\n        <p class=\"mb-0\"></p>\n    </div>\n</div>";
     /***/
   },
 
@@ -10421,7 +10421,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _classCallCheck(this, TimesheetComponent);
 
         this.apiReady = false;
-        this.validationError = false;
+        this.validationError = [];
         this.dataReady = false;
       }
 
@@ -10454,27 +10454,36 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }
         /** Validate hrs entered */
 
+        /** false means passed */
+
       }, {
-        key: "validate",
-        value: function validate(hr) {
+        key: "invalidHr",
+        value: function invalidHr(hr) {
+          var result = false;
+
           if (hr < 0 || hr >= 24) {
-            this.validationError = true;
-            return true;
-          }
+            this.validationError['hr'] = {
+              msgs: 'Hour should be between 0 and 24',
+              type: 'danger'
+            };
+            result = true;
+          } // if (hr % 0.25 != 0 ) {
+          //   this.validationError['hr'] = { msgs: 'Hour should in 0.25 unit', type: 'danger' };
+          // }
 
-          if (hr % 0.25 != 0) {
-            this.validationError = true;
-            return true;
-          }
 
-          return false;
+          return result;
         }
       }, {
         key: "rowTotal",
         value: function rowTotal(d) {
           var sum = 0;
           this.days.forEach(function (day) {
-            return sum += +d[day.value];
+            if (d[day.value] === null) {
+              d[day.value] = 0;
+            }
+
+            sum += +d[day.value];
           });
           return sum;
         }
@@ -10523,12 +10532,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }
       }, {
         key: "deleteRow",
-        value: function deleteRow(p) {
-          console.log(p);
-          var temp = this.timesheet.timesheetRows;
-          this.timesheet.timesheetRows = temp.filter(function (r) {
-            if (r.workPackageId != p.workPackageId && r.projectId != p.projectId) return r;
-          });
+        value: function deleteRow(p, index) {
+          // console.log(p);
+          // var temp = this.timesheet.timesheetRows
+          // this.timesheet.timesheetRows = temp.filter(r => {
+          //   if (r.workPackageId != p.workPackageId && r.projectId != p.projectId)
+          //     return r;
+          // })
+          console.log(index);
+
+          if (this.timesheet.timesheetRows.length > index) {
+            this.timesheet.timesheetRows.splice(index, 1);
+          }
         }
       }, {
         key: "populateProject",
@@ -10596,13 +10611,95 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var date = new Date(s);
           console.log(date);
           return date;
-        }
+        } // onChangeInputDays(e){
+        //   this.timesheet.timesheetRows.forEach(row=>{
+        //     this.days.forEach(day=>{
+        //       row
+        //     })
+        //   })
+        // }
+
       }, {
         key: "onValueChange",
         value: function onValueChange(value) {
           console.log(value);
           this.timesheet.weekEndingIn = this.dateFormater(value);
           this.timesheet.weekNumber = this.getWeek(value);
+        } // getOvertime() {
+        //   var total = this.timesheetTotal();
+        //   if (total - 40 > 0)
+        //     return total - 40;
+        //   return 0;
+        // }
+
+        /** return true if pass */
+
+      }, {
+        key: "validatePage",
+        value: function validatePage() {
+          var _this47 = this;
+
+          this.validationError = [];
+
+          if (this.timesheet.weekEndingIn === null) {
+            this.validationError['weekEndingIn'] = {
+              msgs: 'Timesheet week cannot be empty',
+              type: 'danger'
+            };
+          } // when timesheet over 40 hours
+
+
+          var totalhrs = this.timesheetTotal();
+
+          if (totalhrs > 40) {
+            var flex = this.timesheet.flexTime;
+            var overtime = this.timesheet.overTime;
+
+            if (40 - flex - overtime !== 0) {
+              this.validationError['flexTime'] = {
+                msgs: 'You must allocate hours into flex or overtime',
+                type: 'danger'
+              };
+            }
+          } // not timesheet rows
+
+
+          if (this.timesheet.timesheetRows.length == 0) {
+            this.validationError['row'] = {
+              msgs: 'You must have at least one timesheet row',
+              type: 'danger'
+            };
+            return Object.keys(this.validationError).length == 0;
+          } // row validation
+
+
+          this.timesheet.timesheetRows.forEach(function (row) {
+            if (row.projectId == 0) {
+              _this47.validationError['projectId'] = {
+                msgs: 'You must selected project',
+                type: 'danger'
+              };
+            }
+
+            if (row.workPackageId == 0) {
+              _this47.validationError['workPackageId'] = {
+                msgs: 'You must selected work page',
+                type: 'danger'
+              };
+            }
+
+            _this47.days.forEach(function (day) {
+              _this47.invalidHr(row[day]);
+            });
+          });
+          console.log(this.validationError);
+          return Object.keys(this.validationError).length == 0;
+        }
+      }, {
+        key: "dispalyError",
+        value: function dispalyError() {
+          console.log(this.validationError);
+          return Object.keys(this.validationError).length != 0;
         }
       }]);
 
