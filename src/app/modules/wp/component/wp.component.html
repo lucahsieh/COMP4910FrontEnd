@@ -110,7 +110,7 @@
                 value="{{ wp.responsibleEngineer ? wp.responsibleEngineer.empFirstName + ' ' + wp.responsibleEngineer.empLastName : '(Not Assigned)'}}"
                 *ngIf="mode==='read'" [readOnly]="true">
             <p-dropdown class="form-control" [options]="engineerDropdown" [(ngModel)]="selectedEngineer"
-                *ngIf="mode ==='create' || mode==='update'"
+                *ngIf="mode ==='create' || mode==='update'" filter="true"
                 placeholder="{{wp.responsibleEngineer ? wp.responsibleEngineer.employeeId : 'choose a Responsible Engineer'}}"
                 optionLabel="label" [style]="{'border-width':'0px','padding':'0px','width':'100%'}"></p-dropdown>
         </div>
@@ -129,7 +129,7 @@
                 [readOnly]="true">
             <p-dropdown class="form-control" [options]="parentWPDropdown" [(ngModel)]="wp.parentWorkPackageCode"
                 (onChange)="onChangeParentWp()" *ngIf="mode ==='create' || mode==='update'"
-                placeholder="{{'choose a Parent WP'}}" optionLabel="label"
+                placeholder="{{'choose a Parent WP'}}" optionLabel="label" filter="true"
                 [style]="{'border-width':'0px','padding':'0px','width':'100%'}"></p-dropdown>
         </div>
         <!--<span *ngIf="alerts.supervisor" class="error my-2"><small>{{alerts.supervisor.msg}}</small></span>-->

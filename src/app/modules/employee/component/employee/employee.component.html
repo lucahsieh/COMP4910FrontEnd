@@ -122,7 +122,7 @@
                 value="{{employee.supervisor.empFirstName}} {{employee.supervisor.empLastName}}" *ngIf="mode==='read'"
                 [readOnly]="true">
             <p-dropdown class="form-control" [options]="employeeDropdown" [(ngModel)]="selectedSupervisor"
-                *ngIf="mode ==='create' || mode==='update'"
+                *ngIf="mode ==='create' || mode==='update'" filter="true"
                 placeholder="{{employee.supervisor ? employee.supervisor.empFirstName + ' ' + employee.supervisor.empLastName : 'choose a supervisor'}}"
                 optionLabel="label" [style]="{'border-width':'0px','padding':'0px','width':'100%'}"></p-dropdown>
         </div>

@@ -74,7 +74,7 @@
                 </td> -->
                 <td>
                     <p-dropdown [options]="populateProject()" [(ngModel)]="rowData.projectId" [style]="{'width':'100%'}"
-                        *ngIf="(mode == 'create'|| mode == 'update')">
+                        *ngIf="(mode == 'create'|| mode == 'update')" filter="true">
                     </p-dropdown>
                     <span *ngIf="mode == 'read'">{{rowData.projectId}}</span>
                 </td>
@@ -94,7 +94,7 @@
                 </td> -->
                 <td>
                     <p-dropdown [options]="populateWps(rowData.projectId)" [(ngModel)]="rowData.workPackageId"
-                        [style]="{'width':'100%'}" *ngIf="(mode == 'create'|| mode == 'update')">
+                        [style]="{'width':'100%'}" *ngIf="(mode == 'create'|| mode == 'update')" filter="true">
                     </p-dropdown>
                     <span *ngIf="mode == 'read'">{{rowData.workPackageId}}</span>
                 </td>
