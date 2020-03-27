@@ -34,11 +34,15 @@ export class ProjectListComponent implements OnInit {
         console.log(res);
         res.forEach(i => {
           console.log(i)
+          let projectManagerName = ' '
+          if (i.projectManager) {
+            projectManagerName = i.projectManager.empFirstName + " " + i.projectManager.empLastName;
+          }
           this.displayProject.push(
             {
               "projectId": i.projectId,
               "projectName": i.projectName,
-              "projectManager": i.projectManager.empFirstName + " " + i.projectManager.empLastName,
+              "projectManager": projectManagerName,
               "startDate": i.startDate,
               "endDate": i.endDate,
               "isClosed": !i.isClosed

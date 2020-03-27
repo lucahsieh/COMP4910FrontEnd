@@ -5,6 +5,7 @@ import { Employee } from 'src/app/shared/model/Employee';
 import { SelectItem } from 'primeng/api/selectitem';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 import { MyToastService } from 'src/app/core/service/my-toast.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employee-change-approver',
@@ -24,7 +25,8 @@ export class EmployeeChangeApproverComponent implements OnInit {
     private employeeService: EmployeeService,
     private modalService: BsModalService,
     private myToastService: MyToastService,
-    private authService: AuthenticationService
+    private authService: AuthenticationService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -34,6 +36,7 @@ export class EmployeeChangeApproverComponent implements OnInit {
   }
 
   initEmployees() {
+    this.displayEmployee = [];
     this.employeeService.getAllChildrenEmployees(this.authService.currentUserValue.employeeId).subscribe(res => {
       console.log(res);
       res.forEach(i => {
@@ -77,17 +80,27 @@ export class EmployeeChangeApproverComponent implements OnInit {
   }
 
   openModal(id, template: TemplateRef<any>) {
+    console.log(id)
     this.employeeService.getEmployee(id).subscribe(emp => {
       this.selectedEmp = emp;
+      console.log(JSON.stringify(this.selectedEmp));
       this.modalRef = this.modalService.show(template);
     })
   }
 
   onSaveChange() {
-    this.employeeService.putEmployee(this.selectedEmp).subscribe(_ => {
-      this.modalRef.hide();
-      this.myToastService.addSuccess('Successfully changed Timesheet Approver', `${new Date().toLocaleString()}`);
-    })
+    this.employeeService.putEmployee(this.selectedEmp)
+      .subscribe(
+        result =>
+          console.log(result),
+        error =>
+          this.myToastService.addError('Update Error', `${error}`),
+        () => {
+          this.modalRef.hide();
+          this.myToastService.addSuccess('Successfully changed Timesheet Approver!', `${new Date().toLocaleString()}`);
+          this.initEmployees();
+        }
+      );
   }
 
 

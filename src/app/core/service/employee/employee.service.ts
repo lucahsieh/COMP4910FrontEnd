@@ -65,27 +65,7 @@ export class EmployeeService {
   putEmployee(e: Employee): Observable<any> {
     let url = this.baseUrl + `api/employees/${e.employeeId}`;
     let body = {
-      "empUsername": e.empUsername,
-      "empPassword": e.empPassword,
-      "empCode": e.empCode,
-      "labourGradeId": e.labourGrade.labourGradeId,
-      "empFirstName": e.empFirstName,
-      "empLastName": e.empLastName,
-      "timesheetApproverId": e.timesheetApproverId,
-      "supervisorId": e.supervisorId,
-      "isProjectManager": e.isProjectManager,
-      "isAdmin": e.isAdmin,
-      "isHumanResources": e.isHumanResources,
-      "isActivated": e.isActivated,
-      "jobTitleId": e.jobTitleId
-    };
-    return this.http
-      .put<Employee>(url, body, this.httpOptions)
-      .pipe(catchError(this.handleError("postEmployee", e)));
-  }
-  postEmployee(e: Employee): Observable<any> {
-    let url = this.baseUrl + `api/employees`;
-    let body = {
+      "employeeId": e.employeeId,
       "empUsername": e.empUsername,
       "empPassword": e.empPassword,
       "empCode": e.empCode,
@@ -100,6 +80,31 @@ export class EmployeeService {
       "isActivated": e.isActivated,
       "jobTitleId": e.jobTitleId
     };
+    console.log('putEmployee')
+    console.log(JSON.stringify(body))
+    return this.http
+      .put<Employee>(url, body, this.httpOptions)
+      .pipe(catchError(this.handleError("postEmployee", e)));
+  }
+  postEmployee(e: Employee): Observable<any> {
+    let url = this.baseUrl + `api/employees`;
+    let body = {
+      "empUsername": e.empUsername,
+      "empPassword": e.empPassword,
+      "empCode": e.empCode,
+      "labourGradeId": e.labourGrade.labourGradeId,
+      "empFirstName": e.empFirstName,
+      "empLastName": e.empLastName,
+      "timesheetApproverId": e.supervisorId,
+      "supervisorId": e.supervisorId,
+      "isProjectManager": e.isProjectManager,
+      "isAdmin": e.isAdmin,
+      "isHumanResources": e.isHumanResources,
+      "isActivated": e.isActivated,
+      "jobTitleId": e.jobTitleId
+    };
+    console.log('postEmployee')
+    console.log(JSON.stringify(body))
     return this.http
       .post<Employee>(url, body, this.httpOptions)
       .pipe(catchError(this.handleError("postEmployee", e)));
@@ -136,7 +141,7 @@ export class EmployeeService {
 
   checkUserEmployeeCodeOK(empCode: number): Observable<any> {
 
-    let url = this.baseUrl + `api/Credentials/CheckEmployeeCodeAvailability/${empCode}`;
+    let url = this.baseUrl + `api/Employees/CheckEmployeeCodeAvailability/${empCode}`;
     return this.http.get<any>(url, this.httpOptions).pipe();
   }
 

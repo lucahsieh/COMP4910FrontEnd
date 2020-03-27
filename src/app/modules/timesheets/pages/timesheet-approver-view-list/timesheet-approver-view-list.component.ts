@@ -53,11 +53,11 @@ export class TimesheetApproverViewListComponent implements OnInit {
   }
 
   colorStatus(status: string) {
-    switch (status) {
-      case 'Approved': return 'badge badge-success';
-      case 'Rejected': return 'badge badge-danger';
-      case 'Pending': return 'badge badge-warning';
-      case 'Inprogress': return 'badge badge-info';
+    switch (status.toLowerCase()) {
+      case 'approved': return 'badge badge-success';
+      case 'rejected': return 'badge badge-danger';
+      case 'pending': return 'badge badge-warning';
+      case 'inprogress': return 'badge badge-info';
     }
   }
 

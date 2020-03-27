@@ -23,17 +23,17 @@ export class TimesheetViewComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       var id = params.get('timesheetId');
       console.log(`current timesheet id is  ${id}`);
-      this.timesheetService.getTimesheet(id).subscribe(ts => this.timesheet = ts);
+      this.timesheetService.getTimesheet(id).subscribe(ts => { this.timesheet = ts; console.log(JSON.stringify(ts)) });
     });
 
   }
 
   colorStatus(status: string) {
-    switch (status) {
-      case 'Approved': return 'badge badge-pill badge-success';
-      case 'Rejected': return 'badge badge-pill badge-danger';
-      case 'Pending': return 'badge badge-pill badge-warning';
-      case 'Inprogress': return 'badge badge-pill badge-info';
+    switch (status.toLowerCase()) {
+      case 'approved': return 'badge badge-pill badge-success';
+      case 'rejected': return 'badge badge-pill badge-danger';
+      case 'pending': return 'badge badge-pill badge-warning';
+      case 'inprogress': return 'badge badge-pill badge-info';
       default: return 'badge badge-pill badge-dark';
     }
   }

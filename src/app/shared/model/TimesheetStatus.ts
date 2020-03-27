@@ -1,7 +1,7 @@
 /** this represents timesheet status */
 export enum TimesheetStatus {
-    approved = "Approved",
-    rejected = "Rejected",
-    pending = "Pending",
+    approved = "approved",
+    rejected = "rejected",
+    pending = "pending",
     inProgress = "inprogress"
 }

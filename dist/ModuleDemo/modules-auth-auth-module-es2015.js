@@ -9,20 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"col-md-6 offset-md-3 mt-5\">\r\n    <div class=\"alert alert-info\">\r\n        Fake Backend<br />\r\n        Username: A123 Password: master<br />\r\n        Username: A456 Password: regular<br />\r\n        Username: A789 Password: lower<br />\r\n        Real Backend<br />\r\n        Username: A100001 Password: password<br />\r\n\r\n    </div>\r\n    <div class=\"card\">\r\n        <h4 class=\"card-header\">Angular 8 JWT Login Example</h4>\r\n        <div class=\"card-body\">\r\n            <form [formGroup]=\"loginForm\" (ngSubmit)=\"onSubmit()\">\r\n                <div class=\"form-group\">\r\n                    <label for=\"username\">Username</label>\r\n                    <input type=\"text\" formControlName=\"username\" class=\"form-control\"\r\n                        [ngClass]=\"{ 'is-invalid': submitted && f.username.errors }\" />\r\n                    <div *ngIf=\"submitted && f.username.errors\" class=\"invalid-feedback\">\r\n                        <div *ngIf=\"f.username.errors.required\">Username is required</div>\r\n                    </div>\r\n                </div>\r\n                <div class=\"form-group\">\r\n                    <label for=\"password\">Password</label>\r\n                    <input type=\"password\" formControlName=\"password\" class=\"form-control\"\r\n                        [ngClass]=\"{ 'is-invalid': submitted && f.password.errors }\" />\r\n                    <div *ngIf=\"submitted && f.password.errors\" class=\"invalid-feedback\">\r\n                        <div *ngIf=\"f.password.errors.required\">Password is required</div>\r\n                    </div>\r\n                </div>\r\n                <button [disabled]=\"loading\" class=\"btn btn-primary\">\r\n                    <span *ngIf=\"loading\" class=\"spinner-border spinner-border-sm mr-1\"></span>\r\n                    Login\r\n                </button>\r\n                <div *ngIf=\"error\" class=\"alert alert-danger mt-3 mb-0\">{{error}}</div>\r\n            </form>\r\n        </div>\r\n    </div>\r\n</div>");
-
-/***/ }),
-
-/***/ "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/auth/pages/reset-password/reset-password.component.html":
-/*!***********************************************************************************************************************!*\
-  !*** ./node_modules/raw-loader/dist/cjs.js!./src/app/modules/auth/pages/reset-password/reset-password.component.html ***!
-  \***********************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<p>reset-password works!</p>\r\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<div class=\"col-md-6 offset-md-3 mt-5\">\n    <div class=\"alert alert-info\">\n        Fake Backend<br />\n        Username: A123 Password: master<br />\n        Username: A456 Password: regular<br />\n        Username: A789 Password: lower<br />\n        Real Backend<br />\n        Username: A100001 Password: password<br />\n\n    </div>\n    <div class=\"card\">\n        <h4 class=\"card-header\">Login</h4>\n        <div class=\"card-body\">\n            <form [formGroup]=\"loginForm\" (ngSubmit)=\"onSubmit()\">\n                <div class=\"form-group\">\n                    <label for=\"username\">Username</label>\n                    <input type=\"text\" formControlName=\"username\" class=\"form-control\"\n                        [ngClass]=\"{ 'is-invalid': submitted && f.username.errors }\" />\n                    <div *ngIf=\"submitted && f.username.errors\" class=\"invalid-feedback\">\n                        <div *ngIf=\"f.username.errors.required\">Username is required</div>\n                    </div>\n                </div>\n                <div class=\"form-group\">\n                    <label for=\"password\">Password</label>\n                    <input type=\"password\" formControlName=\"password\" class=\"form-control\"\n                        [ngClass]=\"{ 'is-invalid': submitted && f.password.errors }\" />\n                    <div *ngIf=\"submitted && f.password.errors\" class=\"invalid-feedback\">\n                        <div *ngIf=\"f.password.errors.required\">Password is required</div>\n                    </div>\n                </div>\n                <button [disabled]=\"loading\" class=\"btn btn-primary\">\n                    <span *ngIf=\"loading\" class=\"spinner-border spinner-border-sm mr-1\"></span>\n                    Login\n                </button>\n                <div *ngIf=\"error\" class=\"alert alert-danger mt-3 mb-0\">{{error.message}}</div>\n            </form>\n        </div>\n    </div>\n</div>");
 
 /***/ }),
 
@@ -40,8 +27,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
 /* harmony import */ var _pages_login_login_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/login/login.component */ "./src/app/modules/auth/pages/login/login.component.ts");
-/* harmony import */ var _pages_reset_password_reset_password_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/reset-password/reset-password.component */ "./src/app/modules/auth/pages/reset-password/reset-password.component.ts");
-
 
 
 
@@ -55,10 +40,6 @@ const routes = [
     {
         path: 'login',
         component: _pages_login_login_component__WEBPACK_IMPORTED_MODULE_3__["LoginComponent"]
-    },
-    {
-        path: 'resetpassword',
-        component: _pages_reset_password_reset_password_component__WEBPACK_IMPORTED_MODULE_4__["ResetPasswordComponent"]
     }
 ];
 let AuthRoutingModule = class AuthRoutingModule {
@@ -88,10 +69,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm2015/common.js");
 /* harmony import */ var _pages_login_login_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/login/login.component */ "./src/app/modules/auth/pages/login/login.component.ts");
-/* harmony import */ var _pages_reset_password_reset_password_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/reset-password/reset-password.component */ "./src/app/modules/auth/pages/reset-password/reset-password.component.ts");
-/* harmony import */ var _auth_routing_module__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./auth-routing.module */ "./src/app/modules/auth/auth-routing.module.ts");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
-
+/* harmony import */ var _auth_routing_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./auth-routing.module */ "./src/app/modules/auth/auth-routing.module.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
 
 
 
@@ -102,12 +81,12 @@ let AuthModule = class AuthModule {
 };
 AuthModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-        declarations: [_pages_login_login_component__WEBPACK_IMPORTED_MODULE_3__["LoginComponent"], _pages_reset_password_reset_password_component__WEBPACK_IMPORTED_MODULE_4__["ResetPasswordComponent"]],
+        declarations: [_pages_login_login_component__WEBPACK_IMPORTED_MODULE_3__["LoginComponent"]],
         imports: [
             _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
-            _auth_routing_module__WEBPACK_IMPORTED_MODULE_5__["AuthRoutingModule"],
-            _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormsModule"],
-            _angular_forms__WEBPACK_IMPORTED_MODULE_6__["ReactiveFormsModule"],
+            _auth_routing_module__WEBPACK_IMPORTED_MODULE_4__["AuthRoutingModule"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_5__["FormsModule"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_5__["ReactiveFormsModule"],
         ],
     })
 ], AuthModule);
@@ -159,7 +138,7 @@ let LoginComponent = class LoginComponent {
         this.authenticationService = authenticationService;
         this.loading = false;
         this.submitted = false;
-        this.error = '';
+        this.error = null;
         if (this.authenticationService.currentUserValue) {
             // this.router.navigate(['/']);
         }
@@ -176,8 +155,11 @@ let LoginComponent = class LoginComponent {
     get f() { return this.loginForm.controls; }
     onSubmit() {
         this.submitted = true;
+        console.log('dfs');
+        console.log(this.f.password.errors);
         // stop here if form is invalid
         if (this.loginForm.invalid) {
+            console.log(this.f.password.errors);
             return;
         }
         this.loading = true;
@@ -187,7 +169,7 @@ let LoginComponent = class LoginComponent {
             this.router.navigate([this.returnUrl]);
         }, error => {
             console.log(error);
-            this.error = error;
+            this.error = error.error;
             this.loading = false;
         });
     }
@@ -205,50 +187,6 @@ LoginComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./login.component.css */ "./src/app/modules/auth/pages/login/login.component.css")).default]
     })
 ], LoginComponent);
-
-
-
-/***/ }),
-
-/***/ "./src/app/modules/auth/pages/reset-password/reset-password.component.css":
-/*!********************************************************************************!*\
-  !*** ./src/app/modules/auth/pages/reset-password/reset-password.component.css ***!
-  \********************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL21vZHVsZXMvYXV0aC9wYWdlcy9yZXNldC1wYXNzd29yZC9yZXNldC1wYXNzd29yZC5jb21wb25lbnQuY3NzIn0= */");
-
-/***/ }),
-
-/***/ "./src/app/modules/auth/pages/reset-password/reset-password.component.ts":
-/*!*******************************************************************************!*\
-  !*** ./src/app/modules/auth/pages/reset-password/reset-password.component.ts ***!
-  \*******************************************************************************/
-/*! exports provided: ResetPasswordComponent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ResetPasswordComponent", function() { return ResetPasswordComponent; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-
-
-let ResetPasswordComponent = class ResetPasswordComponent {
-    constructor() { }
-    ngOnInit() {
-    }
-};
-ResetPasswordComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-        selector: 'app-reset-password',
-        template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./reset-password.component.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/modules/auth/pages/reset-password/reset-password.component.html")).default,
-        styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./reset-password.component.css */ "./src/app/modules/auth/pages/reset-password/reset-password.component.css")).default]
-    })
-], ResetPasswordComponent);
 
 
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Timesheet } from 'src/app/shared/model/Timesheet';
 import { TimesheetStatus } from 'src/app/shared/model/TimesheetStatus';
 import { User } from 'src/app/shared/model/User';
@@ -10,6 +10,7 @@ import { MODE } from 'src/app/shared/model/MODE';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MyToastService } from 'src/app/core/service/my-toast.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
+import { TimesheetComponent } from 'src/app/shared/components/timesheet/timesheet.component';
 
 @Component({
   selector: 'app-timesheet-edit',
@@ -26,6 +27,10 @@ export class TimesheetEditComponent implements OnInit {
 
   modalRef: BsModalRef;
   currentUser: User = this.authenticationService.currentUserValue;
+
+
+  @ViewChild(TimesheetComponent, { static: false })
+  private timesheetCmp: TimesheetComponent;
 
   constructor(
     private route: ActivatedRoute,
@@ -57,6 +62,11 @@ export class TimesheetEditComponent implements OnInit {
   }
 
   onSubmit(e: any, template: TemplateRef<any>) {
+    this.timesheetCmp.validatePage()
+    if (!this.timesheetCmp.validatePage()) {
+      console.log('not pass')
+      return;
+    }
     this.modalRef = this.modalService.show(template);
   }
   onCancel(e: any) {
@@ -64,6 +74,11 @@ export class TimesheetEditComponent implements OnInit {
   }
 
   onSave(e: any) {
+    this.timesheetCmp.validatePage()
+    if (!this.timesheetCmp.validatePage()) {
+      console.log('not pass')
+      return;
+    }
     console.log(`post timesheet:`);
     console.log(JSON.stringify(this.timesheet));
     this.timesheetService.postTimesheet(this.timesheet).subscribe(_ => {
@@ -90,11 +105,11 @@ export class TimesheetEditComponent implements OnInit {
 
 
   colorStatus(status: string) {
-    switch (status) {
-      case 'Approved': return 'badge badge-pill badge-success';
-      case 'Rejected': return 'badge badge-pill badge-danger';
-      case 'Pending': return 'badge badge-pill badge-warning';
-      case 'Inprogress': return 'badge badge-pill badge-info';
+    switch (status.toLowerCase()) {
+      case 'approved': return 'badge badge-pill badge-success';
+      case 'rejected': return 'badge badge-pill badge-danger';
+      case 'pending': return 'badge badge-pill badge-warning';
+      case 'inprogress': return 'badge badge-pill badge-info';
       default: return 'badge badge-pill badge-dark';
     }
   }

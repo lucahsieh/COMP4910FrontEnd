@@ -152,7 +152,7 @@
       "employeeId": 1,
       "weekNumber": 32,
       "weekEndingIn": "2020-02-01T00:00:00",
-      "status": "Pending",
+      "status": "pending",
       "signature": null,
       "timesheetRows": null
     },
@@ -162,7 +162,7 @@
       "employeeId": 1,
       "weekNumber": 34,
       "weekEndingIn": "2020-09-01T00:00:00",
-      "status": "Inprogress",
+      "status": "inprogress",
       "signature": null,
       "timesheetRows": null
     },
