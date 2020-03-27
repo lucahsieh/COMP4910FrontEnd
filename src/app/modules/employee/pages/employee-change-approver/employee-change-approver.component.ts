@@ -34,6 +34,7 @@ export class EmployeeChangeApproverComponent implements OnInit {
   }
 
   initEmployees() {
+    this.displayEmployee = [];
     this.employeeService.getAllChildrenEmployees(this.authService.currentUserValue.employeeId).subscribe(res => {
       console.log(res);
       res.forEach(i => {
@@ -88,6 +89,7 @@ export class EmployeeChangeApproverComponent implements OnInit {
     this.employeeService.putEmployee(this.selectedEmp).subscribe(_ => {
       this.modalRef.hide();
       this.myToastService.addSuccess('Successfully changed Timesheet Approver', `${new Date().toLocaleString()}`);
+      this.initEmployees();
     })
   }
 

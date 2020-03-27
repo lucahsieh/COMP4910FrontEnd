@@ -74,6 +74,8 @@ export class EmployeeService {
       "isActivated": e.isActivated,
       "jobTitleId": e.jobTitleId
     };
+    console.log('putEmployee')
+    console.log(JSON.stringify(body))
     return this.http
       .put<Employee>(url, body, this.httpOptions)
       .pipe(catchError(this.handleError("postEmployee", e)));
@@ -95,6 +97,8 @@ export class EmployeeService {
       "isActivated": e.isActivated,
       "jobTitleId": e.jobTitleId
     };
+    console.log('postEmployee')
+    console.log(JSON.stringify(body))
     return this.http
       .post<Employee>(url, body, this.httpOptions)
       .pipe(catchError(this.handleError("postEmployee", e)));
