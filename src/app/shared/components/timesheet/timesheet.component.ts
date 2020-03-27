@@ -152,11 +152,11 @@ export class TimesheetComponent implements OnInit {
     this.timesheet.weekNumber = this.getWeek(value);
   }
 
-  getOvertime() {
-    var total = this.timesheetTotal();
-    if (total - 40 > 0)
-      return total - 40;
-    return 0;
-  }
+  // getOvertime() {
+  //   var total = this.timesheetTotal();
+  //   if (total - 40 > 0)
+  //     return total - 40;
+  //   return 0;
+  // }
 
 }

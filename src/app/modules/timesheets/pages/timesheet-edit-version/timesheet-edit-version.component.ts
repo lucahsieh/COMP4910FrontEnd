@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Timesheet } from 'src/app/shared/model/Timesheet';
 import { TimesheetStatus } from 'src/app/shared/model/TimesheetStatus';
 import { User } from 'src/app/shared/model/User';
@@ -7,7 +7,9 @@ import { TimesheetService } from 'src/app/core/service/timesheet/timesheet.servi
 import { ProjectService } from 'src/app/core/service/project/project.service';
 import { AuthenticationService } from 'src/app/core/service/authentication.service';
 import { MODE } from 'src/app/shared/model/MODE';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap';
+import { MyToastService } from 'src/app/core/service/my-toast.service';
 
 @Component({
   selector: 'app-timesheet-edit-version',
@@ -23,13 +25,16 @@ export class TimesheetEditVersionComponent implements OnInit {
   employeeWPs: any[] = null;
   projectWp: any[];
 
-
+  modalRef: BsModalRef;
   currentUser: User = this.authenticationService.currentUserValue;
 
   constructor(
     private route: ActivatedRoute,
     private timesheetService: TimesheetService,
     private projectService: ProjectService,
+    private modalService: BsModalService,
+    private myToastService: MyToastService,
+    private router: Router,
     private authenticationService: AuthenticationService
   ) { }
 
@@ -42,25 +47,53 @@ export class TimesheetEditVersionComponent implements OnInit {
     this.prepareprojectWp();
   }
 
-  onSubmit(e: any) {
+  // onSubmit(e: any) {
+  //   // increment the version. since it is using the old timesheet to create a new one
+  //   this.timesheet.versionNumber += 1;
+  //   this.timesheet.status = TimesheetStatus.pending;
+  //   this.timesheetService.putTimesheet(this.timesheet).subscribe(_ => {
+  //     // TODO : nagvigate to this page "/content/timesheets"
+  //   });
+  // }
+  // onSave(e: any) {
+  //   // increment the version. since it is using the old timesheet to create a new one
+  //   this.timesheet.versionNumber += 1;
+  //   this.timesheet.status = TimesheetStatus.inProgress;
+  //   console.log(`post timesheet new version:`);
+  //   console.log(JSON.stringify(this.timesheet));
+  //   this.timesheetService.putTimesheet(this.timesheet).subscribe(_ => {
+  //     // TODO : nagvigate to this page "/content/timesheets"
+  //   });
+  // }
+
+  onSubmitConfrimed() {
     // increment the version. since it is using the old timesheet to create a new one
     this.timesheet.versionNumber += 1;
     this.timesheet.status = TimesheetStatus.pending;
-    this.timesheetService.putTimesheet(this.timesheet).subscribe(_ => {
-      // TODO : nagvigate to this page "/content/timesheets"
-    });
+    this.timesheetService.postTimesheet(this.timesheet).subscribe(_ => {
+      this.modalRef.hide();
+      this.myToastService.addSuccess('Timesheet Sumitted Successfully', `Timesheet of week ${this.timesheet.weekEndingIn} Version: ${this.timesheet.versionNumber} is sumitted to your supervisor.`);
+      this.router.navigate([`/content/timesheets`]);
+    })
   }
+
+  onSubmit(e: any, template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
+  onCancel(e: any) {
+    this.router.navigate([`/content/timesheets`]);
+  }
+
   onSave(e: any) {
     // increment the version. since it is using the old timesheet to create a new one
     this.timesheet.versionNumber += 1;
     this.timesheet.status = TimesheetStatus.inProgress;
-    console.log(`post timesheet:`);
+    console.log(`post timesheet new version:`);
     console.log(JSON.stringify(this.timesheet));
-    this.timesheetService.putTimesheet(this.timesheet).subscribe(_ => {
-      // TODO : nagvigate to this page "/content/timesheets"
+    this.timesheetService.postTimesheet(this.timesheet).subscribe(_ => {
+      this.myToastService.addInfo(`Timesheet Updated in Version ${this.timesheet.versionNumber}`, `Timesheet of week ${this.timesheet.weekEndingIn} saved on ${new Date().toLocaleString()}`);
+      this.router.navigate([`/content/timesheets`]);
     });
-
-
   }
 
 

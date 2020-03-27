@@ -24,6 +24,8 @@ export class TimesheetService {
 
   postTimesheet(ts: Timesheet): Observable<any> {
     let url = this.baseUrl + `api/timesheets`;
+    console.log('postTimesheet');
+    console.log(JSON.stringify(ts));
     return this.http
       .post<any>(url, ts, this.httpOptions)
       .pipe(catchError(this.handleError("postProject", ts)));

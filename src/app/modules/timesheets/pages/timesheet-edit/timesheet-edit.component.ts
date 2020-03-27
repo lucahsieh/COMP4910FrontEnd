@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Timesheet } from 'src/app/shared/model/Timesheet';
 import { TimesheetStatus } from 'src/app/shared/model/TimesheetStatus';
 import { User } from 'src/app/shared/model/User';
@@ -7,7 +7,9 @@ import { TimesheetService } from 'src/app/core/service/timesheet/timesheet.servi
 import { ProjectService } from 'src/app/core/service/project/project.service';
 import { AuthenticationService } from 'src/app/core/service/authentication.service';
 import { MODE } from 'src/app/shared/model/MODE';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MyToastService } from 'src/app/core/service/my-toast.service';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 
 @Component({
   selector: 'app-timesheet-edit',
@@ -22,13 +24,16 @@ export class TimesheetEditComponent implements OnInit {
   employeeWPs: any[] = null;
   projectWp: any[];
 
-
+  modalRef: BsModalRef;
   currentUser: User = this.authenticationService.currentUserValue;
 
   constructor(
     private route: ActivatedRoute,
     private timesheetService: TimesheetService,
     private projectService: ProjectService,
+    private modalService: BsModalService,
+    private myToastService: MyToastService,
+    private router: Router,
     private authenticationService: AuthenticationService
   ) { }
 
@@ -41,19 +46,31 @@ export class TimesheetEditComponent implements OnInit {
     this.prepareprojectWp();
   }
 
-  onSubmit(e: any) {
+  onSubmitConfrimed() {
 
     this.timesheet.status = TimesheetStatus.pending;
-    this.timesheetService.postTimesheet(this.timesheet).subscribe();
+    this.timesheetService.postTimesheet(this.timesheet).subscribe(_ => {
+      this.modalRef.hide();
+      this.myToastService.addSuccess('Timesheet Sumitted Successfully', `Timesheet of week ${this.timesheet.weekEndingIn} is sumitted to your supervisor.`);
+      this.router.navigate([`/content/timesheets`]);
+    })
   }
+
+  onSubmit(e: any, template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
+  onCancel(e: any) {
+    this.router.navigate([`/content/timesheets`]);
+  }
+
   onSave(e: any) {
     console.log(`post timesheet:`);
     console.log(JSON.stringify(this.timesheet));
-    this.timesheetService.postTimesheet(this.timesheet).subscribe(
-
-    );
+    this.timesheetService.postTimesheet(this.timesheet).subscribe(_ => {
+      this.myToastService.addInfo(`Timesheet Updated`, `Timesheet of week ${this.timesheet.weekEndingIn} saved on ${new Date().toLocaleString()}`);
+      this.router.navigate([`/content/timesheets`]);
+    });
   }
-
 
   prepareprojectWp() {
     this.projectService.getProjectWpDropdown(this.currentUser.employeeId).subscribe(result => {

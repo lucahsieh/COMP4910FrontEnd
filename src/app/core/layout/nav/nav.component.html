@@ -1,27 +1,48 @@
-<ul class="list-group list-group-flush ">
-    <li class="list-group-item bg-navList"> MAIN MENU</li>
+<ul class="list-group list-group-flush">
+    <!-- [@slideInOut]="showFiller" -->
+    <!-- <li class="list-group-item bg-navList">
+        <button class="button d-flex align-items-center" (click)="showFiller = !showFiller" mat-raised-button>
+            <span class="material-icons noHMargin" *ngIf="!showFiller">keyboard_arrow_right</span>
+            <span class="material-icons noHMargin" *ngIf="showFiller" []>keyboard_arrow_left</span>
+            <span class="navText" *ngIf="showFiller" []>Hide Menu</span>
+        </button>
+    </li> -->
+    <li class="list-group-item bg-navList">
+        <a routerLink="/content/projects" class="d-flex align-items-center">
+            <span class="material-icons">description</span>
+            <span class="navText" *ngIf="showFiller">Projects</span>
+        </a></li>
     <li class="list-group-item bg-navList ">
         <a routerLink="/content/employees" class="d-flex align-items-center">
             <span class="material-icons">group</span>
-            <span>Employees</span>
+            <span class="navText" *ngIf="showFiller">Employees</span>
+        </a></li>
+    <li class="list-group-item bg-navList">
+        <a routerLink="/content/employees/supervisor/changeTimesheetApprover" class="d-flex align-items-center">
+            <span class="material-icons">how_to_reg</span>
+            <span class="navText" *ngIf="showFiller">Timesheet Approver</span>
+        </a></li>
+    <li class="list-group-item bg-navList">
+        <a routerLink="/content/projects/supervisor/projectlist" class="d-flex align-items-center">
+            <span class="material-icons">person_add</span>
+            <span class="navText" *ngIf="showFiller">Project Members</span>
         </a></li>
     <li class="list-group-item bg-navList">
         <a routerLink="/content/timesheets" class="d-flex align-items-center">
-            <span class="material-icons">event</span>
-            <span>Timesheets</span>
+            <span class="material-icons">av_timer</span>
+            <span class="navText" *ngIf="showFiller">Timesheets</span>
         </a></li>
     <li class="list-group-item bg-navList">
         <a routerLink="/content/timesheets/approver/view/list" class="d-flex align-items-center">
-            <span class="material-icons">rate_review</span>
-            <span>Pending Timsheets</span>
+            <span class="material-icons">library_add_check</span>
+            <span class="navText" *ngIf="showFiller">Pending Timsheets</span>
+        </a></li>
+    <li class="list-group-item bg-navList">
+        <a routerLink="/content/employees/changePassword" class="d-flex align-items-center">
+            <span class="material-icons">vpn_key</span>
+            <span class="navText" *ngIf="showFiller">Change Password</span>
         </a></li>
     <!-- <li class="list-group-item bg-navList"><a routerLink="/content/reports">Reports</a></li> -->
     <!-- <li class="list-group-item bg-navList"><a routerLink="/content/wp">Work Packages</a></li> -->
-    <li class="list-group-item bg-navList">
-        <a routerLink="/content/projects" class="d-flex align-items-center">
-            <span class="material-icons">work</span>
-            <span>Projects</span>
-        </a></li>
-
 
 </ul>

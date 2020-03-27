@@ -25,7 +25,7 @@ export class TimesheetApproverViewListComponent implements OnInit {
       { field: 'approver', header: 'Approver' },
       { field: 'weekNumber', header: 'Week' },
       { field: 'versionNumber', header: 'Version' },
-      { field: ' weekEndingIn', header: 'week Ending' },
+      { field: 'weekEndingIn', header: 'Week Ending' },
       { field: 'status', header: 'Status' }
     ];
     this.populateTimesheets();
@@ -43,7 +43,7 @@ export class TimesheetApproverViewListComponent implements OnInit {
               'supervisor': `${ts.owner.supervisor.empFirstName} ${ts.owner.supervisor.empLastName}`,
               'weekNumber': ts.weekNumber,
               'versionNumber': ts.versionNumber,
-              'weekEndingIn': ts.weekEndingIn,
+              'weekEndingIn': this.toDate(ts.weekEndingIn),
               'status': ts.status,
               'timesheetId': ts.timesheetId
             })
@@ -59,6 +59,11 @@ export class TimesheetApproverViewListComponent implements OnInit {
       case 'Pending': return 'badge badge-warning';
       case 'Inprogress': return 'badge badge-info';
     }
+  }
+
+  toDate(str: string) {
+    let date = new Date(str);
+    return date.toLocaleDateString();
   }
 
 }

@@ -7,7 +7,7 @@
 
 
 <app-wp *ngIf="wp" [wp]="wp" [mode]="mode" [validWpCode]="validWpCode" (changeWpCode)="validateWpCode()"
-    [alerts]="alerts"></app-wp>
+    (fireValidateWPCode)="validateWpCode()" [alerts]="alerts"></app-wp>
 
 <!-- Action section-->
 <div class="dropdown-divider my-3"></div>

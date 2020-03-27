@@ -1,6 +1,6 @@
 <app-toast-display></app-toast-display>
 <app-toolbar></app-toolbar>
-
+<!-- 
 <mat-sidenav-container class="example-container">
     <mat-sidenav #sidenav mode="side" [(opened)]="opened" class="bg-navList">
         <app-nav class="m-2"></app-nav>
@@ -10,5 +10,24 @@
         <app-breadcrumb class="margin-fix"></app-breadcrumb>
         <router-outlet class="margin-fix my-3"></router-outlet>
     </mat-sidenav-content>
-</mat-sidenav-container>
+</mat-sidenav-container> 
+-->
+
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav bg-navList" mode="side" opened="true" (mouseenter)="mouseEnter('div a') "
+        (mouseleave)="mouseLeave('div A')">
+        <app-nav class="m-2" [showFiller]="showFiller"></app-nav>
+        <!-- <button (click)="showFiller = !showFiller" mat-raised-button>
+            T
+        </button> -->
+    </mat-drawer>
+
+    <div class="example-sidenav-content">
+        <app-breadcrumb class="margin-fix"></app-breadcrumb>
+        <router-outlet class="margin-fix my-3"></router-outlet>
+    </div>
+
+</mat-drawer-container>
+
+
 <!-- <app-footer></app-footer> -->

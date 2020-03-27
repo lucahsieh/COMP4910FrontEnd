@@ -1,13 +1,13 @@
 <div class="card mx-1">
     <div class="card-body">
         <!-- Title -->
-        <h3 class="display-4">Edit Project</h3>
+        <h3 class="display-4">Manage Project Members</h3>
         <!-- alert -->
         <shared-alertPromp [alerts]="alerts"></shared-alertPromp>
 
         <app-project *ngIf="project" [mode]="mode" [project]="project" [alerts]="alerts"
             (changeProjectCode)="validateProjectCode()" [validProjectCode]="validProjectCode"
-            (vlidatePage)="validatePage()">
+            (vlidatePage)="validatePage()" [isSupervisorView]="true">
         </app-project>
 
         <!-- Action section-->

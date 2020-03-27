@@ -2,79 +2,27 @@
   "Post_Timesheet": {
     "timesheetRows": [
       {
-        "monday": 1,
-        "tuesday": 0,
-        "wednesday": 0,
-        "thursday": 0,
-        "friday": 0,
-        "saturday": 0,
-        "sunday": 0,
-        "projectId": 0,
+        "monday": "04",
+        "tuesday": "05",
+        "wednesday": "06",
+        "thursday": "06",
+        "friday": "06",
+        "saturday": "01",
+        "sunday": "02",
+        "projectId": 1,
         "timesheetVersionNumber": 1,
-        "workPackageId": 0,
-        "timesheetId": 123
-      },
-      {
-        "monday": 2,
-        "tuesday": 2,
-        "wednesday": 0,
-        "thursday": 0,
-        "friday": 0,
-        "saturday": 0,
-        "sunday": 0,
-        "projectId": 0,
-        "timesheetVersionNumber": 1,
-        "workPackageId": 0,
-        "timesheetId": 123
-      },
-      {
-        "monday": 0,
-        "tuesday": 1,
-        "wednesday": 0,
-        "thursday": 0,
-        "friday": 0,
-        "saturday": 0,
-        "sunday": 0,
-        "projectId": 0,
-        "timesheetVersionNumber": 1,
-        "workPackageId": 0,
-        "timesheetId": 123
-      },
-      {
-        "monday": 0,
-        "tuesday": 0,
-        "wednesday": 2,
-        "thursday": 3,
-        "friday": 0,
-        "saturday": 0,
-        "sunday": 0,
-        "projectId": 0,
-        "timesheetVersionNumber": 1,
-        "workPackageId": 0,
-        "timesheetId": 123
-      },
-      {
-        "monday": 0,
-        "tuesday": 0,
-        "wednesday": 0,
-        "thursday": 0,
-        "friday": 0,
-        "saturday": 0,
-        "sunday": 0,
-        "projectId": 0,
-        "timesheetVersionNumber": 1,
-        "workPackageId": 3,
+        "workPackageId": 1,
         "timesheetId": 123
       }
     ],
     "signature": null,
-    "comment": "",
-    "weekEndingIn": "2020-03-21",
-    "weekNumber": 12,
+    "weekEndingIn": "2020-02-15",
+    "weekNumber": 7,
     "timesheetId": 123,
     "employeeId": 1,
-    "versionNumber": 1,
-    "status": "inprogress"
+    "versionNumber": 6,
+    "status": "inprogress",
+    "comment": "jeiowjeiowjo"
   },
   "CheckUsernameAvailability": {
     "apiId": "Credentials"
@@ -260,7 +208,7 @@
     "weekNumber": 7,
     "timesheetId": 123,
     "employeeId": 1,
-    "versionNumber": 3,
+    "versionNumber": 5,
     "status": "Rejected",
     "comment": "jeiowjeiowjo"
   },
@@ -270,29 +218,14 @@
   "getSingleEmployee": {
     "empUsername": "abc323",
     "empCode": 43429,
-    "employeeId": 2,
-    "jobTitleId": 2,
+    "labourGradeId": 0,
     "empFirstName": "Perry",
     "empLastName": "Li",
-    "isActivated": true,
     "isProjectManager": true,
     "isAdmin": false,
-    "labourGrade": {
-      "labourGradeId": 0,
-      "labourGradeName": "P1"
-    },
     "isHumanResources": false,
-    "timesheetApprover": {
-      "employeeId": 2,
-      "empFirstName": "first",
-      "empLastName": "last"
-    },
-    "supervisor": {
-      "employeeId": 2,
-      "empFirstName": "first1",
-      "empLastName": "last1"
-    },
-    "jobTitle": null
+    "isActivated": true,
+    "jobTitleId": 2
   },
   "getAllPendingTimesheetByApproverEmpId": [
     {
@@ -315,7 +248,7 @@
       "versionNumber": 1,
       "employeeId": 2,
       "weekNumber": 10,
-      "weekEndingIn": "0001-01-01T00:00:00",
+      "weekEndingIn": "2019-12-17T00:00:00",
       "status": "Pending",
       "signature": null,
       "timesheetRows": null
@@ -340,7 +273,7 @@
       "versionNumber": 2,
       "employeeId": 1,
       "weekNumber": 1,
-      "weekEndingIn": "0001-01-01T00:00:00",
+      "weekEndingIn": "2020-01-26T00:00:00",
       "status": "Pending",
       "signature": null,
       "timesheetRows": null
@@ -968,5 +901,81 @@
   },
   "get__ReBudget": {
     "reBudgetDay": 33
-  }
+  },
+  "get__AllChildrenEmployee": [
+    {
+      "employeeId": 4,
+      "empCode": 123,
+      "empFirstName": "Employee4FirstName",
+      "empLastName": "Employee4LastName",
+      "timesheetApprover": {
+        "employeeId": 3,
+        "empFirstName": "Bruce",
+        "empLastName": "Link"
+      }
+    },
+    {
+      "employeeId": 5,
+      "empCode": 222,
+      "empFirstName": "Employee5FirstName",
+      "empLastName": "Employee5LastName",
+      "timesheetApprover": {
+        "employeeId": 3,
+        "empFirstName": "Bruce",
+        "empLastName": "Link"
+      }
+    },
+    {
+      "employeeId": 35,
+      "empCode": 32,
+      "empFirstName": "Employee32FirstName",
+      "empLastName": "Employee23LastName",
+      "timesheetApprover": {
+        "employeeId": 3,
+        "empFirstName": "Bruce",
+        "empLastName": "Link"
+      }
+    }
+  ],
+  "get_allOpenProject": [
+    {
+      "projectId": 1,
+      "projectName": "NewProject1",
+      "projectManager": {
+        "employeeId": 2,
+        "empFirstName": "Perry",
+        "empLastName": "Li"
+      },
+      "startDate": "2020-03-06T00:31:34.2646376",
+      "endDate": "2020-03-06T00:31:34.264638",
+      "isClosed": false
+    },
+    {
+      "projectId": 2,
+      "projectName": "ProjectName2",
+      "projectManager": {
+        "employeeId": 2,
+        "empFirstName": "Perry",
+        "empLastName": "Li"
+      },
+      "startDate": "2020-02-02T00:00:00",
+      "endDate": "2020-02-18T00:00:00",
+      "isClosed": false
+    },
+    {
+      "projectId": 3,
+      "projectName": "ProjectName3",
+      "projectManager": {
+        "employeeId": 3,
+        "empFirstName": "Bruce",
+        "empLastName": "Link"
+      },
+      "startDate": "2020-03-03T00:00:00",
+      "endDate": "2020-03-28T00:00:00",
+      "isClosed": false
+    }
+  ],
+  "changePW": [
+    true
+  ]
 }

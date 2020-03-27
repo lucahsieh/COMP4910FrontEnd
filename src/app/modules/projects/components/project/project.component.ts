@@ -20,9 +20,10 @@ export class ProjectComponent implements OnInit {
   @Input() mode: MODE;
   @Input() alerts;
   @Input() validProjectCode: boolean;
+  @Input() isSupervisorView: boolean = false;
   employeeDropdown: SelectItem[] = null;
   @Output() changeProjectCode: EventEmitter<string> = new EventEmitter<string>();
-
+  @Output() vlidatePage: EventEmitter<string> = new EventEmitter<string>();
 
   constructor(
     private authService: AuthenticationService,
@@ -37,7 +38,7 @@ export class ProjectComponent implements OnInit {
   // Populates employee dropdown
   populateEmployeeDropdown() {
     this.employeeService
-      .getEmployees()
+      .getAllChildrenEmployees(this.authService.currentUserValue.employeeId)
       .subscribe(employees => {
         this.employeeDropdown = [];
         employees.forEach(e => {
@@ -77,16 +78,23 @@ export class ProjectComponent implements OnInit {
   onStartDateChange(value: Date): void {
     console.log(value);
     this.project.startDate = value;
+    this.vlidatePage.emit('payload');
   }
 
   onEndDateChange(value: Date): void {
     console.log(value);
     this.project.endDate = value;
+    this.vlidatePage.emit('payload');
   }
 
   // exit event of emp id field
   onExitProjectCode() {
     this.changeProjectCode.emit('payload');
+    this.vlidatePage.emit('payload');
+  }
+
+  onFieldExit() {
+    this.vlidatePage.emit('payload');
   }
 
 }

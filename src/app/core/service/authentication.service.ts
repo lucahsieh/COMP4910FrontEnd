@@ -45,6 +45,16 @@ export class AuthenticationService {
     //     return user;
     //   }));
   }
+  changePW(credentialId: string, password: string, newPassword: string) {
+    let baseUrl = environment.authUrl;
+    let url = baseUrl + `api/Credentials/Authenticate/ChangePW`;
+    let body = {
+      "credentialId": credentialId,
+      "password": password,
+      "newPassword": newPassword
+    }
+    return this.http.post<any>(url, body).pipe();
+  }
 
   logout() {
     // remove user from local storage to log user out

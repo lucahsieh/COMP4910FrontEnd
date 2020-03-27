@@ -30,10 +30,12 @@ import { ProjectManagementComponent } from './pages/project-management/project-m
 import { TabViewModule } from 'primeng/tabview';
 import { EmptyComponent } from './pages/empty/empty.component';
 import { ReportsModule } from '../reports/reports.module';
+import { ProjectListSupervisorComponent } from './pages/project-list-supervisor/project-list-supervisor.component';
+import { ProjectViewSupervisorComponent } from './pages/project-view-supervisor/project-view-supervisor.component';
 
 
 @NgModule({
-    declarations: [ProjectCreationComponent, ProjectEditComponent, ProjectListComponent, ProjectViewComponent, ProjectComponent, ProjectManagementComponent, EmptyComponent],
+    declarations: [ProjectCreationComponent, ProjectEditComponent, ProjectListComponent, ProjectViewComponent, ProjectComponent, ProjectManagementComponent, EmptyComponent, ProjectListSupervisorComponent, ProjectViewSupervisorComponent],
     imports: [
         CommonModule,
         ProjectsRoutingModule,

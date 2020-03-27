@@ -1,8 +1,34 @@
 
 >>>a:hover{
     text-decoration:none !important;
+    color:white !important;
 }
-.material-icons{
-    margin:3px;
-    margin-right: 10px;
+>>>.material-icons{
+    margin:15px;
+    margin-right: 0px;
+    margin-left: 5px;
+    visibility:visible !important;
+    opacity:1 !important;
 }
+
+.navText{
+    display: inline-block;
+    margin-left: 20px;
+    padding-right: 30px;
+}
+
+.button{
+    border-width: 0;
+    background-color: inherit;
+    /* color:#ffc621; */
+    color:grey;
+    padding: 0;
+}
+.button:hover{
+    color:#ffc621;
+}
+
+.noHMargin{
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+  }

@@ -42,9 +42,12 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
+    console.log('dfs')
+    console.log(this.f.password.errors)
 
     // stop here if form is invalid
     if (this.loginForm.invalid) {
+      console.log(this.f.password.errors)
       return;
     }
 
