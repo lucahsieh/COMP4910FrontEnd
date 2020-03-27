@@ -4,6 +4,8 @@ import { Employee } from 'src/app/shared/model/Employee';
 import { EmployeeService } from 'src/app/core/service/employee/employee.service';
 import { Alert } from 'src/app/shared/model/Alert';
 import { MODE } from 'src/app/shared/model/MODE';
+import { MyToastService } from 'src/app/core/service/my-toast.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employee-creation',
@@ -25,6 +27,8 @@ export class EmployeeCreationComponent implements OnInit {
 
   constructor(
     private employeeService: EmployeeService,
+    private myToastService: MyToastService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -39,11 +43,23 @@ export class EmployeeCreationComponent implements OnInit {
       return;
     console.log("POST employee");
     console.log(JSON.stringify(this.employee));
-    this.employeeService.postEmployee(this.employee).subscribe();
+    this.employeeService.postEmployee(this.employee)
+      .subscribe(
+        result =>
+          console.log(result),
+        error =>
+          this.myToastService.addError('Update Error', `${error}`),
+        () => {
+          this.myToastService.addSuccess(`Employee created Successfully`, `Employee ${this.employee.empFirstName + ' ' + this.employee.empLastName} created. ${new Date().toLocaleString()}`);
+          this.router.navigate([`/content/employees`]);
+        }
+      )
   }
 
   // btn click event of cancel
-  onCancel(e: any) { }
+  onCancel(e: any) {
+    this.router.navigate([`/content/employees`]);
+  }
 
   validatePage(): boolean {
     var result = true;

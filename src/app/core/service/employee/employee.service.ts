@@ -60,14 +60,15 @@ export class EmployeeService {
   putEmployee(e: Employee): Observable<any> {
     let url = this.baseUrl + `api/employees/${e.employeeId}`;
     let body = {
+      "employeeId": e.employeeId,
       "empUsername": e.empUsername,
       "empPassword": e.empPassword,
       "empCode": e.empCode,
       "labourGradeId": e.labourGrade.labourGradeId,
       "empFirstName": e.empFirstName,
       "empLastName": e.empLastName,
-      "timesheetApproverId": e.timesheetApproverId,
-      "supervisorId": e.supervisorId,
+      "timesheetApproverId": e.timesheetApprover.employeeId,
+      "supervisorId": e.supervisor.employeeId,
       "isProjectManager": e.isProjectManager,
       "isAdmin": e.isAdmin,
       "isHumanResources": e.isHumanResources,
@@ -89,7 +90,7 @@ export class EmployeeService {
       "labourGradeId": e.labourGrade.labourGradeId,
       "empFirstName": e.empFirstName,
       "empLastName": e.empLastName,
-      "timesheetApproverId": e.timesheetApproverId,
+      "timesheetApproverId": e.supervisorId,
       "supervisorId": e.supervisorId,
       "isProjectManager": e.isProjectManager,
       "isAdmin": e.isAdmin,

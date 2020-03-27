@@ -56,14 +56,22 @@ export class EmployeeEditComponent implements OnInit {
   }
   // btn click event of creation
   onUpdate() {
+    console.log(this.employee)
     if (!this.validatePage())
       return;
     console.log("POST employee");
     console.log(JSON.stringify(this.employee));
-    this.employeeService.postEmployee(this.employee).subscribe(_ => {
-      this.myToastService.addSuccess('Update successfully', `${this.employee.empFirstName + ' ' + this.employee.empLastName} is updated.`);
-      this.router.navigate([`/content/employees/view/${this.employee.employeeId}`]);
-    });
+    this.employeeService.putEmployee(this.employee)
+      .subscribe(
+        result =>
+          console.log(result),
+        error =>
+          this.myToastService.addError('Update Error', `${error}`),
+        () => {
+          this.myToastService.addSuccess('Update successfully', `${new Date().toLocaleString()}`);
+          this.router.navigate([`/content/employees/view/${this.employee.employeeId}`]);
+        }
+      );
   }
 
   // btn click event of cancel

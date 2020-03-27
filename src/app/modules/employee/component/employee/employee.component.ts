@@ -13,8 +13,8 @@ export class EmployeeComponent implements OnInit {
 
   @Input() employee: Employee;
   @Input() mode: MODE;
-  greadeDropdown: SelectItem[] = null;
-  employeeDropdown: SelectItem[] = null;
+  greadeDropdown: SelectItem[] = [];
+  employeeDropdown: SelectItem[] = [];
   selectedGrade: SelectItem;
   selectedSupervisor: SelectItem;
   // userName validation
@@ -44,7 +44,7 @@ export class EmployeeComponent implements OnInit {
         greades.forEach(g => {
           console.log(g);
           this.greadeDropdown.push(
-            { label: `${g.labourGradeName}`, value: g.labourGradeId }
+            { label: g.labourGradeName, value: g.labourGradeId }
           );
         })
         console.log(this.greadeDropdown);
@@ -59,8 +59,9 @@ export class EmployeeComponent implements OnInit {
         console.log(employees);
         employees.forEach(e => {
           console.log(e);
+          let name: string = `${e.empFirstName} ${e.empLastName}`
           this.employeeDropdown.push(
-            { label: `${e.empFirstName} ${e.empLastName}`, value: e.employeeId }
+            { label: name, value: e.employeeId }
           );
         })
         console.log(this.employeeDropdown);

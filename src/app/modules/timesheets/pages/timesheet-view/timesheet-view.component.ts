@@ -23,7 +23,7 @@ export class TimesheetViewComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       var id = params.get('timesheetId');
       console.log(`current timesheet id is  ${id}`);
-      this.timesheetService.getTimesheet(id).subscribe(ts => this.timesheet = ts);
+      this.timesheetService.getTimesheet(id).subscribe(ts => { this.timesheet = ts; console.log(JSON.stringify(ts)) });
     });
 
   }
