@@ -95,6 +95,8 @@
           <div class="input-group-prepend">
               <span class="input-group-text">Approver</span>
           </div>
+          <input type="text" class="form-control" value="{{employee.timesheetApprover.empFirstName}} {{employee.timesheetApprover.empLastName}}"
+                *ngIf="mode==='read'" [readOnly]="true">
           <p-dropdown class="form-control" [options]="employeeDropdown" [(ngModel)]="selectedApprover"
               *ngIf="mode ==='create' || mode==='update'"
               placeholder="{{employee.timesheetApprover ? employee.timesheetApprover.empFirstName + ' ' + employee.timesheetApprover.empLastName : 'choose an approver'}}"
