@@ -39,7 +39,6 @@ export class EmployeeEditComponent implements OnInit {
   }
 
   openModal(template: TemplateRef<any>) {
-    console.log('open')
     console.log(template)
     this.modalRef = this.modalService.show(template);
   }
@@ -60,7 +59,9 @@ export class EmployeeEditComponent implements OnInit {
     console.log(this.employee)
     if (!this.validatePage())
       return;
+    this.employee.timesheetApprover = this.employee.supervisor;
     console.log("POST employee");
+    console.log(this.employee);
     console.log(JSON.stringify(this.employee));
     this.employeeService.putEmployee(this.employee)
       .subscribe(

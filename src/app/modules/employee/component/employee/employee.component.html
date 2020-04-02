@@ -137,7 +137,7 @@
             <input type="text" class="form-control"
                 value="{{employee.supervisor.empFirstName}} {{employee.supervisor.empLastName}}" *ngIf="mode==='read'"
                 [readOnly]="true">
-            <p-dropdown class="form-control" [options]="employeeDropdown" [(ngModel)]="employee.supervisorId"
+            <p-dropdown class="form-control" [options]="employeeDropdown" [(ngModel)]="employee.supervisor"
                 *ngIf="mode ==='create' || mode==='update'" filter="true"
                 placeholder="{{employee.supervisor ? employee.supervisor.empFirstName + ' ' + employee.supervisor.empLastName : 'choose a supervisor'}}"
                 [style]="{'border-width':'0px','padding':'0px','width':'100%'}"></p-dropdown>

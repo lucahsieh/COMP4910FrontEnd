@@ -90,7 +90,7 @@
 
     <!-- status -->
     <div class="col-5">
-        <div class="input-group">
+        <div class="input-group" *ngIf="mode == 'update'">
             <div class="input-group-prepend">
                 <span class="input-group-text">Project Status</span>
             </div>
@@ -123,7 +123,7 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">Project Manager</span>
             </div>
-            <input type="text" class="form-control"
+            <input type="text" class="form-control" *ngIf="project.projectManager"
                 [(value)]="project.projectManager.empFirstName+' '+project.projectManager.empLastName"
                 [readOnly]="true">
         </div>

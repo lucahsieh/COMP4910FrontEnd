@@ -1,11 +1,13 @@
 <div class="col-md-6 offset-md-3 mt-5">
     <div class="alert alert-info">
-        Fake Backend<br />
-        Username: A123 Password: master<br />
-        Username: A456 Password: regular<br />
-        Username: A789 Password: lower<br />
-        Real Backend<br />
+        <h4>Tester log in credentials</h4>
         Username: A100001 Password: password<br />
+        Username: A100001 Password: 01234<br />
+        <br />
+        <span class="small">
+            Fake Backend<br />
+            Username: A123 Password: master<br />
+        </span>
 
     </div>
     <div class="card">
@@ -13,7 +15,7 @@
         <div class="card-body">
             <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                 <div class="form-group">
-                    <label for="username">Username</label>
+                    <label for="username">User Name</label>
                     <input type="text" formControlName="username" class="form-control"
                         [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
                     <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
@@ -32,7 +34,7 @@
                     <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
                     Login
                 </button>
-                <div *ngIf="error" class="alert alert-danger mt-3 mb-0">{{error.message}}</div>
+                <div *ngIf="error" class="alert alert-danger mt-3 mb-0">User Name and Password doesn't match</div>
             </form>
         </div>
     </div>

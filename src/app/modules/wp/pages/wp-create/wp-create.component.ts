@@ -8,6 +8,8 @@ import { Alert } from 'src/app/shared/model/Alert';
 import { MODE } from 'src/app/shared/model/MODE';
 import { PMPlanning } from 'src/app/shared/model/PMPlanning';
 import { Project } from 'src/app/shared/model/Project';
+import { ActivatedRoute } from '@angular/router';
+import { ProjectService } from 'src/app/core/service/project/project.service';
 
 @Component({
   selector: 'app-wp-create',
@@ -28,21 +30,26 @@ export class WpCreateComponent implements OnInit {
 
   constructor(
     private wpService: WpService,
-    private employeeService: EmployeeService
+    private route: ActivatedRoute,
+    private employeeService: EmployeeService,
+    private projectService: ProjectService
+
   ) { }
 
   ngOnInit() {
-    this.initWP();
-    this.initLabourGradePlanning();
+    this.route.paramMap.subscribe(params => {
+      var projectId = params.get('projectId');
+      this.projectService.getProject(projectId).subscribe(p => {
+        this.project = p;
+        console.log('dfsfd');
+        console.log(this.project)
+        this.initWP();
+        this.initLabourGradePlanning();
+      })
+    })
   }
 
   initWP() {
-    // TODO: Remove this test sample
-    this.project = new Project();
-    this.project.projectCode = 21;
-    this.project.projectName = "ds";
-    this.project.projectId = 32;
-
     this.wp = new WorkPackage();
     this.wp.projectName = this.project.projectName;
     this.wp.projectCode = this.project.projectCode;
