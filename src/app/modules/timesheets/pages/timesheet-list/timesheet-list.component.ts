@@ -31,7 +31,11 @@ export class TimesheetListComponent implements OnInit {
 
   populateTimesheets() {
     var userId = this.authenticationService.currentUserValue.employeeId;
-    this.timesheetService.getAllTimesheet(userId).subscribe(res => { this.timesheets = res; console.log(res) });
+    this.timesheetService.getAllTimesheet(userId).subscribe(res => {
+      this.timesheets = res;
+      this.timesheets.forEach(ts => ts.status = ts.status.toLowerCase());
+      console.log(this.timesheets)
+    });
   }
 
   dataReady() {

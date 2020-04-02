@@ -73,10 +73,10 @@ export class TimesheetCreationComponent implements OnInit {
     }
     console.log(`post timesheet:`);
     console.log(JSON.stringify(this.timesheet));
-    // this.timesheetService.postTimesheet(this.timesheet).subscribe(_ => {
-    //   this.myToastService.addInfo(`Timesheet Updated`, `Timesheet of week ${this.timesheet.weekEndingIn} saved on ${new Date().toLocaleString()}`);
-    //   this.router.navigate([`/content/timesheets`]);
-    // });
+    this.timesheetService.postTimesheet(this.timesheet).subscribe(_ => {
+      this.myToastService.addInfo(`Timesheet Updated`, `Timesheet of week ${this.timesheet.weekEndingIn} saved on ${new Date().toLocaleString()}`);
+      this.router.navigate([`/content/timesheets`]);
+    });
   }
 
 
