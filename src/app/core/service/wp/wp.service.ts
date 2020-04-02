@@ -56,10 +56,10 @@ export class WpService {
       "workPackageCode": w.workPackageCode,
       "workPackageTitle": w.workPackageTitle,
       "contractor": w.contractor,
-      "issueDate": w.issueDate,
+      "issueDate": new Date(w.issueDate),
       "isClosed": w.isClosed,
       "responsibleEngineer": w.responsibleEngineer,
-      "parentWorkPackageId": w.parentWorkPackageId,
+      "parentWorkPackageCode": w.parentWorkPackageCode,
       "employees": w.employees,
       "pmPlannings": w.pmPlannings
     }

@@ -39,7 +39,7 @@ export class EmployeeComponent implements OnInit {
     this.employeeService
       .getLabourGrades()
       .subscribe(greades => {
-        this.greadeDropdown = [];
+        this.greadeDropdown = [{ label: '---', value: 0 }];
         console.log(greades);
         greades.forEach(g => {
           console.log(g);

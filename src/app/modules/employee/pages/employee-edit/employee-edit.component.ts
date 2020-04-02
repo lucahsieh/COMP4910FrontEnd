@@ -46,9 +46,10 @@ export class EmployeeEditComponent implements OnInit {
     this.employee.empPassword = '01234';
     this.employeeService.getEmployee(this.employee.employeeId).subscribe(emp => {
       emp.empPassword = '01234';
-      this.employeeService.putEmployee(emp);
-      this.modalRef.hide();
-      this.myToastService.addSuccess('Password Changed', 'Reset to defaul password.');
+      this.employeeService.putEmployee(emp).subscribe(_ => {
+        this.modalRef.hide();
+        this.myToastService.addSuccess('Password Changed', 'Reset to defaul password.');
+      });
 
     })
     //TODO: SHOW MESSAGE.
@@ -83,6 +84,14 @@ export class EmployeeEditComponent implements OnInit {
 
   validatePage(): boolean {
     var result = true;
+    if (!(this.employee.labourGrade.labourGradeId != 0)) {
+      this.alerts['labourGrade'] = new Alert('danger', 5000, `Labour grade cannot be empty`);
+      result = false;
+    }
+    if (this.employee.supervisor == null || !(this.employee.supervisor.supervisorId != 0)) {
+      this.alerts['supervisor'] = new Alert('danger', 5000, `Supervisor cannot be empty`);
+      result = false;
+    }
     if (!this.employee.empFirstName === null || this.employee.empFirstName.match(/^ *$/) !== null) {
       this.alerts['firstName'] = new Alert('danger', 5000, `First Name cannot be empty`);
       result = false;

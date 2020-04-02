@@ -91,7 +91,7 @@ export class TimesheetEditComponent implements OnInit {
     this.projectService.getProjectWpDropdown(this.currentUser.employeeId).subscribe(result => {
       this.projectWp = [];
       result.forEach(p => {
-        p.workPackages.forEach(wp => {
+        p.workPackageViewModels.forEach(wp => {
           this.projectWp.push({ 'projectId': p.projectId, 'projectName': p.projectName, 'wpId': wp.workPackageId, 'wpCode': wp.workPackageCode })
         });
       });

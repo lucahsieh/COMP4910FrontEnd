@@ -104,7 +104,7 @@ export class ProjectService {
     return this.http
       .get<any>(url)
       .pipe(
-        map(res => res.projectList)
+        map(res => res)
       )
   }
 

@@ -8,8 +8,9 @@ import { Alert } from 'src/app/shared/model/Alert';
 import { MODE } from 'src/app/shared/model/MODE';
 import { PMPlanning } from 'src/app/shared/model/PMPlanning';
 import { Project } from 'src/app/shared/model/Project';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectService } from 'src/app/core/service/project/project.service';
+import { MyToastService } from 'src/app/core/service/my-toast.service';
 
 @Component({
   selector: 'app-wp-create',
@@ -32,7 +33,9 @@ export class WpCreateComponent implements OnInit {
     private wpService: WpService,
     private route: ActivatedRoute,
     private employeeService: EmployeeService,
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    private myToastService: MyToastService,
+    private router: Router
 
   ) { }
 
@@ -65,11 +68,22 @@ export class WpCreateComponent implements OnInit {
       return;
     console.log("POST wp");
     console.log(JSON.stringify(this.wp));
-    this.wpService.postWorkPackage(this.wp).subscribe();
+    this.wpService.postWorkPackage(this.wp).subscribe(
+      result =>
+        console.log(result),
+      error =>
+        this.myToastService.addError('Update Error', `${error}`),
+      () => {
+        this.myToastService.addSuccess(`Work package created Successfully`, `${new Date().toLocaleString()}`);
+        this.router.navigate([`/projects/view/${this.project.projectId}`]);
+      }
+    );
   }
 
   // btn click event of cancel
-  onCancel(e: any) { }
+  onCancel(e: any) {
+    this.router.navigate([`/projects/view/${this.project.projectId}`]);
+  }
 
 
   initLabourGradePlanning() {
@@ -122,7 +136,8 @@ export class WpCreateComponent implements OnInit {
     let code: string = this.wp.workPackageCode;
     var parentCode = null;
     if (this.wp.parentWorkPackageCode)
-      parentCode = this.wp.parentWorkPackageCode['value'];
+      parentCode = this.wp.parentWorkPackageCode;
+    console.log(parentCode)
 
     // When there is no parent code
     if (!parentCode) {

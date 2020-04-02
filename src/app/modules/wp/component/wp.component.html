@@ -109,7 +109,7 @@
             <input type="text" class="form-control"
                 value="{{ wp.responsibleEngineer ? wp.responsibleEngineer.empFirstName + ' ' + wp.responsibleEngineer.empLastName : '(Not Assigned)'}}"
                 *ngIf="mode==='read'" [readOnly]="true">
-            <p-dropdown class="form-control" [options]="engineerDropdown" [(ngModel)]="selectedEngineer"
+            <p-dropdown class="form-control" [options]="engineerDropdown" [(ngModel)]="wp.responsibleEngineer"
                 *ngIf="mode ==='create' || mode==='update'" filter="true"
                 placeholder="{{wp.responsibleEngineer ? wp.responsibleEngineer.employeeId : 'choose a Responsible Engineer'}}"
                 [style]="{'border-width':'0px','padding':'0px','width':'100%'}"></p-dropdown>
