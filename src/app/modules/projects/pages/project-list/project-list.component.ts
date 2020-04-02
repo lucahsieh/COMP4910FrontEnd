@@ -28,8 +28,10 @@ export class ProjectListComponent implements OnInit {
   }
 
   initProjects() {
+    var empId = this.authService.currentUserValue.employeeId;
+    console.log(empId)
     this.projectService
-      .getProjects(this.authService.currentUserValue.employeeId)
+      .getProjects(empId)
       .subscribe(res => {
         console.log(res);
         res.forEach(i => {

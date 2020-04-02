@@ -68,11 +68,7 @@ export class WpComponent implements OnInit {
           this.engineerDropdown.push(
             {
               label: `${e.empFirstName} ${e.empLastName}`, value:
-              {
-                "employeeId": e.employeeId,
-                "empFirstName": e.empFirstName,
-                "empLastName": e.empLastName
-              }
+                e
             }
           )
         })
@@ -92,6 +88,8 @@ export class WpComponent implements OnInit {
             { label: `${p.workPackageCode} - ${p.workPackageTitle}`, value: p.workPackageCode }
           )
         })
+        console.log('look')
+        console.log(this.parentWPDropdown)
       })
   }
 

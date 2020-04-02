@@ -46,9 +46,10 @@ export class EmployeeEditComponent implements OnInit {
     this.employee.empPassword = '01234';
     this.employeeService.getEmployee(this.employee.employeeId).subscribe(emp => {
       emp.empPassword = '01234';
-      this.employeeService.putEmployee(emp);
-      this.modalRef.hide();
-      this.myToastService.addSuccess('Password Changed', 'Reset to defaul password.');
+      this.employeeService.putEmployee(emp).subscribe(_ => {
+        this.modalRef.hide();
+        this.myToastService.addSuccess('Password Changed', 'Reset to defaul password.');
+      });
 
     })
     //TODO: SHOW MESSAGE.

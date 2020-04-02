@@ -113,8 +113,8 @@ export class TimesheetCreationComponent implements OnInit {
       this.projectWp = [];
       console.log(result)
       result.forEach(p => {
-        if (p.workPackages)
-          p.workPackages.forEach(wp => {
+        if (p.workPackageViewModels)
+          p.workPackageViewModels.forEach(wp => {
             this.projectWp.push({ 'projectId': p.projectId, 'projectName': p.projectName, 'wpId': wp.workPackageId, 'wpCode': wp.workPackageCode })
           });
       });

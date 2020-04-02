@@ -3,6 +3,8 @@ import { FormGroup, FormBuilder, Validators, ValidatorFn, AbstractControl, Valid
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/core/service/authentication.service';
 import { first } from 'rxjs/operators';
+import { EmployeeService } from 'src/app/core/service/employee/employee.service';
+import { Employee } from 'src/app/shared/model/Employee';
 
 @Component({
   selector: 'app-employee-reset-pw',
@@ -23,13 +25,14 @@ export class EmployeeResetPWComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
+    private employeeService: EmployeeService,
     private authenticationService: AuthenticationService
   ) { }
 
   ngOnInit() {
     this.changPwForm = this.formBuilder.group({
       username: ['', Validators.required],
-      password: ['', Validators.required],
+      password: ['',],
       passwordNew: ['', Validators.required],
       passwordNewRe: ['', Validators.required],
     },
@@ -52,15 +55,17 @@ export class EmployeeResetPWComponent implements OnInit {
 
     this.loading = true;
 
-    this.authenticationService
-      .changePW(this.currentUserId, this.f.password.value, this.f.passwordNew.value)
-      .subscribe(
+    let empId = this.authenticationService.currentUserValue.employeeId;
+    this.employeeService.getEmployee(empId).subscribe(e => {
+      e.empPassword = this.f.passwordNew.value;
+      this.employeeService.putEmployee(e).subscribe(
         result => {
           if (result) {
             this.authenticationService.logout();
+            this.router.navigate(['/auth/login']);
           }
           if (!result) {
-            this.error = 'We cannot change your Password. Please Make sure your old password is correct.'
+            this.error = 'We cannot change your Password. Please Make sure your old password is correct.';
           }
         },
         error => {
@@ -69,6 +74,26 @@ export class EmployeeResetPWComponent implements OnInit {
           this.loading = false;
         }
       )
+    });
+
+    this.employeeService.putEmployee
+    // this.authenticationService
+    //   .changePW(this.currentUserId, this.f.password.value, this.f.passwordNew.value)
+    //   .subscribe(
+    //     result => {
+    //       if (result) {
+    //         this.authenticationService.logout();
+    //       }
+    //       if (!result) {
+    //         this.error = 'We cannot change your Password. Please Make sure your old password is correct.'
+    //       }
+    //     },
+    //     error => {
+    //       console.log(error);
+    //       this.error = error.error;
+    //       this.loading = false;
+    //     }
+    //   )
   }
 
 }
