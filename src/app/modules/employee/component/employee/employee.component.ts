@@ -61,7 +61,7 @@ export class EmployeeComponent implements OnInit {
           console.log(e);
           let name: string = `${e.empFirstName} ${e.empLastName}`
           this.employeeDropdown.push(
-            { label: name, value: e.employeeId }
+            { label: name, value: e }
           );
         })
         console.log(this.employeeDropdown);

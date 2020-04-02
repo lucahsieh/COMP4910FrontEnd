@@ -77,7 +77,7 @@
         <span class="lead">New Timesheet Approver</span>
         <p-dropdown [options]="employeeDropdown" [(ngModel)]="selectedEmp.timesheetApprover" filter="true"
             placeholder="{{selectedEmp.timesheetApprover ? (selectedEmp.timesheetApprover.empFirstName + ' ' + selectedEmp.timesheetApprover.empLastName) : 'choose an employee'}}"
-            optionLabel="label" [style]="{'padding':'0px','width':'100%'}"></p-dropdown>
+            [style]="{'padding':'0px','width':'100%'}"></p-dropdown>
     </div>
 
     <!-- 'border-width':'0px', -->

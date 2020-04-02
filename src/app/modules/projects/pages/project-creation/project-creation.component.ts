@@ -40,6 +40,8 @@ export class ProjectCreationComponent implements OnInit {
     this.newProject = new Project();
     let currentUser: User = this.authService.currentUserValue;
     this.newProject.projectManager = convertToEmployee(currentUser);
+    console.log(`look`);
+    console.log(this.newProject)
   }
 
   onCreate(e: any) {
@@ -52,7 +54,6 @@ export class ProjectCreationComponent implements OnInit {
       // }
       return;
     }
-    console.log("POST project");
     this.projectService.postProject(this.newProject).subscribe(_ => {
       this.myToastService.addSuccess(`Project created Successfully`, `Project ${this.newProject.projectName} created.`);
       this.router.navigate([`/content/projects`]);

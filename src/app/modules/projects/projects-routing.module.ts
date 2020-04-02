@@ -46,7 +46,7 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'wp/createwp',
+        path: 'wp/createwp/:projectId',
         component: WpCreateComponent,
         data: { breadcrumb: 'Work Package creation' },
         // children: [

@@ -62,6 +62,7 @@ export class WpComponent implements OnInit {
     this.empService
       .getEmployeesWithinProject(this.projectId)
       .subscribe(employees => {
+        console.log(employees);
         this.engineerDropdown = [];
         employees.forEach(e => {
           this.engineerDropdown.push(

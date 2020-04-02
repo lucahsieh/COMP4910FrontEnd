@@ -88,6 +88,7 @@ export class ProjectService {
         "empFirstName": p.projectManager.empFirstName,
         "empLastName": p.projectManager.empLastName
       },
+      "projectManagerId": p.projectManager.employeeId,
       "isClosed": p.isClosed,
       "employees": employees,
       "description": p.description
