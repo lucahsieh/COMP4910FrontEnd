@@ -3,7 +3,7 @@
         <!-- Title -->
         <h3 class="display-4">Employee Edit</h3>
         <!-- alert -->
-        <shared-alertPromp [alerts]="alerts"></shared-alertPromp>
+        <!-- <shared-alertPromp [alerts]="alerts"></shared-alertPromp> -->
 
         <app-employee [employee]="employee" [mode]="mode" [alerts]="alerts" *ngIf="employee"
             [validUsername]="validUsername" [validEmployeeCode]="validEmployeeCode" (restPw)="openModal(template)">

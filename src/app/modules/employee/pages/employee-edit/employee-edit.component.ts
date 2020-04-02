@@ -83,6 +83,14 @@ export class EmployeeEditComponent implements OnInit {
 
   validatePage(): boolean {
     var result = true;
+    if (!(this.employee.labourGrade.labourGradeId != 0)) {
+      this.alerts['labourGrade'] = new Alert('danger', 5000, `Labour grade cannot be empty`);
+      result = false;
+    }
+    if (this.employee.supervisor == null || !(this.employee.supervisor.supervisorId != 0)) {
+      this.alerts['supervisor'] = new Alert('danger', 5000, `Supervisor cannot be empty`);
+      result = false;
+    }
     if (!this.employee.empFirstName === null || this.employee.empFirstName.match(/^ *$/) !== null) {
       this.alerts['firstName'] = new Alert('danger', 5000, `First Name cannot be empty`);
       result = false;
