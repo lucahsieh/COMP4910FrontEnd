@@ -105,6 +105,9 @@ export class WpComponent implements OnInit {
       .subscribe(employees => {
         this.workerDropdown = [];
         employees.forEach(e => {
+          //TODO: filter not pm in the list
+          // var pmEmployeeId = this.proj
+          // if(e.employeeId ==)
           this.workerDropdown.push(
             {
               label: `${e.empFirstName} ${e.empLastName}`, value:

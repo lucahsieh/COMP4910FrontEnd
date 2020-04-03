@@ -45,7 +45,14 @@ export class ProjectComponent implements OnInit {
           // Not showing pm in the teamMembers dropdown list
           if (e.employeeId !== this.project.projectManager.employeeId)
             this.employeeDropdown.push(
-              { label: `${e.empFirstName} ${e.empLastName}`, value: e }
+              {
+                label: `${e.empFirstName} ${e.empLastName}`, value:
+                {
+                  'employeeId': e.employeeId,
+                  'empFirstName': e.empFirstName,
+                  'empLastName': e.empLastName
+                }
+              }
             );
         })
         console.log(this.employeeDropdown);

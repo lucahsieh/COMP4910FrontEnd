@@ -1,4 +1,4 @@
-<mat-vertical-stepper [linear]="false" #stepper (selectionChange)="onStepChange($event)">
+<mat-vertical-stepper [linear]="true" #stepper (selectionChange)="onStepChange($event)">
     <mat-step [stepControl]="firstFormGroup">
         <form [formGroup]="firstFormGroup">
             <ng-template matStepLabel>Select Report Range</ng-template>
@@ -72,8 +72,9 @@
                                         <ng-template pTemplate="input">
                                             <!-- <input matInput formControlName="secondCtrl" placeholder="Eff" required> -->
 
-                                            <input pInputText type="number" [(ngModel)]="rowData.reBudgetDay"
-                                                name="reBudgetDay" [disabled]="true">
+                                            <!-- <input pInputText type="number" [(ngModel)]="rowData.reBudgetDay"
+                                                name="reBudgetDay" [disabled]="true"> -->
+                                            <span>{{rowData.reBudgetDay| number}}</span>
                                         </ng-template>
                                         <ng-template pTemplate="output">
                                             <span>{{rowData.reBudgetDay| number}}</span>

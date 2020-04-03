@@ -30,7 +30,10 @@ export class ProjectViewSupervisorComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       var id = params.get('projectId');
-      this.projectService.getProject(id).subscribe(e => this.project = e);
+      this.projectService.getProject(id).subscribe(e => {
+        this.project = e;
+        console.log(this.project)
+      });
     });
   }
 
