@@ -9,8 +9,11 @@ import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 })
 export class WpManagementComponent implements OnInit {
 
+  dataReady: boolean = false;
+
   activeIndex: number = 1;
   workPackageCode: string = '';
+  projectId: string = '';
   creationTab: string[] = [];
 
   wpReportId: string[] = [];
@@ -25,6 +28,8 @@ export class WpManagementComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.workPackageCode = params.get('wpCode');
+      this.projectId = params.get('projectId');
+      this.dataReady = true;
     });
     this.refreshTab();
     this.router.events.subscribe((val) => {

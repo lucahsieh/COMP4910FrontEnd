@@ -49,12 +49,12 @@
                 <span class="input-group-text">W.P. Code</span>
             </div>
             <input type="text" class="form-control" [(ngModel)]="wp.workPackageCode" (blur)="onChangeWpCode()"
-                [readOnly]="mode ==='read'">
+                [readOnly]="mode ==='read'|| mode==='update'">
         </div>
         <span *ngIf="alerts.wpCode" class="error my-2"><small>{{alerts.wpCode.msg}}</small></span>
     </div>
     <div class="col-1">
-        <div *ngIf="(mode ==='create' || mode ==='update')">
+        <div *ngIf="(mode ==='create' )">
             <i *ngIf="validWpCode" class="material-icons pass my-2">check_circle</i>
             <i *ngIf="!validWpCode" class="material-icons error  my-2">error</i>
         </div>
@@ -114,7 +114,7 @@
                 placeholder="{{wp.responsibleEngineer ? wp.responsibleEngineer.employeeId : 'Choose a Responsible Engineer'}}"
                 [style]="{'border-width':'0px','padding':'0px','width':'100%'}"></p-dropdown>
         </div>
-        <!--<span *ngIf="alerts.labourGrade" class="error my-2"><small>{{alerts.labourGrade.msg}}</small></span>-->
+        <span *ngIf="alerts.re" class="error my-2"><small>{{alerts.re.msg}}</small></span>
 
     </div>
     <div class="col-1"></div>
@@ -125,12 +125,11 @@
             <div class="input-group-prepend">
                 <span class="input-group-text">Parent W.P.</span>
             </div>
-            <input type="text" class="form-control" value="{{wp.parentWorkPackageCode}}" *ngIf="mode==='read'"
-                [readOnly]="true">
+            <input type="text" class="form-control" value="{{wp.parentWorkPackageCode}}"
+                *ngIf="mode==='read' || mode==='update'" [readOnly]="true">
             <p-dropdown class="form-control" [options]="parentWPDropdown" [(ngModel)]="wp.parentWorkPackageCode"
-                (onChange)="onChangeParentWp()" *ngIf="mode ==='create' || mode==='update'"
-                placeholder="{{'choose a Parent WP'}}" filter="true"
-                [style]="{'border-width':'0px','padding':'0px','width':'100%'}"></p-dropdown>
+                (onChange)="onChangeParentWp()" *ngIf="mode ==='create' " placeholder="{{'choose a Parent WP'}}"
+                filter="true" [style]="{'border-width':'0px','padding':'0px','width':'100%'}"></p-dropdown>
         </div>
         <!--<span *ngIf="alerts.supervisor" class="error my-2"><small>{{alerts.supervisor.msg}}</small></span>-->
 
@@ -162,6 +161,7 @@
                 </p-multiSelect>
             </div>
         </div>
+        <span *ngIf="alerts.employees" class="error my-2"><small>{{alerts.employees.msg}}</small></span>
 
         <!-- <div class="input-group">
             <div class="input-group-prepend">
@@ -201,7 +201,7 @@
                 <td [pEditableColumn]="mode == 'create'|| mode == 'update'? '' : null">
                     <p-cellEditor>
                         <ng-template pTemplate="input">
-                            <input pInputText type="text" [(ngModel)]="rowData.pmEAC" style="text-align:center"
+                            <input pInputText type="number" [(ngModel)]="rowData.pmEAC" style="text-align:center"
                                 [disabled]="mode != 'create'&& mode != 'update'">
                         </ng-template>
                         <ng-template pTemplate="output">
@@ -212,7 +212,7 @@
                 <td [pEditableColumn]="mode == 'create'|| mode == 'update'? '' : null">
                     <p-cellEditor>
                         <ng-template pTemplate="input">
-                            <input pInputText type="text" [(ngModel)]="rowData.reBudget" style="text-align:center"
+                            <input pInputText type="number" [(ngModel)]="rowData.reBudget" style="text-align:center"
                                 [disabled]="mode != 'create'&& mode != 'update'">
                         </ng-template>
                         <ng-template pTemplate="output">

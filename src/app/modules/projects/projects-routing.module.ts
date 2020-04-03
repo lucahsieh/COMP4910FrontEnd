@@ -32,12 +32,13 @@ const routes: Routes = [
     path: 'view/:projectId',
     component: ProjectManagementComponent,
     data: { breadcrumb: 'Project' },
+    runGuardsAndResolvers: 'always',
     children: [
       { path: '', component: EmptyComponent, data: { breadcrumb: null } },
       // { path: 'wp/edit/:wpCode', component: WpEditComponent, data: { breadcrumb: 'Work Package Edit' } },
       // { path: 'wp/creation', component: WpCreateComponent, data: { breadcrumb: 'Work Package Creation' } },
       {
-        path: 'wp/editwp/:wpCode',
+        path: 'wp/editwp/:wpCode/:projectId',
         component: WpManagementComponent,
         data: { breadcrumb: 'Work Package Edit' },
         children: [
@@ -54,7 +55,7 @@ const routes: Routes = [
         // ]
       },
       {
-        path: 'wp/viewwp/:wpCode',
+        path: 'wp/viewwp/:wpCode/:projectId',
         component: WpManagementComponent,
         data: { breadcrumb: 'Work Package' },
         children: [
@@ -74,7 +75,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [
+    RouterModule.forChild(routes),
+    // RouterModule.forRoot(routes, {
+    //   onSameUrlNavigation: 'reload'
+    // })
+  ],
   exports: [RouterModule]
 })
 export class ProjectsRoutingModule { }

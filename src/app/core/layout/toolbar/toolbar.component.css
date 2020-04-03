@@ -8,3 +8,7 @@
   font-size: 1.75rem !important;
   font-family: 'Signika', sans-serif !important;
 }
+
+.toolbarSize{
+  min-width: 800px;
+}

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { SelectItem } from 'primeng/api/selectitem';
 import { WorkPackage } from 'src/app/shared/model/WorkPackage';
 import { WpService } from 'src/app/core/service/wp/wp.service';
@@ -16,6 +16,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class WpEditComponent implements OnInit {
 
+  @Input() projectId: string;
+  @Input() workPackageCode: string;
   wp: WorkPackage;
   hours: PMPlanning[];
   employees: any[] = [];
@@ -23,7 +25,7 @@ export class WpEditComponent implements OnInit {
   //wpCode validation
   validWpCode: boolean = false;
   alerts = {};
-  mode = MODE.Create;
+  mode = MODE.Update;
 
   constructor(
     private route: ActivatedRoute,
@@ -33,8 +35,8 @@ export class WpEditComponent implements OnInit {
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      var code = params.get('wpCode');
-      this.wpService.getWpByWpCode(code).subscribe(w => {
+      // var code = params.get('wpCode');
+      this.wpService.getWpByWpCode(this.workPackageCode).subscribe(w => {
         this.wp = w;
         this.validateWpCode();
       });
@@ -45,9 +47,9 @@ export class WpEditComponent implements OnInit {
   onUpdate(e: any) {
     if (!this.validatePage())
       return;
-    console.log("POST employee");
+    console.log("PUT WP");
     console.log(JSON.stringify(this.wp));
-    this.wpService.postWorkPackage(this.wp).subscribe();
+    this.wpService.putWorkPackage(this.wp).subscribe();
   }
 
   // btn click event of cancel
@@ -71,16 +73,20 @@ export class WpEditComponent implements OnInit {
 
   validatePage(): boolean {
     var result = true;
+    if (!this.wp.responsibleEngineer) {
+      this.alerts['re'] = new Alert('danger', 5000, `Responsible Engineer cannot be empty`);
+      result = false;
+    }
+    if (!this.wp.employees) {
+      this.alerts['employees'] = new Alert('danger', 5000, `You need at least one team member.`);
+      result = false;
+    }
     if (this.wp.workPackageTitle === null) {
       this.alerts['wpTitle'] = new Alert('danger', 5000, `WP Title cannot be empty`);
       result = false;
     }
     if (!this.wp.contractor === null) {
       this.alerts['lastName'] = new Alert('danger', 5000, `Contractor cannot be empty`);
-      result = false;
-    }
-    if (!this.validWpCode) {
-      this.alerts['wpCode'] = new Alert('danger', 5000, `WP Code: ${this.wp.workPackageCode} is not valid`);
       result = false;
     }
     /*if (!this.validEmployeeCode) {
@@ -100,30 +106,30 @@ export class WpEditComponent implements OnInit {
 
   validateWpCode() {
     this.validWpCode = true;
-    this.alerts = {};
-    this.wp.workPackageCode = this.wp.workPackageCode.toUpperCase();
-    let code: string = this.wp.workPackageCode;
-    var parentCode = null;
-    if (this.wp.parentWorkPackageCode)
-      parentCode = this.wp.parentWorkPackageCode['value'];
+    // this.alerts = {};
+    // this.wp.workPackageCode = this.wp.workPackageCode.toUpperCase();
+    // let code: string = this.wp.workPackageCode;
+    // var parentCode = null;
+    // if (this.wp.parentWorkPackageCode)
+    //   parentCode = this.wp.parentWorkPackageCode['value'];
 
-    // When there is no parent code
-    if (!parentCode) {
-      if (code.match(/^[A-Z]+$/) === null) {
-        this.validWpCode = false;
-        this.alerts['wpCode'] = new Alert('danger', 5000, `Only allow alphabet characters if no parent work package code.`);
-        return false;
-      }
-      this.validWpCode = true;
-      return true;
-    }
+    // // When there is no parent code
+    // if (!parentCode) {
+    //   if (code.match(/^[A-Z]+$/) === null) {
+    //     this.validWpCode = false;
+    //     this.alerts['wpCode'] = new Alert('danger', 5000, `Only allow alphabet characters if no parent work package code.`);
+    //     return false;
+    //   }
+    //   this.validWpCode = true;
+    //   return true;
+    // }
 
-    // When there is parent code
-    let regexp = new RegExp('\\b' + parentCode + '\\d{1}\\b');
-    if (code.match(regexp) === null) {
-      this.validWpCode = false;
-      this.alerts['wpCode'] = new Alert('danger', 5000, `Only appending one more digits to parent code.`);
-    }
+    // // When there is parent code
+    // let regexp = new RegExp('\\b' + parentCode + '\\d{1}\\b');
+    // if (code.match(regexp) === null) {
+    //   this.validWpCode = false;
+    //   this.alerts['wpCode'] = new Alert('danger', 5000, `Only appending one more digits to parent code.`);
+    // }
   }
 
   onValueChange(value: Date): void {

@@ -30,12 +30,14 @@
 
 .example-sidenav-content {
   /* display: flex; */
-  height: 100vh;
+  height: 90vh;
   align-items: center;
   justify-content: center;
   /* padding: 10px; */
   /* min-height: 90vh; */
-  min-width: 900px;
+  min-width: 800px;
+  max-width: 1200px;
+  margin: 10px;
 }
 
 .example-sidenav {

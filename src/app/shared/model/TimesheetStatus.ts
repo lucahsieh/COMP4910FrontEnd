@@ -3,5 +3,5 @@ export enum TimesheetStatus {
     approved = "Approved",
     rejected = "Rejected",
     pending = "Pending",
-    inProgress = "In Progress"
+    inProgress = "inprogress"
 }

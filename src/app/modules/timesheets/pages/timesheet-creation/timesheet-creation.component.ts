@@ -32,6 +32,9 @@ export class TimesheetCreationComponent implements OnInit {
   @ViewChild(TimesheetComponent, { static: false })
   private timesheetCmp: TimesheetComponent;
 
+
+  private tsList: any[];
+
   constructor(
     private timesheetService: TimesheetService,
     private projectService: ProjectService,
@@ -44,6 +47,7 @@ export class TimesheetCreationComponent implements OnInit {
   ngOnInit() {
     this.setEmptyTimesheetData();
     this.prepareprojectWp();
+    this.prepareTSlist();
   }
 
   onSubmitConfrimed() {
@@ -58,8 +62,12 @@ export class TimesheetCreationComponent implements OnInit {
 
   onSubmit(e: any, template: TemplateRef<any>) {
     this.timesheetCmp.validatePage()
+    var duplicated = !this.isDuplicatedTs();
     if (!this.timesheetCmp.validatePage()) {
       console.log('not pass')
+      return;
+    }
+    if (duplicated) {
       return;
     }
     this.modalRef = this.modalService.show(template);
@@ -67,8 +75,12 @@ export class TimesheetCreationComponent implements OnInit {
 
   onSave(e: any) {
     this.timesheetCmp.validatePage()
+    var duplicated: boolean = this.isDuplicatedTs();
     if (!this.timesheetCmp.validatePage()) {
       console.log('not pass')
+      return;
+    }
+    if (duplicated) {
       return;
     }
     console.log(`post timesheet:`);
@@ -121,12 +133,26 @@ export class TimesheetCreationComponent implements OnInit {
     });
   }
 
+  isDuplicatedTs(): boolean {
+    let result: boolean = false;
+    this.tsList.forEach(t => {
+      let endingOld = new Date(t.weekEndingIn);
+      let endingCur = new Date(this.timesheet.weekEndingIn);
+      if (endingOld.toLocaleDateString() == endingCur.toLocaleDateString() && t.versionNumber === this.timesheet.versionNumber) {
+        this.myToastService.addError('Duplicated timesheet', `You already have this timesheet of same week. Please Review or edit the existing one as a new version.`);
+        result = true;
+      }
+    })
+    console.log('is duplicated')
+    console.log(result);
+    return result;
+  }
 
 
-
-
-
-
+  prepareTSlist() {
+    var empId = this.authenticationService.currentUserValue.employeeId;
+    this.timesheetService.getAllTimesheet(empId).subscribe(ts => this.tsList = ts);
+  }
 
 
   // helper functions

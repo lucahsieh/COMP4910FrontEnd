@@ -54,7 +54,7 @@ export class TimesheetEditComponent implements OnInit {
   onSubmitConfrimed() {
 
     this.timesheet.status = TimesheetStatus.pending;
-    this.timesheetService.postTimesheet(this.timesheet).subscribe(_ => {
+    this.timesheetService.putTimesheet(this.timesheet).subscribe(_ => {
       this.modalRef.hide();
       this.myToastService.addSuccess('Timesheet Sumitted Successfully', `Timesheet of week ${this.timesheet.weekEndingIn} is sumitted to your supervisor.`);
       this.router.navigate([`/content/timesheets`]);
@@ -79,9 +79,9 @@ export class TimesheetEditComponent implements OnInit {
       console.log('not pass')
       return;
     }
-    console.log(`post timesheet:`);
+    console.log(`put timesheet:`);
     console.log(JSON.stringify(this.timesheet));
-    this.timesheetService.postTimesheet(this.timesheet).subscribe(_ => {
+    this.timesheetService.putTimesheet(this.timesheet).subscribe(_ => {
       this.myToastService.addInfo(`Timesheet Updated`, `Timesheet of week ${this.timesheet.weekEndingIn} saved on ${new Date().toLocaleString()}`);
       this.router.navigate([`/content/timesheets`]);
     });
