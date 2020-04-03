@@ -7,7 +7,7 @@ import { EmployeeService } from 'src/app/core/service/employee/employee.service'
 import { Alert } from 'src/app/shared/model/Alert';
 import { MODE } from 'src/app/shared/model/MODE';
 import { PMPlanning } from 'src/app/shared/model/PMPlanning';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-wp-edit',
@@ -30,6 +30,7 @@ export class WpEditComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private wpService: WpService,
+    private router: Router,
     private employeeService: EmployeeService
   ) { }
 
@@ -49,11 +50,16 @@ export class WpEditComponent implements OnInit {
       return;
     console.log("PUT WP");
     console.log(JSON.stringify(this.wp));
-    this.wpService.putWorkPackage(this.wp).subscribe();
+    this.wpService.putWorkPackage(this.wp).subscribe(_ => {
+      this.router.navigate([`/content/projects`]);
+    });
   }
 
+
   // btn click event of cancel
-  onCancel(e: any) { }
+  onCancel(e: any) {
+    this.router.navigate([`/content/projects/view/${this.projectId}`]);
+  }
 
 
   initLabourGradePlanning() {

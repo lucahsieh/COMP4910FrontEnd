@@ -37,7 +37,7 @@ export class ProjectViewSupervisorComponent implements OnInit {
   onUpdate() {
     console.log("POST project Member management");
     console.log(JSON.stringify(this.project));
-    this.projectService.postProject(this.project).subscribe(_ => {
+    this.projectService.putProject(this.project).subscribe(_ => {
       this.myToastService.addSuccess(`Project Members Saved Successfully`, `${new Date().toLocaleString()}`);
       this.router.navigate([`/content/projects/view/${this.project.projectId}`]);
     });

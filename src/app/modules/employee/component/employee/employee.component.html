@@ -90,8 +90,8 @@
     </div>
     <div class="col-5">
 
-      <!-- Timesheet Approver -->
-      <div class="input-group">
+        <!-- Timesheet Approver -->
+        <!-- <div class="input-group">
           <div class="input-group-prepend">
               <span class="input-group-text">Approver</span>
           </div>
@@ -101,11 +101,11 @@
               *ngIf="mode ==='create' || mode==='update'"
               placeholder="{{employee.timesheetApprover ? employee.timesheetApprover.empFirstName + ' ' + employee.timesheetApprover.empLastName : 'choose an approver'}}"
               optionLabel="label" [style]="{'border-width':'0px','padding':'0px'}" (onChange)="onChange($event)"></p-dropdown>
-      </div>
-      <span *ngIf="alerts.supervisor" class="error my-2"><small>{{alerts.supervisor.msg}}</small></span>
+      </div> -->
+        <!-- <span *ngIf="alerts.supervisor" class="error my-2"><small>{{alerts.supervisor.msg}}</small></span> -->
     </div>
     <div class="col-1"></div>
-    
+
 </div>
 <div class="  my-3"></div>
 <div class="form-row">
