@@ -202,10 +202,10 @@ export class TimesheetComponent implements OnInit {
     // row validation
     this.timesheet.timesheetRows.forEach(row => {
       if (row.projectId == 0) {
-        this.validationError['projectId'] = { msgs: 'You must selected project', type: 'danger' };
+        this.validationError['projectId'] = { msgs: 'You must select a project', type: 'danger' };
       }
       if (row.workPackageId == 0) {
-        this.validationError['workPackageId'] = { msgs: 'You must selected work page', type: 'danger' };
+        this.validationError['workPackageId'] = { msgs: 'You must select a work package', type: 'danger' };
       }
       this.days.forEach(day => {
         this.invalidHr(row[day]);

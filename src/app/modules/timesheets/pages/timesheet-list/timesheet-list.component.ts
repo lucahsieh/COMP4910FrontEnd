@@ -23,7 +23,7 @@ export class TimesheetListComponent implements OnInit {
     this.cols = [
       { field: 'weekNumber', header: 'Week' },
       { field: 'versionNumber', header: 'Version' },
-      { field: 'weekEndingIn', header: 'week Ending' },
+      { field: 'weekEndingIn', header: 'Week Ending' },
       { field: 'status', header: 'Status' }
     ];
     this.populateTimesheets();
@@ -33,7 +33,7 @@ export class TimesheetListComponent implements OnInit {
     var userId = this.authenticationService.currentUserValue.employeeId;
     this.timesheetService.getAllTimesheet(userId).subscribe(res => {
       this.timesheets = res;
-      this.timesheets.forEach(ts => ts.status = ts.status.toLowerCase());
+      this.timesheets.forEach(this.fixSpace);
       console.log(this.timesheets)
     });
   }
@@ -44,12 +44,19 @@ export class TimesheetListComponent implements OnInit {
     return false;
   }
   colorStatus(status: string) {
-    switch (status.toLowerCase()) {
-      case 'approved': return 'badge badge-success';
-      case 'rejected': return 'badge badge-danger';
-      case 'pending': return 'badge badge-warning';
-      case 'inprogress': return 'badge badge-info';
+    switch (status) {
+      case 'Approved': return 'badge badge-success';
+      case 'Rejected': return 'badge badge-danger';
+      case 'Pending': return 'badge badge-warning';
+      case 'In Progress': return 'badge badge-info';
     }
 
+  }
+  //Fixes Spacing of the term "In Progress" for display
+  //Can also have backend return status "In Progress" with a space as alternative to this
+  fixSpace(ts: Timesheet) {
+    if(ts.status == "InProgress") {
+      ts.status = ts.status.substr(0,2) + ' ' + ts.status.substr(2);
+    }
   }
 }

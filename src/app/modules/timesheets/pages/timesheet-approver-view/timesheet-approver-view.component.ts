@@ -25,7 +25,10 @@ export class TimesheetApproverViewComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       var id = params.get('timesheetId');
       console.log(`current timesheet id is  ${id}`);
-      this.timesheetService.getTimesheet(id).subscribe(ts => this.timesheet = ts);
+      this.timesheetService.getTimesheet(id).subscribe(ts => {
+        this.timesheet = ts; 
+        this.fixSpace(this.timesheet)
+      });
     });
   }
   onTextareaChange(e: any) {
@@ -36,12 +39,11 @@ export class TimesheetApproverViewComponent implements OnInit {
     }
   }
   colorStatus(status: string) {
-    status = status.toLowerCase();
     switch (status) {
-      case 'approved': return 'badge badge-pill badge-success';
-      case 'rejected': return 'badge badge-pill badge-danger';
-      case 'pending': return 'badge badge-pill badge-warning';
-      case 'inprogress': return 'badge badge-pill badge-info';
+      case 'Approved': return 'badge badge-pill badge-success';
+      case 'Rejected': return 'badge badge-pill badge-danger';
+      case 'Pending': return 'badge badge-pill badge-warning';
+      case 'In Progress': return 'badge badge-pill badge-info';
       default: return 'badge badge-pill badge-dark';
     }
   }
@@ -52,6 +54,14 @@ export class TimesheetApproverViewComponent implements OnInit {
   onApprove(e: any) {
     this.timesheet.status = TimesheetStatus.approved;
     this.timesheetService.putTimesheet(this.timesheet).subscribe(_ => console.log(this.timesheet));
+  }
+
+  //Fixes Spacing of the term "In Progress" for display
+  //Can also have backend return status "In Progress" with a space as alternative to this
+  fixSpace(ts: Timesheet) {
+    if(ts.status == "InProgress") {
+      ts.status = ts.status.substr(0,2) + ' ' + ts.status.substr(2);
+    }
   }
 
 }

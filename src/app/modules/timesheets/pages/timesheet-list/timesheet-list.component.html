@@ -40,7 +40,7 @@
                     <td>
                         <button type="button" class="btn btn-link btn-sm"
                             [routerLink]="['view', rowData.timesheetId]">View</button>
-                        <button *ngIf="rowData.status==='inprogress'" type="button" class="btn btn-link btn-sm"
+                        <button *ngIf="rowData.status==='In Progress'" type="button" class="btn btn-link btn-sm"
                             [routerLink]="['edit', rowData.timesheetId]">Edit</button>
                     </td>
                 </tr>

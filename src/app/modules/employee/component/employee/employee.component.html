@@ -72,7 +72,7 @@
 <div class="  my-3"></div>
 <div class="form-row">
     <div class="col-5">
-        <!-- employe ID -->
+        <!-- employee ID -->
         <div class="input-group">
             <div class="input-group-prepend">
                 <span class="input-group-text">Employee ID</span>
@@ -151,15 +151,12 @@
 <div class="  my-3"></div>
 
 <div class="dropdown-divider  my-3"></div>
-<h5 class="my-3">Activation</h5>
+<h5 class="my-3">Activation Status</h5>
 <div class="form-row">
     <div class="col-12">
 
-        <!-- active/deactive -->
+        <!-- active/inactive -->
         <div class="input-group">
-            <!-- <div class="input-group-prepend">
-                        <span class="input-group-text">Activation</span>
-                    </div> -->
             <div class="btn-group btn-group-toggle" data-toggle="buttons">
                 <label
                     [className]="employee.isActivated ? 'btn btn-outline-secondary active' : 'btn btn-outline-secondary'">
@@ -171,7 +168,7 @@
                     [className]="employee.isActivated ? 'btn btn-outline-secondary' : 'btn btn-outline-secondary active'">
                     <!--  [className]="employee.isActivated ? 'btn btn-outline-secondary' : 'btn btn-outline-secondary active'" -->
                     <input type="radio" name="activation" id="deactive" [value]=false [(ngModel)]="employee.isActivated"
-                        [disabled]="mode==='read'"> Deactive
+                        [disabled]="mode==='read'"> Inactive
                 </label>
             </div>
         </div>
@@ -206,7 +203,7 @@
                 <label
                     [className]="employee.isHumanResources ? 'btn btn-outline-secondary active' : 'btn btn-outline-secondary'">
                     <input type="checkbox" autocomplete="off" [value]="!employee.isHumanResources "
-                        [disabled]="mode==='read'" [(ngModel)]="employee.isHumanResources"> Humane Resource Permission
+                        [disabled]="mode==='read'" [(ngModel)]="employee.isHumanResources"> Human Resources Permission
                 </label>
             </div>
 

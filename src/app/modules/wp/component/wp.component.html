@@ -111,7 +111,7 @@
                 *ngIf="mode==='read'" [readOnly]="true">
             <p-dropdown class="form-control" [options]="engineerDropdown" [(ngModel)]="wp.responsibleEngineer"
                 *ngIf="mode ==='create' || mode==='update'" filter="true"
-                placeholder="{{wp.responsibleEngineer ? wp.responsibleEngineer.employeeId : 'choose a Responsible Engineer'}}"
+                placeholder="{{wp.responsibleEngineer ? wp.responsibleEngineer.employeeId : 'Choose a Responsible Engineer'}}"
                 [style]="{'border-width':'0px','padding':'0px','width':'100%'}"></p-dropdown>
         </div>
         <!--<span *ngIf="alerts.labourGrade" class="error my-2"><small>{{alerts.labourGrade.msg}}</small></span>-->

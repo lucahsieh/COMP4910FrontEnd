@@ -97,7 +97,7 @@ export class TimesheetCreationComponent implements OnInit {
         newTimesheet.employeeId = this.currentUser.employeeId;
         newTimesheet.versionNumber = 1;
         newTimesheet.status = TimesheetStatus.inProgress;
-
+        console.log(newTimesheet.status);
         // Create 5 empty rows at page load.
         for (var i = 0; i < 5; i++)
           newTimesheet.timesheetRows.push(new TimesheetRow(newTimesheet.timesheetId, newTimesheet.versionNumber, 0, 0));
