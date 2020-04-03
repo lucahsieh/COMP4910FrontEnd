@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ProjectService } from 'src/app/core/service/project/project.service';
 import { Project } from 'src/app/shared/model/Project';
 import { MODE } from 'src/app/shared/model/MODE';
@@ -11,16 +11,16 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProjectViewComponent implements OnInit {
 
-  project: Project;
+  @Input() project: Project;
   mode = MODE.Read;
   alerts = {};
 
   constructor(private route: ActivatedRoute, private projectService: ProjectService) { }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
-      var id = params.get('projectId');
-      this.projectService.getProject(id).subscribe(e => this.project = e);
-    });
+    // this.route.paramMap.subscribe(params => {
+    //   var id = params.get('projectId');
+    //   this.projectService.getProject(id).subscribe(e => this.project = e);
+    // });
   }
 }

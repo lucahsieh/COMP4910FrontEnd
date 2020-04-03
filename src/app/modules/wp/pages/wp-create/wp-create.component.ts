@@ -67,7 +67,6 @@ export class WpCreateComponent implements OnInit {
     if (!this.validatePage())
       return;
     console.log("POST wp");
-    console.log(JSON.stringify(this.wp));
     this.wpService.postWorkPackage(this.wp).subscribe(
       result =>
         console.log(result),
@@ -75,7 +74,8 @@ export class WpCreateComponent implements OnInit {
         this.myToastService.addError('Update Error', `${error}`),
       () => {
         this.myToastService.addSuccess(`Work package created Successfully`, `${new Date().toLocaleString()}`);
-        this.router.navigate([`/projects/view/${this.project.projectId}`]);
+        this.router.navigate([`/content/projects/view/${this.project.projectId}/wp/viewwp/${this.wp.workPackageCode}/${this.project.projectId}`]);
+
       }
     );
   }
@@ -103,6 +103,14 @@ export class WpCreateComponent implements OnInit {
 
   validatePage(): boolean {
     var result = true;
+    if (!this.wp.responsibleEngineer) {
+      this.alerts['re'] = new Alert('danger', 5000, `Responsible Engineer cannot be empty`);
+      result = false;
+    }
+    if (!this.wp.employees) {
+      this.alerts['employees'] = new Alert('danger', 5000, `You need at least one team member.`);
+      result = false;
+    }
     if (this.wp.workPackageTitle === null) {
       this.alerts['wpTitle'] = new Alert('danger', 5000, `WP Title cannot be empty`);
       result = false;

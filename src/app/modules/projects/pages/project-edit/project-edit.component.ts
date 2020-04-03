@@ -46,7 +46,7 @@ export class ProjectEditComponent implements OnInit {
       return;
     } console.log("POST project");
     console.log(JSON.stringify(this.project));
-    this.projectService.postProject(this.project).subscribe(_ => {
+    this.projectService.putProject(this.project).subscribe(_ => {
       this.myToastService.addSuccess(`Project Saved Successfully`, `Project ${this.project.projectName} saved ${new Date().toLocaleString}.`);
       this.router.navigate([`/content/projects/view/${this.project.projectId}`]);
     });

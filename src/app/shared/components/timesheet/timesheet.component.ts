@@ -92,7 +92,7 @@ export class TimesheetComponent implements OnInit {
   addRow(event) {
     // TODO: replace the pushed item as empty item
     this.timesheet.timesheetRows.push(
-      new TimesheetRow(this.timesheet.timesheetId, this.timesheet.versionNumber, 1, 1)
+      new TimesheetRow(this.timesheet.timesheetId, this.timesheet.versionNumber, 0, 0)
     );
   }
 
@@ -189,8 +189,10 @@ export class TimesheetComponent implements OnInit {
     if (totalhrs > 40) {
       let flex = this.timesheet.flexTime
       let overtime = this.timesheet.overTime
-      if ((totalhrs - flex - overtime - 40) !== 0) {
+      if ((totalhrs - flex - overtime - 40) > 0) {
         this.validationError['flexTime'] = { msgs: 'You must allocate hours into flex or overtime', type: 'danger' };
+      } else if ((totalhrs - flex - overtime - 40) < 0) {
+        this.validationError['flexTime'] = { msgs: 'You allocated TOO MANY hours into flex or overtime', type: 'danger' };
       }
     }
     // not timesheet rows
@@ -211,6 +213,19 @@ export class TimesheetComponent implements OnInit {
         this.invalidHr(row[day]);
       });
     });
+
+    // col validation
+    this.days.forEach(day => {
+      var colTotal: number = 0;
+      this.timesheet.timesheetRows.forEach(row => {
+        colTotal += + row[day.value];
+      })
+      if (colTotal > 24) {
+        this.validationError['over24'] = { msgs: `The total hours on ${day.value} is over 24`, type: 'danger' };
+      }
+    })
+
+
     console.log(this.validationError)
     return Object.keys(this.validationError).length == 0;
   }

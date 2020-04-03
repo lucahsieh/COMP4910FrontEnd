@@ -4,6 +4,9 @@ import { WorkPackage } from 'src/app/shared/model/WorkPackage';
 import { WpService } from 'src/app/core/service/wp/wp.service';
 import { EmployeeService } from 'src/app/core/service/employee/employee.service';
 import { MODE } from 'src/app/shared/model/MODE';
+import { Route } from '@angular/compiler/src/core';
+import { ActivatedRoute } from '@angular/router';
+import { ProjectService } from 'src/app/core/service/project/project.service';
 
 @Component({
   selector: 'app-wp',
@@ -37,15 +40,21 @@ export class WpComponent implements OnInit {
   constructor(
     private wpService: WpService,
     private empService: EmployeeService,
+    private route: ActivatedRoute,
+    private projectService: ProjectService
   ) { }
 
   ngOnInit() {
+
+    // this.route.paramMap.subscribe(params => {
+    //   this.projectId = params.get('projectId');
     if (this.mode !== MODE.Read) this.populateEngineerDropdown();
     if (this.mode !== MODE.Read) this.populateParentDropdown();
     if (this.mode !== MODE.Read) this.populateWorkerDropdown();
     this.initLabourGrades();
     this.initCols();
     this.AllLabourGrades();
+    // })
   }
 
   AllLabourGrades() {
@@ -62,7 +71,6 @@ export class WpComponent implements OnInit {
     this.empService
       .getEmployeesWithinProject(this.projectId)
       .subscribe(employees => {
-        console.log(employees);
         this.engineerDropdown = [];
         employees.forEach(e => {
           this.engineerDropdown.push(
@@ -88,8 +96,6 @@ export class WpComponent implements OnInit {
             { label: `${p.workPackageCode} - ${p.workPackageTitle}`, value: p.workPackageCode }
           )
         })
-        console.log('look')
-        console.log(this.parentWPDropdown)
       })
   }
 

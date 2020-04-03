@@ -41,8 +41,8 @@
                     <td *ngFor="let col of columns">
                         <span *ngIf="col.field !=='activation' && col.field !=='button'">{{rowData[col.field]}}</span>
                         <h5 *ngIf="col.field ==='activation'">
-                            <span class="badge badge-success" *ngIf="rowData[col.field]">Activated</span>
-                            <span class="badge badge-danger" *ngIf="!rowData[col.field]">Deactivated</span>
+                            <span class="badge badge-success" *ngIf="!rowData[col.field]">Activated</span>
+                            <span class="badge badge-danger" *ngIf="rowData[col.field]">Deactivated</span>
                         </h5>
                         <div *ngIf="col.field ==='button'">
                             <button type="button" class="btn btn-link btn-sm"

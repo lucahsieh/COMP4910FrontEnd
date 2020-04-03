@@ -50,6 +50,13 @@ export class WpService {
 
   postWorkPackage(w: WorkPackage): Observable<any> {
     let url = this.baseUrl + `api/WorkPackages`;
+    var pmPlannings = [];
+    if (w.pmPlannings)
+      w.pmPlannings.forEach(p => {
+        p.reBudget = (p.reBudget ? p.reBudget : 0);
+        p.pmEAC = (p.pmEAC ? p.pmEAC : 0);
+        pmPlannings.push(p);
+      })
     let body = {
       "projectCode": w.projectCode,
       "projectName": w.projectName,
@@ -61,7 +68,7 @@ export class WpService {
       "responsibleEngineer": w.responsibleEngineer,
       "parentWorkPackageCode": w.parentWorkPackageCode,
       "employees": w.employees,
-      "pmPlannings": w.pmPlannings
+      "pmPlannings": pmPlannings
     }
     console.log('postWorkPackage');
     console.log(JSON.stringify(body));
@@ -71,8 +78,16 @@ export class WpService {
   }
 
   putWorkPackage(w: WorkPackage): Observable<any> {
-    let url = this.baseUrl + `api/WorkPackages`;
+    let url = this.baseUrl + `api/WorkPackages/${w.workPackageId}`;
+    var pmPlannings = [];
+    if (w.pmPlannings)
+      w.pmPlannings.forEach(p => {
+        p.reBudget = (p.reBudget ? p.reBudget : 0);
+        p.pmEAC = (p.pmEAC ? p.pmEAC : 0);
+        pmPlannings.push(p);
+      })
     let body = {
+      "workPackageId": w.workPackageId,
       "projectCode": w.projectCode,
       "projectName": w.projectName,
       "workPackageCode": w.workPackageCode,
@@ -81,9 +96,9 @@ export class WpService {
       "issueDate": w.issueDate,
       "isClosed": w.isClosed,
       "responsibleEngineer": w.responsibleEngineer,
-      "parentWorkPackageId": w.parentWorkPackageId,
+      "parentWorkPackageCode": w.parentWorkPackageCode,
       "employees": w.employees,
-      "pmPlannings": w.pmPlannings
+      "pmPlannings": pmPlannings
     }
     console.log('putWorkPackage');
     console.log(JSON.stringify(body));

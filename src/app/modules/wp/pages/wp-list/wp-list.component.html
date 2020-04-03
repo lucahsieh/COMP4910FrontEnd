@@ -45,16 +45,16 @@
                 <div *ngIf="col.field === 'status'">
             <td>
                 <h5>
-                    <span class="badge badge-success" *ngIf="rowData.isClosed">Open</span>
-                    <span class="badge badge-danger" *ngIf="!rowData.isClosed">Closed</span>
+                    <span class="badge badge-success" *ngIf="!rowData.isClosed">Open</span>
+                    <span class="badge badge-danger" *ngIf="rowData.isClosed">Closed</span>
                 </h5>
             </td>
             </div>
             <div *ngIf="col.field ==='button'">
-                <button type="button" class="btn btn-link btn-sm" [routerLink]="['wp/viewwp', rowData.wpCode]"
-                    (click)="firePageChangeEvent()">View</button>
                 <button type="button" class="btn btn-link btn-sm"
-                    [routerLink]="['wp/editwp', rowData.wpCode]">Edit</button>
+                    [routerLink]="['wp/viewwp', rowData.wpCode, projectId]">View</button>
+                <button type="button" class="btn btn-link btn-sm"
+                    [routerLink]="['wp/editwp', rowData.wpCode, projectId]">Edit</button>
             </div>
             </td>
         </tr>
