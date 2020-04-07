@@ -76,12 +76,21 @@ export class WpReportCreationComponent implements OnInit {
 
   updateReBugetDay() {
     this.wpr.details.forEach(d => {
-      this.reportService.getReBudgetDays(this.wpr.workPackageCode, d.labourGradeId).subscribe(res => d.reBudgetDay = res);
+      this.reportService.getReBudgetDays(
+        this.wpr.workPackageCode, d.labourGradeId)
+        .subscribe(res => {
+          console.log('getReBudgetDays')
+          console.log(res)
+          d.reBudgetDay = res;
+        });
     })
   }
 
   submitReport() {
-    this.reportService.postWpReport(this.wpr);
+    this.reportService.postWpReport(this.wpr).subscribe(res => {
+      console.log(res);
+      console.log('posted')
+    });
     this.taskComplete.emit('onSubmit')
   }
 

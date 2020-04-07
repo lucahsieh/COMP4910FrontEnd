@@ -29,6 +29,8 @@ export class ProjectReportListComponent implements OnInit {
   populateReports() {
     this.reportService.getAllProjectReports(this.projectId)
       .subscribe(res => {
+        console.log('WP Reports')
+        console.log(res)
         res.forEach(r => {
           this.displayReports.push(
             {

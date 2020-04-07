@@ -30,13 +30,13 @@ export class ReportService {
     return this.http
       .get<any>(url, this.httpOptions)
       .pipe(
-        map(data => data.reBudgetDay)
+        map(data => data.reBudget)
       )
   }
 
   getWpReport(wpReportId: any): Observable<WPReport> {
     console.log('call getWpReport');
-    let url = this.baseUrl + `api/reports/wpReport/${wpReportId}`;
+    let url = this.baseUrl + `api/WorkPackageReports/${wpReportId}`;
     return this.http
       .get<WPReport>(url, this.httpOptions).pipe();
   }
@@ -52,7 +52,7 @@ export class ReportService {
       );
   };
   postWpReport(wpr: WPReport): Observable<any> {
-    let url = this.baseUrl + `api/reports/wpReport/`;
+    let url = this.baseUrl + `api/WorkPackageReports/`;
     var result = null;
     var body = {
       'workPackageCode': wpr.workPackageCode,
@@ -68,22 +68,21 @@ export class ReportService {
     }
     console.log('postWpReport');
     console.log(JSON.stringify(body));
-    if (!environment.fakeBackend)
-      result = this.http.post<WPReport>(url, body, this.httpOptions)
-    return result;
+    console.log(body);
+    return this.http.post<WPReport>(url, body, this.httpOptions)
   }
-
   getProjectReport(pReportId: any): Observable<ProjectReport> {
-    let url = this.baseUrl + `api/reports/projectReport/${pReportId}`;
+    let url = this.baseUrl + `api/ProjectReports/${pReportId}`;
+
     return this.http
       .get<ProjectReport>(url, this.httpOptions).pipe();
   }
   getAllProjectReports(projectId: any): Observable<any> {
-    let url = this.baseUrl + `api/reports/allprojectReports/${projectId}`;
+    let url = this.baseUrl + `api/ProjectReports/allprojectReports/${projectId}`;
     return this.http.get<any>(url, this.httpOptions).pipe();
   }
   getAllWpReports(wpCode: any): Observable<any> {
-    let url = this.baseUrl + `api/reports/wpReport/getAllWpReport/${wpCode}`;
+    let url = this.baseUrl + `api/reports/wpReport/getAllWorkPackageReport/${wpCode}`;
     return this.http.get<any>(url, this.httpOptions).pipe();
   }
 

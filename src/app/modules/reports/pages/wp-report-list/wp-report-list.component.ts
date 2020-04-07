@@ -40,6 +40,8 @@ export class WpReportListComponent implements OnInit {
     this.reportService.getAllWpReports(this.wpCode)
       .subscribe(res => {
         res.forEach(r => {
+          console.log('WP  REPORTS')
+          console.log(r)
           this.displayReports.push(
             {
               'reportDate': new Date(r.reportDate),
