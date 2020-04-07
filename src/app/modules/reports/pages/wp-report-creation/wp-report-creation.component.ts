@@ -87,6 +87,7 @@ export class WpReportCreationComponent implements OnInit {
   }
 
   submitReport() {
+    this.wpr.reportDate = new Date().toLocaleString();
     this.reportService.postWpReport(this.wpr).subscribe(res => {
       console.log(res);
       console.log('posted')
