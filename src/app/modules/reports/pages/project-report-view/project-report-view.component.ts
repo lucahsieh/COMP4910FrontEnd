@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProjectReport, WpStatus } from 'src/app/shared/model/ProjectReport';
 import { ReportService } from 'src/app/core/service/report/report.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-project-report-view',
@@ -19,17 +20,21 @@ export class ProjectReportViewComponent implements OnInit {
 
   constructor(
     private ReportService: ReportService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
-    this.ReportService.getProjectReport('ew').subscribe(r => {
-      this.projectReport = r;
-      console.log(this.projectReport);
-      this.preparePmView(r);
-      this.prepareReView(r);
+
+    //projectReportId
+    this.route.paramMap.subscribe(params => {
+      var projectReportId = params.get('projectReportId');
+      this.ReportService.getProjectReport(projectReportId).subscribe(r => {
+        this.projectReport = r;
+        console.log(this.projectReport);
+        this.preparePmView(r);
+        this.prepareReView(r);
+      });
     });
-
-
   }
   preparePmView(r: ProjectReport) {
     let data: WpStatus[] = [];
@@ -45,12 +50,12 @@ export class ProjectReportViewComponent implements OnInit {
       { field: 'workPackageCode', header: 'Code' },
       { field: 'workPackageName', header: 'Name' },
       { field: 'wpReBudget', header: 'RE Budget' },
-      { field: 'wpActualSepnds', header: 'ACWP' },
+      { field: 'wpActualSpends', header: 'ACWP' },
       { field: 'wpPmEAC', header: 'PM EAC' },
       { field: 'wpPmVariance', header: 'PM Variance' },
       { field: 'wpPmCompletion', header: 'PM Completion' },
       { field: 'isClosed', header: 'Status' },
-      { field: 'engineersInitials', header: 'Members' },
+      { field: 'engineerInitials', header: 'Members' },
     ];
   }
   prepareReView(r: ProjectReport) {
@@ -64,12 +69,12 @@ export class ProjectReportViewComponent implements OnInit {
       { field: 'workPackageCode', header: 'Code' },
       { field: 'workPackageName', header: 'Name' },
       { field: 'wpReBudget', header: 'RE Budget' },
-      { field: 'wpActualSepnds', header: 'ACWP' },
+      { field: 'wpActualSpends', header: 'ACWP' },
       { field: 'wpReEAC', header: 'RE EAC' },
       { field: 'wpReVariance', header: 'RE Variance' },
       { field: 'wpReCompletion', header: 'RE Completion' },
       { field: 'isClosed', header: 'Status' },
-      { field: 'engineersInitials', header: 'Members' }
+      { field: 'engineerInitials', header: 'Members' }
     ]
   }
 
