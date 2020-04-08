@@ -56,7 +56,7 @@ export class TimesheetEditVersionComponent implements OnInit {
     // increment the version. since it is using the old timesheet to create a new one
     this.timesheet.versionNumber += 1;
     this.timesheet.status = TimesheetStatus.pending;
-    this.timesheetService.putTimesheet(this.timesheet).subscribe(_ => {
+    this.timesheetService.postTimesheet(this.timesheet).subscribe(_ => {
       this.modalRef.hide();
       this.myToastService.addSuccess('Timesheet Sumitted Successfully', `Timesheet of week ${this.timesheet.weekEndingIn} Version: ${this.timesheet.versionNumber} is sumitted to your supervisor.`);
       this.router.navigate([`/content/timesheets`]);
@@ -86,7 +86,7 @@ export class TimesheetEditVersionComponent implements OnInit {
     this.timesheet.status = TimesheetStatus.inProgress;
     console.log(`put timesheet new version:`);
     console.log(JSON.stringify(this.timesheet));
-    this.timesheetService.putTimesheet(this.timesheet).subscribe(_ => {
+    this.timesheetService.postTimesheet(this.timesheet).subscribe(_ => {
       this.myToastService.addInfo(`Timesheet Updated in Version ${this.timesheet.versionNumber}`, `Timesheet of week ${this.timesheet.weekEndingIn} saved on ${new Date().toLocaleString()}`);
       this.router.navigate([`/content/timesheets`]);
     });
