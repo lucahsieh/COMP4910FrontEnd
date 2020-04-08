@@ -52,25 +52,6 @@ export class TimesheetEditVersionComponent implements OnInit {
     this.prepareprojectWp();
   }
 
-  // onSubmit(e: any) {
-  //   // increment the version. since it is using the old timesheet to create a new one
-  //   this.timesheet.versionNumber += 1;
-  //   this.timesheet.status = TimesheetStatus.pending;
-  //   this.timesheetService.putTimesheet(this.timesheet).subscribe(_ => {
-  //     // TODO : nagvigate to this page "/content/timesheets"
-  //   });
-  // }
-  // onSave(e: any) {
-  //   // increment the version. since it is using the old timesheet to create a new one
-  //   this.timesheet.versionNumber += 1;
-  //   this.timesheet.status = TimesheetStatus.inProgress;
-  //   console.log(`post timesheet new version:`);
-  //   console.log(JSON.stringify(this.timesheet));
-  //   this.timesheetService.putTimesheet(this.timesheet).subscribe(_ => {
-  //     // TODO : nagvigate to this page "/content/timesheets"
-  //   });
-  // }
-
   onSubmitConfrimed() {
     // increment the version. since it is using the old timesheet to create a new one
     this.timesheet.versionNumber += 1;
@@ -115,11 +96,14 @@ export class TimesheetEditVersionComponent implements OnInit {
   prepareprojectWp() {
     this.projectService.getProjectWpDropdown(this.currentUser.employeeId).subscribe(result => {
       this.projectWp = [];
+      console.log(result)
       result.forEach(p => {
-        p.workPackages.forEach(wp => {
+        p.workPackageViewModels.forEach(wp => {
           this.projectWp.push({ 'projectId': p.projectId, 'projectName': p.projectName, 'wpId': wp.workPackageId, 'wpCode': wp.workPackageCode })
         });
       });
+      console.log('should populate project wp dropdown')
+      console.log(this.projectWp)
     });
   }
 

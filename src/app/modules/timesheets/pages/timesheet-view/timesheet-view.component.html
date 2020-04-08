@@ -7,10 +7,11 @@
         <!-- alert content -->
         <div class="alert alert-danger alert-dismissible fade show" role="alert" *ngIf="timesheet.status == 'Rejected'">
             <h4 class="alert-heading">Rejected!</h4>
-            <p>This timesheet is rejected based on the following reason. Please click Edit button to modifty this
+            <p>This timesheet is rejected based on the following reason. Please click "Create New Version" button to
+                modify this
                 timesheet.</p>
             <hr>
-            <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+            <p class="mb-0">{{timesheet.comment}}</p>
         </div>
 
         <div class="dropdown-divider "></div>
