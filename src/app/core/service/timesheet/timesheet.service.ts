@@ -25,10 +25,44 @@ export class TimesheetService {
   postTimesheet(ts: Timesheet): Observable<any> {
     let url = this.baseUrl + `api/timesheets`;
     console.log('postTimesheet');
-    console.log(JSON.stringify(ts));
+    console.log(ts);
+    let timesheetRows = [];
+    ts.timesheetRows.forEach(r => {
+      console.log('each timesheet row')
+      console.log(r)
+      timesheetRows.push(
+        {
+          "monday": r.monday,
+          "tuesday": r.tuesday,
+          "wednesday": r.wednesday,
+          "thursday": r.thursday,
+          "friday": r.friday,
+          "saturday": r.saturday,
+          "sunday": r.sunday,
+          "projectId": r.projectId,
+          "timesheetVersionNumber": ts.versionNumber,
+          "workPackageId": r.workPackageId,
+          "timesheetId": r.timesheetId
+        }
+      );
+    });
+    var body = {
+      "signature": ts.signature,
+      "comment": ts.comment,
+      "flexTime": ts.flexTime,
+      "overTime": ts.overTime,
+      "weekEndingIn": ts.weekEndingIn,
+      "weekNumber": ts.weekNumber,
+      "timesheetId": ts.timesheetId,
+      "employeeId": ts.employeeId,
+      "versionNumber": ts.versionNumber,
+      "status": ts.status,
+      "timesheetRows": timesheetRows
+    }
+    console.log(JSON.stringify(body));
     return this.http
-      .post<any>(url, ts, this.httpOptions)
-      .pipe(catchError(this.handleError("postProject", ts)));
+      .post<any>(url, body, this.httpOptions)
+      .pipe(catchError(this.handleError("postProject", body)));
   }
 
   putTimesheet(ts: Timesheet): Observable<any> {

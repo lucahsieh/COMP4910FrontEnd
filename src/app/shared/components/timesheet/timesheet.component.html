@@ -76,7 +76,7 @@
                     <p-dropdown [options]="populateProject()" [(ngModel)]="rowData.projectId" [style]="{'width':'100%'}"
                         *ngIf="(mode == 'create'|| mode == 'update')" filter="true">
                     </p-dropdown>
-                    <span *ngIf="mode == 'read'">{{rowData.projectId}}</span>
+                    <span *ngIf="mode == 'read'">{{rowData.projectName}}</span>
                 </td>
                 <!-- <td [attr.pEditableColumn]="mode == 'create'|| mode == 'update'? '' : null">
                     <p-cellEditor>
@@ -96,7 +96,7 @@
                     <p-dropdown [options]="populateWps(rowData.projectId)" [(ngModel)]="rowData.workPackageId"
                         [style]="{'width':'100%'}" *ngIf="(mode == 'create'|| mode == 'update')" filter="true">
                     </p-dropdown>
-                    <span *ngIf="mode == 'read'">{{rowData.workPackageId}}</span>
+                    <span *ngIf="mode == 'read'">{{rowData.workPackageCode}}</span>
                 </td>
                 <td>
                     <p-cellEditor>
