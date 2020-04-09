@@ -88,6 +88,10 @@ export class EmployeeService {
   }
   postEmployee(e: Employee): Observable<any> {
     let url = this.baseUrl + `api/employees`;
+    var supervisorId = 1;
+    if (e.supervisor) {
+      supervisorId = e.supervisor.employeeId;
+    }
     let body = {
       "empUsername": e.empUsername,
       "empPassword": e.empPassword,
@@ -95,8 +99,8 @@ export class EmployeeService {
       "labourGradeId": e.labourGrade.labourGradeId,
       "empFirstName": e.empFirstName,
       "empLastName": e.empLastName,
-      "timesheetApproverId": e.supervisorId,
-      "supervisorId": e.supervisorId,
+      "timesheetApproverId": supervisorId,
+      "supervisorId": supervisorId,
       "isProjectManager": e.isProjectManager,
       "isAdmin": e.isAdmin,
       "isHumanResources": e.isHumanResources,
