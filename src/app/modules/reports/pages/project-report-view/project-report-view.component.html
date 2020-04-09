@@ -92,35 +92,73 @@
                 <label class="btn btn-info" btnRadio="re" uncheckable tabindex="0" role="button">RE Estimates</label>
             </div>
 
-            <p-table [columns]="viewMode=='pm'? pmViewCols:reViewCols" [value]="viewMode=='pm'? pmData:reData">
-                <ng-template pTemplate="header" let-columns>
-                    <tr>
-                        <th *ngFor="let col of columns" [pSortableColumn]="col.field">
-                            {{col.header}}
-                            <p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
-                                ariaLabelDesc="Activate to sort in descending order"
-                                ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
-                        </th>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="body" let-rowData let-columns="columns">
-                    <tr>
-                        <td *ngFor="let col of columns">
-                            {{rowData[col.field]}}
-                        </td>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="footer" let-columns>
-                    <tr>
-                        <td *ngFor="let col of columns">
-                            <span *ngIf="col.field === 'workPackageCode'">Totals</span>
-                            <!-- <p *ngIf="col.field === 'wpReBudget'">{{projectReport.totals[col.field]}}</p> -->
-                            <!-- <p *ngIf="col.field === 'wpReBudget'">{{projectReport.totals[col.field]}}</p> -->
-                            {{projectReport.totals[col.field]}}
-                        </td>
-                    </tr>
-                </ng-template>
-            </p-table>
+
+            <div *ngIf="viewMode==='pm'">
+                <p-table [columns]="pmViewCols" [value]="pmData">
+                    <ng-template pTemplate="header" let-columns>
+                        <tr>
+                            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                                {{col.header}}
+                                <p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
+                                    ariaLabelDesc="Activate to sort in descending order"
+                                    ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData let-columns="columns">
+                        <tr>
+                            <td *ngFor="let col of columns">
+                                {{rowData[col.field]}}
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="footer" let-columns>
+                        <tr>
+                            <td *ngFor="let col of columns">
+                                <span *ngIf="col.field === 'workPackageCode'">Totals</span>
+                                <!-- <p *ngIf="col.field === 'wpReBudget'">{{projectReport.totals[col.field]}}</p> -->
+                                <!-- <p *ngIf="col.field === 'wpReBudget'">{{projectReport.totals[col.field]}}</p> -->
+                                {{projectReport.totals[col.field]}}
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+
+
+            <div *ngIf="viewMode!='pm'">
+                <p-table [columns]="reViewCols" [value]="reData">
+                    <ng-template pTemplate="header" let-columns>
+                        <tr>
+                            <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+                                {{col.header}}
+                                <p-sortIcon [field]="col.field" ariaLabel="Activate to sort"
+                                    ariaLabelDesc="Activate to sort in descending order"
+                                    ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+                            </th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-rowData let-columns="columns">
+                        <tr>
+                            <td *ngFor="let col of columns">
+                                {{rowData[col.field]}}
+                            </td>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="footer" let-columns>
+                        <tr>
+                            <td *ngFor="let col of columns">
+                                <span *ngIf="col.field === 'workPackageCode'">Totals</span>
+                                <!-- <p *ngIf="col.field === 'wpReBudget'">{{projectReport.totals[col.field]}}</p> -->
+                                <!-- <p *ngIf="col.field === 'wpReBudget'">{{projectReport.totals[col.field]}}</p> -->
+                                {{projectReport.totals[col.field]}}
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+
+
         </div>
 
 
