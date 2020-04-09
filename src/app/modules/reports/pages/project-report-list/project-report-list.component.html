@@ -5,7 +5,7 @@
 <div>
     <!-- <h3 class="display-4">Project Cost Performance Report List</h3> -->
 
-    <p-table [columns]="cols" [value]="displayReports" [paginator]="true" [rows]="10">
+    <p-table [columns]="cols" [value]="displayReports" [paginator]="true" [rows]="100">
         <ng-template pTemplate="header" let-columns>
             <tr>
                 <th *ngFor="let col of columns" [pSortableColumn]="col.field">
