@@ -1,16 +1,5 @@
 <div class="col-md-6 offset-md-3 mt-5">
-    <div class="alert alert-info">
-        <h4>Tester log in credentials</h4>
-        Username: A100001 Password: password<br />
-        Username: A100001 Password: 01234<br />
-        <br />
-        <span class="small">
-            Fake Backend<br />
-            Username: A123 Password: master<br />
-        </span>
 
-
-    </div>
     <div class="card">
         <h4 class="card-header">Log in</h4>
         <div class="card-body">
@@ -35,7 +24,8 @@
                     <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
                     Log in
                 </button>
-                <div *ngIf="error" class="alert alert-danger mt-3 mb-0">User Name and Password don't match. Please try again.</div>
+                <div *ngIf="error" class="alert alert-danger mt-3 mb-0">User Name and Password don't match. Please try
+                    again.</div>
             </form>
         </div>
     </div>
